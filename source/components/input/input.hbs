@@ -1,0 +1,34 @@
+<div class="input-container {{#if disabled}}input--disabled{{/if}} {{#if error}}input--error{{/if}} {{#if valid}}input--valid{{/if}}"></div>
+  {{#if title}}
+    <label class="input-title">{{title}}</label>
+  {{/if}}
+
+  <div class="input-wrapper {{#if leftIcon}}input-wrapper--with-left-icon{{/if}} {{#if rightIcon}}input-wrapper--with-right-icon{{/if}}">
+    
+    {{#if leftIcon}}
+      <div class="input-icon-left">
+        <img src="{{leftIcon}}" alt="left icon" />
+      </div>
+    {{/if}}
+
+    <input
+      type="text"
+      class="input-field"
+      placeholder="{{placeholder}}"
+      value="{{value}}"
+      {{#if disabled}}disabled{{/if}}
+      {{#if error}}aria-invalid="true"{{/if}}
+      {{#if valid}}aria-valid="true"{{/if}}
+    />
+
+    {{#if rightIcon}}
+      <div class="input-icon-right" {{#if rightIconClickable}}role="button"{{/if}} tabindex="0">
+        <img src="{{rightIcon}}" alt="right icon" />
+      </div>
+    {{/if}}
+  </div>
+
+  {{#if caption}}
+    <div class="input-caption">{{caption}}</div>
+  {{/if}}
+</div>
