@@ -3,11 +3,14 @@ import {ButtonComponent as Button} from './components/button/button.js'
 
 //template of using template ;D
 const buttonData = {
-    buttonText: 'Click',
-    buttonColor: 'button_secondary-color',
-    buttonImageLeft: ''
-};
-
+    label: 'Hello tester',
+    iconLeft: '',
+    iconRight: '',
+    type: 'primary',
+    disabled: false,
+    hover: false,
+    active: false
+}
 //const buttonElement = new Button(null, buttonData);
 
 // const isLogin = false;
