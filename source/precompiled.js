@@ -1,5 +1,42 @@
 (function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+templates['pin.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
+    return "pin--disabled";
+},"3":function(container,depth0,helpers,partials,data) {
+    return "disabled";
+},"5":function(container,depth0,helpers,partials,data) {
+    return "    <p class=\"pin-text\">Some description about the image.</p>\n";
+},"7":function(container,depth0,helpers,partials,data) {
+    var helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "    <div class=\"user-icon\">\n      <img src=\""
+    + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"userIcon") || (depth0 != null ? lookupProperty(depth0,"userIcon") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"userIcon","hash":{},"data":data,"loc":{"start":{"line":27,"column":16},"end":{"line":27,"column":28}}}) : helper)))
+    + "\" alt=\"User Icon\" />\n    </div>\n";
+},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"image-card "
+    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"disabled") : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":1,"column":23},"end":{"line":1,"column":59}}})) != null ? stack1 : "")
+    + "\">\n  <div class=\"image-container\">\n    <img src=\""
+    + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"pinUrl") || (depth0 != null ? lookupProperty(depth0,"pinUrl") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"pinUrl","hash":{},"data":data,"loc":{"start":{"line":3,"column":14},"end":{"line":3,"column":24}}}) : helper)))
+    + "\" alt=\"Pin Image\" class=\"pin-image\" />\n  </div>\n\n  <select class=\"board-select\" "
+    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"disabled") : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":6,"column":31},"end":{"line":6,"column":62}}})) != null ? stack1 : "")
+    + ">\n    <option value=\"\">Select Board</option>\n    <option value=\"board1\">Board 1</option>\n    <option value=\"board2\">Board 2</option>\n  </select>\n\n  <!-- Контейнер для кнопки \"Сохранить на доску\" -->\n  <div class=\"save-pin-container\"></div>\n\n  <!-- Контейнер для иконки \"Поделиться\" -->\n  <div class=\"share-pin-container\"></div>\n\n  <!-- Контейнер для иконки \"Меню\" -->\n  <div class=\"menu-pin-container\"></div>\n\n"
+    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"showText") : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":21,"column":2},"end":{"line":23,"column":9}}})) != null ? stack1 : "")
+    + "\n"
+    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"userIcon") : depth0),{"name":"if","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":25,"column":2},"end":{"line":29,"column":9}}})) != null ? stack1 : "")
+    + "</div>\n";
+},"useData":true});
 templates['button.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
     return "button--disabled";
 },"3":function(container,depth0,helpers,partials,data) {

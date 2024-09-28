@@ -1,0 +1,11 @@
+.save-pin-container,
+.share-pin-container,
+.menu-pin-container {
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.save-pin-container {
+    display: block;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,30 @@
+<div class="image-card {{#if disabled}}pin--disabled{{/if}}">
+  <div class="image-container">
+    <img src="{{pinUrl}}" alt="Pin Image" class="pin-image" />
+  </div>
+
+  <select class="board-select" {{#if disabled}}disabled{{/if}}>
+    <option value="">Select Board</option>
+    <option value="board1">Board 1</option>
+    <option value="board2">Board 2</option>
+  </select>
+
+  <!-- Контейнер для кнопки "Сохранить на доску" -->
+  <div class="save-pin-container"></div>
+
+  <!-- Контейнер для иконки "Поделиться" -->
+  <div class="share-pin-container"></div>
+
+  <!-- Контейнер для иконки "Меню" -->
+  <div class="menu-pin-container"></div>
+
+  {{#if showText}}
+    <p class="pin-text">Some description about the image.</p>
+  {{/if}}
+
+  {{#if userIcon}}
+    <div class="user-icon">
+      <img src="{{userIcon}}" alt="User Icon" />
+    </div>
+  {{/if}}
+</div>

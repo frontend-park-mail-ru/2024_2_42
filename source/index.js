@@ -1,37 +1,26 @@
-//import {InputComponent as Input} from './components/input.js';
-import {ButtonComponent as Button} from './components/button/button.js'
+// Importing ButtonComponent and PinComponent
+import { ButtonComponent as Button } from '../components/button/button.js';
+import { PinComponent as Pin } from './pages/pin/pin.js';
 
-//template of using template ;D
-const buttonData = {
-    label: 'Hello tester',
-    iconLeft: '',
-    iconRight: '',
-    type: 'primary',
-    disabled: false,
-    hover: false,
-    active: false
-}
-//const buttonElement = new Button(null, buttonData);
+// Sample data for the pin, including the disabled buttons
+const pinData = {
+    imageSrc: '',
+    boardSelectionDisabled: true,
+    saveButtonDisabled: true,
+    shareButtonDisabled: true,
+    menuButtonDisabled: true,
+    userIconVisible: true, // если отображение иконки пользователя нужно проверить
+    descriptionVisible: true // если отображение текста под изображением нужно проверить
+};
 
-// const isLogin = false;
-// const Form = {}; // replace in real form
+// Getting the container where the pin will be rendered
+const pinContainer = document.getElementById('root');
 
-// const LoginPage = document.getElementById('root');
-// const login = new LoginOrSignUp(LoginPage, Form, isLogin, buttonElement);
-// login.renderTemplate();
-const buttonContainer = document.getElementById('root');
-const button = new Button(buttonContainer, buttonData);
-button.renderTemplate();
+// Creating a new Pin component and rendering it
+const pin = new Pin(pinContainer, pinData);
+pin.renderTemplate();
 
-// const inputData = {
-//     inputSize: 'input_large',
-//     inputImageRight: 'assets/icons/Search.svg',
-//     typeOfInput: 'text',
-//     inputPlaceholder: 'Search...',
-//     inputLabelText: 'Label',
-//     inputHelperText: 'helper'
-// };
-
-// const inputContainer = document.getElementById('root');
-// const input = new Input(inputContainer, inputData);
-// input.renderTemplate();
+// Adding a click handler to one of the buttons inside the pin
+// pin.getSaveButton().setClickHandler(() => {
+//     alert('Save button clicked!');
+// });
