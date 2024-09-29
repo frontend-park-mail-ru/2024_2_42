@@ -62,27 +62,6 @@ export class ButtonComponent {
    * @returns {string} - The rendered HTML template of the button.
    */
   renderTemplate() {
-<<<<<<< HEAD
-    if (!this.#parent) {
-      console.error("Parent container for ButtonComponent is not found.");
-      return;
-    }
-
-    // Создание шаблона кнопки (допустим, в Handlebars)
-    const template = Handlebars.templates["button.hbs"];
-    const renderedTemplate = template(this.#state);
-
-    this.#parent.innerHTML = renderedTemplate;
-
-    // Предполагается, что кнопка создается с классом '.button'
-    const buttonElement = this.#parent.querySelector(".button");
-
-    // Проверяем, существует ли элемент кнопки
-    if (buttonElement) {
-      buttonElement.addEventListener("click", this.#state.onClick);
-    } else {
-      console.error("Button element not found in ButtonComponent.");
-=======
     const template = Handlebars.templates["button.hbs"];
     const renderedTemplate = template(this.#state);
 
@@ -125,7 +104,6 @@ export class ButtonComponent {
 
     if (typeof this.#clickHandler === "function" && !this.#state.disabled) {
       this.#clickHandler(event);
->>>>>>> dev
     }
   }
 

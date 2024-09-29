@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // Импортируем компоненты
 import { PinComponent } from "./components/complex/pin/pin.js";
 import { ButtonComponent } from "./components/button/button.js";
@@ -40,21 +39,3 @@ if (saveButtonContainer) {
     alert("Save button clicked!");
   });
 }
-=======
-import {InputComponent as Input} from './components/input/input.js';
-
-const inputData = {
-    Error: '',
-    inputLabelText: '',
-    inputSize: '22',
-    inputImageLeft: '',
-    inputImageRight: '',
-    typeOfInput: 'text',
-    inputPlaceholder: 'Начните печатать',
-    inputHelperText: ''
-};
-
-const inputContainer = document.getElementById('root');
-const input = new Input(inputContainer, inputData);
-input.renderTemplate();
->>>>>>> dev

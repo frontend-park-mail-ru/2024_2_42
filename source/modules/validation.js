@@ -36,36 +36,14 @@ const EMAIL_PATTERN = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
  * console.log(result.isValid); // true
  */
 export const validateInput = (input, rules) => {
-<<<<<<< HEAD
-  // Валидация email
-  if (rules.isEmail) {
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailPattern.test(input)) {
-      return { isValid: false, error: "Неверный адрес электронной почты" };
-=======
     // Email validation
     if (rules.isEmail) {
         if (!EMAIL_PATTERN.test(input)) {
             return { isValid: false, error: 'Неверный формат email. Убедитесь, что введен правильный адрес электронной почты.' };
         }
->>>>>>> dev
     }
   }
 
-<<<<<<< HEAD
-  // Валидация пароля (8-24 символа, содержит хотя бы одну цифру и одну заглавную букву)
-  if (rules.isPassword) {
-    if (
-      !/[A-Z]/.test(input) ||
-      !/[0-9]/.test(input) ||
-      !/^[a-zA-Z0-9]{8,24}$/.test(input)
-    ) {
-      return {
-        isValid: false,
-        error:
-          "Пароль должен содержать от 8 до 24 символов, включать хотя бы одну заглавную букву и одну цифру",
-      };
-=======
     // Password validation (8-24 characters, must contain at least one uppercase letter and one digit)
     if (rules.isPassword) {
         if (input.length < 8 || input.length > 24) {
@@ -77,21 +55,9 @@ export const validateInput = (input, rules) => {
         if (!/\d/.test(input)) {
             return { isValid: false, error: 'Пароль должен содержать хотя бы одну цифру.' };
         }
->>>>>>> dev
     }
   }
 
-<<<<<<< HEAD
-  // Валидация никнейма (3-20 символов, только цифры, буквы и символ "_")
-  if (rules.isNickname) {
-    const nicknamePattern = /^[0-9a-zA-Z_]{3,20}$/;
-    if (!nicknamePattern.test(input)) {
-      return {
-        isValid: false,
-        error:
-          'Логин должен содержать от 3 до 20 символов и включать только буквы, цифры и символ "_"',
-      };
-=======
     // Nickname validation (3-20 characters, only digits, letters, and underscore)
     if (rules.isNickname) {
         if (input.length < 3 || input.length > 20) {
@@ -100,30 +66,17 @@ export const validateInput = (input, rules) => {
         if (!/^[A-Za-z0-9_]+$/.test(input)) {
             return { isValid: false, error: 'Никнейм может состоять только из букв, цифр и подчеркиваний.' };
         }
->>>>>>> dev
     }
   }
 
-<<<<<<< HEAD
-  // Проверка на совпадение строк (например, для сравнения паролей)
-  if (rules.compareWith !== undefined) {
-    if (input !== rules.compareWith) {
-      return { isValid: false, error: "Строки не совпадают" };
-=======
     // String comparison check (e.g., for password confirmation)
     if (rules.compareWith !== undefined) {
         if (input !== rules.compareWith) {
             return { isValid: false, error: 'Введенные строки не совпадают. Убедитесь, что они идентичны.' };
         }
->>>>>>> dev
     }
   }
 
-<<<<<<< HEAD
-  // Если все проверки пройдены
-  return { isValid: true, error: "" };
-=======
     // If all checks pass
     return { isValid: true, error: '' };
->>>>>>> dev
 };
