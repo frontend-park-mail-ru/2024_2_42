@@ -1,15 +1,4 @@
-/* Основные стили для input-container */
-.input-container {
-    /* position: relative; */
-    display: flex;
-    align-items: center;
-    /* width: 100%;
-    background-color: #f5f5f5;
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    padding: 10px 15px;
-    transition: border-color 0.3s, background-color 0.3s; */
-}
+@import url('../../constants.css');
 
 .input-wrapper {
   position: relative;
@@ -20,7 +9,7 @@
   top: -10px; /* Adjust this value to control label positioning */
   left: 10px; /* Adjust for horizontal spacing */
   font-size: 5px;
-  color: #8f8f8f;
+  color: var(--input-label-color); /* Используем переменную */
 }
 
 .input-icons-wrapper {

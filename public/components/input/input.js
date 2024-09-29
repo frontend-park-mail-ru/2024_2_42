@@ -20,20 +20,6 @@ export class InputComponent {
      * @property {string} inputType - The type attribute of the input element (e.g., text, email, password).
      * @property {string} inputPlaceholder - The placeholder text for the input.
      */
-    // #state = {
-    //     error: '',
-    //     title: '',
-    //     inputSize: 'input_small',
-    //     leftIcon: '',
-    //     rightIcon: '',
-    //     typeOfInput: 'text',
-    //     placeholder: 'Enter text...',
-    //     caption: '',
-    //     disabled: false,
-    //     valid: true,
-    //     rightIconClickable: true,
-    // };
-
     #state;
 
     /**
@@ -65,8 +51,6 @@ export class InputComponent {
 
         if (this.#parent) {
             this.#parent.innerHTML = renderedTemplate;
-            //const inputElement = this.#parent.querySelector('input');
-            //inputElement.addEventListener('click', this.handleInputChange.bind(this))
         }
 
         return renderedTemplate;
