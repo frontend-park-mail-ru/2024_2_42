@@ -1,21 +1,8 @@
-<div class="button-container {{#if disabled}}button--disabled{{/if}} {{#if active}}button--active{{/if}} {{#if hover}}button--hover{{/if}}">
-  <button
-    class="button {{type}} {{buttonColor}}"
-    {{#if disabled}}disabled{{/if}}
-    aria-label="{{label}}"
-  >
-    {{#if iconLeft}}
-      <span class="button-icon-left">
-        <img src="{{iconLeft}}" alt="left icon" />
-      </span>
-    {{/if}}
-
-    <span class="button-label">{{label}}</span>
-
-    {{#if iconRight}}
-      <span class="button-icon-right">
-        <img src="{{iconRight}}" alt="right icon" />
-      </span>
-    {{/if}}
-  </button>
-</div>
+<button 
+   class="button {{type}} {{#if disabled}}disabled{{/if}} {{#if active}}active{{/if}}"
+   {{#if disabled}}disabled{{/if}}
+>
+  {{#if iconLeft}}<span class="icon-left">{{iconLeft}}</span>{{/if}}
+  {{label}}
+  {{#if iconRight}}<span class="icon-right">{{iconRight}}</span>{{/if}}
+</button>

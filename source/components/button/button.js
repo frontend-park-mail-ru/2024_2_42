@@ -19,8 +19,6 @@ export class ButtonComponent {
    * @property {string} iconRight - The SVG icon on the right side of the button.
    * @property {string} type - The type of the button (primary, secondary, link).
    * @property {boolean} disabled - The state of the button (enabled or disabled).
-   * @property {boolean} hover - The hover state of the button.
-   * @property {boolean} active - The active/pressed state of the button.
    */
   #state = {
     label: "Click Me",
@@ -28,8 +26,6 @@ export class ButtonComponent {
     iconRight: "",
     type: "primary",
     disabled: false,
-    hover: false,
-    active: false,
   };
 
   /**
@@ -93,6 +89,9 @@ export class ButtonComponent {
    * @param {Event} event - The button click event object.
    */
   handleButtonClick(event) {
+    // Prevent event from bubbling up the DOM tree
+    event.stopPropagation();
+
     if (typeof this.#clickHandler === "function" && !this.#state.disabled) {
       this.#clickHandler(event);
     }
