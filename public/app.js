@@ -1,10 +1,7 @@
 import {LoginComponent as Login} from './pages/login/login.js';
 import {SignUpComponent as SignUp} from './pages/signup/signup.js';
 
-// import Menu from './components/Menu/Menu.js';
-
 export const ROUTES = {
-	// feed: '/feed',
 	login: '/login',
 	signup: '/signup',
 };
@@ -13,6 +10,7 @@ export default class App {
 	state;
 	handlers = {};
 	#structure = {};
+    #inputs = {};
 	config;
 	root;
 
@@ -25,161 +23,92 @@ export default class App {
 		switch (pageRoute) {
             case ROUTES.login:
                 history.pushState({}, '', ROUTES.login);
-				this.#renderLogin();
-				break;
+                this.#renderLogin();
+                break;
             case ROUTES.signup:
                 history.pushState({}, '', ROUTES.signup);
                 this.#renderSignup();
                 break;
-			// default:
-			// 	history.pushState({}, '', ROUTES.feed);
-			// 	this.#renderFeed();
-		}
-	}
+            default:
+                for (var input in this.#inputs) {
+                    delete this.#inputs[input];
+                }
+        }
+    }
 
 	goToPage(pageRoute, deleteEverything = false) {
-        console.log('Clearing everything...')
-
         this.clear(deleteEverything);
-
-        console.log('Randering', pageRoute + '...')
-
 		this.render(pageRoute);
+
+        if (pageRoute === ROUTES.login) {
+            const signUpBtn = document.getElementsByClassName('button link')[0]
+            signUpBtn.addEventListener('click', (event) => {
+                event.preventDefault();
+
+                const loginInputs = document.getElementsByClassName('input');
+                const login = loginInputs[0], password = loginInputs[1];
+                this.#inputs = {
+                    login: login.value,
+                    password: password.value,
+                };
+
+                root.innerHTML = ''
+                this.goToPage(ROUTES.signup);
+            })
+        }
+        else if (pageRoute == ROUTES.signup) {
+            const signUpBtn = document.getElementsByClassName('button link')[0]
+            signUpBtn.addEventListener('click', (event) => {
+                event.preventDefault();
+
+                const loginInputs = document.getElementsByClassName('input');
+                const login = loginInputs[1], password = loginInputs[2];
+                this.#inputs = {
+                    login: login.value,
+                    password: password.value,
+                };
+
+                root.innerHTML = ''
+                this.goToPage(ROUTES.login);
+            })
+        }
 	}
 
 	clear(deleteEverything) {
 		document.removeEventListener('scroll', this.handlers.scrollHandler);
 		Object.keys(this.#structure).forEach((key) => {
-			if (deleteEverything || key !== 'menu') {
+			if (deleteEverything) {
 				this.#structure[key].remove();
 				delete this.#structure[key];
 			}
 		});
 	}
 
-	// #renderMenu() {
-	// 	const menu = new Menu(this.config.homeConfig.menu, this.root);
-	// 	if (!this.#structure.menu) {
-	// 		this.#structure.menu = menu;
-	// 		menu.render();
-	// 	}
-	// 	// хэндлеры добавлять после рендера, иначе стираются eventListenerы (при использовании innerHTML +=)
-	// 	menu.addHandler(
-	// 		menu.htmlElement.querySelector('a[data-section="feed"]'),
-	// 		'click',
-	// 		(event) => {
-	// 			event.preventDefault();
-	// 			this.goToPage(PAGE_LINKS.feed);
-	// 		},
-	// 	);
-	// 	menu.addHandler(
-	// 		menu.htmlElement.querySelector('a[data-section="signup"]'),
-	// 		'click',
-	// 		(event) => {
-	// 			event.preventDefault();
-	// 			this.goToPage(PAGE_LINKS.signup, true);
-	// 		},
-	// 	);
-	// }
-
-	// #renderFeed() {
-	// 	const config = this.config.homeConfig;
-
-	// 	this.#renderMenu();
-
-	// 	const main = new Container({ key: 'main', ...config.main }, this.root);
-	// 	main.render();
-	// 	this.#structure.main = main;
-
-	// 	const header = new Header(
-	// 		{ key: 'header', ...config.main.header },
-	// 		main.htmlElement,
-	// 	);
-	// 	header.render();
-	// 	this.#structure.main.header = header;
-
-	// 	const content = new Container(
-	// 		{ key: 'content', ...config.main.content },
-	// 		main.htmlElement,
-	// 	);
-	// 	content.render();
-	// 	this.#structure.main.content = content;
-
-	// 	const aside = new Container(
-	// 		{
-	// 			key: 'aside',
-	// 			...config.main.aside,
-	// 		},
-	// 		main.htmlElement,
-	// 	);
-	// 	aside.render();
-	// 	this.#structure.main.aside = aside;
-
-	// 	this.#fillContent();
-
-	// 	this.handlers.scrollHandler = () => {
-	// 		const scrollPosition = window.scrollY;
-	// 		const contentHeight = document.body.offsetHeight;
-	// 		const windowHeight = window.innerHeight;
-
-	// 		if (scrollPosition + windowHeight * 2 >= contentHeight) {
-	// 			this.#addPost();
-	// 		}
-	// 	};
-	// 	document.addEventListener('scroll', this.handlers.scrollHandler);
-	// }
-
-	// #addPost() {
-	// 	let config;
-	// 	Ajax.get('/api/post', (data, error) => {
-	// 		if (error) {
-	// 			console.log('add post error');
-	// 		} else if (data) {
-	// 			config = data;
-	// 			const post = new Post(
-	// 				config,
-	// 				this.#structure.main.content.htmlElement,
-	// 			);
-	// 			post.render();
-	// 		}
-	// 	});
-	// }
-
-	// #addPostPromise() {
-	// 	return Ajax.getPromise('/api/post');
-	// }
-
-	// #fillContent() {
-	// 	const fill = async () => {
-	// 		while (window.innerHeight * 2 > document.body.offsetHeight) {
-	// 			const promise = this.#addPostPromise();
-	// 			await promise
-	// 				.then((data) => {
-	// 					const post = new Post(
-	// 						data,
-	// 						this.#structure.main.content.htmlElement,
-	// 					);
-	// 					post.render();
-	// 				})
-	// 				.catch((error) => {
-	// 					console.log('fill content error:', error);
-	// 				});
-	// 		}
-	// 	};
-	// 	fill();
-	// }
-
 	#renderLogin() {
         const config = this.config.loginConfig;
-		const login = new Login(this.root, config.inputs, config.button);
-		login.renderTemplate();
-		this.#structure.login = login;
+        const login = new Login(this.root, config.inputs, config.button, config.button_form_footer);
+        login.renderTemplate();
+        this.#structure.login = login;
+
+        // Add values to inputs if it's stored
+        const formInputs = document.getElementsByClassName('input');
+        if (Object.keys(this.#inputs).length > 0) {
+            formInputs[0].value = this.#inputs.login
+            formInputs[1].value = this.#inputs.password
+        }
 	}
 
     #renderSignup() {
         const config = this.config.signupConfig;
-        const signUp = new SignUp(this.root, config.inputs, config.button);
+        const signUp = new SignUp(this.root, config.inputs, config.button, config.button_form_footer);
         signUp.renderTemplate();
         this.#structure.signUp = signUp;
+
+        // Add values to inputs if it's stored
+        const formInputs = document.getElementsByClassName('input');
+        if (Object.keys(this.#inputs).length > 0) {
+            formInputs[1].value = this.#inputs.login
+            formInputs[2].value = this.#inputs.password
+        }
     }
 }

@@ -2,7 +2,6 @@
 
 import {InputComponent as Input} from '../../components/input/input.js';
 import {ButtonComponent as Button} from '../../components/button/button.js';
-// import validateInput from '../../modules/validation.js'
 
 /**
  * Represents a Login Component.
@@ -17,6 +16,7 @@ export class SignUpComponent {
     #inputs = [];
     #inputsData;
 	#buttonData;
+    #buttonFooterData;
 
     /**
      * The state of the input component.
@@ -28,10 +28,11 @@ export class SignUpComponent {
      * @property {string} inputPlaceholder - The placeholder text for the input.
      */
 
-    constructor(parent, inputsData, buttonData) {
+    constructor(parent, inputsData, buttonData, buttonFooterData) {
         this.#parent = parent;
         this.#inputsData = inputsData
         this.#buttonData = buttonData
+        this.#buttonFooterData = buttonFooterData
     }
 
     /**
@@ -40,18 +41,19 @@ export class SignUpComponent {
      */
     renderTemplate() {
         Object.entries(this.#inputsData).forEach(([key, value]) => {
-            console.log(value)
-
 			const input = new Input({key, ...value});
 			this.#inputs.push(input);
 		});
+
 		const button = new Button('', this.#buttonData);
+        const button_form_footer = new Button('', this.#buttonFooterData);
 
 		const template = Handlebars.templates['signup.hbs'];
 		const renderedTemplate = template({
 			inputs: this.#inputs.map((input) => input.renderTemplate()),
 			className: 'signup-form-container',
 			button: button.renderTemplate(),
+            button_form_footer: button_form_footer.renderTemplate(),
 		});
 
 		this.#parent.innerHTML += renderedTemplate;

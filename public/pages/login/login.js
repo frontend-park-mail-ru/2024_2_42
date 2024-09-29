@@ -17,6 +17,7 @@ export class LoginComponent {
     #inputs = [];
     #inputsData;
 	#buttonData;
+    #buttonFooterData;
 
     /**
      * The state of the input component.
@@ -28,10 +29,11 @@ export class LoginComponent {
      * @property {string} inputPlaceholder - The placeholder text for the input.
      */
 
-    constructor(parent, inputsData, buttonData) {
+    constructor(parent, inputsData, buttonData, buttonFooterData) {
         this.#parent = parent;
         this.#inputsData = inputsData
         this.#buttonData = buttonData
+        this.#buttonFooterData = buttonFooterData
     }
 
     /**
@@ -40,19 +42,20 @@ export class LoginComponent {
      */
     renderTemplate() {
         Object.entries(this.#inputsData).forEach(([key, value]) => {
-            console.log(value)
-            
 			const input = new Input({key, ...value});
 			this.#inputs.push(input);
 		});
 
 		const button = new Button('', this.#buttonData);
-
+        const button_form_footer = new Button('', this.#buttonFooterData);
+    
+        button_form_footer.Add
 		const template = Handlebars.templates['login.hbs'];
 		const renderedTemplate = template({
 			inputs: this.#inputs.map((input) => input.renderTemplate()),
 			className: 'login-form-container',
 			button: button.renderTemplate(),
+            button_form_footer: button_form_footer.renderTemplate(),
 		});
 
 		this.#parent.innerHTML += renderedTemplate;

@@ -50,13 +50,9 @@ export class InputComponent {
      * @param {Function} [changeHandler=this.#changeHandler] - The function that will handle the input change event. (optional)
      */
     constructor(state, parent, changeHandler = this.#changeHandler) {
-        console.log("New Input state:", state)
-    
         this.#parent = parent;
         this.#state = { ...this.#state, ...state };
         this.#changeHandler = changeHandler;
-        
-        console.log("New Input:", this.#state)
     }
 
     /**

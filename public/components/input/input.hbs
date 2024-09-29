@@ -13,11 +13,11 @@
 
     <input 
       type="{{typeOfInput}}" 
-      class="input {{#if inputImageLeft}}input__text-padding-left{{/if}} {{#if inputImageRight}}input__text-padding-right{{/if}}" 
+      class="input {{#if inputImageLeft}} input__text-padding-left {{/if}} {{#if inputImageRight}} input__text-padding-right{{/if}}" 
       placeholder="{{inputPlaceholder}}" 
-      value="{{inputValue}}" 
+      value="{{inputValue}}"
       {{#if isDisabled}}disabled{{/if}} 
-      oninput="this.dispatchEvent(new CustomEvent('input-change', { detail: this.value }))" />
+      oninput="this.dispatchEvent(new CustomEvent('input-change', { detail: this.value }))"/>
 
     {{#if inputImageRight}}
       <span class="input__icon input__icon-right">

@@ -15,22 +15,18 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-a_form-logo {
+.a__form-logo {
     text-decoration: none;
     font-size: 10rem;
 }
 
 .auth {
     width: 100%;
-    /* display: flex; */
     min-height: 20em;
-    /* flex-direction: column; */
     align-items: center;
-    /* justify-content: space-between; */
-    /* padding: 50px; */
 }
 
-.logo-sign {
+.logo-auth {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -45,20 +41,15 @@ a_form-logo {
     text-align: center;
 }
 
-/* .youpin-welcome {
-    font-size: 1rem;
-    text-align: center;
-} */
-
-.form-sign {
+.form-auth {
     border-radius: 5px;
 }
 
-form {
+.form-auth form {
     width: 100%;
 }
 
-input {
+.form-auth form input {
     font-family: 'Sansation', sans-serif;
     width: 100%;
     outline: none;
@@ -71,7 +62,7 @@ input {
     margin: 10px;
 }
 
-button {
+.form-auth form button {
     font-family: 'Sansation', sans-serif;
     cursor: pointer;
     margin: 20px;
@@ -87,7 +78,7 @@ button {
     transition: 0.5s;
 }
 
-button:hover {
+.form-auth form button:hover {
     background-color: #b1021d;
     transition: 0.5s;
 }
@@ -96,7 +87,15 @@ button:hover {
     text-align:center;
 }
 
-.form-footer a {
+.form-footer .button-container {
+    display: inline;
+    padding: 0;
+    border: 0;
+    text-decoration: underline;
+    cursor: pointer;
+    background: transparent;
+}
+
+.form-footer .button-container .button.link {
     color: #e60023;
-    margin: 1rem;
 }

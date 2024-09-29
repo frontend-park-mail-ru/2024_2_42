@@ -1,14 +1,12 @@
 <div class="cover">
     <div class="auth">
-        <div class="logo-sign" style="padding: 20px">
+        <div class="logo-auth" style="padding: 20px">
             <a class"a_form-logo" style="text-decoration: none" href="">
                 <span style="color: black; font-size: 5rem">You</span>
                 <span style="color: #e60023; font-size: 5rem">Pin</span>
             </a>
-            {{!-- <h2 class="youpin-welcome">Добро пожаловать!</h2> --}}
         </div>
-        {{!-- <div class="name-sign"><h2>Регистрация</h2></div> --}}
-        <div class="form-sign">
+        <div class="form-auth">
             <form action="post" class="{{this.className}}">
                 {{#each inputs}}
                     {{{this}}}
@@ -16,7 +14,7 @@
                 {{{button}}}
             </form>
             <div class="form-footer">
-                <span>Уже зарегистрированы? <a href="/login">Войдите</a></span>
+                <span>Уже зарегистрированы? {{{button_form_footer}}}</span>
             </div>
         </div>
     </div>
