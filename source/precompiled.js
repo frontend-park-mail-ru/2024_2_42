@@ -1,5 +1,13 @@
 (function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+<<<<<<< HEAD
+templates['button.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
+    return "disabled";
+},"3":function(container,depth0,helpers,partials,data) {
+    return "active";
+},"5":function(container,depth0,helpers,partials,data) {
+    var helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+=======
 templates['input.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
     return "input-error";
 },"3":function(container,depth0,helpers,partials,data) {
@@ -15,6 +23,7 @@ templates['input.hbs'] = template({"1":function(container,depth0,helpers,partial
     + "</label>\r\n";
 },"5":function(container,depth0,helpers,partials,data) {
     var stack1, helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+>>>>>>> 9293db96759b9f4fcac84ba8f0e2befc947ad056
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
           return parent[propertyName];
         }

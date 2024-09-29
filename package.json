@@ -7,5 +7,12 @@
     "express": "^4.21.0",
     "globstar": "^1.0.0",
     "handlebars": "^4.7.8"
-  }
+  },
+  "name": "2024_2_42",
+  "description": "Репозиторий команды 42. Проект Pinterest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC"
 }
