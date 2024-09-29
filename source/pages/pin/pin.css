@@ -1,44 +1,44 @@
 .pin-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Две колонки одинаковой ширины */
-    grid-template-areas:
-        "top-board-selector save-button-container"
-        "pin-image pin-image"
-        "bottom-button-left bottom-button-right";
-    gap: 10px; /* Отступы между элементами */
-    width: 300px; /* Общая ширина */
-    height: auto; /* Высота по содержимому */
-    background-color: brown;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Две колонки одинаковой ширины */
+  grid-template-areas:
+    "top-board-selector save-button-container"
+    "pin-image pin-image"
+    "bottom-button-left bottom-button-right";
+  gap: 10px; /* Отступы между элементами */
+  width: 300px; /* Общая ширина */
+  height: auto; /* Высота по содержимому */
+  background-color: brown;
 }
 
 /* Селектор досок занимает первую колонку сверху */
 .top-board-selector {
-    grid-area: top-board-selector;
-    width: 100%;
+  grid-area: top-board-selector;
+  width: 100%;
 }
 
 /* Кнопка "Сохранить" в правой колонке сверху */
 .save-button-container {
-    grid-area: save-button-container;
-    justify-self: end; /* Перемещаем кнопку вправо */
+  grid-area: save-button-container;
+  justify-self: end; /* Перемещаем кнопку вправо */
 }
 
 /* Изображение занимает всю ширину и высоту своей области */
 .pin-image {
-    grid-area: pin-image;
-    width: 100%;
-    height: 100%; /* Задаем высоту, чтобы занять всю сетку */
-    object-fit: contain; /* Чтобы изображение пропорционально вписывалось */
+  grid-area: pin-image;
+  width: 100%;
+  height: 100%; /* Задаем высоту, чтобы занять всю сетку */
+  object-fit: contain; /* Чтобы изображение пропорционально вписывалось */
 }
 
 /* Нижняя левая кнопка */
 .bottom-button-left {
-    grid-area: bottom-button-left;
-    justify-self: start; /* Выравниваем по левому краю */
+  grid-area: bottom-button-left;
+  justify-self: start; /* Выравниваем по левому краю */
 }
 
 /* Нижняя правая кнопка */
 .bottom-button-right {
-    grid-area: bottom-button-right;
-    justify-self: end; /* Выравниваем по правому краю */
+  grid-area: bottom-button-right;
+  justify-self: end; /* Выравниваем по правому краю */
 }
