@@ -1,0 +1,102 @@
+@import url('https://fonts.cdnfonts.com/css/sansation?styles=169710');
+
+body {
+    font-family: 'Sansation', sans-serif;
+}
+
+.cover {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    padding: 30px;
+    background-color: rgb(243, 243, 243);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+a_form-logo {
+    text-decoration: none;
+    font-size: 10rem;
+}
+
+.auth {
+    width: 100%;
+    /* display: flex; */
+    min-height: 20em;
+    /* flex-direction: column; */
+    align-items: center;
+    /* justify-content: space-between; */
+    /* padding: 50px; */
+}
+
+.logo-sign {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.a_form-logo {
+    margin: 50px;
+}
+
+.a_form-logo span {
+    font-size: 10rem;
+    text-align: center;
+}
+
+/* .youpin-welcome {
+    font-size: 1rem;
+    text-align: center;
+} */
+
+.form-sign {
+    border-radius: 5px;
+}
+
+form {
+    width: 100%;
+}
+
+input {
+    font-family: 'Sansation', sans-serif;
+    width: 100%;
+    outline: none;
+    font-size: 1rem;
+    height: 30px;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: all .3s;
+    margin: 10px;
+}
+
+button {
+    font-family: 'Sansation', sans-serif;
+    cursor: pointer;
+    margin: 20px;
+    background-color: #e60023;
+    color: white;
+    border: none;
+    padding: .75rem 1.5rem;
+    letter-spacing: .1em;
+    font-weight: bold;
+    font-size: large;
+    outline: none;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+button:hover {
+    background-color: #b1021d;
+    transition: 0.5s;
+}
+
+.form-footer {
+    text-align:center;
+}
+
+.form-footer a {
+    color: #e60023;
+    margin: 1rem;
+}

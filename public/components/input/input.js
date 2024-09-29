@@ -20,16 +20,21 @@ export class InputComponent {
      * @property {string} inputType - The type attribute of the input element (e.g., text, email, password).
      * @property {string} inputPlaceholder - The placeholder text for the input.
      */
-    #state = {
-        Error: '',
-        inputLabelText: '',
-        inputSize: 'input_small',
-        inputImageLeft: '',
-        inputImageRight: '',
-        typeOfInput: 'text',
-        inputPlaceholder: 'Enter text...',
-        inputHelperText: ''
-    };
+    // #state = {
+    //     error: '',
+    //     title: '',
+    //     inputSize: 'input_small',
+    //     leftIcon: '',
+    //     rightIcon: '',
+    //     typeOfInput: 'text',
+    //     placeholder: 'Enter text...',
+    //     caption: '',
+    //     disabled: false,
+    //     valid: true,
+    //     rightIconClickable: true,
+    // };
+
+    #state;
 
     /**
      * The function that will handle the input change event.
@@ -44,10 +49,14 @@ export class InputComponent {
      * @param {Object} [state=this.#state] - The initial state of the input component. (optional)
      * @param {Function} [changeHandler=this.#changeHandler] - The function that will handle the input change event. (optional)
      */
-    constructor(parent, state = this.#state, changeHandler = this.#changeHandler) {
+    constructor(state, parent, changeHandler = this.#changeHandler) {
+        console.log("New Input state:", state)
+    
         this.#parent = parent;
         this.#state = { ...this.#state, ...state };
         this.#changeHandler = changeHandler;
+        
+        console.log("New Input:", this.#state)
     }
 
     /**
@@ -108,4 +117,5 @@ export class InputComponent {
      */
     getChangeHandler() {
         return this.#changeHandler;
-    }}
+    }
+}
