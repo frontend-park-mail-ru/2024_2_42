@@ -1,5 +1,5 @@
 // Импортируем компоненты
-import { PinComponent } from "./pages/pin/pin.js";
+import { PinComponent } from "./components/complex/pin/pin.js";
 import { ButtonComponent } from "./components/button/button.js";
 
 // Получаем контейнер, в который будет вставлен PinComponent
@@ -26,7 +26,7 @@ const pin = new PinComponent(pinContainer, pinData);
 pin.renderTemplate();
 
 // Добавляем обработчики событий для кнопок (если они нужны)
-const saveButtonContainer = document.querySelector(".top-save-to-board-button");
+const saveButtonContainer = document.querySelector(".pin__save-button");
 
 // Проверяем инициализацию каждой кнопки и передаем контейнеры
 if (saveButtonContainer) {

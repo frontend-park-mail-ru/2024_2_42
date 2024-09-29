@@ -1,5 +1,5 @@
 "use strict";
-import { ButtonComponent } from "../../button.js";
+import { ButtonComponent } from "../../button/button.js";
 
 /**
  * Represents an Image Card Component.
@@ -48,13 +48,13 @@ export class PinComponent {
 
       // Проверяем контейнеры для кнопок
       const saveBtnContainer = this.#parent.querySelector(
-        ".save-button-container",
+        ".pin__save-button",
       );
       const shareBtnContainer = this.#parent.querySelector(
-        ".share-button-container",
+        ".pin__share-button",
       );
       const menuBtnContainer = this.#parent.querySelector(
-        ".menu-pbuttonin-container",
+        ".pin__save-button-container",
       );
 
       if (!saveBtnContainer) {
