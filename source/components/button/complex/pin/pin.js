@@ -1,5 +1,5 @@
 "use strict";
-import { ButtonComponent } from "../../components/button/button.js";
+import { ButtonComponent } from "../../button.js";
 
 /**
  * Represents an Image Card Component.
