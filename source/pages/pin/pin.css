@@ -1,55 +1,44 @@
-.pin {
-    width: 300px;
-    height: 100%;
-    position: relative;
-    background-color: #b90e0e; /* Цвет фона */
-    border: 1px solid #c41313; /* Граница */
-    border-radius: 8px; /* Скругление углов */
-    overflow: hidden; /* Обрезка содержимого */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.pin-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Две колонки одинаковой ширины */
+    grid-template-areas:
+        "top-board-selector save-button-container"
+        "pin-image pin-image"
+        "bottom-button-left bottom-button-right";
+    gap: 10px; /* Отступы между элементами */
+    width: 300px; /* Общая ширина */
+    height: auto; /* Высота по содержимому */
+    background-color: brown;
 }
 
-.pin--disabled {
-    opacity: 0.6; /* Полупрозрачность для отключенной карточки */
-    pointer-events: none; /* Отключение взаимодействия */
-}
-
-.pin-image {
-    width: 120px;
-    height: 120px;
-}
-
-.board-select {
+/* Селектор досок занимает первую колонку сверху */
+.top-board-selector {
+    grid-area: top-board-selector;
     width: 100%;
-    height: 100%;
-    padding: 5px;
-    border: 1px solid #c41313;
-    border-radius: 4px;
-    background-color: #fff;
-    font-size: 12px;
-    margin: 5px 0; /* Отступы для выпадающего списка */
 }
 
-.button-container {
-    display: flex;
-    justify-content: space-between; /* Разделение кнопок */
-    width: 100%; /* Полная ширина */
+/* Кнопка "Сохранить" в правой колонке сверху */
+.save-button-container {
+    grid-area: save-button-container;
+    justify-self: end; /* Перемещаем кнопку вправо */
 }
 
-.save-pin-container, .share-pin-container, .menu-pin-container {
-    width: 16px; /* Ширина кнопок */
-    height: 16px; /* Высота кнопок */
+/* Изображение занимает всю ширину и высоту своей области */
+.pin-image {
+    grid-area: pin-image;
+    width: 100%;
+    height: 100%; /* Задаем высоту, чтобы занять всю сетку */
+    object-fit: contain; /* Чтобы изображение пропорционально вписывалось */
 }
 
-.pin-text {
-    font-size: 12px;
-    text-align: center;
+/* Нижняя левая кнопка */
+.bottom-button-left {
+    grid-area: bottom-button-left;
+    justify-self: start; /* Выравниваем по левому краю */
 }
 
-.pin-user-icon {
-    width: 16px;
-    height: 16px;
-    margin-top: 5px;
+/* Нижняя правая кнопка */
+.bottom-button-right {
+    grid-area: bottom-button-right;
+    justify-self: end; /* Выравниваем по правому краю */
 }

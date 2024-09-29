@@ -1,25 +1,21 @@
-<div class="pin" style="width: 120px; height: 120px;">
-    <img src="{{pinUrl}}" alt="Pin Image" class="pin-image" />
-
-    <div class="dropdown-container">
-        <select disabled>
-            <option value="">Select a board</option>
-        </select>
-    </div>
-
-    <div class="button-container">
-        <div class="save-pin-container"></div> <!-- Кнопка для сохранения на доску -->
-        <div class="share-pin-container"></div> <!-- Кнопка для поделиться -->
-        <div class="menu-pin-container"></div>  <!-- Кнопка для раскрытия меню -->
-    </div>
-
-    {{#if showText}}
-        <div class="pin-text">Your text here</div> <!-- Отображение текста под изображением -->
+<div class="button-container {{#if disabled}}button--disabled{{/if}} {{#if active}}button--active{{/if}} {{#if hover}}button--hover{{/if}}">
+  <button
+    class="button {{type}} {{buttonColor}}"
+    {{#if disabled}}disabled{{/if}}
+    aria-label="{{label}}"
+  >
+    {{#if iconLeft}}
+      <span class="button-icon-left">
+        <img src="{{iconLeft}}" alt="left icon" />
+      </span>
     {{/if}}
 
-    {{#if userIcon}}
-        <div class="user-icon">
-            <img src="{{userIcon}}" alt="User Icon" />
-        </div> <!-- Отображение иконки пользователя -->
+    <span class="button-label">{{label}}</span>
+
+    {{#if iconRight}}
+      <span class="button-icon-right">
+        <img src="{{iconRight}}" alt="right icon" />
+      </span>
     {{/if}}
+  </button>
 </div>

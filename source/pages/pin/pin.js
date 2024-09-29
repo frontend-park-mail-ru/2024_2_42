@@ -43,22 +43,42 @@ export class PinComponent {
     renderTemplate() {
         const template = Handlebars.templates['pin.hbs'];
         const renderedTemplate = template(this.#state);
-
+    
         if (this.#parent) {
             this.#parent.innerHTML = renderedTemplate;
-
-            // Initialize buttons using ButtonComponent
-            const saveBtnContainer = this.#parent.querySelector('.save-pin-container');
-            const shareBtnContainer = this.#parent.querySelector('.share-pin-container');
-            const menuBtnContainer = this.#parent.querySelector('.menu-pin-container');
-
-            new ButtonComponent(saveBtnContainer, this.#state.buttons.saveButton).renderTemplate();
-            new ButtonComponent(shareBtnContainer, this.#state.buttons.shareButton).renderTemplate();
-            new ButtonComponent(menuBtnContainer, this.#state.buttons.menuButton).renderTemplate();
+    
+            // Проверяем контейнеры для кнопок
+            const saveBtnContainer = this.#parent.querySelector('.save-button-container');
+            const shareBtnContainer = this.#parent.querySelector('.share-button-container');
+            const menuBtnContainer = this.#parent.querySelector('.menu-pbuttonin-container');
+    
+            if (!saveBtnContainer) {
+                console.error('Save button container not found.');
+            }
+            if (!shareBtnContainer) {
+                console.error('Share button container not found.');
+            }
+            if (!menuBtnContainer) {
+                console.error('Menu button container not found.');
+            }
+    
+            // Рендерим кнопки только если контейнеры найдены
+            if (saveBtnContainer) {
+                new ButtonComponent(saveBtnContainer, this.#state.buttons.saveButton).renderTemplate();
+            }
+            if (shareBtnContainer) {
+                new ButtonComponent(shareBtnContainer, this.#state.buttons.shareButton).renderTemplate();
+            }
+            if (menuBtnContainer) {
+                new ButtonComponent(menuBtnContainer, this.#state.buttons.menuButton).renderTemplate();
+            }
+        } else {
+            console.error('Parent container for PinComponent is not found.');
         }
-
+    
         return renderedTemplate;
     }
+    
 
     setState(newState) {
         this.#state = { ...this.#state, ...newState };
