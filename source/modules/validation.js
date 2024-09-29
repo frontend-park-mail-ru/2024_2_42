@@ -1,6 +1,4 @@
 const EMAIL_PATTERN = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-const PASSWORD_PATTERN = /^(?=.*?[A-Z])(?=.*?[0-9]).{8,24}$/;
-const NICKNAME_PATTERN = /^[0-9a-zA-Z_]{3,20}$/;
 
 
 export const validateInput = (input, rules) => {
