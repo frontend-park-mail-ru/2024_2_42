@@ -1,0 +1,36 @@
+@import url('../../constants.css');
+
+.input-wrapper {
+  position: relative;
+}
+
+.input__label {
+  position: absolute;
+  top: -10px; /* Adjust this value to control label positioning */
+  left: 10px; /* Adjust for horizontal spacing */
+  font-size: 5px;
+  color: var(--input-label-color); /* Используем переменную */
+}
+
+.input-icons-wrapper {
+  position: relative;
+}
+
+.input__icon-left {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+}
+
+.input__icon-right {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+.input {
+  padding-left: 40px; /* Add padding for left icon */
+  padding-right: 40px; /* Add padding for right icon */
+}

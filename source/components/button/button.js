@@ -19,8 +19,11 @@ export class ButtonComponent {
    * @property {string} iconRight - The SVG icon on the right side of the button.
    * @property {string} type - The type of the button (primary, secondary, link).
    * @property {boolean} disabled - The state of the button (enabled or disabled).
+<<<<<<< HEAD
    * @property {boolean} hover - The hover state of the button.
    * @property {boolean} active - The active/pressed state of the button.
+=======
+>>>>>>> dev
    */
   #state = {
     label: "Click Me",
@@ -28,8 +31,11 @@ export class ButtonComponent {
     iconRight: "",
     type: "primary",
     disabled: false,
+<<<<<<< HEAD
     hover: false,
     active: false,
+=======
+>>>>>>> dev
   };
 
   /**
@@ -56,6 +62,7 @@ export class ButtonComponent {
    * @returns {string} - The rendered HTML template of the button.
    */
   renderTemplate() {
+<<<<<<< HEAD
     if (!this.#parent) {
       console.error("Parent container for ButtonComponent is not found.");
       return;
@@ -75,10 +82,55 @@ export class ButtonComponent {
       buttonElement.addEventListener("click", this.#state.onClick);
     } else {
       console.error("Button element not found in ButtonComponent.");
+=======
+    const template = Handlebars.templates["button.hbs"];
+    const renderedTemplate = template(this.#state);
+
+    if (this.#parent) {
+      this.#parent.innerHTML = renderedTemplate;
+      const buttonElement = this.#parent.querySelector("button");
+      buttonElement.addEventListener(
+        "click",
+        this.handleButtonClick.bind(this),
+      );
+    }
+
+    return renderedTemplate;
+  }
+
+  /**
+   * Updates the state of the button component.
+   * @param {Object} newState - The new state object containing the changed props.
+   */
+  setState(newState) {
+    this.#state = { ...this.#state, ...newState };
+    this.renderTemplate(); // Re-render the button with updated state.
+  }
+
+  /**
+   * Retrieves the current state of the button component.
+   * @returns {Object} - The current state object.
+   */
+  getState() {
+    return this.#state;
+  }
+
+  /**
+   * Handles the button click event.
+   * @param {Event} event - The button click event object.
+   */
+  handleButtonClick(event) {
+    // Prevent event from bubbling up the DOM tree
+    event.stopPropagation();
+
+    if (typeof this.#clickHandler === "function" && !this.#state.disabled) {
+      this.#clickHandler(event);
+>>>>>>> dev
     }
   }
 
   /**
+<<<<<<< HEAD
    * Updates the state of the button component.
    * @param {Object} newState - The new state object containing the changed props.
    */
@@ -114,6 +166,16 @@ export class ButtonComponent {
   }
 
   /**
+=======
+   * Sets the click event handler for the button.
+   * @param {Function} clickHandler - The function to handle the button click event.
+   */
+  setClickHandler(clickHandler) {
+    this.#clickHandler = clickHandler;
+  }
+
+  /**
+>>>>>>> dev
    * Gets the current click event handler for the button.
    * @returns {Function} - The current click event handler.
    */
