@@ -1,3 +1,5 @@
+@import url('../../constants.css');
+
 .input-wrapper {
   position: relative;
 }
@@ -7,7 +9,7 @@
   top: -10px; /* Adjust this value to control label positioning */
   left: 10px; /* Adjust for horizontal spacing */
   font-size: 5px;
-  color: #8f8f8f;
+  color: var(--input-label-color); /* Используем переменную */
 }
 
 .input-icons-wrapper {
