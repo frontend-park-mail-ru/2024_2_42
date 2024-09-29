@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "compile": "globstar -- npx handlebars source/**/*.hbs -f source/precompiled.js",
+    "compile": "globstar -- npx handlebars public/**/*.hbs -f public/precompiled.js",
     "start": "node server/server.js"
   },
   "dependencies": {

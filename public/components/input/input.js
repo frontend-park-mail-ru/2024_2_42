@@ -20,22 +20,13 @@ export class InputComponent {
      * @property {string} inputType - The type attribute of the input element (e.g., text, email, password).
      * @property {string} inputPlaceholder - The placeholder text for the input.
      */
-    #state = {
-        Error: '',
-        inputLabelText: '',
-        inputSize: '22',
-        inputImageLeft: '',
-        inputImageRight: '',
-        typeOfInput: 'text',
-        inputPlaceholder: 'Начните печатать',
-        inputHelperText: ''
-    };
+    #state;
 
     /**
      * The function that will handle the input change event.
      * @type {Function}
      */
-    #changeHandler = () => {};
+    #changeHandler = () => { };
 
     /**
      * Creates an instance of InputComponent.
@@ -44,7 +35,7 @@ export class InputComponent {
      * @param {Object} [state=this.#state] - The initial state of the input component. (optional)
      * @param {Function} [changeHandler=this.#changeHandler] - The function that will handle the input change event. (optional)
      */
-    constructor(parent, state = this.#state, changeHandler = this.#changeHandler) {
+    constructor(state, parent, changeHandler = this.#changeHandler) {
         this.#parent = parent;
         this.#state = { ...this.#state, ...state };
         this.#changeHandler = changeHandler;
@@ -106,4 +97,5 @@ export class InputComponent {
      */
     getChangeHandler() {
         return this.#changeHandler;
-    }}
+    }
+}
