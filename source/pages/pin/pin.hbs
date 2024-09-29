@@ -1,13 +1,17 @@
-<div class="image-card {{#if disabled}}pin--disabled{{/if}}">
-  <div class="image-container">
+<div class="pin {{#if disabled}}pin--disabled{{/if}}">
+  <div class="pin-image">
     <img src="{{pinUrl}}" alt="Pin Image" class="pin-image" />
   </div>
 
-  <select class="board-select" {{#if disabled}}disabled{{/if}}>
-    <option value="">Select Board</option>
-    <option value="board1">Board 1</option>
-    <option value="board2">Board 2</option>
-  </select>
+  {{#if boards.length}}
+    <select class="board-select">
+      {{#each boards}}
+        <option value="{{this}}">{{this}}</option>
+      {{/each}}
+    </select>
+  {{else}}
+    <p>Доступных досок нет</p>
+  {{/if}}
 
   <!-- Контейнер для кнопки "Сохранить на доску" -->
   <div class="save-pin-container"></div>

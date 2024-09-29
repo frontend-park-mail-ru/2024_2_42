@@ -8,16 +8,16 @@ import { ButtonComponent } from '../../components/button/button.js';
 export class PinComponent {
     #parent;
     #state = {
-        pinUrl: './pages/photo_2023-06-29_22-58-29.jpg',
-        board: '',
-        disabled: false,
+        pinUrl: '', // путь к изображению
+        boards: [], // список досок
+        disabled: true, // флаг отключения по умолчанию
         userIcon: '',
         showText: false,
         buttons: {
             saveButton: {
                 label: 'Save to Board',
                 type: 'primary',
-                disabled: true
+                disabled: true // кнопка отключена по умолчанию
             },
             shareButton: {
                 label: '',
@@ -27,12 +27,13 @@ export class PinComponent {
             },
             menuButton: {
                 label: '',
-                iconLeft: './pages/share.svg',
+                iconLeft: '',
                 type: 'link',
                 disabled: true
             }
         }
     };
+    
 
     constructor(parent, state = this.#state) {
         this.#parent = parent;
@@ -67,4 +68,21 @@ export class PinComponent {
     getState() {
         return this.#state;
     }
+
+    setBoardsInPin(newState) {
+        this.#state = { ...this.#state, ...newState };
+    
+        // Если есть доски, активировать select и кнопку сохранения
+        if (this.#state.boards.length > 0) {
+            this.#state.disabled = false;
+            this.#state.buttons.saveButton.disabled = false;
+        } else {
+            // Если досок нет, отключить select и кнопку сохранения
+            this.#state.disabled = true;
+            this.#state.buttons.saveButton.disabled = true;
+        }
+    
+        this.renderTemplate();
+    }
+    
 }
