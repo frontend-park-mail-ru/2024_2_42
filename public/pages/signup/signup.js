@@ -1,7 +1,7 @@
 'use strict';
 
-import {InputComponent as Input} from '../../components/input/input.js';
-import {ButtonComponent as Button} from '../../components/button/button.js';
+import { InputComponent as Input } from '../../components/input/input.js';
+import { ButtonComponent as Button } from '../../components/button/button.js';
 
 /**
  * Represents a Login Component.
@@ -15,7 +15,7 @@ export class SignUpComponent {
     #parent;
     #inputs = [];
     #inputsData;
-	#buttonData;
+    #buttonData;
     #buttonFooterData;
 
     /**
@@ -41,26 +41,26 @@ export class SignUpComponent {
      */
     renderTemplate() {
         Object.entries(this.#inputsData).forEach(([key, value]) => {
-			const input = new Input({key, ...value});
-			this.#inputs.push(input);
-		});
+            const input = new Input({ key, ...value });
+            this.#inputs.push(input);
+        });
 
-		const button = new Button('', this.#buttonData);
+        const button = new Button('', this.#buttonData);
         const button_form_footer = new Button('', this.#buttonFooterData);
 
-		const template = Handlebars.templates['signup.hbs'];
-		const renderedTemplate = template({
-			inputs: this.#inputs.map((input) => input.renderTemplate()),
-			className: 'signup-form-container',
-			button: button.renderTemplate(),
+        const template = Handlebars.templates['signup.hbs'];
+        const renderedTemplate = template({
+            inputs: this.#inputs.map((input) => input.renderTemplate()),
+            className: 'signup-form-container',
+            button: button.renderTemplate(),
             button_form_footer: button_form_footer.renderTemplate(),
-		});
+        });
 
-		this.#parent.innerHTML += renderedTemplate;
-		this.#inputs.forEach((input) => {
-			input.parent = this.htmlElement;
-		});
+        this.#parent.innerHTML += renderedTemplate;
+        this.#inputs.forEach((input) => {
+            input.parent = this.htmlElement;
+        });
 
-		return renderedTemplate;
+        return renderedTemplate;
     }
 };

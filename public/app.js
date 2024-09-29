@@ -1,26 +1,26 @@
-import {LoginComponent as Login} from './pages/login/login.js';
-import {SignUpComponent as SignUp} from './pages/signup/signup.js';
+import { LoginComponent as Login } from './pages/login/login.js';
+import { SignUpComponent as SignUp } from './pages/signup/signup.js';
 
 export const ROUTES = {
-	login: '/login',
-	signup: '/signup',
+    login: '/login',
+    signup: '/signup',
 };
 
 export default class App {
-	state;
-	handlers = {};
-	#structure = {};
+    state;
+    handlers = {};
+    #structure = {};
     #inputs = {};
-	config;
-	root;
+    config;
+    root;
 
-	constructor(config, root) {
-		this.config = config;
-		this.root = root;
-	}
+    constructor(config, root) {
+        this.config = config;
+        this.root = root;
+    }
 
-	render(pageRoute) {
-		switch (pageRoute) {
+    render(pageRoute) {
+        switch (pageRoute) {
             case ROUTES.login:
                 history.pushState({}, '', ROUTES.login);
                 this.#renderLogin();
@@ -36,9 +36,9 @@ export default class App {
         }
     }
 
-	goToPage(pageRoute, deleteEverything = false) {
+    goToPage(pageRoute, deleteEverything = false) {
         this.clear(deleteEverything);
-		this.render(pageRoute);
+        this.render(pageRoute);
 
         if (pageRoute === ROUTES.login) {
             const signUpBtn = document.getElementsByClassName('button link')[0]
@@ -72,19 +72,19 @@ export default class App {
                 this.goToPage(ROUTES.login);
             })
         }
-	}
+    }
 
-	clear(deleteEverything) {
-		document.removeEventListener('scroll', this.handlers.scrollHandler);
-		Object.keys(this.#structure).forEach((key) => {
-			if (deleteEverything) {
-				this.#structure[key].remove();
-				delete this.#structure[key];
-			}
-		});
-	}
+    clear(deleteEverything) {
+        document.removeEventListener('scroll', this.handlers.scrollHandler);
+        Object.keys(this.#structure).forEach((key) => {
+            if (deleteEverything) {
+                this.#structure[key].remove();
+                delete this.#structure[key];
+            }
+        });
+    }
 
-	#renderLogin() {
+    #renderLogin() {
         const config = this.config.loginConfig;
         const login = new Login(this.root, config.inputs, config.button, config.button_form_footer);
         login.renderTemplate();
@@ -96,7 +96,7 @@ export default class App {
             formInputs[0].value = this.#inputs.login
             formInputs[1].value = this.#inputs.password
         }
-	}
+    }
 
     #renderSignup() {
         const config = this.config.signupConfig;

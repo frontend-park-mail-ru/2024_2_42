@@ -1,25 +1,25 @@
 export const homeConfig = {
-	menu: {
-		feed: {
-			text: 'feed',
-			href: '/feed',
-		},
-		login: {
-			text: 'login',
-			href: '/login',
-		},
-		signup: {
-			text: 'signup',
-			href: '/signup',
-		},
-	},
+    menu: {
+        feed: {
+            text: 'feed',
+            href: '/feed',
+        },
+        login: {
+            text: 'login',
+            href: '/login',
+        },
+        signup: {
+            text: 'signup',
+            href: '/signup',
+        },
+    },
 };
 
 export const loginConfig = {
-	className: 'login-form',
-	text: 'Это форма логина',
-	inputs: {
-		email: {
+    className: 'login-form',
+    text: 'Это форма логина',
+    inputs: {
+        email: {
             Error: '',
             inputLabelText: '',
             inputSize: 'input_large',
@@ -45,16 +45,16 @@ export const loginConfig = {
             valid: false,
             rightIconClickable: true,
         },
-	},
-	button: {
-		label: 'Войти',
+    },
+    button: {
+        label: 'Войти',
         iconLeft: '',
         iconRight: '',
         type: 'submit',
         disabled: false,
         hover: false,
         active: false
-	},
+    },
     button_form_footer: {
         label: 'Зарегистрируйтесь',
         iconLeft: '',
@@ -67,74 +67,74 @@ export const loginConfig = {
 };
 
 export const signupConfig = {
-	className: 'signup-form',
-	text: 'Это форма регистрации',
-	inputs: {
-		firstName: {
+    className: 'signup-form',
+    text: 'Это форма регистрации',
+    inputs: {
+        firstName: {
             Error: '',
             inputLabelText: '',
             inputSize: 'input_large',
             leftIcon: '',
             // inputImageRight: 'assets/icons/Search.svg',
             typeOfInput: 'text',
-			inputPlaceholder: 'Имя пользователя',
+            inputPlaceholder: 'Имя пользователя',
             // inputHelperText: 'helper',
             isDisabled: false,
             valid: false,
             rightIconClickable: true,
-		},
-		email: {
+        },
+        email: {
             Error: '',
             inputLabelText: '',
             inputSize: 'input_large',
             leftIcon: '',
             // inputImageRight: 'assets/icons/Search.svg',
-			typeOfInput: 'email',
-			inputPlaceholder: 'Email',
+            typeOfInput: 'email',
+            inputPlaceholder: 'Email',
             // inputHelperText: 'helper',
             isDisabled: false,
             valid: false,
             rightIconClickable: true,
-			// name: 'email',
-		},
-		password: {
+            // name: 'email',
+        },
+        password: {
             Error: '',
             inputLabelText: '',
             inputSize: 'input_large',
             leftIcon: '',
             // inputImageRight: 'assets/icons/Search.svg',
-			typeOfInput: 'password',
-			inputPlaceholder: 'Пароль',
+            typeOfInput: 'password',
+            inputPlaceholder: 'Пароль',
             // inputHelperText: 'helper',
             isDisabled: false,
             valid: false,
             rightIconClickable: true,
-			// name: 'password'
-		},
-		passwordAgain: {
+            // name: 'password'
+        },
+        passwordAgain: {
             Error: '',
             inputLabelText: '',
             inputSize: 'input_large',
             leftIcon: '',
             // inputImageRight: 'assets/icons/Search.svg',
-			typeOfInput: 'password',
-			inputPlaceholder: 'Повторите пароль',
+            typeOfInput: 'password',
+            inputPlaceholder: 'Повторите пароль',
             // inputHelperText: 'helper',
             isDisabled: false,
             valid: false,
             rightIconClickable: true,
-			// name: 'passwordAgain',
-		},
-	},
-	button: {
-		label: 'Присоединиться',
+            // name: 'passwordAgain',
+        },
+    },
+    button: {
+        label: 'Присоединиться',
         iconLeft: '',
         iconRight: '',
         type: 'submit',
         disabled: false,
         hover: false,
         active: false
-	},
+    },
     button_form_footer: {
         label: 'Войдите',
         iconLeft: '',

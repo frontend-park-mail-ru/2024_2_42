@@ -36,7 +36,7 @@ export class ButtonComponent {
      * The function that will handle the button click event.
      * @type {Function}
      */
-    #clickHandler = () => {};
+    #clickHandler = () => { };
 
     /**
      * Creates an instance of ButtonComponent.

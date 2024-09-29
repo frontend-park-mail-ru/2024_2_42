@@ -40,7 +40,7 @@ export class InputComponent {
      * The function that will handle the input change event.
      * @type {Function}
      */
-    #changeHandler = () => {};
+    #changeHandler = () => { };
 
     /**
      * Creates an instance of InputComponent.
