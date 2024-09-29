@@ -23,11 +23,11 @@ export class InputComponent {
     #state = {
         Error: '',
         inputLabelText: '',
-        inputSize: 'input_small',
+        inputSize: '22',
         inputImageLeft: '',
         inputImageRight: '',
         typeOfInput: 'text',
-        inputPlaceholder: 'Enter text...',
+        inputPlaceholder: 'Начните печатать',
         inputHelperText: ''
     };
 

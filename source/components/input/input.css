@@ -1,18 +1,34 @@
-.input-error {  
-  border: 1px solid var(--input-primary-error-color);
+.input-wrapper {
+  position: relative;
 }
 
-.input-disabled {
-  background-color: var(--input-disabled-bg);
-  border: 1px solid var(--input-disabled-border);
-  pointer-events: none;
+.input__label {
+  position: absolute;
+  top: -10px; /* Adjust this value to control label positioning */
+  left: 10px; /* Adjust for horizontal spacing */
+  font-size: 5px;
+  color: #8f8f8f;
 }
 
-/* Hover & Active */
-.input:hover {
-  border-color: var(--input-hover-color);
+.input-icons-wrapper {
+  position: relative;
 }
 
-.input:active {
-  border-color: var(--input-active-color);
+.input__icon-left {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+}
+
+.input__icon-right {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+.input {
+  padding-left: 40px; /* Add padding for left icon */
+  padding-right: 40px; /* Add padding for right icon */
 }
