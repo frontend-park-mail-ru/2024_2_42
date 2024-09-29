@@ -60,8 +60,6 @@ export class InputComponent {
 
         if (this.#parent) {
             this.#parent.innerHTML = renderedTemplate;
-            //const inputElement = this.#parent.querySelector('input');
-            //inputElement.addEventListener('click', this.handleInputChange.bind(this))
         }
 
         return renderedTemplate;
