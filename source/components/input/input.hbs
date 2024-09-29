@@ -1,0 +1,25 @@
+<div class="input-container {{inputSize}} {{#if isError}}input-error{{/if}}">
+  {{#if inputLabelText}}
+    <label class="input__label">{{inputLabelText}}</label>
+  {{/if}}
+
+  {{#if inputImageLeft}}
+    <img src="{{inputImageLeft}}" class="input__icon input__icon-left" />
+  {{/if}}
+
+  <input 
+    type="{{typeOfInput}}" 
+    class="input {{#if inputImageLeft}}input__text-padding-left{{/if}} {{#if inputImageRight}}input__text-padding-right{{/if}}" 
+    placeholder="{{inputPlaceholder}}" 
+    value="{{inputValue}}" 
+    {{#if isDisabled}}disabled{{/if}} 
+    oninput="this.dispatchEvent(new CustomEvent('input-change', { detail: this.value }))" />
+
+  {{#if inputImageRight}}
+    <img src="{{inputImageRight}}" class="input__icon input__icon-right" onclick="this.dispatchEvent(new CustomEvent('clear-input'))" />
+  {{/if}}
+
+  {{#if inputHelperText}}
+    <div class="input__helper-text">{{inputHelperText}}</div>
+  {{/if}}
+</div>

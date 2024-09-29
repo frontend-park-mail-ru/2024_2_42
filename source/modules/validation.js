@@ -1,34 +1,37 @@
+/**
+ * Validates various types of data.
+ * 
+ * @param {string} input Data to be validated.
+ * @param {object} rules Set of validation rules.
+ * @returns {{isValid: boolean, error: string}} Object containing the validation result.
+ */
 export const validateInput = (input, rules) => {
-    // Валидация email
+    // Email validation
     if (rules.isEmail) {
-        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (!emailPattern.test(input)) {
-            return { isValid: false, error: 'Неверный адрес электронной почты' };
+        if (!EMAIL_PATTERN.test(input)) {
+            return { isValid: false, error: 'Invalid email address.' };
         }
     }
 
-    // Валидация пароля (8-24 символа, содержит хотя бы одну цифру и одну заглавную букву)
-    if (rules.isPassword) {
-        if (!/[A-Z]/.test(input) || !/[0-9]/.test(input) || !/^[a-zA-Z0-9]{8,24}$/.test(input)) {
-            return { isValid: false, error: 'Пароль должен содержать от 8 до 24 символов, включать хотя бы одну заглавную букву и одну цифру' };
-        }
+    // Password validation (8-24 characters, must contain at least one uppercase letter and one digit)
+    if (rules.isPassword && !PASSWORD_PATTERN.test(input)) {
+        return { isValid: false, error: 'Password must contain 8 to 24 characters, include at least one uppercase letter and one digit.' };
     }
 
-    // Валидация никнейма (3-20 символов, только цифры, буквы и символ "_")
+    // Nickname validation (3-20 characters, only digits, letters, and underscore)
     if (rules.isNickname) {
-        const nicknamePattern = /^[0-9a-zA-Z_]{3,20}$/;
-        if (!nicknamePattern.test(input)) {
-            return { isValid: false, error: 'Логин должен содержать от 3 до 20 символов и включать только буквы, цифры и символ "_"' };
+        if (!NICKNAME_PATTERN.test(input)) {
+            return { isValid: false, error: 'Nickname must contain 3 to 20 characters and can only consist of digits, letters, and underscores.' };
         }
     }
 
-    // Проверка на совпадение строк (например, для сравнения паролей)
+    // String comparison check (e.g., for password confirmation)
     if (rules.compareWith !== undefined) {
         if (input !== rules.compareWith) {
-            return { isValid: false, error: 'Строки не совпадают' };
+            return { isValid: false, error: 'Strings do not match.' };
         }
     }
 
-    // Если все проверки пройдены
+    // If all checks pass
     return { isValid: true, error: '' };
 };

@@ -1,4 +1,4 @@
-import {InputComponent as Input} from './components/input.js';
+import {InputComponent as Input} from './components/input/input.js';
 
 // //template of using template ;D
 // const buttonData = {

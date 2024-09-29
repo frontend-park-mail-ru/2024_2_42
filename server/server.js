@@ -5,7 +5,7 @@ const path = require('path');
 
 const app = express();
 
-app.use('/', express.static(path.resolve(__dirname, '../source')));
+app.use('/', express.static(path.resolve(__dirname, '../source/')));
 app.use('/', express.static(path.resolve(__dirname, '../node_modules')));
 
 const port = process.env.PORT || 3000;
