@@ -42,6 +42,7 @@ export const validateInput = (input, rules) => {
             return { isValid: false, error: 'Неверный формат email. Убедитесь, что введен правильный адрес электронной почты.' };
         }
     }
+  }
 
     // Password validation (8-24 characters, must contain at least one uppercase letter and one digit)
     if (rules.isPassword) {
@@ -55,6 +56,7 @@ export const validateInput = (input, rules) => {
             return { isValid: false, error: 'Пароль должен содержать хотя бы одну цифру.' };
         }
     }
+  }
 
     // Nickname validation (3-20 characters, only digits, letters, and underscore)
     if (rules.isNickname) {
@@ -65,6 +67,7 @@ export const validateInput = (input, rules) => {
             return { isValid: false, error: 'Никнейм может состоять только из букв, цифр и подчеркиваний.' };
         }
     }
+  }
 
     // String comparison check (e.g., for password confirmation)
     if (rules.compareWith !== undefined) {
@@ -72,6 +75,7 @@ export const validateInput = (input, rules) => {
             return { isValid: false, error: 'Введенные строки не совпадают. Убедитесь, что они идентичны.' };
         }
     }
+  }
 
     // If all checks pass
     return { isValid: true, error: '' };

@@ -19,6 +19,11 @@ export class ButtonComponent {
    * @property {string} iconRight - The SVG icon on the right side of the button.
    * @property {string} type - The type of the button (primary, secondary, link).
    * @property {boolean} disabled - The state of the button (enabled or disabled).
+<<<<<<< HEAD
+   * @property {boolean} hover - The hover state of the button.
+   * @property {boolean} active - The active/pressed state of the button.
+=======
+>>>>>>> dev
    */
   #state = {
     label: "Click Me",
@@ -26,6 +31,11 @@ export class ButtonComponent {
     iconRight: "",
     type: "primary",
     disabled: false,
+<<<<<<< HEAD
+    hover: false,
+    active: false,
+=======
+>>>>>>> dev
   };
 
   /**
@@ -98,6 +108,34 @@ export class ButtonComponent {
   }
 
   /**
+<<<<<<< HEAD
+   * Updates the state of the button component.
+   * @param {Object} newState - The new state object containing the changed props.
+   */
+  setState(newState) {
+    this.#state = { ...this.#state, ...newState };
+    this.renderTemplate(); // Re-render the button with updated state.
+  }
+
+  /**
+   * Retrieves the current state of the button component.
+   * @returns {Object} - The current state object.
+   */
+  getState() {
+    return this.#state;
+  }
+
+  /**
+   * Handles the button click event.
+   * @param {Event} event - The button click event object.
+   */
+  handleButtonClick(event) {
+    if (typeof this.#clickHandler === "function" && !this.#state.disabled) {
+      this.#clickHandler(event);
+    }
+  }
+
+  /**
    * Sets the click event handler for the button.
    * @param {Function} clickHandler - The function to handle the button click event.
    */
@@ -106,6 +144,16 @@ export class ButtonComponent {
   }
 
   /**
+=======
+   * Sets the click event handler for the button.
+   * @param {Function} clickHandler - The function to handle the button click event.
+   */
+  setClickHandler(clickHandler) {
+    this.#clickHandler = clickHandler;
+  }
+
+  /**
+>>>>>>> dev
    * Gets the current click event handler for the button.
    * @returns {Function} - The current click event handler.
    */
