@@ -1,3 +1,5 @@
+'use strict';
+
 import App from './app.js';
 import { homeConfig, loginConfig, signupConfig } from './constants/config.js'
 
@@ -10,4 +12,4 @@ const config = {
 };
 
 const app = new App(config, root);
-app.goToPage(window.location.pathname);
+app.renderPage(window.location.pathname);

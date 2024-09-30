@@ -1,6 +1,6 @@
 'use strict'
 
-import '../constants/api.js'
+import '../constants/api.js';
 import { getMessageFromHttpStatus } from './error.js';
 
 

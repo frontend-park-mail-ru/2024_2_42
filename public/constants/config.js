@@ -1,3 +1,5 @@
+'use strict';
+
 export const homeConfig = {
     menu: {
         feed: {
@@ -26,8 +28,9 @@ export const loginConfig = {
             leftIcon: '',
             // inputImageRight: 'assets/icons/Search.svg',
             typeOfInput: 'text',
-            inputPlaceholder: 'Логин',
-            // inputHelperText: 'helper',
+            inputPlaceholder: 'Email',
+            inputHelperText: true,
+            captions: [],
             isDisabled: false,
             valid: false,
             rightIconClickable: true,
@@ -40,7 +43,8 @@ export const loginConfig = {
             // inputImageRight: 'assets/icons/Search.svg',
             typeOfInput: 'password',
             inputPlaceholder: 'Пароль',
-            // inputHelperText: 'helper',
+            inputHelperText: true,
+            captions: [],
             isDisabled: false,
             valid: false,
             rightIconClickable: true,
@@ -70,7 +74,7 @@ export const signupConfig = {
     className: 'signup-form',
     text: 'Это форма регистрации',
     inputs: {
-        firstName: {
+        userName: {
             Error: '',
             inputLabelText: '',
             inputSize: 'input_large',
@@ -78,7 +82,8 @@ export const signupConfig = {
             // inputImageRight: 'assets/icons/Search.svg',
             typeOfInput: 'text',
             inputPlaceholder: 'Имя пользователя',
-            // inputHelperText: 'helper',
+            inputHelperText: true,
+            captions: [],
             isDisabled: false,
             valid: false,
             rightIconClickable: true,
@@ -91,7 +96,8 @@ export const signupConfig = {
             // inputImageRight: 'assets/icons/Search.svg',
             typeOfInput: 'email',
             inputPlaceholder: 'Email',
-            // inputHelperText: 'helper',
+            inputHelperText: true,
+            captions: [],
             isDisabled: false,
             valid: false,
             rightIconClickable: true,
@@ -105,7 +111,8 @@ export const signupConfig = {
             // inputImageRight: 'assets/icons/Search.svg',
             typeOfInput: 'password',
             inputPlaceholder: 'Пароль',
-            // inputHelperText: 'helper',
+            inputHelperText: true,
+            captions: [],
             isDisabled: false,
             valid: false,
             rightIconClickable: true,
@@ -119,7 +126,8 @@ export const signupConfig = {
             // inputImageRight: 'assets/icons/Search.svg',
             typeOfInput: 'password',
             inputPlaceholder: 'Повторите пароль',
-            // inputHelperText: 'helper',
+            inputHelperText: true,
+            captions: [],
             isDisabled: false,
             valid: false,
             rightIconClickable: true,

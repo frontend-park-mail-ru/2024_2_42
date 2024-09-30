@@ -13,4 +13,4 @@ export const getMessageFromHttpStatus = (status) => {
         case 500:
             return 'Ошибка сервера'
     }
-}
+};
