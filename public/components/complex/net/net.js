@@ -1,5 +1,5 @@
 "use strict";
-import { PinComponent } from "../pin/pin.js";
+import { PinComponent } from "../pin/pin.js"; // Подключаем PinComponent
 
 export class NetComponent {
   #parent;
@@ -11,17 +11,16 @@ export class NetComponent {
   }
 
   renderTemplate() {
-    this.#parent.innerHTML = "";
+    this.#parent.innerHTML = ""; // Очищаем родительский контейнер
 
-    const container = document.createElement("div");
-    container.classList.add("pins-container");
-    this.#parent.appendChild(container);
+    // Создаем и рендерим PinComponent для каждого пина
+    this.#state.pins.forEach((pinData, index) => {
+      const pinContainer = document.createElement("div"); // Контейнер для каждого пина
+      pinContainer.classList.add("net__container");
+      pinContainer.setAttribute("data-index", index); // Добавляем атрибут для индекса
+      this.#parent.appendChild(pinContainer);
 
-    this.#state.pins.forEach((pinData) => {
-      const pinContainer = document.createElement("div");
-      pinContainer.classList.add("pin-container");
-      container.appendChild(pinContainer);
-
+      // Создаем и рендерим PinComponent
       const pin = new PinComponent(pinContainer, pinData);
       pin.renderTemplate();
     });

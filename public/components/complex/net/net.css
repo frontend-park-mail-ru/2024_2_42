@@ -1,13 +1,10 @@
 /* net.css */
-.pins-container {
+.net__container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    width: 70%;
-}
-
-.pin-container {
-    background-color: #f0f0f0; 
+    width: 20%;
+    background-color: brown; 
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
