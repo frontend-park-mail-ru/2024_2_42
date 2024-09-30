@@ -1,14 +1,21 @@
 /* net.css */
 .net__container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    width: 20%;
-    background-color: brown; 
+    grid-template-columns: repeat(3, 1fr); /* 3 колонки с равной шириной */
+    gap: 10px; /* расстояние между элементами */
+    width: 70%; /* контейнер растягивается на всю ширину */
+    background-color: rgb(255, 255, 255); 
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+}
+
+/* Стили для каждого пина */
+.pin {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    width: 100%; /* пин занимает всю ширину своей ячейки */
 }

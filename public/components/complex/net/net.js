@@ -13,15 +13,14 @@ export class NetComponent {
   renderTemplate() {
     this.#parent.innerHTML = ""; // Очищаем родительский контейнер
 
-    // Создаем и рендерим PinComponent для каждого пина
-    this.#state.pins.forEach((pinData, index) => {
-      const pinContainer = document.createElement("div"); // Контейнер для каждого пина
-      pinContainer.classList.add("net__container");
-      pinContainer.setAttribute("data-index", index); // Добавляем атрибут для индекса
-      this.#parent.appendChild(pinContainer);
+    // Создаем элемент для отображения пинов
+    const netContainer = document.createElement("div");
+    netContainer.classList.add("net__container");
+    this.#parent.appendChild(netContainer); // Добавляем контейнер в родительский элемент
 
-      // Создаем и рендерим PinComponent
-      const pin = new PinComponent(pinContainer, pinData);
+    // Рендерим каждый PinComponent, используя его шаблон
+    this.#state.pins.forEach((pinData, index) => {
+      const pin = new PinComponent(netContainer, pinData);
       pin.renderTemplate();
     });
   }

@@ -1,1 +1,5 @@
-<div class="net"></div>
+<div class="net">
+  {{#each pins}}
+    <div class="pin" data-index="{{@index}}"></div>
+  {{/each}}
+</div>

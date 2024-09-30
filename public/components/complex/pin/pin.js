@@ -11,7 +11,6 @@ export class PinComponent {
     pinUrl: "", // путь к изображению
     boards: [], // список досок
     disabled: true, // флаг отключения по умолчанию
-    userIcon: "",
     showText: false,
     buttons: {
       saveButton: {
@@ -43,54 +42,48 @@ export class PinComponent {
     const template = Handlebars.templates["pin.hbs"];
     const renderedTemplate = template(this.#state);
 
-    if (this.#parent) {
-      this.#parent.innerHTML = renderedTemplate;
+    // Вместо очистки родительского контейнера, добавляем рендер в конец
+    const pinContainer = document.createElement("div");
+    pinContainer.innerHTML = renderedTemplate; // Заполняем содержимое
 
-      // Проверяем контейнеры для кнопок
-      const saveBtnContainer = this.#parent.querySelector(
-        ".pin__save-button",
-      );
-      const shareBtnContainer = this.#parent.querySelector(
-        ".pin__share-button",
-      );
-      const menuBtnContainer = this.#parent.querySelector(
-        ".pin__save-button-container",
-      );
+    this.#parent.appendChild(pinContainer); // Добавляем новый пин в родительский контейнер
 
-      if (!saveBtnContainer) {
-        console.error("Save button container not found.");
-      }
-      if (!shareBtnContainer) {
-        console.error("Share button container not found.");
-      }
-      if (!menuBtnContainer) {
-        console.error("Menu button container not found.");
-      }
+    // Проверяем контейнеры для кнопок
+    const saveBtnContainer = pinContainer.querySelector(".pin__save-button");
+    const shareBtnContainer = pinContainer.querySelector(".pin__share-button");
+    const menuBtnContainer = pinContainer.querySelector(".pin__save-button-container");
 
-      // Рендерим кнопки только если контейнеры найдены
-      if (saveBtnContainer) {
-        new ButtonComponent(
-          saveBtnContainer,
-          this.#state.buttons.saveButton,
-        ).renderTemplate();
-      }
-      if (shareBtnContainer) {
-        new ButtonComponent(
-          shareBtnContainer,
-          this.#state.buttons.shareButton,
-        ).renderTemplate();
-      }
-      if (menuBtnContainer) {
-        new ButtonComponent(
-          menuBtnContainer,
-          this.#state.buttons.menuButton,
-        ).renderTemplate();
-      }
-    } else {
-      console.error("Parent container for PinComponent is not found.");
+    if (!saveBtnContainer) {
+      console.error("Save button container not found.");
+    }
+    if (!shareBtnContainer) {
+      console.error("Share button container not found.");
+    }
+    if (!menuBtnContainer) {
+      console.error("Menu button container not found.");
     }
 
-    return renderedTemplate;
+    // Рендерим кнопки только если контейнеры найдены
+    if (saveBtnContainer) {
+      new ButtonComponent(
+        saveBtnContainer,
+        this.#state.buttons.saveButton,
+      ).renderTemplate();
+    }
+    if (shareBtnContainer) {
+      new ButtonComponent(
+        shareBtnContainer,
+        this.#state.buttons.shareButton,
+      ).renderTemplate();
+    }
+    if (menuBtnContainer) {
+      new ButtonComponent(
+        menuBtnContainer,
+        this.#state.buttons.menuButton,
+      ).renderTemplate();
+    }
+    
+    return renderedTemplate; // Можно оставить для отладки, если нужно
   }
 
   setState(newState) {
