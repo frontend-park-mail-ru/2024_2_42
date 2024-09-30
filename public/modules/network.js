@@ -6,16 +6,19 @@ import { getMessageFromHttpStatus } from './error.js';
 
 const handleResponse = (response) => {
     if (!response.ok) {
-        var popup = document.getElementById("popupMessage");
+        const popup = document.getElementById("popupMessage");
         popup.textContent = getMessageFromHttpStatus(response.status)
         popup.style.visibility = 'visible';
-        setTimeout(function() {
+
+        setTimeout(function () {
             document.getElementById('popupMessage').style.visibility = 'hidden';
         }, 5000);
+
         return response.json().then(err => {
             console.error(err.error);
         });
     }
+
     return response.json();
 }
 
@@ -27,13 +30,13 @@ export const getMethod = (apiRoute) => {
             'Content-Type': 'application/json',
         },
     })
-    .then(handleResponse)
-    .then(data => {
-        console.log(data)
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+        .then(handleResponse)
+        .then(data => {
+            console.log(data)
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 }
 
 export const postMethod = (apiRoute, dataEntity) => {
@@ -45,11 +48,11 @@ export const postMethod = (apiRoute, dataEntity) => {
         },
         body: JSON.stringify(dataEntity)
     })
-    .then(handleResponse)
-    .then(data => {
-        console.log(data)
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+        .then(handleResponse)
+        .then(data => {
+            console.log(data)
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 }
