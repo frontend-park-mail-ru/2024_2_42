@@ -1,10 +1,17 @@
+'use strict'
+
 import { LoginComponent as Login } from './pages/login/login.js';
 import { SignUpComponent as SignUp } from './pages/signup/signup.js';
 
 export const ROUTES = {
     login: '/login',
     signup: '/signup',
+    feed: '/feed'
 };
+
+const BACKEND_LOGIN_ROUTE = 'http://localhost:8080/login'
+const BACKEND_SIGNUP_ROUTE = 'http://localhost:8080/signup'
+const BACKEND_FEED_ROUTE = 'http://localhost:8080/feed'
 
 export default class App {
     state;
@@ -28,6 +35,10 @@ export default class App {
             case ROUTES.signup:
                 history.pushState({}, '', ROUTES.signup);
                 this.#renderSignup();
+                break;
+            case ROUTES.feed:
+                console.log("Rendering feed")
+                this.#renderFeed();
                 break;
             default:
                 for (var input in this.#inputs) {
@@ -84,6 +95,15 @@ export default class App {
         });
     }
 
+    #handleResponse(response) {
+        if (!response.ok) {
+            return response.json().then(err => {
+                throw new Error(err.error);
+            });
+        }
+        return response.json();
+    }
+
     #renderLogin() {
         const config = this.config.loginConfig;
         const login = new Login(this.root, config.inputs, config.button, config.button_form_footer);
@@ -96,6 +116,37 @@ export default class App {
             formInputs[0].value = this.#inputs.login
             formInputs[1].value = this.#inputs.password
         }
+
+        // Add handler on sumbit button
+        const submitBtn = document.getElementsByClassName('button submit')[0]
+        submitBtn.addEventListener('click', (event) => {
+            event.preventDefault()
+
+            const inputs = document.getElementsByClassName('input');
+
+            const loginData = {
+                email: inputs[0].value,
+                password: inputs[1].value
+            };
+
+            console.log('loginData:', loginData)
+
+            fetch(BACKEND_LOGIN_ROUTE, {
+                method: 'POST',
+                'mode': 'cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(loginData)
+            })
+                .then(this.#handleResponse)
+                .then(data => {
+                    console.log(data)
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        })
     }
 
     #renderSignup() {
@@ -110,5 +161,54 @@ export default class App {
             formInputs[1].value = this.#inputs.login
             formInputs[2].value = this.#inputs.password
         }
+
+        // Add handler on sumbit button
+        const submitBtn = document.getElementsByClassName('button submit')[0]
+        submitBtn.addEventListener('click', (event) => {
+            event.preventDefault()
+
+            const inputs = document.getElementsByClassName('input');
+
+            const singUpData = {
+                user_name: inputs[0].value,
+                email: inputs[1].value,
+                password: inputs[2].value
+            };
+
+            console.log('singUpData:', singUpData)
+
+            fetch(BACKEND_SIGNUP_ROUTE, {
+                method: 'POST',
+                'mode': 'cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(singUpData)
+            })
+                .then(this.#handleResponse)
+                .then(data => {
+                    console.log(data)
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        })
+    }
+
+    #renderFeed() {
+        fetch(BACKEND_FEED_ROUTE, {
+            method: 'GET',
+            'mode': 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(this.#handleResponse)
+            .then(data => {
+                console.log(data)
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }
 }

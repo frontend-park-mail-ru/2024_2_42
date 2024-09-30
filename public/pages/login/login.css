@@ -49,6 +49,14 @@ body {
     width: 100%;
 }
 
+.login-form-container {
+    display: flex;
+    flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
 .form-auth form input {
     font-family: 'Sansation', sans-serif;
     width: 100%;
@@ -96,6 +104,6 @@ body {
     background: transparent;
 }
 
-.form-footer .button-container .button.link {
+.form-footer .button-container .button .link {
     color: #e60023;
 }
