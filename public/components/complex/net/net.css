@@ -1,5 +1,5 @@
 /* net.css */
-.net__container {
+.net {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 колонки с равной шириной */
     gap: 10px; /* расстояние между элементами */
@@ -12,8 +12,6 @@
 
 /* Стили для каждого пина */
 .pin {
-    background-color: white;
-    border: 1px solid #ddd;
     border-radius: 5px;
     padding: 10px;
     text-align: center;
