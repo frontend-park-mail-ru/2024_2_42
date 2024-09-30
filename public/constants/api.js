@@ -1,11 +1,9 @@
-const BASE = 'http://localhost:8080'
+'use strict';
 
-export const ROUTES = {
-    login: '/login',
-    signup: '/signup',
-    feed: '/feed'
-};
+import { ROUTES } from "./routes.js";
 
-export const BACKEND_LOGIN_ROUTE = `${BASE}${ROUTES.login}`
-export const BACKEND_SIGNUP_ROUTE = `${BASE}${ROUTES.signup}`
-export const BACKEND_FEED_ROUTE = `${BASE}${ROUTES.feed}`
+const BASE = 'http://localhost:8080';
+
+export const BACKEND_LOGIN_ROUTE = `${BASE}${ROUTES.login}`;
+export const BACKEND_SIGNUP_ROUTE = `${BASE}${ROUTES.signup}`;
+export const BACKEND_FEED_ROUTE = `${BASE}${ROUTES.feed}`;

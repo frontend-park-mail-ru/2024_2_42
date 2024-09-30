@@ -1,3 +1,5 @@
+'use strict';
+
 import App from './app.js';
 import { homeConfig, loginConfig, signupConfig } from './constants/config.js'
 

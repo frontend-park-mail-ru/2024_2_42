@@ -3,8 +3,8 @@
 import { InputComponent as Input } from '../../components/input/input.js';
 import { ButtonComponent as Button } from '../../components/button/button.js';
 
-import { postMethod } from '../../modules/network.js'
-import { ROUTES } from '../../constants/api.js';
+import { postMethod } from '../../modules/network.js';
+import { ROUTES } from '../../constants/routes.js';
 
 import { validateInput, getCaptionSetForRule } from '../../modules/validation.js';
 
@@ -88,7 +88,7 @@ export class SignUpComponent {
 
         for (const captionText of this.#inputsData.password.captions) {
             const nextCaption = document.createElement('input__helper-text');
-            nextCaption.textContent = captionText
+            nextCaption.textContent = captionText;
             passwordCaptionsBlock.appendChild(nextCaption);
         }
 
@@ -96,9 +96,9 @@ export class SignUpComponent {
     }
 
     addSubmitBtnHandler(apiRote) {
-        const submitBtn = document.getElementsByClassName('button submit')[0]
+        const submitBtn = document.getElementsByClassName('button submit')[0];
         submitBtn.addEventListener('click', (event) => {
-            event.preventDefault()
+            event.preventDefault();
 
             const inputs = document.getElementsByClassName('input');
 
@@ -108,9 +108,7 @@ export class SignUpComponent {
                 password: inputs[2].value
             };
 
-            console.log('singUpData:', singUpData)
-
-            postMethod(apiRote, singUpData)
+            postMethod(apiRote, singUpData);
         });
     }
 
@@ -156,8 +154,8 @@ export class SignUpComponent {
 
     addInputOnChangeHandler() {
         const [userNameInput, loginInput, passwordInput, passwordRepeatInput] = document.getElementsByClassName('input');
-        const [userNameCaptionsBlock, emailCaptionsBlock, passwordCaptionsBlock] = document.getElementsByClassName('input__helper-text-list')
-        const [userNameErrBlock, emailErrBlock, passwordErrBlock, passwordRepeatErrBlock] = document.getElementsByClassName('input__error-text-list')
+        const [userNameCaptionsBlock, emailCaptionsBlock, passwordCaptionsBlock] = document.getElementsByClassName('input__helper-text-list');
+        const [userNameErrBlock, emailErrBlock, passwordErrBlock, passwordRepeatErrBlock] = document.getElementsByClassName('input__error-text-list');
 
         const userNameErrTextBlock = document.createElement('input__error-text');
         const emailErrTextBlock = document.createElement('input__error-text');
@@ -267,7 +265,7 @@ export class SignUpComponent {
     }
 
     addInputsSaveHandler(app) {
-        const signUpBtn = document.getElementsByClassName('button link')[0]
+        const signUpBtn = document.getElementsByClassName('button link')[0];
         signUpBtn.addEventListener('click', (event) => {
             event.preventDefault();
 
@@ -289,6 +287,6 @@ export class SignUpComponent {
     }
 
     get inputsStoredValues() {
-        return this.#inputsSavedValues
+        return this.#inputsSavedValues;
     }
 };

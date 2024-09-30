@@ -4,7 +4,7 @@ import { LoginComponent as Login } from './pages/login/login.js';
 import { SignUpComponent as SignUp } from './pages/signup/signup.js';
 import { getMethod } from './modules/network.js';
 
-import { ROUTES } from './constants/api.js';
+import { ROUTES } from './constants/routes.js';
 import { BACKEND_LOGIN_ROUTE, BACKEND_SIGNUP_ROUTE, BACKEND_FEED_ROUTE } from './constants/api.js';
 
 export default class App {
@@ -68,7 +68,7 @@ export default class App {
 
         // Add values to inputs if it's stored
         if (this.#structure.signUp) {
-            const formInputs = document.getElementsByClassName('input')
+            const formInputs = document.getElementsByClassName('input');
             const storedValues = this.#structure.signUp.inputsStoredValues;
             if (Object.keys(storedValues).length > 0) {
                 formInputs[0].value = storedValues.login;
@@ -91,7 +91,7 @@ export default class App {
 
         // Add values to inputs if it's stored
         if (this.#structure.login) {
-            const formInputs = document.getElementsByClassName('input')
+            const formInputs = document.getElementsByClassName('input');
             const storedValues = this.#structure.login.inputsStoredValues;
             if (Object.keys(storedValues).length > 0) {
                 formInputs[1].value = storedValues.login;

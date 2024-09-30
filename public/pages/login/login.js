@@ -3,8 +3,8 @@
 import { InputComponent as Input } from '../../components/input/input.js';
 import { ButtonComponent as Button } from '../../components/button/button.js';
 
-import { postMethod } from '../../modules/network.js'
-import { ROUTES } from '../../constants/api.js';
+import { postMethod } from '../../modules/network.js';
+import { ROUTES } from '../../constants/routes.js';
 
 import { validateInput, getCaptionSetForRule } from '../../modules/validation.js';
 
@@ -90,7 +90,7 @@ export class LoginComponent {
 	}
 
 	addSubmitBtnHandler(apiRoute) {
-		const submitBtn = document.getElementsByClassName('button submit')[0]
+		const submitBtn = document.getElementsByClassName('button submit')[0];
 		submitBtn.addEventListener('click', (event) => {
 			event.preventDefault();
 
@@ -138,8 +138,8 @@ export class LoginComponent {
 
 	addInputOnChangeHandler() {
 		const [loginInput, passwordInput] = document.getElementsByClassName('input');
-		const [emailCaptionsBlock, passwordCaptionsBlock] = document.getElementsByClassName('input__helper-text-list')
-		const [emailErrBlock, passwordErrBlock] = document.getElementsByClassName('input__error-text-list')
+		const [emailCaptionsBlock, passwordCaptionsBlock] = document.getElementsByClassName('input__helper-text-list');
+		const [emailErrBlock, passwordErrBlock] = document.getElementsByClassName('input__error-text-list');
 
 		const emailErrTextBlock = document.createElement('input__error-text');
 		const passwordErrTextBlock = document.createElement('input__error-text');
