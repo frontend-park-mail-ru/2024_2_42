@@ -1,11 +1,19 @@
 'use strict'
 
 import '../constants/api.js'
+import { getMessageFromHttpStatus } from './error.js';
+
 
 const handleResponse = (response) => {
     if (!response.ok) {
+        var popup = document.getElementById("popupMessage");
+        popup.textContent = getMessageFromHttpStatus(response.status)
+        popup.style.visibility = 'visible';
+        setTimeout(function() {
+            document.getElementById('popupMessage').style.visibility = 'hidden';
+        }, 5000);
         return response.json().then(err => {
-            throw new Error(err.error);
+            console.error(err.error);
         });
     }
     return response.json();

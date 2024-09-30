@@ -69,10 +69,6 @@ export class LoginComponent {
 
 	addSubmitBtnHandler(apiRoute) {
 		const submitBtn = document.getElementsByClassName('button submit')[0]
-		// if (submitBtns.length === 0) {
-		// 	return
-		// }
-
 		submitBtn.addEventListener('click', (event) => {
 			event.preventDefault()
 
