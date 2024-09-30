@@ -4,30 +4,29 @@ import { InputComponent as Input } from '../../components/input/input.js';
 import { ButtonComponent as Button } from '../../components/button/button.js';
 
 /**
- * Represents a Login Component.
+ * Represents a Signup Component.
  * @class
  */
 export class SignUpComponent {
     /**
-     * The parent element where the button will be rendered.
+     * The parent element where the sign up form will be rendered.
      * @type {HTMLElement}
      */
     #parent;
+
     #inputs = [];
     #inputsData;
     #buttonData;
     #buttonFooterData;
 
     /**
-     * The state of the input component.
-     * @type {Object}
-     * @property {string} inputValue - The current value of the input.
-     * @property {string} inputImageLeft - The path to the image file for the left icon.
-     * @property {string} inputImageRight - The path to the image file for the right icon
-     * @property {string} inputType - The type attribute of the input element (e.g., text, email, password).
-     * @property {string} inputPlaceholder - The placeholder text for the input.
+     * Creates an instance of SignUpComponent.
+     * @constructor
+     * @param {HTMLElement} parent - The parent element where the input will be rendered.
+     * @param {Object} inputsData - data provided for inputs propagation.
+     * @param {Object} buttonData - data provided for submit button propagation.
+     * @param {Object} buttonFooterData - data provided for redirect button propagation.
      */
-
     constructor(parent, inputsData, buttonData, buttonFooterData) {
         this.#parent = parent;
         this.#inputsData = inputsData

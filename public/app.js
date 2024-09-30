@@ -6,19 +6,38 @@ export const ROUTES = {
     signup: '/signup',
 };
 
+/**
+ * Represents a core Application class
+ * @class
+ */
 export default class App {
+    /**
+     * The parent element where all the pages will be rendered
+     * @type {HTMLElement}
+     */
+    root;
+
     state;
     handlers = {};
     #structure = {};
     #inputs = {};
     config;
-    root;
 
+    /**
+     * Creates an instance of App.
+     * @constructor
+     * @param {Object} config - data provided for components propagation
+     * @param {HTMLElement} root - The parent element where the input will be rendered
+     */
     constructor(config, root) {
         this.config = config;
         this.root = root;
     }
 
+    /**
+     * Renders the component depending on what route is given.
+     * @param {string} pageRoute - the route of the page.
+     */
     render(pageRoute) {
         switch (pageRoute) {
             case ROUTES.login:
@@ -36,6 +55,11 @@ export default class App {
         }
     }
 
+    /**
+     * Clears all page data if it's needed and renders the page depending on what route is given.
+     * @param {string} pageRoute - the route of the page.
+     * @param {boolean} deleteEverything - flag for clearing all page data.
+     */
     goToPage(pageRoute, deleteEverything = false) {
         this.clear(deleteEverything);
         this.render(pageRoute);
@@ -74,6 +98,10 @@ export default class App {
         }
     }
 
+    /**
+     * Clear all page data if it's needed.
+     * @param {boolean} deleteEverything - flag for clearing all page data.
+     */
     clear(deleteEverything) {
         document.removeEventListener('scroll', this.handlers.scrollHandler);
         Object.keys(this.#structure).forEach((key) => {
@@ -84,6 +112,9 @@ export default class App {
         });
     }
 
+    /**
+     * Renders login component and saves inputs values if they are typed in.
+     */
     #renderLogin() {
         const config = this.config.loginConfig;
         const login = new Login(this.root, config.inputs, config.button, config.button_form_footer);
@@ -98,6 +129,9 @@ export default class App {
         }
     }
 
+    /**
+     * Renders sign up component and saves inputs values if they are typed in.
+     */
     #renderSignup() {
         const config = this.config.signupConfig;
         const signUp = new SignUp(this.root, config.inputs, config.button, config.button_form_footer);
