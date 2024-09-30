@@ -3,6 +3,9 @@
 import { InputComponent as Input } from '../../components/input/input.js';
 import { ButtonComponent as Button } from '../../components/button/button.js';
 
+import { postMethod } from '../../modules/network.js'
+import { BACKEND_SIGNUP_ROUTE } from '../../constants/api.js';
+
 /**
  * Represents a Login Component.
  * @class
@@ -62,5 +65,24 @@ export class SignUpComponent {
         });
 
         return renderedTemplate;
+    }
+
+    addSubmitBtnHandler(apiRote) {
+        const submitBtn = document.getElementsByClassName('button submit')[0]
+        submitBtn.addEventListener('click', (event) => {
+            event.preventDefault()
+
+            const inputs = document.getElementsByClassName('input');
+
+            const singUpData = {
+                user_name: inputs[0].value,
+                email: inputs[1].value,
+                password: inputs[2].value
+            };
+
+            console.log('singUpData:', singUpData)
+
+            postMethod(apiRote, singUpData)
+        });
     }
 };
