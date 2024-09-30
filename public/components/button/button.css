@@ -1,42 +1,42 @@
 .button-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
 }
 
 .button {
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  font-size: 14px;
+	padding: 10px 20px;
+	border: none;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	transition: background-color 0.3s ease, box-shadow 0.3s ease;
+	font-size: 14px;
+	transition: 0.5s;
 }
 
-.button-label {
-  font-family: 'Sansation', sans-serif;
+.button.link {
+	font-family: 'Sansation', sans-serif;
+	color: var(--project-primary-red);
+	padding: 0px 10px;
+	background-color: transparent;
+	text-decoration: underline;
 }
 
-button.button:active {
-  background-color: blueviolet;
-  color: blueviolet;
-}
-
-.button:hover {
-  background-color: rgb(4, 0, 255);
-  color: white;
+button.link:active {
+	color: var(--buttons-hover-background-color);
+	transition: 0.5s;
 }
 
 .button:disabled {
-  background-color: grey;
-  /* Серый цвет фона */
-  color: lightgrey;
-  /* Блеклый цвет текста */
-  cursor: not-allowed;
-  /* Указатель меняется на значок "запрещено" */
-  opacity: 0.6;
-  /* Прозрачность, чтобы подчеркнуть неактивность */
+	background-color: grey;
+	/* Серый цвет фона */
+	color: lightgrey;
+	/* Блеклый цвет текста */
+	cursor: not-allowed;
+	/* Указатель меняется на значок "запрещено" */
+	opacity: 0.6;
+	/* Прозрачность, чтобы подчеркнуть неактивность */
 }

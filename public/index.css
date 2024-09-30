@@ -2,6 +2,7 @@
 @import url(components/button/button.css);
 @import url(pages/login/login.css);
 @import url(pages/signup/signup.css);
+@import url(./constants.css);
 
 @import url('https://fonts.cdnfonts.com/css/sansation?styles=169710');
 

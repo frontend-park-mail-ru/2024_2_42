@@ -2,20 +2,15 @@
 
 import { LoginComponent as Login } from './pages/login/login.js';
 import { SignUpComponent as SignUp } from './pages/signup/signup.js';
-import { BACKEND_FEED_ROUTE, BACKEND_LOGIN_ROUTE, BACKEND_SIGNUP_ROUTE } from './constants/api.js';
-import { getMethod, postMethod } from './modules/network.js';
+import { getMethod } from './modules/network.js';
 
-export const ROUTES = {
-    login: '/login',
-    signup: '/signup',
-    feed: '/feed'
-};
+import { ROUTES } from './constants/api.js';
+import { BACKEND_LOGIN_ROUTE, BACKEND_SIGNUP_ROUTE, BACKEND_FEED_ROUTE } from './constants/api.js';
 
 export default class App {
     state;
     handlers = {};
     #structure = {};
-    #inputs = {};
     config;
     root;
 
@@ -35,52 +30,18 @@ export default class App {
                 this.#renderSignup();
                 break;
             case ROUTES.feed:
-                console.log("Rendering feed")
                 this.#renderFeed();
                 break;
             default:
-                for (var input in this.#inputs) {
-                    delete this.#inputs[input];
-                }
+                this.#structure.login.clearStoredInputsValues();
+                this.#structure.signup.clearStoredInputsValues();
+                break;
         }
     }
 
-    goToPage(pageRoute, deleteEverything = false) {
+    renderPage(pageRoute, deleteEverything = false) {
         this.clear(deleteEverything);
         this.render(pageRoute);
-
-        if (pageRoute === ROUTES.login) {
-            const signUpBtn = document.getElementsByClassName('button link')[0]
-            signUpBtn.addEventListener('click', (event) => {
-                event.preventDefault();
-
-                const loginInputs = document.getElementsByClassName('input');
-                const login = loginInputs[0], password = loginInputs[1];
-                this.#inputs = {
-                    login: login.value,
-                    password: password.value,
-                };
-
-                root.innerHTML = ''
-                this.goToPage(ROUTES.signup);
-            })
-        }
-        else if (pageRoute == ROUTES.signup) {
-            const signUpBtn = document.getElementsByClassName('button link')[0]
-            signUpBtn.addEventListener('click', (event) => {
-                event.preventDefault();
-
-                const loginInputs = document.getElementsByClassName('input');
-                const login = loginInputs[1], password = loginInputs[2];
-                this.#inputs = {
-                    login: login.value,
-                    password: password.value,
-                };
-
-                root.innerHTML = '';
-                this.goToPage(ROUTES.login);
-            })
-        }
     }
 
     clear(deleteEverything) {
@@ -97,14 +58,22 @@ export default class App {
         const config = this.config.loginConfig;
         const login = new Login(this.root, config.inputs, config.button, config.button_form_footer);
         login.renderTemplate();
+
         login.addSubmitBtnHandler(BACKEND_LOGIN_ROUTE);
+        login.addInputFocusHandler();
+        login.addInputOnChangeHandler();
+        login.addInputsSaveHandler(this);
+
         this.#structure.login = login;
 
         // Add values to inputs if it's stored
-        const formInputs = document.getElementsByClassName('input');
-        if (Object.keys(this.#inputs).length > 0) {
-            formInputs[0].value = this.#inputs.login;
-            formInputs[1].value = this.#inputs.password;
+        if (this.#structure.signUp) {
+            const formInputs = document.getElementsByClassName('input')
+            const storedValues = this.#structure.signUp.inputsStoredValues;
+            if (Object.keys(storedValues).length > 0) {
+                formInputs[0].value = storedValues.login;
+                formInputs[1].value = storedValues.password;
+            }
         }
     }
 
@@ -112,14 +81,22 @@ export default class App {
         const config = this.config.signupConfig;
         const signUp = new SignUp(this.root, config.inputs, config.button, config.button_form_footer);
         signUp.renderTemplate();
+
         signUp.addSubmitBtnHandler(BACKEND_SIGNUP_ROUTE);
+        signUp.addInputFocusHandler();
+        signUp.addInputOnChangeHandler();
+        signUp.addInputsSaveHandler(this);
+
         this.#structure.signUp = signUp;
 
         // Add values to inputs if it's stored
-        const formInputs = document.getElementsByClassName('input');
-        if (Object.keys(this.#inputs).length > 0) {
-            formInputs[1].value = this.#inputs.login;
-            formInputs[2].value = this.#inputs.password;
+        if (this.#structure.login) {
+            const formInputs = document.getElementsByClassName('input')
+            const storedValues = this.#structure.login.inputsStoredValues;
+            if (Object.keys(storedValues).length > 0) {
+                formInputs[1].value = storedValues.login;
+                formInputs[2].value = storedValues.password;
+            }
         }
     }
 

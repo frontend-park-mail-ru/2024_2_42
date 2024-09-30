@@ -10,4 +10,4 @@ const config = {
 };
 
 const app = new App(config, root);
-app.goToPage(window.location.pathname);
+app.renderPage(window.location.pathname);

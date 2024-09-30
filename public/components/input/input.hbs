@@ -1,33 +1,33 @@
 <div class="input-container {{inputSize}} {{#if Error}}input-error{{/if}}">
-  
+
   {{#if inputLabelText}}
-    <label class="input__label">{{inputLabelText}}</label>
+  <label class="input__label">{{inputLabelText}}</label>
   {{/if}}
 
-  <div class="input-icons-wrapper" style="position: relative;">
+  <div class="input-icons-wrapper">
     {{#if inputImageLeft}}
-      <span class="input__icon input__icon-left">
-        {{{inputImageLeft}}} <!-- Вставка SVG-кода для левой иконки -->
-      </span>
+    <span class="input__icon input__icon-left">
+      {{{inputImageLeft}}}
+      <!-- Вставка SVG-кода для левой иконки -->
+    </span>
     {{/if}}
 
-    <input 
-      type="{{typeOfInput}}" 
-      class="input {{#if inputImageLeft}} input__text-padding-left {{/if}} {{#if inputImageRight}} input__text-padding-right{{/if}}" 
-      placeholder="{{inputPlaceholder}}" 
-      value="{{inputValue}}"
-      {{#if isDisabled}}disabled{{/if}} 
-      oninput="this.dispatchEvent(new CustomEvent('input-change', { detail: this.value }))"/>
+    <input type="{{typeOfInput}}"
+      class="input {{#if inputImageLeft}} input__text-padding-left {{/if}} {{#if inputImageRight}} input__text-padding-right{{/if}}"
+      placeholder="{{inputPlaceholder}}" value="{{inputValue}}" {{#if isDisabled}}disabled{{/if}}
+      oninput="this.dispatchEvent(new CustomEvent('input-change', { detail: this.value }))" />
 
     {{#if inputImageRight}}
-      <span class="input__icon input__icon-right">
-        {{{inputImageRight}}} <!-- Вставка SVG-кода для правой иконки -->
-      </span>
+    <span class="input__icon input__icon-right">
+      {{{inputImageRight}}}
+      <!-- Вставка SVG-кода для правой иконки -->
+    </span>
     {{/if}}
   </div>
 
   {{#if inputHelperText}}
-    <div class="input__helper-text">{{inputHelperText}}</div>
+  <div class="input__error-text-list" style="display: none"></div>
+  <div class="input__helper-text-list" style="display: none"></div>
   {{/if}}
 
 </div>
