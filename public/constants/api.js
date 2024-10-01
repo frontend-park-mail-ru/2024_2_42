@@ -1,6 +1,6 @@
 'use strict';
 
-import { ROUTES } from "./routes.js";
+import { ROUTES } from './routes.js';
 
 const BASE = 'http://localhost:8080';
 

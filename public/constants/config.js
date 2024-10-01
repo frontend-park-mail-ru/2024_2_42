@@ -22,29 +22,21 @@ export const loginConfig = {
     text: 'Это форма логина',
     inputs: {
         email: {
-            Error: '',
-            inputLabelText: '',
             inputSize: 'input_large',
-            leftIcon: '',
             // inputImageRight: 'assets/icons/Search.svg',
             typeOfInput: 'text',
             inputPlaceholder: 'Email',
             inputHelperText: true,
-            captions: [],
             isDisabled: false,
             valid: false,
             rightIconClickable: true,
         },
         password: {
-            Error: '',
-            inputLabelText: '',
             inputSize: 'input_large',
-            leftIcon: '',
             // inputImageRight: 'assets/icons/Search.svg',
             typeOfInput: 'password',
             inputPlaceholder: 'Пароль',
             inputHelperText: true,
-            captions: [],
             isDisabled: false,
             valid: false,
             rightIconClickable: true,
@@ -52,8 +44,6 @@ export const loginConfig = {
     },
     button: {
         label: 'Войти',
-        iconLeft: '',
-        iconRight: '',
         type: 'submit',
         disabled: false,
         hover: false,
@@ -61,8 +51,6 @@ export const loginConfig = {
     },
     button_form_footer: {
         label: 'Зарегистрируйтесь',
-        iconLeft: '',
-        iconRight: '',
         type: 'link',
         disabled: false,
         hover: false,
@@ -75,59 +63,43 @@ export const signupConfig = {
     text: 'Это форма регистрации',
     inputs: {
         userName: {
-            Error: '',
-            inputLabelText: '',
             inputSize: 'input_large',
-            leftIcon: '',
             // inputImageRight: 'assets/icons/Search.svg',
             typeOfInput: 'text',
             inputPlaceholder: 'Имя пользователя',
             inputHelperText: true,
-            captions: [],
             isDisabled: false,
             valid: false,
             rightIconClickable: true,
         },
         email: {
-            Error: '',
-            inputLabelText: '',
             inputSize: 'input_large',
-            leftIcon: '',
             // inputImageRight: 'assets/icons/Search.svg',
             typeOfInput: 'email',
             inputPlaceholder: 'Email',
             inputHelperText: true,
-            captions: [],
             isDisabled: false,
             valid: false,
             rightIconClickable: true,
             // name: 'email',
         },
         password: {
-            Error: '',
-            inputLabelText: '',
             inputSize: 'input_large',
-            leftIcon: '',
             // inputImageRight: 'assets/icons/Search.svg',
             typeOfInput: 'password',
             inputPlaceholder: 'Пароль',
             inputHelperText: true,
-            captions: [],
             isDisabled: false,
             valid: false,
             rightIconClickable: true,
             // name: 'password'
         },
         passwordAgain: {
-            Error: '',
-            inputLabelText: '',
             inputSize: 'input_large',
-            leftIcon: '',
             // inputImageRight: 'assets/icons/Search.svg',
             typeOfInput: 'password',
             inputPlaceholder: 'Повторите пароль',
             inputHelperText: true,
-            captions: [],
             isDisabled: false,
             valid: false,
             rightIconClickable: true,
@@ -136,8 +108,6 @@ export const signupConfig = {
     },
     button: {
         label: 'Присоединиться',
-        iconLeft: '',
-        iconRight: '',
         type: 'submit',
         disabled: false,
         hover: false,
@@ -145,11 +115,76 @@ export const signupConfig = {
     },
     button_form_footer: {
         label: 'Войдите',
-        iconLeft: '',
-        iconRight: '',
         type: 'link',
         disabled: false,
         hover: false,
         active: false
     }
 };
+
+export const headerConfig = {
+    className: 'header', // CSS class for header
+  
+    // Icon and profile image URLs
+    images: {
+      logoUrl: './assets/icons/logo.svg', // Path to the app icon
+    },
+  
+    // Login status
+    isLoggedIn: true, // Determines login status
+  
+    // Section buttons for navigation
+    sections: [
+      {
+        name: 'Домой', // Section name
+        href: '/home', // URL for navigation
+        disabled: false, // Always enabled
+      },
+      {
+        name: 'Создать', // Section name
+        href: '/create', // URL for navigation
+        disabled: true, // Disabled if not logged in
+      },
+      {
+        name: 'Сохраненные', // Section name
+        href: '/saved', // URL for navigation
+        disabled: true, // Disabled if not logged in
+      },
+    ],
+  
+    // Search input configuration
+    searchInput: {
+      inputSize: 'input_large',
+      typeOfInput: 'text',
+      inputPlaceholder: 'Начни печатать', // Placeholder text
+      isDisabled: true, // Disabled if not logged in
+      valid: true,
+      rightIconClickable: false,
+    },
+  
+    // Buttons configuration
+    buttons: {
+      notificationButton: {
+        iconLeft: './assets/icons/notification.svg',
+        label: '',
+        type: 'primary',
+        disabled: false,
+      },
+      profileButton: {
+        iconLeft: './assets/icons/user.svg',
+        label: '',
+        type: 'primary',
+        disabled: false,
+      },
+      loginButton: {
+        label: 'Войти',
+        type: 'link',
+        disabled: false,
+      },
+      registerButton: {
+        label: 'Зарегестрироваться',
+        type: 'link',
+        disabled: false,
+      },
+    },
+  };

@@ -1,5 +1,5 @@
-"use strict";
-import { PinComponent } from "../pin/pin.js"; // Importing PinComponent
+'use strict';
+import { PinComponent } from '../pin/pin.js'; // Importing PinComponent
 
 /**
  * Represents a Net Component that contains multiple Pin Components.
@@ -7,7 +7,7 @@ import { PinComponent } from "../pin/pin.js"; // Importing PinComponent
  */
 export class NetComponent {
   #parent; // DOM element for rendering the component
-  #state;  // State of the component, includes pin data
+  #state; // State of the component, includes pin data
 
   /**
    * Creates an instance of NetComponent.
@@ -32,11 +32,11 @@ export class NetComponent {
    * Clears the parent container and adds new pin elements.
    */
   renderTemplate() {
-    this.#parent.innerHTML = ""; // Clear the parent container
+    this.#parent.innerHTML = ''; // Clear the parent container
 
     // Create an element for displaying pins
-    const netContainer = document.createElement("div");
-    netContainer.classList.add("net");
+    const netContainer = document.createElement('div');
+    netContainer.classList.add('net');
     this.#parent.appendChild(netContainer); // Append the container to the parent element
 
     // Render each PinComponent using its template

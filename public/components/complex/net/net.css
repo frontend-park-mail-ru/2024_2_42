@@ -1,11 +1,12 @@
-/* net.css */
+@import url(../../../constants.css);
+
 .net {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 колонки с равной шириной */
     gap: 10px; /* расстояние между элементами */
     width: 70%; /* контейнер растягивается на всю ширину */
-    background-color: rgb(255, 255, 255); 
-    border: 1px solid #ccc;
+    background-color: var(--project-primary-white); 
+    border: 1px solid var(--project-primary-grey);
     border-radius: 5px;
     padding: 10px;
 }

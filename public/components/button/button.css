@@ -1,42 +1,57 @@
-.button-container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-}
+@import url(../../constants.css);
 
 .button {
-	padding: 10px 20px;
-	border: none;
-	cursor: pointer;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	transition: background-color 0.3s ease, box-shadow 0.3s ease;
-	font-size: 14px;
-	transition: 0.5s;
+	background-color: var(--project-primary-red);
+	color: var(--project-primary-white); /* Белый цвет текста */
+	padding: 10px 20px; /* Внутренние отступы */
+	border: none; /* Убираем границу */
+	border-radius: 4px; /* Скругленные углы */
+	cursor: pointer; /* Указатель мыши на кнопке */
+	font-size: 16px; /* Размер шрифта */
+	transition: background-color 0.3s ease; /* Плавный переход цвета фона */
 }
-
-.button.link {
-	font-family: 'Sansation', sans-serif;
-	color: var(--project-primary-red);
-	padding: 0px 10px;
-	background-color: transparent;
-	text-decoration: underline;
+  
+button.button:active {
+	background-color: var(--project-primary-white);
+	color: var(--project-primary-white);
 }
-
-button.link:active {
+  
+.button:hover {
+	background-color: var(--buttons-hover-background-color);
 	color: var(--buttons-hover-background-color);
-	transition: 0.5s;
 }
-
+  
 .button:disabled {
-	background-color: grey;
-	/* Серый цвет фона */
-	color: lightgrey;
-	/* Блеклый цвет текста */
-	cursor: not-allowed;
-	/* Указатель меняется на значок "запрещено" */
-	opacity: 0.6;
-	/* Прозрачность, чтобы подчеркнуть неактивность */
+	background-color: var(--buttons-disabled-color); /* Серый цвет фона */
+	color: var(--buttons-disabled-text-color); /* Блеклый цвет текста */
+	cursor: not-allowed; /* Указатель меняется на значок "запрещено" */
+	opacity: 0.6; /* Прозрачность, чтобы подчеркнуть неактивность */
+}
+  
+.dropDownButton {
+	background-color: var(--project-primary-red);
+	color: var(--project-primary-white); /* Белый цвет текста */
+	padding: 10px 20px; /* Внутренние отступы */
+	border: none; /* Убираем границу */
+	border-radius: 4px; /* Скругленные углы */
+	cursor: pointer; /* Указатель мыши на кнопке */
+	font-size: 16px; /* Размер шрифта */
+	transition: background-color 0.3s ease; /* Плавный переход цвета фона */
+}
+  
+.dropDownButton.dropDownButton:active {
+	background-color: var(--project-primary-white);
+	color: var(--project-primary-white);
+}
+  
+.dropDownButton:hover {
+	background-color: var(--buttons-hover-background-color);
+	color: var(--buttons-hover-background-color);
+}
+  
+.dropDownButton:disabled {
+	background-color: var(--buttons-disabled-color); /* Серый цвет фона */
+	color: var(--buttons-disabled-text-color); /* Блеклый цвет текста */
+	cursor: not-allowed; /* Указатель меняется на значок "запрещено" */
+	opacity: 0.6; /* Прозрачность, чтобы подчеркнуть неактивность */
 }
