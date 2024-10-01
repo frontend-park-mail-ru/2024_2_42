@@ -10,12 +10,14 @@
     <button class="dropDownButton">Menu</button>
     <div class="dropdown__content" id="dropdown__items" style="display: none;">
       {{#each buttons}}
-        <a 
-          href="{{this.href}}" 
-          class="button {{#if this.disabled}}disabled{{/if}}" 
-          {{#if this.disabled}}tabindex="-1"{{/if}}>
-          {{this.name}}
-        </a>
+        {{#unless this.disabled}}
+          <a 
+            href="{{this.href}}" 
+            class="button" 
+          >
+            {{this.name}}
+          </a>
+        {{/unless}}
       {{/each}}
     </div>
   </div>
