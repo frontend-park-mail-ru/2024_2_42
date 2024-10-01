@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  * Represents a Button Component.
@@ -21,7 +21,7 @@ export class ButtonComponent {
    * @property {boolean} disabled - The state of the button (enabled or disabled).
    */
   #state = {
-    label: "Click Me",
+    label: "Button",
     iconLeft: "",
     iconRight: "",
     type: "primary",

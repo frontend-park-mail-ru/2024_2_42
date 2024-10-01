@@ -5,18 +5,34 @@
   </div>
 
   <!-- Section buttons -->
-  <nav class="header__nav">
-    {{#each sections}}
-    <a href="{{this.href}}" class="button" {{#if this.disabled}}disabled{{/if}}>
-      {{this.name}}
-    </a>
-    {{/each}}
-  </nav>
+  {{#if isLoggedIn}}
+  <div class="dropdown">
+    <button class="dropDownButton">Menu</button>
+    <div class="dropdown__content" id="dropdown__items" style="display: none;">
+      {{#each buttons}}
+        <a 
+          href="{{this.href}}" 
+          class="button {{#if this.disabled}}disabled{{/if}}" 
+          {{#if this.disabled}}tabindex="-1"{{/if}}>
+          {{this.name}}
+        </a>
+      {{/each}}
+    </div>
+  </div>
+  {{/if}}
 
   <!-- Search bar -->
   <div class="header__search">
     {{{searchInput}}}
   </div>
+
+  <!-- Notifications and Profile -->
+  {{#if isLoggedIn}}
+  <div class="header__profile">
+    {{{notificationButton}}}
+    {{{profileButton}}}
+  </div>
+  {{/if}}
 
   <!-- Login and Registration buttons -->
   {{#unless isLoggedIn}}
@@ -25,9 +41,4 @@
     {{{registerButton}}}
   </div>
   {{/unless}}
-</div>
-
-<!-- Profile icon -->
-<div class="header__profile">
-  {{{profileButton}}}
 </div>

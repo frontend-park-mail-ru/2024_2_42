@@ -1,5 +1,5 @@
 .button {
-  background-color: blueviolet;
+  background-color: red;
   color: white; /* Белый цвет текста */
   padding: 10px 20px; /* Внутренние отступы */
   border: none; /* Убираем границу */
@@ -10,16 +10,44 @@
 }
 
 button.button:active {
-  background-color: blueviolet;
-  color: blueviolet;
-}
-
-.button:hover {
-  background-color: rgb(4, 0, 255);
+  background-color: white;
   color: white;
 }
 
+.button:hover {
+  background-color: orange;
+  color: orange;
+}
+
 .button:disabled {
+  background-color: grey; /* Серый цвет фона */
+  color: lightgrey; /* Блеклый цвет текста */
+  cursor: not-allowed; /* Указатель меняется на значок "запрещено" */
+  opacity: 0.6; /* Прозрачность, чтобы подчеркнуть неактивность */
+}
+
+.dropDownButton {
+  background-color: red;
+  color: white; /* Белый цвет текста */
+  padding: 10px 20px; /* Внутренние отступы */
+  border: none; /* Убираем границу */
+  border-radius: 4px; /* Скругленные углы */
+  cursor: pointer; /* Указатель мыши на кнопке */
+  font-size: 16px; /* Размер шрифта */
+  transition: background-color 0.3s ease; /* Плавный переход цвета фона */
+}
+
+dropDownButton.dropDownButton:active {
+  background-color: white;
+  color: white;
+}
+
+.dropDownButton:hover {
+  background-color: orange;
+  color: orange;
+}
+
+.dropDownButton:disabled {
   background-color: grey; /* Серый цвет фона */
   color: lightgrey; /* Блеклый цвет текста */
   cursor: not-allowed; /* Указатель меняется на значок "запрещено" */
