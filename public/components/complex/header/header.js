@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-import { InputComponent as Input } from "../../input/input.js";
-import { ButtonComponent as Button } from "../../button/button.js";
-import { headerConfig } from "../../../constants/config.js";
+import { InputComponent as Input } from '../../input/input.js';
+import { ButtonComponent as Button } from '../../button/button.js';
+import { headerConfig } from '../../../constants/config.js';
 
 /**
  * Represents the Header Component.
@@ -18,16 +18,16 @@ export class HeaderComponent {
     iconUrl: headerConfig.images.logoUrl, // URL for the app icon
     profileIconUrl: headerConfig.images.profileIconUrl, // URL for the profile icon
     sections: [
-      { name: "Home", href: "/home", disabled: false },
-      { name: "Explore", href: "/explore", disabled: true },
-      { name: "Create", href: "/create", disabled: true },
-      { name: "Saved", href: "/saved", disabled: true },
+      { name: 'Домой', href: '/home', disabled: false },
+      { name: 'Исследовать', href: '/explore', disabled: true },
+      { name: 'Сохдать', href: '/create', disabled: true },
+      { name: 'Сохраненные', href: '/saved', disabled: true },
     ],
   };
 
   /**
    * Creates an instance of HeaderComponent.
-   * 
+   *
    * @constructor
    * @param {HTMLElement} parent - The parent element where the header will be rendered.
    * @param {Object} [state] - Optional initial state to override default state.
@@ -44,7 +44,7 @@ export class HeaderComponent {
    * @returns {string} - The rendered HTML template.
    */
   renderTemplate() {
-    console.log("header renderTemplate");
+    console.log('header renderTemplate');
 
     // Render search input
     const searchInput = new Input({
@@ -52,31 +52,31 @@ export class HeaderComponent {
     });
 
     // Render login and register buttons if the user is not logged in
-    let loginButton = "",
-      registerButton = "";
+    let loginButton = '',
+      registerButton = '';
     if (!this.#state.isLoggedIn) {
-      loginButton = new Button(document.createElement("div"), {
+      loginButton = new Button(document.createElement('div'), {
         ...headerConfig.buttons.loginButton,
       }).renderTemplate();
-      registerButton = new Button(document.createElement("div"), {
+      registerButton = new Button(document.createElement('div'), {
         ...headerConfig.buttons.registerButton,
       }).renderTemplate();
     }
 
     // Render notification and profile buttons if the user is logged in
-    let notificationButton = "",
-      profileButton = "";
+    let notificationButton = '',
+      profileButton = '';
     if (this.#state.isLoggedIn) {
-      notificationButton = new Button(document.createElement("div"), {
+      notificationButton = new Button(document.createElement('div'), {
         ...headerConfig.buttons.notificationButton,
       }).renderTemplate();
-      profileButton = new Button(document.createElement("div"), {
+      profileButton = new Button(document.createElement('div'), {
         ...headerConfig.buttons.profileButton,
       }).renderTemplate();
     }
 
     // Get and compile the Handlebars template
-    const template = Handlebars.templates["header.hbs"];
+    const template = Handlebars.templates['header.hbs'];
     const renderedTemplate = template({
       buttons: this.#state.sections,
       searchInput: searchInput.renderTemplate(),
@@ -107,12 +107,16 @@ export class HeaderComponent {
     // Toggle dropdown visibility on button click
     dropdownButton.addEventListener('click', (event) => {
       event.stopPropagation(); // Prevent event bubbling
-      dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+      dropdownContent.style.display =
+        dropdownContent.style.display === 'block' ? 'none' : 'block';
     });
 
     // Close dropdown if clicked outside
     window.addEventListener('click', (event) => {
-      if (!dropdownButton.contains(event.target) && !dropdownContent.contains(event.target)) {
+      if (
+        !dropdownButton.contains(event.target) &&
+        !dropdownContent.contains(event.target)
+      ) {
         dropdownContent.style.display = 'none';
       }
     });

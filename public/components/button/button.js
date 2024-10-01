@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * Represents a Button Component.
@@ -21,10 +21,10 @@ export class ButtonComponent {
    * @property {boolean} disabled - The state of the button (enabled or disabled).
    */
   #state = {
-    label: "Button",
-    iconLeft: "",
-    iconRight: "",
-    type: "primary",
+    label: 'Button',
+    iconLeft: '',
+    iconRight: '',
+    type: 'primary',
     disabled: false,
   };
 
@@ -52,14 +52,14 @@ export class ButtonComponent {
    * @returns {string} - The rendered HTML template of the button.
    */
   renderTemplate() {
-    const template = Handlebars.templates["button.hbs"];
+    const template = Handlebars.templates['button.hbs'];
     const renderedTemplate = template(this.#state);
 
     if (this.#parent) {
       this.#parent.innerHTML = renderedTemplate;
-      const buttonElement = this.#parent.querySelector("button");
+      const buttonElement = this.#parent.querySelector('button');
       buttonElement.addEventListener(
-        "click",
+        'click',
         this.handleButtonClick.bind(this),
       );
     }
@@ -92,7 +92,7 @@ export class ButtonComponent {
     // Prevent event from bubbling up the DOM tree
     event.stopPropagation();
 
-    if (typeof this.#clickHandler === "function" && !this.#state.disabled) {
+    if (typeof this.#clickHandler === 'function' && !this.#state.disabled) {
       this.#clickHandler(event);
     }
   }

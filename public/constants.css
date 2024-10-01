@@ -1,4 +1,19 @@
 :root {
-    --input-label-color: #8f8f8f;
-  }
-  
+  --project-primary-red: #e60023;
+  --project-primary-white: white;
+  --project-primary-black: black;
+  --project-primary-grey: grey;
+
+  --input-label-color: #8f8f8f;
+
+  --input-caption-color: #505050;
+  --input-caption-font-size: 12px;
+
+  --buttons-hover-background-color: #8a2b39;
+
+  --header-nav-background-color: #f0f0f0;
+
+  --buttons-disabled-color: grey;
+  --buttons-disabled-text-color: lightgrey;
+
+}

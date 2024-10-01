@@ -1,13 +1,13 @@
 <div class="header">
   <!-- Icon on the left -->
   <div class="header__icon">
-    <img src="{{iconUrl}}" alt="App Icon" class="header-icon" />
+    <img src="{{iconUrl}}" alt="App Icon" class="header__icon" />
   </div>
 
   <!-- Section buttons -->
   {{#if isLoggedIn}}
   <div class="dropdown">
-    <button class="dropDownButton">Menu</button>
+    <button class="dropDownButton">Меню</button>
     <div class="dropdown__content" id="dropdown__items" style="display: none;">
       {{#each buttons}}
         {{#unless this.disabled}}

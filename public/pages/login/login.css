@@ -49,6 +49,14 @@ body {
     width: 100%;
 }
 
+.login-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 .form-auth form input {
     font-family: 'Sansation', sans-serif;
     width: 100%;
@@ -66,7 +74,7 @@ body {
     font-family: 'Sansation', sans-serif;
     cursor: pointer;
     margin: 20px;
-    background-color: #e60023;
+    background-color: var(--project-primary-red);
     color: white;
     border: none;
     padding: .75rem 1.5rem;
@@ -79,12 +87,13 @@ body {
 }
 
 .form-auth form button:hover {
-    background-color: #b1021d;
+    background-color: var(--buttons-hover-background-color);
+    color: white;
     transition: 0.5s;
 }
 
 .form-footer {
-    text-align:center;
+    text-align: center;
 }
 
 .form-footer .button-container {
@@ -96,6 +105,6 @@ body {
     background: transparent;
 }
 
-.form-footer .button-container .button.link {
-    color: #e60023;
+.form-footer .button-container .button .link {
+    color: var(--project-primary-red);
 }

@@ -1,36 +1,75 @@
-@import url('../../constants.css');
+@import url(../../constants.css);
+
+.input-container {
+	display: flex;
+	align-items: center;
+}
 
 .input-wrapper {
-  position: relative;
+	position: relative;
 }
 
 .input__label {
-  position: absolute;
-  top: -10px; /* Adjust this value to control label positioning */
-  left: 10px; /* Adjust for horizontal spacing */
-  font-size: 5px;
-  color: var(--input-label-color); /* Используем переменную */
+	position: absolute;
+	top: -10px;
+	/* Adjust this value to control label positioning */
+	left: 10px;
+	/* Adjust for horizontal spacing */
+	font-size: 5px;
+	/* Используем переменную */
+	color: var(--input-label-color);
 }
 
 .input-icons-wrapper {
-  position: relative;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
 }
 
 .input__icon-left {
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
+	position: absolute;
+	top: 50%;
+	left: 10px;
+	transform: translateY(-50%);
 }
 
 .input__icon-right {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translateY(-50%);
 }
 
 .input {
-  padding-left: 40px; /* Add padding for left icon */
-  padding-right: 40px; /* Add padding for right icon */
+	position: relative;
+	height: 24px;
+	padding: 10px; /* Отступы внутри поля */
+	border: none; /* Убираем границу */
+	border-radius: 8; /* Убираем скругление углов */
+	background-color: var(--header-nav-background-color); /* Цвет фона */
+	font-size: 16px; /* Размер шрифта */
+	outline: none; /* Убираем обводку при фокусе */
+	transition: background-color 0.3s; /* Плавный переход цвета фона */
+	margin-right: 24px;
+}
+
+.input__helper-text-list {
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+}
+
+input__helper-text {
+	margin-left: 0;
+	padding: 0;
+	color: var(--input-caption-color);
+	font-size: var(--input-caption-font-size);
+}
+
+input__error-text {
+	margin-left: 0;
+	padding: 0;
+	color: var(--project-primary-red);
+	font-size: var(--input-caption-font-size);
 }
