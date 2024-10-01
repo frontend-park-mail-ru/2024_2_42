@@ -5,7 +5,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 2rem;
-  background-color: #fff;
+  background-color: var(--project-primary-white);
   width: 100%;
   box-sizing: border-box;
 }
@@ -19,7 +19,7 @@
 .header__nav .button {
   text-decoration: none;
   padding: 10px 15px;
-  background-color: #f0f0f0;
+  background-color: var(--header-nav-background-color);
   border-radius: 5px;
   color: var(--project-primary-black);
   border: none;

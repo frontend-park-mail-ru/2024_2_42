@@ -98,14 +98,9 @@ export default class App {
                 formInputs[2].value = storedValues.password;
             }
         }
-    
-    
-        
     }
 
     #renderFeed() {
         getMethod(BACKEND_FEED_ROUTE);
     }
-
-    
 }
