@@ -1,0 +1,33 @@
+<div class="header">
+  <!-- Icon on the left -->
+  <div class="header__icon">
+    <img src="{{iconUrl}}" alt="App Icon" class="header-icon" />
+  </div>
+
+  <!-- Section buttons -->
+  <nav class="header__nav">
+    {{#each sections}}
+    <a href="{{this.href}}" class="button" {{#if this.disabled}}disabled{{/if}}>
+      {{this.name}}
+    </a>
+    {{/each}}
+  </nav>
+
+  <!-- Search bar -->
+  <div class="header__search">
+    {{{searchInput}}}
+  </div>
+
+  <!-- Login and Registration buttons -->
+  {{#unless isLoggedIn}}
+  <div class="header__auth">
+    {{{loginButton}}}
+    {{{registerButton}}}
+  </div>
+  {{/unless}}
+</div>
+
+<!-- Profile icon -->
+<div class="header__profile">
+  {{{profileButton}}}
+</div>

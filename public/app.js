@@ -1,9 +1,12 @@
 import { LoginComponent as Login } from './pages/login/login.js';
 import { SignUpComponent as SignUp } from './pages/signup/signup.js';
+import { HeaderComponent as Header } from './components/complex/header/header.js';
+
 
 export const ROUTES = {
     login: '/login',
     signup: '/signup',
+    header: '/header',
 };
 
 export default class App {
@@ -28,6 +31,10 @@ export default class App {
             case ROUTES.signup:
                 history.pushState({}, '', ROUTES.signup);
                 this.#renderSignup();
+                break;
+            case ROUTES.header:
+                history.pushState({}, '', ROUTES.header);
+                this.#renderHeader();
                 break;
             default:
                 for (var input in this.#inputs) {
@@ -110,5 +117,25 @@ export default class App {
             formInputs[1].value = this.#inputs.login
             formInputs[2].value = this.#inputs.password
         }
+    
+    
+        
     }
-}
+
+    #renderHeader() {
+        console.log("render header")
+        
+        const config = this.config.headerConfig; // Use the headerConfig defined earlier
+        const header = new Header(this.root, config); // Assuming the HeaderComponent takes config as a prop
+        header.renderTemplate();
+        this.#structure.header = header;
+ 
+        // If needed, you can add event listeners here, for example:
+        const searchInput = document.getElementsByClassName('input')[0];
+        if (searchInput) {
+            searchInput.addEventListener('input', (event) => {
+                console.log('Search input changed:', event.target.value);
+            });
+        }
+}}
+

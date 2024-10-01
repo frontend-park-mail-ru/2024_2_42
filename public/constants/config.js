@@ -12,6 +12,10 @@ export const homeConfig = {
             text: 'signup',
             href: '/signup',
         },
+        header: {
+            text: 'header',
+            href: '/header',
+        },
     },
 };
 
@@ -144,4 +148,85 @@ export const signupConfig = {
         hover: false,
         active: false
     }
+};
+
+export const headerConfig = {
+    className: 'header', // CSS class for header
+    iconUrl: '/assets/icons/logo.svg', // Path to the logo/icon
+
+    profileIconUrl: '/assets/icons/profile.svg',
+    
+    isLoggedIn: false, // Determines login status
+
+    // Section buttons for navigation (some disabled if not logged in)
+    sections: [
+        {
+            name: 'Home', // Section name
+            href: '/home', // URL for navigation
+            disabled: false, // Always enabled
+        },
+        {
+            name: 'Create',
+            href: '/create',
+            disabled: true, // Disabled if not logged in
+        },
+        {
+            name: 'Saved',
+            href: '/saved',
+            disabled: true, // Disabled if not logged in
+        },
+    ],
+
+    // Search input field (disabled by default)
+    searchInput: {
+        Error: '',
+        inputLabelText: '',
+        inputSize: 'input_large',
+        leftIcon: '/assets/icons/search.svg', // Search icon
+        typeOfInput: 'text',
+        inputPlaceholder: 'Начни печатать',
+        isDisabled: true, // Disabled if not logged in
+        valid: true,
+        rightIconClickable: false,
+    },
+
+    // Notification Button (disabled if not logged in)
+    notificationButton: {
+        iconLeft: '/assets/icons/notification.svg',
+        type: 'icon',
+        disabled: true, // Disabled by default when not logged in
+        hover: false,
+        active: false,
+    },
+
+    // Profile Button (disabled if not logged in)
+    profileButton: {
+        iconLeft: '/assets/icons/profile.svg',
+        type: 'icon',
+        disabled: true, // Disabled by default when not logged in
+        hover: false,
+        active: false,
+    },
+
+    // Login Button (visible when not logged in)
+    loginButton: {
+        label: 'Login',
+        iconLeft: '',
+        iconRight: '',
+        type: 'link',
+        disabled: false,
+        hover: false,
+        active: false,
+    },
+
+    // Register Button (visible when not logged in)
+    registerButton: {
+        label: 'Register',
+        iconLeft: '',
+        iconRight: '',
+        type: 'link',
+        disabled: false,
+        hover: false,
+        active: false,
+    },
 };
