@@ -1,14 +1,14 @@
-"use strict";
+'use strict';
 
-import App from "./app.js";
+import App from './app.js';
 import {
   homeConfig,
   loginConfig,
   signupConfig,
   headerConfig,
-} from "./constants/config.js";
+} from './constants/config.js';
 
-const root = document.getElementById("root");
+const root = document.getElementById('root');
 
 const config = {
   homeConfig,
