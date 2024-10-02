@@ -7,11 +7,12 @@
 	align-items: center;
 	justify-content: center;
     padding: 10px;
+	margin: 10px;
 	border-radius: 5px;
     text-align: center;
     border-radius: 10px;
     width: fit-content;
-    height: fit-content;
+	height: fit-content;
 	background-color: var(--card-element-background-color);
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	transition: 0.5s;
@@ -50,8 +51,7 @@
 
 /* Элемент image (изображение) */
 .pin__image {
-	max-width: 30vw;
-	max-height: 35vh;
+	max-width: 10vw;
 }
 
 /* Элемент button-left (левая нижняя кнопка) */
