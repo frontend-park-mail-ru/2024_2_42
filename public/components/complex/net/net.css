@@ -2,19 +2,8 @@
 
 .net {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 колонки с равной шириной */
-    gap: 10px; /* расстояние между элементами */
-    width: 70%; /* контейнер растягивается на всю ширину */
-    background-color: var(--project-primary-white); 
-    border: 1px solid var(--project-primary-grey);
-    border-radius: 5px;
-    padding: 10px;
-}
-
-/* Стили для каждого пина */
-.pin {
-    border-radius: 5px;
-    padding: 10px;
-    text-align: center;
-    width: 100%; /* пин занимает всю ширину своей ячейки */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 20px;
+    background-color: var(--project-primary-white);
+    padding: 50px;
 }

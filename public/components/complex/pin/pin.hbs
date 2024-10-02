@@ -1,17 +1,18 @@
 <div class="pin">
-  <select class="pin__board-selector">
-    <option value="">Select Board</option>
-    {{#each boards}}
-      <option value="{{this}}">{{this}}</option>
-    {{/each}}
-  </select>
+  <div class="pin__upper-buttons-container">
+    <select class="pin__board-selector">
+      {{#each boards}}
+        <option value="{{this}}">{{this}}</option>
+      {{/each}}
+    </select>
 
-  <div class="pin__save-button"></div>
-
-  <div class="pin__image">
-    <img src="{{pinUrl}}" alt="Pin Image" class="pin__image" />
+    <div class="pin__save-button">{{{buttons.saveButton}}}</div>
   </div>
+    <div class="pin__image-container">
+      <img src="{{pinUrl}}" alt="Pin Image" class="pin__image" />
+    </div>
 
-  <div class="pin__button-left-bottom"></div>
-  <div class="pin__button-right-bottom"></div>
+    <div class="pin__button-left-bottom"></div>
+    <div class="pin__button-right-bottom"></div>
+
 </div>
