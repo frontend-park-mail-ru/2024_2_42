@@ -1,45 +1,71 @@
+@import url('https://fonts.cdnfonts.com/css/sansation?styles=169710');
+
 /* Блок pin */
 .pin {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Две колонки одинаковой ширины */
-  grid-template-areas:
-    "pin__board-selector pin__save-button"
-    "pin__image pin__image"
-    "pin__button-left pin__button-right";
-  gap: 10px; /* Отступы между элементами */
-  width: 300px; /* Общая ширина */
-  height: auto; /* Высота по содержимому */
-  background-color: brown;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+    padding: 10px;
+	border-radius: 5px;
+    text-align: center;
+    border-radius: 10px;
+    width: fit-content;
+    height: fit-content;
+	background-color: var(--card-element-background-color);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	transition: 0.5s;
+}
+
+.pin:hover {
+	box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+	transition: 0.5s;
+}
+
+.pin__upper-buttons-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
 }
 
 /* Элемент board-selector (селектор досок) */
 .pin__board-selector {
-  grid-area: pin__board-selector;
-  width: 100%;
+	height: 30px;
+	font-family: 'Sansation', sans-serif;
+	position: relative;
+	margin: 5px;
+	width: 50%;
 }
 
 /* Элемент save-button (кнопка "Сохранить") */
 .pin__save-button {
-  grid-area: pin__save-button;
-  justify-self: end; /* Перемещаем кнопку вправо */
+	margin: 5px;
+}
+
+.pin__save-button button {
+	font-family: 'Sansation', sans-serif;
+	font-size: 12px;
 }
 
 /* Элемент image (изображение) */
 .pin__image {
-  grid-area: pin__image;
-  width: 100%;
-  height: 100%; /* Задаем высоту, чтобы занять всю сетку */
-  object-fit: contain; /* Чтобы изображение пропорционально вписывалось */
+	max-width: 30vw;
+	max-height: 35vh;
 }
 
 /* Элемент button-left (левая нижняя кнопка) */
 .pin__button-left-bottom {
-  grid-area: pin__button-left;
-  justify-self: start; /* Выравниваем по левому краю */
+	justify-self: start;
+	/* Выравниваем по левому краю */
 }
 
 /* Элемент button-right (правая нижняя кнопка) */
 .pin__button-right-bottom {
-  grid-area: pin__button-right;
-  justify-self: end; /* Выравниваем по правому краю */
+	justify-self: end;
+	/* Выравниваем по правому краю */
+}
+
+.pin__board-selector {
+	margin: 5px;
 }

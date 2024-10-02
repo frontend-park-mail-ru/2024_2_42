@@ -6,9 +6,11 @@ import { ButtonComponent as Button } from '../../components/button/button.js';
 import { postMethod } from '../../modules/network.js';
 import { ROUTES } from '../../constants/routes.js';
 
+import { app } from '../../index.js';
+
 import {
-  validateInput,
-  getCaptionSetForRule,
+	validateInput,
+	getCaptionSetForRule,
 } from '../../modules/validation.js';
 
 /**
@@ -16,212 +18,233 @@ import {
  * @class
  */
 export class LoginComponent {
-  /**
-   * The parent element where the button will be rendered.
-   * @type {HTMLElement}
-   */
-  #parent;
-  #inputs = [];
-  #inputsErrors = {};
-  #inputsSavedValues = {};
-  #inputsData;
-  #buttonData;
-  #buttonFooterData;
+	/**
+	 * The parent element where the button will be rendered.
+	 * @type {HTMLElement}
+	 */
+	#parent;
+	#inputs = [];
+	#inputsErrors = {};
+	#inputsSavedValues = {};
+	#inputsData;
+	#buttonData;
+	#buttonFooterData;
 
-  /**
-   * The state of the input component.
-   * @type {Object}
-   * @property {string} inputValue - The current value of the input.
-   * @property {string} inputImageLeft - The path to the image file for the left icon.
-   * @property {string} inputImageRight - The path to the image file for the right icon
-   * @property {string} inputType - The type attribute of the input element (e.g., text, email, password).
-   * @property {string} inputPlaceholder - The placeholder text for the input.
-   */
+	/**
+	 * The state of the input component.
+	 * @type {Object}
+	 * @property {string} inputValue - The current value of the input.
+	 * @property {string} inputImageLeft - The path to the image file for the left icon.
+	 * @property {string} inputImageRight - The path to the image file for the right icon
+	 * @property {string} inputType - The type attribute of the input element (e.g., text, email, password).
+	 * @property {string} inputPlaceholder - The placeholder text for the input.
+	 */
 
-  constructor(parent, inputsData, buttonData, buttonFooterData) {
-    this.#parent = parent;
-    this.#inputsData = inputsData;
-    this.#buttonData = buttonData;
-    this.#buttonFooterData = buttonFooterData;
+	constructor(parent, inputsData, buttonData, buttonFooterData) {
+		this.#parent = parent;
+		this.#inputsData = inputsData;
+		this.#buttonData = buttonData;
+		this.#buttonFooterData = buttonFooterData;
 
-    this.#inputsData.email.captions = getCaptionSetForRule({ isEmail: true });
-    this.#inputsData.password.captions = getCaptionSetForRule({
-      isPassword: true,
-    });
-  }
+		this.#inputsData.email.captions = getCaptionSetForRule({ isEmail: true });
+		this.#inputsData.password.captions = getCaptionSetForRule({
+			isPassword: true,
+		});
+	}
 
-  /**
-   * Renders the input component.
-   * @returns {string} - The rendered HTML template of the input.
-   */
-  renderTemplate() {
-    this.#inputs = [];
-    Object.entries(this.#inputsData).forEach(([key, value]) => {
-      const input = new Input({ key, ...value });
-      this.#inputs.push(input);
-    });
+	/**
+	 * Renders the input component.
+	 * @returns {string} - The rendered HTML template of the input.
+	 */
+	renderTemplate() {
+		this.#inputs = [];
+		Object.entries(this.#inputsData).forEach(([key, value]) => {
+			const input = new Input({ key, ...value });
+			this.#inputs.push(input);
+		});
 
-    const button = new Button('', this.#buttonData);
-    const button_form_footer = new Button('', this.#buttonFooterData);
+		const button = new Button('', this.#buttonData);
+		const button_form_footer = new Button('', this.#buttonFooterData);
 
-    const template = Handlebars.templates['login.hbs'];
-    const renderedTemplate = template({
-      inputs: this.#inputs.map((input) => input.renderTemplate()),
-      className: 'login-form-container',
-      button: button.renderTemplate(),
-      button_form_footer: button_form_footer.renderTemplate(),
-    });
+		const template = Handlebars.templates['login.hbs'];
+		const renderedTemplate = template({
+			inputs: this.#inputs.map((input) => input.renderTemplate()),
+			className: 'login-form-container',
+			button: button.renderTemplate(),
+			button_form_footer: button_form_footer.renderTemplate(),
+		});
 
-    this.#parent.innerHTML += renderedTemplate;
-    this.#inputs.forEach((input) => {
-      input.parent = this.htmlElement;
-    });
+		this.#parent.innerHTML += renderedTemplate;
+		this.#inputs.forEach((input) => {
+			input.parent = this.htmlElement;
+		});
 
-    const [emailCaptionsBlock, passwordCaptionsBlock] =
-      document.getElementsByClassName('input__helper-text-list');
+		const [emailCaptionsBlock, passwordCaptionsBlock] =
+			document.getElementsByClassName('input__helper-text-list');
 
-    for (const captionText of this.#inputsData.email.captions) {
-      const nextCaption = document.createElement('input__helper-text');
-      nextCaption.textContent = captionText;
-      emailCaptionsBlock.appendChild(nextCaption);
-    }
+		for (const captionText of this.#inputsData.email.captions) {
+			const nextCaption = document.createElement('input__helper-text');
+			nextCaption.textContent = captionText;
+			emailCaptionsBlock.appendChild(nextCaption);
+		}
 
-    for (const captionText of this.#inputsData.password.captions) {
-      const nextCaption = document.createElement('input__helper-text');
-      nextCaption.textContent = captionText;
-      passwordCaptionsBlock.appendChild(nextCaption);
-    }
+		for (const captionText of this.#inputsData.password.captions) {
+			const nextCaption = document.createElement('input__helper-text');
+			nextCaption.textContent = captionText;
+			passwordCaptionsBlock.appendChild(nextCaption);
+		}
 
-    return renderedTemplate;
-  }
+		document.querySelector('.tomain__tap-button').addEventListener('click', (event) => {
+			event.preventDefault();
 
-  addSubmitBtnHandler(apiRoute) {
-    const submitBtn = document.getElementsByClassName('button submit')[0];
-    submitBtn.addEventListener('click', (event) => {
-      event.preventDefault();
+			root.innerHTML = '';
+			app.renderPage(ROUTES.main);
+		});
 
-      const inputs = document.getElementsByClassName('input');
+		document.querySelector('.logo-auth').addEventListener('click', (event) => {
+			event.preventDefault();
 
-      const loginData = {
-        email: inputs[0].value,
-        password: inputs[1].value,
-      };
+			root.innerHTML = '';
+			app.renderPage(ROUTES.main);
+		});
 
-      console.log('loginData:', loginData);
+		return renderedTemplate;
+	}
 
-      postMethod(apiRoute, loginData);
-    });
-  }
+	addSubmitBtnHandler(apiRoute) {
+		const submitBtn = document.getElementsByClassName('button submit')[0];
+		submitBtn.addEventListener('click', async (event) => {
+			event.preventDefault();
 
-  addInputFocusHandler() {
-    const [loginInput, passwordInput] =
-      document.getElementsByClassName('input');
-    const [emailCaptionsBlock, passwordCaptionsBlock] =
-      document.getElementsByClassName('input__helper-text-list');
+			const [emailInput, passwordInput] = document.getElementsByClassName('input');
+			const emailState = validateInput(emailInput.value, { isEmail: true });
+			const passwordState = validateInput(passwordInput.value, { isPassword: true });
+			if (emailState.isValid && passwordState.isValid) {
+				const loginData = {
+					email: emailInput.value,
+					password: passwordInput.value,
+				};
 
-    loginInput.addEventListener('focus', (event) => {
-      event.preventDefault();
+				const resp = await postMethod(apiRoute, loginData, true);
+				if (resp.session_cookie) {
+					document.cookie = `session_token=${resp.session_cookie}`;
 
-      if (this.#inputsErrors.email === undefined) {
-        emailCaptionsBlock.style.display = '';
-      }
-    });
-    passwordInput.addEventListener('focus', (event) => {
-      event.preventDefault();
+					this.#parent.innerHTML = '';
+					app.renderPage(ROUTES.main);
+				}
+			}
+		});
+	}
 
-      if (this.#inputsErrors.password === undefined) {
-        passwordCaptionsBlock.style.display = '';
-      }
-    });
+	addInputFocusHandler() {
+		const [loginInput, passwordInput] =
+			document.getElementsByClassName('input');
+		const [emailCaptionsBlock, passwordCaptionsBlock] =
+			document.getElementsByClassName('input__helper-text-list');
 
-    loginInput.addEventListener('blur', (event) => {
-      event.preventDefault();
-      emailCaptionsBlock.style.display = 'none';
-    });
-    passwordInput.addEventListener('blur', (event) => {
-      event.preventDefault();
-      passwordCaptionsBlock.style.display = 'none';
-    });
-  }
+		loginInput.addEventListener('focus', (event) => {
+			event.preventDefault();
 
-  addInputOnChangeHandler() {
-    const [loginInput, passwordInput] =
-      document.getElementsByClassName('input');
-    const [emailCaptionsBlock, passwordCaptionsBlock] =
-      document.getElementsByClassName('input__helper-text-list');
-    const [emailErrBlock, passwordErrBlock] = document.getElementsByClassName(
-      'input__error-text-list',
-    );
+			if (this.#inputsErrors.email === undefined) {
+				emailCaptionsBlock.style.display = '';
+			}
+		});
+		passwordInput.addEventListener('focus', (event) => {
+			event.preventDefault();
 
-    const emailErrTextBlock = document.createElement('input__error-text');
-    const passwordErrTextBlock = document.createElement('input__error-text');
+			if (this.#inputsErrors.password === undefined) {
+				passwordCaptionsBlock.style.display = '';
+			}
+		});
 
-    loginInput.addEventListener('input', (event) => {
-      event.preventDefault();
+		loginInput.addEventListener('blur', (event) => {
+			event.preventDefault();
+			emailCaptionsBlock.style.display = 'none';
+		});
+		passwordInput.addEventListener('blur', (event) => {
+			event.preventDefault();
+			passwordCaptionsBlock.style.display = 'none';
+		});
+	}
 
-      const inputState = validateInput(loginInput.value, { isEmail: true });
-      if (loginInput.value.length > 0 && !inputState.isValid) {
-        this.#inputsErrors.email = inputState.error;
-        emailErrTextBlock.textContent = inputState.error;
-        emailErrBlock.appendChild(emailErrTextBlock);
-        emailErrBlock.style.display = '';
-        emailCaptionsBlock.style.display = 'none';
-      } else {
-        this.#inputsErrors.email = undefined;
-        if (emailErrBlock.contains(emailErrTextBlock)) {
-          emailErrBlock.removeChild(emailErrTextBlock);
-        }
-        emailErrBlock.style.display = 'none';
-        emailCaptionsBlock.style.display = '';
-      }
-    });
+	addInputOnChangeHandler() {
+		const [loginInput, passwordInput] =
+			document.getElementsByClassName('input');
+		const [emailCaptionsBlock, passwordCaptionsBlock] =
+			document.getElementsByClassName('input__helper-text-list');
+		const [emailErrBlock, passwordErrBlock] = document.getElementsByClassName(
+			'input__error-text-list',
+		);
 
-    passwordInput.addEventListener('input', (event) => {
-      event.preventDefault();
+		const emailErrTextBlock = document.createElement('input__error-text');
+		const passwordErrTextBlock = document.createElement('input__error-text');
 
-      const inputState = validateInput(passwordInput.value, {
-        isPassword: true,
-      });
-      if (passwordInput.value.length > 0 && !inputState.isValid) {
-        this.#inputsErrors.password = inputState.error;
-        passwordErrTextBlock.textContent = inputState.error;
-        passwordErrBlock.appendChild(passwordErrTextBlock);
-        passwordErrBlock.style.display = '';
-        passwordCaptionsBlock.style.display = 'none';
-      } else {
-        this.#inputsErrors.password = undefined;
-        if (passwordErrBlock.contains(passwordErrTextBlock)) {
-          passwordErrBlock.removeChild(passwordErrTextBlock);
-        }
-        passwordErrBlock.style.display = 'none';
-        passwordCaptionsBlock.style.display = '';
-      }
-    });
-  }
+		loginInput.addEventListener('input', (event) => {
+			event.preventDefault();
 
-  addInputsSaveHandler(app) {
-    const signUpBtn = document.getElementsByClassName('button link')[0];
-    signUpBtn.addEventListener('click', (event) => {
-      event.preventDefault();
+			const inputState = validateInput(loginInput.value, { isEmail: true });
+			if (loginInput.value.length > 0 && !inputState.isValid) {
+				this.#inputsErrors.email = inputState.error;
+				emailErrTextBlock.textContent = inputState.error;
+				emailErrBlock.appendChild(emailErrTextBlock);
+				emailErrBlock.style.display = '';
+				emailCaptionsBlock.style.display = 'none';
+			} else {
+				this.#inputsErrors.email = undefined;
+				if (emailErrBlock.contains(emailErrTextBlock)) {
+					emailErrBlock.removeChild(emailErrTextBlock);
+				}
+				emailErrBlock.style.display = 'none';
+				emailCaptionsBlock.style.display = '';
+			}
+		});
 
-      const [login, password] = document.getElementsByClassName('input');
-      this.#inputsSavedValues = {
-        login: login.value,
-        password: password.value,
-      };
+		passwordInput.addEventListener('input', (event) => {
+			event.preventDefault();
 
-      root.innerHTML = '';
-      app.renderPage(ROUTES.signup);
-    });
-  }
+			const inputState = validateInput(passwordInput.value, {
+				isPassword: true,
+			});
+			if (passwordInput.value.length > 0 && !inputState.isValid) {
+				this.#inputsErrors.password = inputState.error;
+				passwordErrTextBlock.textContent = inputState.error;
+				passwordErrBlock.appendChild(passwordErrTextBlock);
+				passwordErrBlock.style.display = '';
+				passwordCaptionsBlock.style.display = 'none';
+			} else {
+				this.#inputsErrors.password = undefined;
+				if (passwordErrBlock.contains(passwordErrTextBlock)) {
+					passwordErrBlock.removeChild(passwordErrTextBlock);
+				}
+				passwordErrBlock.style.display = 'none';
+				passwordCaptionsBlock.style.display = '';
+			}
+		});
+	}
 
-  clearStoredInputsValues() {
-    for (const value in this.#inputsSavedValues) {
-      delete this.#inputsSavedValues[value];
-    }
-  }
+	addInputsSaveHandler(app) {
+		const signUpBtn = document.getElementsByClassName('button link')[0];
+		signUpBtn.addEventListener('click', (event) => {
+			event.preventDefault();
 
-  get inputsStoredValues() {
-    return this.#inputsSavedValues;
-  }
+			const [login, password] = document.getElementsByClassName('input');
+			this.#inputsSavedValues = {
+				login: login.value,
+				password: password.value,
+			};
+
+			root.innerHTML = '';
+			app.renderPage(ROUTES.signup);
+		});
+	}
+
+	clearStoredInputsValues() {
+		for (const value in this.#inputsSavedValues) {
+			delete this.#inputsSavedValues[value];
+		}
+	}
+
+	get inputsStoredValues() {
+		return this.#inputsSavedValues;
+	}
 }
