@@ -176,6 +176,12 @@ export const headerConfig = {
 			type: 'primary',
 			disabled: false,
 		},
+		logOutButton: {
+			iconLeft: './assets/icons/logout.svg',
+			label: '',
+			type: 'primary',
+			disabled: false,
+		},
 		loginButton: {
 			label: 'Войти',
 			type: 'primary',

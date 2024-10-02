@@ -3,7 +3,7 @@
 import { LoginComponent as Login } from './pages/login/login.js';
 import { SignUpComponent as SignUp } from './pages/signup/signup.js';
 import { MainPageComponent } from './pages/main/main.js';
-import { getMethod, postMethod } from './modules/network.js';
+import { getMethod, isAuthorized } from './modules/network.js';
 
 import { ROUTES } from './constants/routes.js';
 import { BACKEND_LOGIN_ROUTE, BACKEND_SIGNUP_ROUTE, BACKEND_FEED_ROUTE, BACKEND_LOGOUT_ROUTE } from './constants/api.js';
@@ -34,17 +34,13 @@ export default class App {
 				history.pushState({}, '', ROUTES.signup);
 				this.#renderSignup();
 				break;
-			case ROUTES.logOut:
-				history.pushState({}, '', ROUTES.logOut);
-				this.#handleLogout();
-				break;
 			default:
 				this.#handleUnknownRoute();
 				break;
 		}
 	}
 
-	renderPage(pageRoute, deleteEverything = false) {
+	async renderPage(pageRoute, deleteEverything = false) {
 		this.clear(deleteEverything);
 		this.render(pageRoute);
 	}
@@ -156,12 +152,6 @@ export default class App {
 		});
 
 		return renderedTemplate
-	}
-
-	async #handleLogout() {
-		const s = await postMethod(BACKEND_LOGOUT_ROUTE, {}, true)
-		this.renderPage(BACKEND_FEED_ROUTE);
-		document.cookie = "session_token" + '=; Max-Age=0'
 	}
 
 	clear(deleteEverything) {

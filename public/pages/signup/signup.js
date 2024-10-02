@@ -119,9 +119,9 @@ export class SignUpComponent {
 		return renderedTemplate;
 	}
 
-	addSubmitBtnHandler(apiRote) {
+	addSubmitBtnHandler(apiRoute) {
 		const submitBtn = document.getElementsByClassName('button submit')[0];
-		submitBtn.addEventListener('click', (event) => {
+		submitBtn.addEventListener('click', async (event) => {
 			event.preventDefault();
 
 			const [userNameInput, emailInput, passwordInput] = document.getElementsByClassName('input');
@@ -129,13 +129,17 @@ export class SignUpComponent {
 			const emailState = validateInput(emailInput.value, { isEmail: true });
 			const passwordState = validateInput(passwordInput.value, { isPassword: true });
 			if (userNameState.isValid && emailState.isValid && passwordState.isValid) {
-				const loginData = {
+				const signUpData = {
 					user_name: userNameInput.value,
 					email: emailInput.value,
 					password: passwordInput.value,
 				};
 
-				postMethod(apiRote, loginData, true);
+				const resp = await postMethod(apiRoute, signUpData, true);
+				if (resp.user_id) {
+					this.#parent.innerHTML = '';
+					app.renderPage(ROUTES.login);
+				}
 			}
 		});
 	}
