@@ -2,8 +2,8 @@
   "scripts": {
     "compile": "globstar -- npx handlebars public/**/*.hbs -f public/precompiled.js",
     "start": "node server/server.js",
-    "lint": "eslint ./public/**.js",
-    "lint:fix": "eslint ./public/**.js --fix"
+    "lint": "eslint ./public/**/*.js",
+    "lint:fix": "eslint ./public/**/*.js --fix"
   },
   "dependencies": {
     "express": "^4.21.0",
