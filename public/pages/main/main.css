@@ -1,0 +1,9 @@
+.main__page-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main__page-container .net {
+    width: auto;
+}

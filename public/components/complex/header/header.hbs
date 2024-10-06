@@ -1,0 +1,46 @@
+<div class="header">
+  <!-- Icon on the left -->
+  <div class="header__icon">
+    <img src="{{iconUrl}}" alt="App Icon" class="header__icon" />
+  </div>
+
+  <!-- Section buttons -->
+  {{#if isLoggedIn}}
+  <div class="dropdown">
+    <button class="dropDownButton">Меню</button>
+    <div class="dropdown__content" id="dropdown__items" style="display: none;">
+      {{#each buttons}}
+        {{#unless this.disabled}}
+          <a 
+            href="{{this.href}}" 
+            class="button" 
+          >
+            {{this.name}}
+          </a>
+        {{/unless}}
+      {{/each}}
+    </div>
+  </div>
+  {{/if}}
+
+  <!-- Search bar -->
+  <div class="header__search">
+    {{{searchInput}}}
+  </div>
+
+  <!-- Notifications and Profile -->
+  {{#if isLoggedIn}}
+  <div class="header__profile">
+    {{{notificationButton}}}
+    {{{profileButton}}}
+  </div>
+  {{/if}}
+
+  <!-- Login and Registration buttons -->
+  {{#unless isLoggedIn}}
+  <div class="header__auth">
+    <div class="header__login-btn">{{{loginButton}}}</div>
+    <div class="header__signup-btn">{{{registerButton}}}</div>
+  </div>
+  {{/unless}}
+</div>

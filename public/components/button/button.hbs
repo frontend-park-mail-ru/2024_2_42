@@ -1,8 +1,6 @@
-<button 
-   class="button {{type}} {{#if disabled}}disabled{{/if}} {{#if active}}active{{/if}}"
-   {{#if disabled}}disabled{{/if}}
->
-  {{#if iconLeft}}<span class="icon-left">{{iconLeft}}</span>{{/if}}
+<button class="button {{type}} {{#if disabled}}disabled{{/if}} {{#if active}}active{{/if}}" {{#if
+  disabled}}disabled{{/if}}>
+  {{#if iconLeft}}<img src="{{iconLeft}}" alt="iconLeft" />{{/if}}
   {{label}}
-  {{#if iconRight}}<span class="icon-right">{{iconRight}}</span>{{/if}}
+  {{#if iconRight}}<img src="{{iconRight}}" alt="iconRight" />{{/if}}
 </button>
