@@ -8,15 +8,29 @@ import { ROUTES } from '../../constants/routes.js'
 
 import { app } from '../../index.js'
 
+/**
+ * Represents the Main Page Component.
+ * @class
+ */
 export class MainPageComponent {
     #parent
     #pins
 
+    /**
+     * Creates an instance of MainPage Component.
+     * @constructor
+     * @param {HTMLElement} parent - The parent element where the main page will be rendered.
+     * @param {Object} pins - data provided for pins propagation.
+     */
     constructor(parent, pins) {
         this.#parent = parent
         this.#pins = pins
     }
 
+    /**
+	 * Renders the MainPage component.
+	 * @returns {string} - The rendered HTML template of the main page.
+	 */
     async renderTemplate() {
         const template = Handlebars.templates['main.hbs'];
 
