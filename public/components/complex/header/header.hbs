@@ -31,8 +31,9 @@
   <!-- Notifications and Profile -->
   {{#if isLoggedIn}}
   <div class="header__profile">
-    {{{notificationButton}}}
-    {{{profileButton}}}
+    <div class="header__notification-btn">{{{notificationButton}}}</div>
+    <div class="header__profile-btn">{{{profileButton}}}</div>
+    <div class="header__logout-btn">{{{logOutButton}}}</div>
   </div>
   {{/if}}
 
