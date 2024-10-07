@@ -22,7 +22,7 @@ export class HeaderComponent {
 		sections: [
 			{ name: 'Домой', href: '/', disabled: false },
 			{ name: 'Исследовать', href: '/explore', disabled: true },
-			{ name: 'Сохдать', href: '/create', disabled: true },
+			{ name: 'Создать', href: '/create', disabled: true },
 			{ name: 'Сохраненные', href: '/saved', disabled: true },
 		],
 	};
@@ -65,7 +65,8 @@ export class HeaderComponent {
 
 		// Render notification and profile buttons if the user is logged in
 		let notificationButton = '',
-			profileButton = '';
+			profileButton = '',
+			logOutButton = '';
 		if (this.#state.isLoggedIn) {
 			notificationButton = new Button(document.createElement('div'), {
 				...headerConfig.buttons.notificationButton,
@@ -73,6 +74,9 @@ export class HeaderComponent {
 			profileButton = new Button(document.createElement('div'), {
 				...headerConfig.buttons.profileButton,
 			}).renderTemplate();
+			logOutButton = new Button(document.createElement('div'), {
+				...headerConfig.buttons.logOutButton,
+			}, 'button__logout').renderTemplate();
 		}
 
 		// Get and compile the Handlebars template
@@ -82,6 +86,7 @@ export class HeaderComponent {
 			searchInput: searchInput.renderTemplate(),
 			notificationButton,
 			profileButton,
+			logOutButton,
 			loginButton,
 			registerButton,
 			isLoggedIn: this.#state.isLoggedIn,

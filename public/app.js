@@ -3,7 +3,7 @@
 import { LoginComponent as Login } from './pages/login/login.js';
 import { SignUpComponent as SignUp } from './pages/signup/signup.js';
 import { MainPageComponent } from './pages/main/main.js';
-import { getMethod, postMethod } from './modules/network.js';
+import { getMethod, isAuthorized } from './modules/network.js';
 
 import { ROUTES } from './constants/routes.js';
 import { BACKEND_LOGIN_ROUTE, BACKEND_SIGNUP_ROUTE, BACKEND_FEED_ROUTE, BACKEND_LOGOUT_ROUTE } from './constants/api.js';
@@ -46,10 +46,6 @@ export default class App {
 			case ROUTES.signup:
 				history.pushState({}, '', ROUTES.signup);
 				this.#renderSignup();
-				break;
-			case ROUTES.logOut:
-				history.pushState({}, '', ROUTES.logOut);
-				this.#handleLogout();
 				break;
 			default:
 				this.#handleUnknownRoute();
