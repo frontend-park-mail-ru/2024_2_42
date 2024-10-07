@@ -28,9 +28,9 @@ export class MainPageComponent {
     }
 
     /**
-	 * Renders the MainPage component.
-	 * @returns {string} - The rendered HTML template of the main page.
-	 */
+     * Renders the MainPage component.
+     * @returns {string} - The rendered HTML template of the main page.
+     */
     async renderTemplate() {
         const template = Handlebars.templates['main.hbs'];
 
@@ -46,7 +46,7 @@ export class MainPageComponent {
         if (headerLogInButton) {
             headerLogInButton.addEventListener('click', (event) => {
                 event.preventDefault();
-    
+
                 root.innerHTML = '';
                 app.renderPage(ROUTES.login);
             });
@@ -60,7 +60,7 @@ export class MainPageComponent {
                 root.innerHTML = '';
                 app.renderPage(ROUTES.signup);
             });
-		}
+        }
 
         return renderedTemplate;
     }

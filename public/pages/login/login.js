@@ -32,13 +32,13 @@ export class LoginComponent {
 	#buttonFooterData;
 
 	/**
-     * Creates an instance of LoginForm Component.
-     * @constructor
-     * @param {HTMLElement} parent - The parent element where the login form will be rendered.
-     * @param {Object} inputsData - data provided for inputs propagation.
-     * @param {Object} buttonData - data provided for submit button propagation.
-     * @param {Object} buttonFooterData - data provided for redirect button propagation.
-     */
+	 * Creates an instance of LoginForm Component.
+	 * @constructor
+	 * @param {HTMLElement} parent - The parent element where the login form will be rendered.
+	 * @param {Object} inputsData - data provided for inputs propagation.
+	 * @param {Object} buttonData - data provided for submit button propagation.
+	 * @param {Object} buttonFooterData - data provided for redirect button propagation.
+	 */
 	constructor(parent, inputsData, buttonData, buttonFooterData) {
 		this.#parent = parent;
 		this.#inputsData = inputsData;

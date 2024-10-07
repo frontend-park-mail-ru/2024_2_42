@@ -40,9 +40,9 @@ export class SignUpComponent {
 	 */
 	constructor(parent, inputsData, buttonData, buttonFooterData) {
 		this.#parent = parent;
-		this.#inputsData = inputsData
-		this.#buttonData = buttonData
-		this.#buttonFooterData = buttonFooterData
+		this.#inputsData = inputsData;
+		this.#buttonData = buttonData;
+		this.#buttonFooterData = buttonFooterData;
 
 		this.#inputsData.userName.captions = getCaptionSetForRule({
 			isUserName: true,
@@ -313,10 +313,10 @@ export class SignUpComponent {
 		});
 	}
 
-		/**
-	 * Handles inputs value storage for login form
-	 * @param {Object} app - object of the Application class
-	 */
+	/**
+ * Handles inputs value storage for login form
+ * @param {Object} app - object of the Application class
+ */
 	addInputsSaveHandler(app) {
 		const signUpBtn = document.getElementsByClassName('button link')[0];
 		signUpBtn.addEventListener('click', (event) => {
