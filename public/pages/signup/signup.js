@@ -14,12 +14,12 @@ import {
 } from '../../modules/validation.js';
 
 /**
- * Represents a Login Component.
+ * Represents a Signup Component.
  * @class
  */
 export class SignUpComponent {
 	/**
-	 * The parent element where the button will be rendered.
+	 * The parent element where the sign up form will be rendered.
 	 * @type {HTMLElement}
 	 */
 	#parent;
@@ -31,15 +31,13 @@ export class SignUpComponent {
 	#buttonFooterData;
 
 	/**
-	 * The state of the input component.
-	 * @type {Object}
-	 * @property {string} inputValue - The current value of the input.
-	 * @property {string} inputImageLeft - The path to the image file for the left icon.
-	 * @property {string} inputImageRight - The path to the image file for the right icon
-	 * @property {string} inputType - The type attribute of the input element (e.g., text, email, password).
-	 * @property {string} inputPlaceholder - The placeholder text for the input.
+	 * Creates an instance of SignUpForm Component.
+	 * @constructor
+	 * @param {HTMLElement} parent - The parent element where the signup form will be rendered.
+	 * @param {Object} inputsData - data provided for inputs propagation.
+	 * @param {Object} buttonData - data provided for submit button propagation.
+	 * @param {Object} buttonFooterData - data provided for redirect button propagation.
 	 */
-
 	constructor(parent, inputsData, buttonData, buttonFooterData) {
 		this.#parent = parent;
 		this.#inputsData = inputsData;
@@ -56,8 +54,8 @@ export class SignUpComponent {
 	}
 
 	/**
-	 * Renders the input component.
-	 * @returns {string} - The rendered HTML template of the input.
+	 * Renders the SignUpForm component.
+	 * @returns {string} - The rendered HTML template of the signup form.
 	 */
 	renderTemplate() {
 		Object.entries(this.#inputsData).forEach(([key, value]) => {
@@ -119,7 +117,11 @@ export class SignUpComponent {
 		return renderedTemplate;
 	}
 
-	addSubmitBtnHandler(apiRoute) {
+	/**
+	 * Adds click handler for submit button
+	 * @param {string} apiRoute - url address of corresponding backend resource.
+	 */
+	addSubmitBtnHandler(apiRote) {
 		const submitBtn = document.getElementsByClassName('button submit')[0];
 		submitBtn.addEventListener('click', async (event) => {
 			event.preventDefault();
@@ -144,6 +146,9 @@ export class SignUpComponent {
 		});
 	}
 
+	/**
+	 * Adds focus/blur handlers for data inputs
+	 */
 	addInputFocusHandler() {
 		const [userNameInput, loginInput, passwordInput] =
 			document.getElementsByClassName('input');
@@ -186,6 +191,9 @@ export class SignUpComponent {
 		});
 	}
 
+	/**
+	 * Adds input handler to track its value changes
+	 */
 	addInputOnChangeHandler() {
 		const [userNameInput, loginInput, passwordInput, passwordRepeatInput] =
 			document.getElementsByClassName('input');
@@ -309,6 +317,10 @@ export class SignUpComponent {
 		});
 	}
 
+	/**
+ * Handles inputs value storage for login form
+ * @param {Object} app - object of the Application class
+ */
 	addInputsSaveHandler(app) {
 		const signUpBtn = document.getElementsByClassName('button link')[0];
 		signUpBtn.addEventListener('click', (event) => {
@@ -325,12 +337,18 @@ export class SignUpComponent {
 		});
 	}
 
+	/**
+	 * Clears inputs saved values
+	 */
 	clearStoredInputsValues() {
 		for (const value in this.#inputsSavedValues) {
 			delete this.#inputsSavedValues[value];
 		}
 	}
 
+	/**
+	 * Getter for inputs saved values
+	 */
 	get inputsStoredValues() {
 		return this.#inputsSavedValues;
 	}

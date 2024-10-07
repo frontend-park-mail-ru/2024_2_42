@@ -45,6 +45,6 @@ export class NetComponent {
 			pins: this.#pins.map((pin) => pin.renderTemplate())
 		});
 
-        return renderedTemplate
+		return renderedTemplate
 	}
 }
