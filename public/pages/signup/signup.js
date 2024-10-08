@@ -121,7 +121,7 @@ export class SignUpComponent {
 	 * Adds click handler for submit button
 	 * @param {string} apiRoute - url address of corresponding backend resource.
 	 */
-	addSubmitBtnHandler(apiRote) {
+	addSubmitBtnHandler(apiRoute) {
 		const submitBtn = document.getElementsByClassName('button submit')[0];
 		submitBtn.addEventListener('click', async (event) => {
 			event.preventDefault();
