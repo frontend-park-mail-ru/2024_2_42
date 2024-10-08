@@ -1,0 +1,75 @@
+@import url(../../constants.css);
+
+.input-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.input-wrapper {
+	position: relative;
+}
+
+.input__label {
+	position: absolute;
+	top: -10px;
+	/* Adjust this value to control label positioning */
+	left: 10px;
+	/* Adjust for horizontal spacing */
+	font-size: 5px;
+	/* Используем переменную */
+	color: var(--input-label-color);
+}
+
+.input-icons-wrapper {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+}
+
+.input__icon-left {
+	position: absolute;
+	top: 50%;
+	left: 10px;
+	transform: translateY(-50%);
+}
+
+.input__icon-right {
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translateY(-50%);
+}
+
+.input {
+	font-size: 40px;
+	padding-left: 40px; /* Отступы внутри поля */
+	padding-right: 40px; /* Отступы внутри поля */
+	outline: none; /* Убираем обводку при фокусе */
+	border: none; /* Убираем границу */
+	border-radius: 8; /* Убираем скругление углов */
+	background-color: var(--header-nav-background-color); /* Цвет фона */
+	font-size: 1rem; /* Размер шрифта */
+	transition: background-color 0.3s; /* Плавный переход цвета фона */
+}
+
+.input__helper-text-list {
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+}
+
+input__helper-text {
+	margin-left: 0;
+	padding: 0;
+	color: var(--input-caption-color);
+	font-size: var(--input-caption-font-size);
+}
+
+input__error-text {
+	margin-left: 0;
+	padding: 0;
+	color: var(--project-primary-red);
+	font-size: var(--input-caption-font-size);
+}

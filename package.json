@@ -1,0 +1,24 @@
+{
+  "scripts": {
+    "compile": "globstar -- npx handlebars public/**/*.hbs -f public/precompiled.js",
+    "start": "node server/server.js",
+    "lint": "eslint ./public/**/*.js",
+    "lint:fix": "eslint ./public/**/*.js --fix"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "globstar": "^1.0.0",
+    "handlebars": "^4.7.8"
+  },
+  "name": "2024_2_42",
+  "description": "Репозиторий команды 42. Проект Pinterest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "@eslint/js": "^9.11.1",
+    "eslint": "^9.12.0",
+    "globals": "^15.9.0"
+  },
+  "author": "",
+  "license": "ISC"
+}

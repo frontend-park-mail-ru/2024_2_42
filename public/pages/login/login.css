@@ -1,0 +1,127 @@
+@import url('https://fonts.cdnfonts.com/css/sansation?styles=169710');
+
+body {
+    font-family: 'Sansation', sans-serif;
+}
+
+.cover {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    max-height: 800px;
+    margin: auto;
+    padding: 30px;
+    background-color: var(--card-element-background-color);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.tomain__tap-button {
+    position: absolute;
+    right: 1%;
+    top: 2%;
+    padding: 10px;
+    font-size: 1rem;
+    border: solid 1px black;
+    border-radius: 10px;
+    color: black;
+    background-color: white;
+}
+
+.tomain__tap-button:hover {
+    cursor: pointer;
+}
+
+.a__form-logo {
+    text-decoration: none;
+    font-size: 10rem;
+}
+
+.auth {
+    width: 100%;
+    min-height: 20em;
+    align-items: center;
+}
+
+.logo-auth {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.a_form-logo {
+    margin: 50px;
+}
+
+.a_form-logo span {
+    font-size: 10rem;
+    text-align: center;
+}
+
+.form-auth {
+    border-radius: 5px;
+}
+
+.form-auth form {
+    width: 100%;
+}
+
+.login-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.form-auth form input {
+    font-family: 'Sansation', sans-serif;
+    width: 100%;
+    outline: none;
+    font-size: 1rem;
+    height: 30px;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: all .3s;
+    margin: 10px;
+}
+
+.form-auth form button {
+    font-family: 'Sansation', sans-serif;
+    cursor: pointer;
+    margin: 20px;
+    background-color: var(--project-primary-red);
+    color: white;
+    border: none;
+    padding: .75rem 1.5rem;
+    letter-spacing: .1em;
+    font-weight: bold;
+    font-size: large;
+    outline: none;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+.form-auth form button:hover {
+    background-color: var(--buttons-hover-background-color);
+    color: white;
+    transition: 0.5s;
+}
+
+.form-footer {
+    text-align: center;
+}
+
+.form-footer .button-container {
+    display: inline;
+    padding: 0;
+    border: 0;
+    text-decoration: underline;
+    cursor: pointer;
+    background: transparent;
+}
+
+.form-footer .button-container .button .link {
+    color: var(--project-primary-red);
+}

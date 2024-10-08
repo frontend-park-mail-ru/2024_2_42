@@ -1,0 +1,71 @@
+@import url('https://fonts.cdnfonts.com/css/sansation?styles=169710');
+
+/* Блок pin */
+.pin {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+    padding: 10px;
+	margin: 10px;
+	border-radius: 5px;
+    text-align: center;
+    border-radius: 10px;
+    width: fit-content;
+	height: fit-content;
+	background-color: var(--card-element-background-color);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	transition: 0.5s;
+}
+
+.pin:hover {
+	box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+	transition: 0.5s;
+}
+
+.pin__upper-buttons-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+/* Элемент board-selector (селектор досок) */
+.pin__board-selector {
+	height: 30px;
+	font-family: 'Sansation', sans-serif;
+	position: relative;
+	margin: 5px;
+	width: 50%;
+}
+
+/* Элемент save-button (кнопка "Сохранить") */
+.pin__save-button {
+	margin: 5px;
+}
+
+.pin__save-button button {
+	font-family: 'Sansation', sans-serif;
+	font-size: 12px;
+}
+
+/* Элемент image (изображение) */
+.pin__image {
+	max-width: 10vw;
+}
+
+/* Элемент button-left (левая нижняя кнопка) */
+.pin__button-left-bottom {
+	justify-self: start;
+	/* Выравниваем по левому краю */
+}
+
+/* Элемент button-right (правая нижняя кнопка) */
+.pin__button-right-bottom {
+	justify-self: end;
+	/* Выравниваем по правому краю */
+}
+
+.pin__board-selector {
+	margin: 5px;
+}
