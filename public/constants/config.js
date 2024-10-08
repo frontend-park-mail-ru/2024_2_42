@@ -23,7 +23,6 @@ export const loginConfig = {
 	inputs: {
 		email: {
 			inputSize: 'input_large',
-			// inputImageRight: 'assets/icons/Search.svg',
 			typeOfInput: 'text',
 			inputPlaceholder: 'Email',
 			inputHelperText: true,
@@ -33,7 +32,6 @@ export const loginConfig = {
 		},
 		password: {
 			inputSize: 'input_large',
-			// inputImageRight: 'assets/icons/Search.svg',
 			typeOfInput: 'password',
 			inputPlaceholder: 'Пароль',
 			inputHelperText: true,
@@ -64,7 +62,6 @@ export const signupConfig = {
 	inputs: {
 		userName: {
 			inputSize: 'input_large',
-			// inputImageRight: 'assets/icons/Search.svg',
 			typeOfInput: 'text',
 			inputPlaceholder: 'Имя пользователя',
 			inputHelperText: true,
@@ -74,36 +71,30 @@ export const signupConfig = {
 		},
 		email: {
 			inputSize: 'input_large',
-			// inputImageRight: 'assets/icons/Search.svg',
 			typeOfInput: 'email',
 			inputPlaceholder: 'Email',
 			inputHelperText: true,
 			isDisabled: false,
 			valid: false,
 			rightIconClickable: true,
-			// name: 'email',
 		},
 		password: {
 			inputSize: 'input_large',
-			// inputImageRight: 'assets/icons/Search.svg',
 			typeOfInput: 'password',
 			inputPlaceholder: 'Пароль',
 			inputHelperText: true,
 			isDisabled: false,
 			valid: false,
 			rightIconClickable: true,
-			// name: 'password'
 		},
 		passwordAgain: {
 			inputSize: 'input_large',
-			// inputImageRight: 'assets/icons/Search.svg',
 			typeOfInput: 'password',
 			inputPlaceholder: 'Повторите пароль',
 			inputHelperText: true,
 			isDisabled: false,
 			valid: false,
 			rightIconClickable: true,
-			// name: 'passwordAgain',
 		},
 	},
 	button: {
