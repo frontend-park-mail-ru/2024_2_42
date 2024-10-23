@@ -2,7 +2,7 @@
 
 import { ROUTES } from './routes.js';
 
-const BASE = 'http://37.139.41.77:8080';
+const BASE = 'http://localhost:8080';
 
 export const BACKEND_FEED_ROUTE = `${BASE}${ROUTES.main}`;
 export const BACKEND_LOGIN_ROUTE = `${BASE}${ROUTES.login}`;

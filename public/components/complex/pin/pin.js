@@ -1,12 +1,14 @@
 'use strict';
+
+import { BaseComponent } from '../../base/base.js';
+
 import { ButtonComponent } from '../../button/button.js';
 
 /**
  * Represents an Image Card Component.
  * @class
  */
-export class PinComponent {
-	#parent; // DOM element for rendering the component
+export class PinComponent extends BaseComponent {
 	#state = {
 		pinUrl: '', // Path to the image
 		boards: [], // List of boards
@@ -48,9 +50,9 @@ export class PinComponent {
 	 *   disabled: false,
 	 * });
 	 */
-	constructor(state, parent = this.#parent) {
+	constructor(state, parent) {
+		super(parent, state);
 		this.#state = state;
-		this.#parent = parent;
 	}
 
 	/**
@@ -64,7 +66,7 @@ export class PinComponent {
 			boards: this.#state.boards,
 			pinUrl: this.#state.pinUrl,
 			buttons: {
-				saveButton: new ButtonComponent(this.#parent, this.#state.buttons.saveButton).renderTemplate(),
+				saveButton: new ButtonComponent(this.Parent, this.#state.buttons.saveButton).renderTemplate(),
 			},
 		});
 		return renderedTemplate; // Can be kept for debugging if needed

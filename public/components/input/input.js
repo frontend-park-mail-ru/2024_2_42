@@ -1,27 +1,12 @@
 'use strict';
 
+import { BaseComponent } from '../base/base.js';
+
 /**
  * Represents an Input Component.
  * @class
  */
-export class InputComponent {
-	/**
-	 * The parent element where the input will be rendered.
-	 * @type {HTMLElement}
-	 */
-	#parent;
-
-	/**
-	 * The state of the input component.
-	 * @type {Object}
-	 * @property {string} inputValue - The current value of the input.
-	 * @property {string} inputImageLeft - The path to the image file for the left icon.
-	 * @property {string} inputImageRight - The path to the image file for the right icon
-	 * @property {string} inputType - The type attribute of the input element (e.g., text, email, password).
-	 * @property {string} inputPlaceholder - The placeholder text for the input.
-	 */
-	#state;
-
+export class InputComponent extends BaseComponent {
 	/**
 	 * The function that will handle the input change event.
 	 * @type {Function}
@@ -32,12 +17,11 @@ export class InputComponent {
 	 * Creates an instance of InputComponent.
 	 * @constructor
 	 * @param {HTMLElement} parent - The parent element where the input will be rendered.
-	 * @param {Object} [state=this.#state] - The initial state of the input component. (optional)
-	 * @param {Function} [changeHandler=this.#changeHandler] - The function that will handle the input change event. (optional)
+	 * @param {Object} [state] - The initial state of the input component. (optional)
+	 * @param {Function} [changeHandler] - The function that will handle the input change event. (optional)
 	 */
-	constructor(state, parent, changeHandler = this.#changeHandler) {
-		this.#parent = parent;
-		this.#state = { ...this.#state, ...state };
+	constructor(parent, state = {}, changeHandler = () => {}) {
+		super(parent, state);
 		this.#changeHandler = changeHandler;
 	}
 
@@ -47,30 +31,15 @@ export class InputComponent {
 	 */
 	renderTemplate() {
 		const template = Handlebars.templates['input.hbs'];
-		const renderedTemplate = template(this.#state);
+		const renderedTemplate = template(this.getState());
 
-		if (this.#parent) {
-			this.#parent.innerHTML = renderedTemplate;
+		const parent = this.Parent;
+		if (parent) {
+			parent.innerHTML += renderedTemplate;
+
 		}
 
 		return renderedTemplate;
-	}
-
-	/**
-	 * Updates the state of the input component.
-	 * @param {Object} newState - The new state object containing the changed props.
-	 */
-	setState(newState) {
-		this.#state = { ...this.#state, ...newState };
-		this.renderTemplate(); // Re-render the input with updated state.
-	}
-
-	/**
-	 * Retrieves the current state of the input component.
-	 * @returns {Object} - The current state object.
-	 */
-	getState() {
-		return this.#state;
 	}
 
 	/**

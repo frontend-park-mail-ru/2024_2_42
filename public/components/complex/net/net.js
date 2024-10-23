@@ -1,12 +1,14 @@
 'use strict';
-import { PinComponent } from '../pin/pin.js'; // Importing PinComponent
+
+import { BaseComponent } from '../../base/base.js';
+
+import { PinComponent } from '../pin/pin.js';
 
 /**
  * Represents a Net Component that contains multiple Pin Components.
  * @class
  */
-export class NetComponent {
-	#parent; // DOM element for rendering the component
+export class NetComponent extends BaseComponent {
 	#state; // State of the component, includes pin data
 	#pins = []; // pins stored on the net 
 
@@ -23,9 +25,9 @@ export class NetComponent {
 	 *   ]
 	 * });
 	 */
-	constructor(state, parent = this.#parent) {
+	constructor(state, parent) {
+		super(parent, state);
 		this.#state = state;
-		this.#parent = parent;
 	}
 
 	/**

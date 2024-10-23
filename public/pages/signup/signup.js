@@ -1,5 +1,7 @@
 'use strict';
 
+import { BaseComponent } from '../../components/base/base.js';
+
 import { InputComponent as Input } from '../../components/input/input.js';
 import { ButtonComponent as Button } from '../../components/button/button.js';
 
@@ -17,12 +19,7 @@ import {
  * Represents a Signup Component.
  * @class
  */
-export class SignUpComponent {
-	/**
-	 * The parent element where the sign up form will be rendered.
-	 * @type {HTMLElement}
-	 */
-	#parent;
+export class SignUpComponent extends BaseComponent {
 	#inputs = [];
 	#inputsErrors = {};
 	#inputsSavedValues = {};
@@ -39,7 +36,7 @@ export class SignUpComponent {
 	 * @param {Object} buttonFooterData - data provided for redirect button propagation.
 	 */
 	constructor(parent, inputsData, buttonData, buttonFooterData) {
-		this.#parent = parent;
+		super(parent);
 		this.#inputsData = inputsData;
 		this.#buttonData = buttonData;
 		this.#buttonFooterData = buttonFooterData;
@@ -59,7 +56,7 @@ export class SignUpComponent {
 	 */
 	renderTemplate() {
 		Object.entries(this.#inputsData).forEach(([key, value]) => {
-			const input = new Input({ key, ...value });
+			const input = new Input('', { key, ...value });
 			this.#inputs.push(input);
 		});
 
@@ -74,7 +71,7 @@ export class SignUpComponent {
 			button_form_footer: button_form_footer.renderTemplate(),
 		});
 
-		this.#parent.innerHTML += renderedTemplate;
+		this.Parent.innerHTML += renderedTemplate;
 		this.#inputs.forEach((input) => {
 			input.parent = this.htmlElement;
 		});
@@ -139,7 +136,7 @@ export class SignUpComponent {
 
 				const resp = await postMethod(apiRoute, signUpData, true);
 				if (resp.user_id) {
-					this.#parent.innerHTML = '';
+					this.Parent.innerHTML = '';
 					app.renderPage(ROUTES.login);
 				}
 			}
