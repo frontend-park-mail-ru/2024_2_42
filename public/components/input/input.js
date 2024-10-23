@@ -1,5 +1,6 @@
 'use strict';
-import { BaseComponent } from '../BaseComponent.js';
+
+import { BaseComponent } from '../base/base.js';
 
 /**
  * Represents an Input Component.
@@ -32,9 +33,8 @@ export class InputComponent extends BaseComponent {
 		const template = Handlebars.templates['input.hbs'];
 		const renderedTemplate = template(this.getState());
 
-		const parent = this.getParent();
+		const parent = this.Parent;
 		if (parent) {
-			console.log(parent);
 			parent.innerHTML += renderedTemplate;
 
 		}

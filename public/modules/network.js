@@ -4,23 +4,15 @@ import '../constants/api.js';
 import { BACKEND_IS_AUTHORIZED_ROUTE } from '../constants/api.js';
 
 /**
- * Handles response provided by fetch API. In case of error displayes popup message if corresponding flag is given
+ * Handles response provided by fetch API. In case of error displayes corresponding message if corresponding flag is given
  * @param {Promise<Response>} response - promise of the response from fetch API post method
- * @param {boolean} shouldLog - should popup message be displayed in error case or not
+ * @param {boolean} shouldLog - should error message be displayed in error case or not
  * @returns {Object} - response presented in JSON form
  */
 const handleResponse = async (response, shouldLog) => {
 	const jsonResponse = await response.json()
 	if (!response.ok && shouldLog) {
-		const popup = document.getElementById('popupMessage');
-
-		const s = `${jsonResponse.message}`;
-		popup.textContent = s && s[0].toUpperCase() + s.slice(1);
-		popup.style.visibility = 'visible';
-
-		setTimeout(function () {
-			popup.style.visibility = 'hidden';
-		}, 5000);
+		// error displaying code will be here
 	}
 
 	return jsonResponse;
@@ -42,7 +34,7 @@ export const isAuthorized = async () => {
 /**
  * Executes get method request to backend API
  * @param {string} apiRoute - url address of corresponding backend resource
- * @param {boolean} shouldLog - should popup message be displayed in error case or not
+ * @param {boolean} shouldLog - should error message be displayed in error case or not
  * @returns {Object} - response presented in JSON form
  */
 export const getMethod = async (apiRoute, shouldLog) => {
@@ -62,7 +54,7 @@ export const getMethod = async (apiRoute, shouldLog) => {
  * Executes post method request to backend API
  * @param {string} apiRoute - url address of corresponding backend resource
  * @param {Object} dataEntity - request body
- * @param {boolean} shouldLog - should popup message be displayed in error case or not
+ * @param {boolean} shouldLog - should error message be displayed in error case or not
  * @returns {Object} - response presented in JSON form
  */
 export const postMethod = async (apiRoute, dataEntity, shouldLog) => {

@@ -1,5 +1,7 @@
 'use strict';
 
+import { BaseComponent } from '../../base/base.js';
+
 import { InputComponent as Input } from '../../input/input.js';
 import { ButtonComponent as Button } from '../../button/button.js';
 import { headerConfig } from '../../../constants/config.js';
@@ -13,8 +15,7 @@ import { isAuthorized } from '../../../modules/network.js';
  *
  * @class
  */
-export class HeaderComponent {
-	#parent;
+export class HeaderComponent extends BaseComponent {
 	#state = {
 		isLoggedIn: false, // Whether the user is logged in or not
 		iconUrl: headerConfig.images.logoUrl, // URL for the app icon
@@ -35,7 +36,7 @@ export class HeaderComponent {
 	 * @param {Object} [state] - Optional initial state to override default state.
 	 */
 	constructor(parent, state = this.#state) {
-		this.#parent = parent;
+		super(parent, state);
 		this.#state = { ...this.#state, ...state };
 	}
 
@@ -47,9 +48,7 @@ export class HeaderComponent {
 	 */
 	renderTemplate() {
 		// Render search input
-		const searchInput = new Input({
-			...headerConfig.searchInput,
-		});
+		const searchInput = new Input('', {...headerConfig.searchInput});
 
 		// Render login and register buttons if the user is not logged in
 		let loginButton = '',
@@ -108,8 +107,8 @@ export class HeaderComponent {
 			return
 		}
 
-		const dropdownButton = this.#parent.querySelector('.dropDownButton');
-		const dropdownContent = this.#parent.querySelector('#dropdown__items');
+		const dropdownButton = this.Parent.querySelector('.dropDownButton');
+		const dropdownContent = this.Parent.querySelector('#dropdown__items');
 
 		// Toggle dropdown visibility on button click
 		dropdownButton.addEventListener('click', (event) => {

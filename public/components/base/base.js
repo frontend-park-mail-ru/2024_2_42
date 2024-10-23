@@ -47,7 +47,7 @@ export class BaseComponent {
      * Gets the parent element of the component.
      * @returns {HTMLElement} - The parent element.
      */
-    getParent() {
+    get Parent() {
         return this.#parent;
     }
 }

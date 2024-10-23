@@ -1,5 +1,7 @@
 'use strict';
 
+import { BaseComponent } from '../../components/base/base.js';
+
 import { InputComponent as Input } from '../../components/input/input.js';
 import { ButtonComponent as Button } from '../../components/button/button.js';
 
@@ -17,13 +19,7 @@ import {
  * Represents a Login Component.
  * @class
  */
-export class LoginComponent {
-	/**
-	 * The parent element where the login form will be rendered.
-	 * @type {HTMLElement}
-	 */
-	#parent;
-
+export class LoginComponent extends BaseComponent {
 	#inputs = [];
 	#inputsErrors = {};
 	#inputsSavedValues = {};
@@ -40,7 +36,7 @@ export class LoginComponent {
 	 * @param {Object} buttonFooterData - data provided for redirect button propagation.
 	 */
 	constructor(parent, inputsData, buttonData, buttonFooterData) {
-		this.#parent = parent;
+		super(parent);
 		this.#inputsData = inputsData;
 		this.#buttonData = buttonData;
 		this.#buttonFooterData = buttonFooterData;
@@ -73,14 +69,13 @@ export class LoginComponent {
 			button_form_footer: button_form_footer.renderTemplate(),
 		});
 
-		this.#parent.innerHTML += renderedTemplate;
+		this.Parent.innerHTML += renderedTemplate;
 		this.#inputs.forEach((input) => {
 			input.parent = this.htmlElement;
 		});
 
 		const [emailCaptionsBlock, passwordCaptionsBlock] =
 			document.getElementsByClassName('input__helper-text-list');
-			console.log(emailCaptionsBlock)
 
 		for (const captionText of this.#inputsData.email.captions) {
 			const nextCaption = document.createElement('input__helper-text');
@@ -133,7 +128,7 @@ export class LoginComponent {
 				if (resp.session_cookie) {
 					document.cookie = `session_token=${resp.session_cookie}`;
 
-					this.#parent.innerHTML = '';
+					this.Parent.innerHTML = '';
 					app.renderPage(ROUTES.main);
 				}
 			}
