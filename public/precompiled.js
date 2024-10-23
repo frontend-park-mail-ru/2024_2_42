@@ -248,7 +248,7 @@ templates['input.hbs'] = template({"1":function(container,depth0,helpers,partial
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"inputImageRight") : depth0),{"name":"if","hash":{},"fn":container.program(13, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":20,"column":4},"end":{"line":25,"column":11}}})) != null ? stack1 : "")
     + "  </div>\r\n\r\n"
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"inputHelperText") : depth0),{"name":"if","hash":{},"fn":container.program(15, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":28,"column":2},"end":{"line":31,"column":9}}})) != null ? stack1 : "")
-    + "\r\n</div>";
+    + "\r\n</div>\r\n";
 },"useData":true});
 templates['login.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
     var stack1;
@@ -313,6 +313,6 @@ templates['signup.hbs'] = template({"1":function(container,depth0,helpers,partia
     + "</span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 },"useData":true});
 templates['unknown.hbs'] = template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<div class=\"unknown__page-container\">\r\n    <span class=\"tomain__tap-button\">Главная</span>\r\n    <h1>404 страница не найдена</h1>\r\n</div>";
+    return "<div class=\"unknown__page-container\">\r\n    <span class=\"tomain__tap-button\">Главная</span>\r\n    <h1>404 страница не найдена</h1>\r\n</div>\r\n";
 },"useData":true});
 })();

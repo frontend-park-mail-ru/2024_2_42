@@ -58,7 +58,7 @@ export class LoginComponent {
 	renderTemplate() {
 		this.#inputs = [];
 		Object.entries(this.#inputsData).forEach(([key, value]) => {
-			const input = new Input({ key, ...value });
+			const input = new Input('', {key, ...value });
 			this.#inputs.push(input);
 		});
 
@@ -80,6 +80,7 @@ export class LoginComponent {
 
 		const [emailCaptionsBlock, passwordCaptionsBlock] =
 			document.getElementsByClassName('input__helper-text-list');
+			console.log(emailCaptionsBlock)
 
 		for (const captionText of this.#inputsData.email.captions) {
 			const nextCaption = document.createElement('input__helper-text');
