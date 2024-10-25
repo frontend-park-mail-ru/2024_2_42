@@ -1,7 +1,7 @@
 'use strict';
 
 export const ROUTES = {
-	main: '/',
+	main: '/feed',
 	login: '/login',
 	signup: '/signup',
 	isAuthorized: '/is_authorized',
