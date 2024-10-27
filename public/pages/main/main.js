@@ -1,7 +1,7 @@
 'use strict'
 
 import { HeaderComponent as Header } from '../../components/complex/header/header.js'
-import { NetComponent as Net } from '../../components/complex/net/net.js'
+import { GridComponent as Grid } from '../../components/complex/grid/grid.js'
 import { isAuthorized } from '../../modules/network.js'
 
 import { postMethod } from '../../modules/network.js'
@@ -9,13 +9,13 @@ import { BACKEND_LOGOUT_ROUTE } from '../../constants/api.js'
 import { ROUTES } from '../../constants/routes.js'
 
 import { app } from '../../index.js'
+import { BaseComponent } from '../../components/base/base.js'
 
 /**
  * Represents the Main Page Component.
  * @class
  */
-export class MainPageComponent {
-    #parent
+export class MainPageComponent extends BaseComponent {
     #pins
 
     /**
@@ -25,7 +25,7 @@ export class MainPageComponent {
      * @param {Object} pins - data provided for pins propagation.
      */
     constructor(parent, pins) {
-        this.#parent = parent
+        super(parent);
         this.#pins = pins
     }
 
@@ -36,13 +36,19 @@ export class MainPageComponent {
     async renderTemplate() {
         const template = Handlebars.templates['main.hbs'];
 
-        const authorized = await isAuthorized();
+        const grid = new Grid(this.Parent, this.#pins);
+
         const renderedTemplate = template({
-            header: new Header(this.#parent, { isLoggedIn: authorized }).renderTemplate(),
-            net: new Net({ pins: this.#pins }, this.#parent).renderTemplate(),
+            header: new Header(this.Parent, { isLoggedIn: await isAuthorized() }).renderTemplate(),
+            grid: grid.renderTemplate(),
         });
 
-        this.#parent.innerHTML += renderedTemplate;
+        this.Parent.innerHTML += renderedTemplate;
+
+        document.querySelector('.feed__layout-container').addEventListener('load', (event) => {
+            event.preventDefault();
+			grid.buildLayout();
+		}, true);
 
         const headerLogInButton = document.querySelector('.header__login-btn')
         if (headerLogInButton) {
@@ -72,7 +78,7 @@ export class MainPageComponent {
                 const resp = await postMethod(BACKEND_LOGOUT_ROUTE, {}, true);
                 if (!resp.code_status) {
                     document.cookie = "session_token" + '=; Max-Age=0'
-                    this.#parent.innerHTML = '';
+                    this.Parent.innerHTML = '';
                     app.renderPage(ROUTES.main);
                 }
             });

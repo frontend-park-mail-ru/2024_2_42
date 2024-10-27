@@ -10,45 +10,19 @@ import { ButtonComponent } from '../../button/button.js';
  */
 export class PinComponent extends BaseComponent {
 	#state = {
-		pinUrl: '', // Path to the image
-		boards: [], // List of boards
-		disabled: true, // Default disabled flag
-		showText: false,
-		buttons: {
-			saveButton: {
-				label: 'Сохранить', // Label for save button
-				type: 'primary', // Type of save button
-				disabled: true, // Save button is disabled by default
-			},
-			shareButton: {
-				label: '', // Label for share button
-				iconLeft: '', // Icon for the left side of the share button
-				type: 'link', // Type of share button
-				disabled: true, // Share button is disabled by default
-			},
-			menuButton: {
-				label: '', // Label for menu button
-				iconLeft: '', // Icon for the left side of the menu button
-				type: 'link', // Type of menu button
-				disabled: true, // Menu button is disabled by default
-			},
-		},
+		PinID: 0,
+		AuthorAvatar: "",
+		AuthorName: "",
+		MediaUrl: "",
 	};
 
 	/**
 	 * Creates an instance of PinComponent.
 	 * @param {HTMLElement} parent - The parent element for rendering the pin.
 	 * @param {Object} [state=this.#state] - The initial state of the pin.
-	 * @param {string} state.pinUrl - The URL of the pin image.
-	 * @param {Array} state.boards - An array of boards associated with the pin.
-	 * @param {boolean} state.disabled - Flag indicating if the pin is disabled.
-	 * @param {Object} state.buttons - Configuration for the buttons.
-	 * @example
-	 * const pin = new PinComponent(document.getElementById('pin-container'), {
-	 *   pinUrl: './image.jpg',
-	 *   boards: ['Board 1', 'Board 2'],
-	 *   disabled: false,
-	 * });
+	 * @param {string} state.AuthorAvatar - The author avatar.
+	 * @param {string} state.AuthorName - The author name.
+	 * @param {string} state.MediaUrl - Url link associated with the pin.
 	 */
 	constructor(state, parent) {
 		super(parent, state);
@@ -63,12 +37,9 @@ export class PinComponent extends BaseComponent {
 	renderTemplate() {
 		const template = Handlebars.templates['pin.hbs'];
 		const renderedTemplate = template({
-			boards: this.#state.boards,
-			pinUrl: this.#state.pinUrl,
-			buttons: {
-				saveButton: new ButtonComponent(this.Parent, this.#state.buttons.saveButton).renderTemplate(),
-			},
+			pin: this.#state
 		});
+
 		return renderedTemplate; // Can be kept for debugging if needed
 	}
 

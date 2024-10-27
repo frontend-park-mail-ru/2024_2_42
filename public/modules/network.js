@@ -24,6 +24,9 @@ const handleResponse = async (response, shouldLog) => {
  */
 export const isAuthorized = async () => {
 	const resp = await getMethod(BACKEND_IS_AUTHORIZED_ROUTE, false)
+	if (resp === undefined) {
+		return false
+	}
 	if (resp.code_status !== undefined && resp.message !== undefined) {
 		return false;
 	}
@@ -45,9 +48,11 @@ export const getMethod = async (apiRoute, shouldLog) => {
 		headers: {
 			'Content-Type': 'application/json',
 		},
+	}).then((response, shouldLog) => {
+		return handleResponse(response, shouldLog);
+	}).catch(() => {
+		return undefined
 	});
-
-	return await handleResponse(response, shouldLog);
 };
 
 /**
