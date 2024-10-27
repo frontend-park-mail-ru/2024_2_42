@@ -3,7 +3,6 @@
 import { LoginComponent as Login } from './pages/login/login.js';
 import { SignUpComponent as SignUp } from './pages/signup/signup.js';
 import { MainPageComponent } from './pages/main/main.js';
-import { getMethod, isAuthorized } from './modules/network.js';
 
 import { ROUTES } from './constants/routes.js';
 import { BACKEND_LOGIN_ROUTE, BACKEND_SIGNUP_ROUTE, BACKEND_FEED_ROUTE, BACKEND_LOGOUT_ROUTE } from './constants/api.js';
@@ -121,35 +120,7 @@ export default class App {
 	async #renderFeed() {
 		const pinSet = await getMethod(BACKEND_FEED_ROUTE);
 
-		const samplePins = []
-		pinSet.pins.forEach(pin => {
-			samplePins.push({
-				pinUrl: pin.media_url,
-				boards: ['Доска 1', 'Доска 2', 'Доска 3', 'Доска 4', 'Доска 5'],
-				disabled: false,
-				buttons: {
-					saveButton: {
-						label: 'Сохранить',
-						type: 'primary',
-						disabled: false,
-					},
-					shareButton: {
-						label: 'Share',
-						iconLeft: 'share-icon.png',
-						type: 'link',
-						disabled: false,
-					},
-					menuButton: {
-						label: 'Menu',
-						iconLeft: 'menu-icon.png',
-						type: 'link',
-						disabled: false,
-					},
-				},
-			})
-		});
-
-		const mainPage = new MainPageComponent(this.root, samplePins);
+		const mainPage = new MainPageComponent(this.root, pinSet);
 		mainPage.renderTemplate();
 		this.#structure.mainPage = mainPage;
 	}
@@ -183,15 +154,6 @@ export default class App {
 		});
 
 		return renderedTemplate
-	}
-
-	/**
-	 * Handles logout functionality, removes cookie and demands backend to remove current active session
-	 */
-	async #handleLogout() {
-		const s = await postMethod(BACKEND_LOGOUT_ROUTE, {}, true)
-		this.renderPage(BACKEND_FEED_ROUTE);
-		document.cookie = 'session_token' + '=; Max-Age=0'
 	}
 
 	/**
