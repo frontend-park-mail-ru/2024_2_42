@@ -1,5 +1,10 @@
 <div id="pin__content-container-{{pin.PinID}}">
-	<img class="pin__image-{{pin.PinID}}" src="{{pin.MediaUrl}}">
+	<div class="pin__image-container">
+		<img class="pin__image-{{pin.PinID}}" src="{{pin.MediaUrl}}">
+		<div class="pin__image-preview-button">
+			<img src="./assets/icons/magnifier.svg" alt="Preview">
+		</div>
+	</div>
 	<div class="pin__author_container-{{pin.PinID}}">
 		<img class="pin__author_avatar" src="{{pin.AuthorAvatar}}">
 		<p>{{{pin.AuthorName}}}</p>

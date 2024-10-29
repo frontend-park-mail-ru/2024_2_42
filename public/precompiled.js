@@ -159,11 +159,11 @@ templates['pin.hbs'] = template({"compiler":[8,">= 4.3.0"],"main":function(conta
 
   return "<div id=\"pin__content-container-"
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"PinID") : stack1), depth0))
-    + "\">\r\n	<img class=\"pin__image-"
+    + "\">\r\n	<div class=\"pin__image-container\">\r\n		<img class=\"pin__image-"
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"PinID") : stack1), depth0))
     + "\" src=\""
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"MediaUrl") : stack1), depth0))
-    + "\">\r\n	<div class=\"pin__author_container-"
+    + "\">\r\n		<div class=\"pin__image-preview-button\">\r\n			<img src=\"./assets/icons/magnifier.svg\" alt=\"Preview\">\r\n		</div>\r\n	</div>\r\n	<div class=\"pin__author_container-"
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"PinID") : stack1), depth0))
     + "\">\r\n		<img class=\"pin__author_avatar\" src=\""
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"AuthorAvatar") : stack1), depth0))
