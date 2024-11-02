@@ -10,10 +10,6 @@ export const homeConfig = {
 			text: 'login',
 			href: '/login',
 		},
-		signup: {
-			text: 'signup',
-			href: '/signup',
-		},
 	},
 };
 
@@ -114,74 +110,25 @@ export const signupConfig = {
 };
 
 export const headerConfig = {
-	className: 'header', // CSS class for header
-
 	// Icon and profile image URLs
-	images: {
-		logoUrl: './assets/icons/logo.svg', // Path to the app icon
-	},
+	LogoUrl: './assets/icons/pinset-logo.svg', // Path to the app icon
+	ProfileUrl: './assets/imgs/avatar.jpg', // Path to the profile 
 
 	// Login status
-	isLoggedIn: true, // Determines login status
-
-	// Section buttons for navigation
-	sections: [
-		{
-			name: 'Домой', // Section name
-			href: '/', // URL for navigation
-			disabled: false, // Always enabled
-		},
-		{
-			name: 'Создать', // Section name
-			href: '/create', // URL for navigation
-			disabled: true, // Disabled if not logged in
-		},
-		{
-			name: 'Сохраненные', // Section name
-			href: '/saved', // URL for navigation
-			disabled: true, // Disabled if not logged in
-		},
-	],
+	IsLoggedIn: false, // Determines login status
 
 	// Search input configuration
-	searchInput: {
-		inputSize: 'input_large',
-		typeOfInput: 'text',
-		inputPlaceholder: 'Начни печатать', // Placeholder text
-		isDisabled: true, // Disabled if not logged in
-		valid: true,
-		rightIconClickable: false,
+	Placeholder: 'Искать вдохновение...', // Placeholder text
+
+	LoginButton: {
+		label: 'Войти',
+		type: 'primary',
+		disabled: false,
 	},
 
-	// Buttons configuration
-	buttons: {
-		notificationButton: {
-			iconLeft: './assets/icons/notification.svg',
-			label: '',
-			type: 'primary',
-			disabled: false,
-		},
-		profileButton: {
-			iconLeft: './assets/icons/user.svg',
-			label: '',
-			type: 'primary',
-			disabled: false,
-		},
-		logOutButton: {
-			iconLeft: './assets/icons/logout.svg',
-			label: '',
-			type: 'primary',
-			disabled: false,
-		},
-		loginButton: {
-			label: 'Войти',
-			type: 'primary',
-			disabled: false,
-		},
-		registerButton: {
-			label: 'Зарегистрироваться',
-			type: 'primary',
-			disabled: false,
-		},
+	CreateButton: {
+		label: 'Создать',
+		type: 'primary',
+		disabled: false,
 	},
 };

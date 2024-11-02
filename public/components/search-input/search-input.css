@@ -7,17 +7,17 @@
     gap: 1rem;
     border-radius: 5px;
     cursor: text;
+    background-color: var(--pinset-search-input-background-color);
 }
 
 .searchinput__search-field {
     position: relative;
-    padding-left: 40px;
     width: 100%;
     height: 100%;
     outline: none;
     border: none;
     border-radius: 10px;
-    background-color: var(--pinset-search-input-background-color);
+    background: none;
 }
 
 .searchinput__search-field::placeholder {
@@ -27,7 +27,7 @@
 
 .searchinput__finder-icon,
 .searchinput__clear-icon {
-    position: absolute;
+    position: relative;
     width: 30px;
 }
 

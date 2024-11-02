@@ -1,38 +1,46 @@
 :root {
-  --project-primary-red: #e60023;
-  --project-primary-white: white;
-  --project-primary-black: black;
-  --project-primary-grey: grey;
+	--project-primary-red: #e60023;
+	--project-primary-white: white;
+	--project-primary-black: black;
+	--project-primary-grey: grey;
 
-  --input-label-color: #8f8f8f;
+	--input-label-color: #8f8f8f;
 
-  --input-caption-color: #505050;
-  --input-caption-font-size: 12px;
+	--input-caption-color: #505050;
+	--input-caption-font-size: 12px;
 
-  --buttons-hover-background-color: #8a2b39;
+	--buttons-hover-background-color: #8a2b39;
 
-  --header-nav-background-color: #f0f0f0;
+	--header-nav-background-color: #f0f0f0;
 
-  --buttons-disabled-color: grey;
-  --buttons-disabled-text-color: lightgrey;
+	--buttons-disabled-color: grey;
+	--buttons-disabled-text-color: lightgrey;
 
-  --card-element-background-color: #f3f3f3;
+	--card-element-background-color: #f3f3f3;
 
-  --pin-feed-author-name-color: black;
-  --pin-feed-author-followers-number-color: #7B7B7B;
+	--pin-feed-author-name-color: black;
+	--pin-feed-author-followers-number-color: #7B7B7B;
 
-  --pin-preview-stats-numbers-color: white;
-  --pin-preview-author-name-color: white;
-  --pin-preview-followers-number-color: #A9A9A9;
+	--pin-preview-stats-numbers-color: white;
+	--pin-preview-author-name-color: white;
+	--pin-preview-followers-number-color: #A9A9A9;
 
-  --pin-create-new-board-button-color: #5A5A5A;
-  --pin-create-new-board-button-hovered-color: #3d3d3d;
-  --pin-create-new-board-button-text-color: white;
+	--pin-create-new-board-button-color: #5A5A5A;
+	--pin-create-new-board-button-hovered-color: #3d3d3d;
+	--pin-create-new-board-button-text-color: white;
 
-  --pinset-search-input-background-color: #C4C4C4;
-  --pinset-search-input-placeholder-color: #626262;
-  --pinset-checkbox-input-checked-color: #4C2CFF;
-  --pinset-box-list-option-hover-color: #4C2CFF;
-  --pinset-list-entity-background-color-on-hover: #E6E6E6;
-  --pinset-box-shadowed-cards-color: #0000008a;
+	--pinset-main-color-blue: #2C2CFF;
+	--pinset-main-color-purple: #9800FE;
+
+	--pinset-main-color-blue-hovered: #1212f1;
+	--pinset-main-color-purple-hovered: #7605c2;
+
+	--pinset-search-input-background-color: #C4C4C4;
+	--pinset-search-input-placeholder-color: #626262;
+	--pinset-checkbox-input-checked-color: #4C2CFF;
+	--pinset-box-list-option-hover-color: #4C2CFF;
+	--pinset-list-entity-background-color-on-hover: #E6E6E6;
+	--pinset-box-shadowed-cards-color: #0000008a;
+	--pinset-header-background-color: #F2F2F2;
+	--pinset-search-input-text-color: #161616;
 }

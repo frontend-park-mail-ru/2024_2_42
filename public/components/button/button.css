@@ -25,15 +25,6 @@
 	text-decoration: underline;
 }
 
-button.link:active {
-	color: var(--buttons-hover-background-color);
-	transition: 0.5s;
-}
-
-.button:not(.button.link):hover {
-	background-color: var(--buttons-hover-background-color);
-}
-
 .button:disabled {
 	background-color: var(--buttons-disabled-color);
 	/* Серый цвет фона */
@@ -61,11 +52,6 @@ button.link:active {
 	/* Размер шрифта */
 	transition: background-color 0.3s ease;
 	/* Плавный переход цвета фона */
-}
-
-.dropDownButton:hover {
-	background-color: var(--buttons-hover-background-color);
-	color: white;
 }
 
 .dropDownButton:disabled {
