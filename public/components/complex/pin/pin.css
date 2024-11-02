@@ -1,10 +1,10 @@
-div[id^=pin__content-container] {
+div[class^=pin__content-container] {
 	position: absolute;
 	display: flex;
 	flex-direction: column;
 }
 
-div[id^=pin__content-container] {
+div[class^=pin__content-container] {
     transition: all 0.3s ease-in-out;
 }
 
@@ -14,7 +14,7 @@ div[id^=pin__content-container] {
 }
 
 img[class^=pin__image] {
-	border-radius: 30px;
+	border-radius: 20px;
 	transition: 0.5s;
 }
 
@@ -24,7 +24,7 @@ img[class^=pin__image] {
 	transition: 0.5s;
 }
 
-.pin__image-preview-button {
+div[class^=pin__image-preview-button] {
 	visibility: hidden;
 	display: flex;
 	justify-content: center;
@@ -38,35 +38,53 @@ img[class^=pin__image] {
 	border-radius: 50%;
 }
 
-.pin__image-container:hover .pin__image-preview-button {
+.pin__image-container:hover div[class^=pin__image-preview-button] {
 	visibility: visible;
 	transition: 0.5s;
 }
 
-.pin__image-preview-button:hover {
+div[class^=pin__image-preview-button]:hover {
 	background-color: #e6e6e6;
 	cursor: pointer;
 	transition: 0.5s;
 }
 
-.pin__image-preview-button img {
+div[class^=pin__image-preview-button] img {
 	width: 35px;
 	height: 35px;
 }
 
-div[class^=pin__author_container] {
+div[class^=pin__author-container] {
 	display: flex;
 	align-items: center;
+	margin-top: 5px;
 }
 
-.pin__author_avatar {
+.pin__author-avatar {
 	width: 35px;
 	height: 35px;
 	border-radius: 50%;
 	object-fit: cover;
 	clip-path: circle();
+	cursor: pointer;
 }
 
-div[class^=pin__author_container] p {
+.pin__author-info {
+	display: flex;
+	flex-direction: column;
 	margin-left: 10px;
+}
+
+.pin__author-name {
+	margin: 0;
+	color: var(--pin-feed-author-name-color);
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.pin__author-followers-number {
+	margin: 0;
+	color: var(--pin-feed-author-followers-number-color);
+	font-size: 12px;
+	font-weight: 300;
 }

@@ -1,0 +1,7 @@
+<div class="details-menu__content-container">
+    <div class="details-menu__options-list-container">
+        {{#each options}}
+            <a class="details-menu__option-{{this.ID}}" {{#if this.Download }} href="{{this.FilePath}}" download="pinset-media" {{/if}}>{{{this.Text}}}</a>
+        {{/each}}
+    </div>
+</div>
