@@ -1,0 +1,31 @@
+<div class="profile__boards-list-container">
+    {{#each boards}}
+        <div class="profile__board">
+            <img class="profile__board-cover" src="{{this.coverUrl}}" alt="{{this.title}}">
+            <img class="profile__board-cover-more-icon" src="./assets/icons/more.svg" alt="Details">
+            <div class="profile__board-info-container-{{this.boardID}}">
+                <div class="profile__board-title-container">
+                    <p class="profile__board-title">{{{this.title}}}</p>
+                    {{#if this.private}}
+                        <img src="./assets/icons/private.svg" alt="Private">
+                    {{/if}}
+                </div>
+                <div class="profile__board-info">
+                    <div class="profile__board-stats">
+                        <div class="profile__board-stats-bookmarked">
+                            <p>{{{this.bookmarkedNumber}}}</p>
+                            <img src="./assets/icons/bookmarked-board.svg" alt="Bookmark">
+                        </div>
+                        <div class="profile__board-stats-rewarded">
+                            <p>{{{this.rewardedNumber}}}</p>
+                            <img src="./assets/icons/real-pinset-icon.svg" alt="Pinset">
+                        </div>
+                    </div>
+                    <div class="profile__board-modified-time">
+                        <p>{{{this.lastModifyTime}}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>

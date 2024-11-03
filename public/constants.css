@@ -43,4 +43,7 @@
 	--pinset-box-shadowed-cards-color: #0000008a;
 	--pinset-header-background-color: #F2F2F2;
 	--pinset-search-input-text-color: #161616;
+
+	--pinset-user-profile-nickname-block-color: #595959;
+	--pinset-boards-list-not-found-text-color: #838383;
 }

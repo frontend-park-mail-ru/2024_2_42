@@ -7,7 +7,7 @@
     box-shadow: var(--pinset-box-shadowed-cards-color) 0px 7px 29px 0px;
     border-radius: 15px;
     padding: 7px 10px 7px 10px;
-    z-index: 9999;
+    z-index: 999;
 }
 
 .details-menu__options-list-container {

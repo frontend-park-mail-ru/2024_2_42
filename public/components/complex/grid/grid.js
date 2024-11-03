@@ -89,21 +89,25 @@ export class GridComponent extends BaseComponent {
 
 		for (const pin of this.#pins) {
 			const pinContainer = document.querySelector(`.pin__content-container-${pin.PinID}`);
-			const pinImage = document.querySelector(`.pin__image-${pin.PinID}`);
-
-			pinContainer.style.width = pinImage.style.width = `${columnWidth}px`;
-
-			// Next column index to insert the pinContainer
-			const minIdx = heights.indexOf(Math.min(...heights));
-
-			pinContainer.style.top = `${heights[minIdx] + heightGutter + headerHeight}px`;
-			pinContainer.style.left = `${minIdx * columnWidth + widthGutter * (minIdx + 1)}px`;
-
-			heights[minIdx] += pinContainer.offsetHeight + heightGutter;
+			if (pinContainer) {
+				const pinImage = document.querySelector(`.pin__image-${pin.PinID}`);
+	
+				pinContainer.style.width = pinImage.style.width = `${columnWidth}px`;
+	
+				// Next column index to insert the pinContainer
+				const minIdx = heights.indexOf(Math.min(...heights));
+	
+				pinContainer.style.top = `${heights[minIdx] + heightGutter + headerHeight}px`;
+				pinContainer.style.left = `${minIdx * columnWidth + widthGutter * (minIdx + 1)}px`;
+	
+				heights[minIdx] += pinContainer.offsetHeight + heightGutter;
+			}
 		}
 
 		const layoutContainer = document.querySelector('.feed__layout-container');
-		layoutContainer.style.height = `${Math.max(...heights)}px`;
+		if (layoutContainer) {
+			layoutContainer.style.height = `${Math.max(...heights)}px`;
+		}
 	}
 
 	/**
