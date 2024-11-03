@@ -68,6 +68,7 @@ export class ProfilePageComponent extends BaseComponent {
         const profileContainerMarginTop = 20;
         profileContainer.style.top = headerHeight + profileContainerMarginTop + 'px';
 
+        this.addLogoListener();
         this.resizeBoardsCovers();
         this.addNickNameCopyBtnListener();
         this.addSearchInputsListeners();
@@ -75,6 +76,20 @@ export class ProfilePageComponent extends BaseComponent {
         this.addProfileImgListener();
 
         return renderedTemplate;
+    }
+
+    /**
+     * Creates a listener of the logo icon.
+     */
+    addLogoListener() {
+        const headerLogInButton = document.querySelector('.header__logo-container')
+        headerLogInButton.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            root.innerHTML = '';
+            console.log(app.LastPage);
+            app.renderPage(ROUTES.main);
+        });
     }
 
     /**
