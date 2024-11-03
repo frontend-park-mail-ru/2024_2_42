@@ -7,6 +7,11 @@
 @import url(components/complex/header/header.css);
 @import url(components/complex/grid/grid.css);
 @import url(components/complex/pin/pin.css);
+@import url(components/complex/preview/preview.css);
+@import url(components/complex/savebox/savebox.css);
+@import url(components/search-input/search-input.css);
+@import url(components/boards-list/boards-list.css);
+@import url(components/details-menu/details-menu.css);
 
 @import url(./constants.css);
 
@@ -32,4 +37,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+input[type=checkbox] {
+    transform: scale(1.3);
 }

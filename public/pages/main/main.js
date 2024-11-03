@@ -16,6 +16,9 @@ import { BaseComponent } from '../../components/base/base.js'
  * @class
  */
 export class MainPageComponent extends BaseComponent {
+    /**
+     * An array of pins.
+     */
     #pins
 
     /**
@@ -45,7 +48,11 @@ export class MainPageComponent extends BaseComponent {
 
         this.Parent.innerHTML += renderedTemplate;
 
-        document.querySelector('.feed__layout-container').addEventListener('load', (event) => {
+        for (const pin of this.#pins) {
+            grid.buildPinPreview(pin);
+        }
+
+        document.body.addEventListener('load', (event) => {
             event.preventDefault();
 			grid.buildLayout();
 		}, true);

@@ -39,7 +39,7 @@ export class BaseComponent {
      * Gets the current state of the component.
      * @returns {Object} - The current state object.
      */
-    getState() {
+    get State() {
         return this.#state;
     }
 

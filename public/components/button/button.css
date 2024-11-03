@@ -19,7 +19,6 @@
 }
 
 .button.link {
-	font-family: 'Sansation', sans-serif;
 	color: var(--project-primary-red);
 	padding: 0px 10px;
 	background-color: transparent;
@@ -47,7 +46,6 @@ button.link:active {
 }
 
 .dropDownButton {
-	font-family: 'Sansation', sans-serif;
 	background-color: var(--project-primary-red);
 	color: var(--project-primary-white);
 	/* Белый цвет текста */

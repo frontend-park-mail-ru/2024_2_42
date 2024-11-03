@@ -1,9 +1,3 @@
-@import url('https://fonts.cdnfonts.com/css/sansation?styles=169710');
-
-body {
-    font-family: 'Sansation', sans-serif;
-}
-
 .cover {
     display: flex;
     flex-direction: column;
@@ -75,7 +69,6 @@ body {
 }
 
 .form-auth form input {
-    font-family: 'Sansation', sans-serif;
     width: 100%;
     outline: none;
     font-size: 1rem;
@@ -88,7 +81,6 @@ body {
 }
 
 .form-auth form button {
-    font-family: 'Sansation', sans-serif;
     cursor: pointer;
     margin: 20px;
     background-color: var(--project-primary-red);

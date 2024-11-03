@@ -23,7 +23,7 @@ export class ButtonComponent extends BaseComponent {
 	 */
     renderTemplate() {
         const template = Handlebars.templates['button.hbs'];
-        const renderedTemplate = template(this.getState());
+        const renderedTemplate = template(this.State);
 
         const parent = this.Parent;
         if (parent) {
@@ -41,7 +41,7 @@ export class ButtonComponent extends BaseComponent {
 	 */
     handleButtonClick(event) {
         event.stopPropagation();
-        if (typeof this.#clickHandler === 'function' && !this.getState().disabled) {
+        if (typeof this.#clickHandler === 'function' && !this.State.disabled) {
             this.#clickHandler(event);
         }
     }

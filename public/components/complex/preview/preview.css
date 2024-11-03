@@ -1,0 +1,182 @@
+.preview__content-container {
+    position: fixed;
+    display: grid;
+    grid-template-rows: 10% 80% 10%;
+    grid-template-columns: 80% 20%;
+    z-index: 999;
+    outline: none;
+}
+
+.preview__content-container-appearence {
+    animation-name: preview_appear;
+    animation-duration: .5s;
+}
+
+@keyframes preview_appear {
+    from {
+        opacity: 30%;
+    }
+
+    to {
+        opacity: 100%;
+    }
+}
+
+.preview__upper-menu-container {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    justify-self: center;
+    align-items: center;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    margin-bottom: 10px;
+}
+
+.preview__author-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
+.preview__author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    clip-path: circle();
+    cursor: pointer;
+}
+
+.preview__author-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.preview__author-name {
+    margin: 0;
+    color: var(--pin-preview-author-name-color);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.preview__author-followers-number {
+    margin: 0;
+    color: var(--pin-preview-followers-number-color);
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.preview__board-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+    width: 35%;
+    border: 2px solid white;
+    border-radius: 15px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.preview__board-selector-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.preview__board-selector-container-text {
+    margin: 0 0 0 10px;
+    font-size: 16px;
+    color: white;
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+}
+
+.preview__board-selector-container-icon {
+    width: 30px;
+    height: 30px;
+}
+
+#preview__image {
+    display: inline-flex;
+    border-radius: 35px;
+    grid-column: 1/2;
+    grid-row: 2/3;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.preview__side-menu-container {
+    height: 50%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    grid-column-start: 2;
+    grid-column-end: span 1;
+    grid-row: 2/2;
+    justify-self: center;
+}
+
+.preview__side-menu-more-container {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.preview__side-menu-container img {
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.preview__side-menu-container img:hover {
+    transform: scale(1.08);
+    transition: 0.3s;
+}
+
+.preview__stats-container {
+    position: relative;
+    display: flex;
+    justify-self: center;
+    grid-column: 1/2;
+    grid-row-start: 3;
+    grid-row-end: span 1;
+}
+
+.preview__stats-bookmarks-container,
+.preview__stats-views-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+.preview__stats-bookmarks-container p,
+.preview__stats-views-container p {
+    margin: 0;
+    color: var(--pin-preview-stats-numbers-color);
+    font-size: 20px;
+    font-weight: lighter;
+}
+
+.preview__stats-bookmarks-container img,
+.preview__stats-views-container img {
+    width: 40px;
+    height: 40px;
+}

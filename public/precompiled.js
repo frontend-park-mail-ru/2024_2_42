@@ -1,5 +1,53 @@
 (function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+templates['boards-list.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
+    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"boards") : depth0),{"name":"each","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":3,"column":8},"end":{"line":14,"column":17}}})) != null ? stack1 : "");
+},"2":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "            <div class=\"savebox__board-selection savebox__board-selection-"
+    + alias2(alias1((depth0 != null ? lookupProperty(depth0,"BoardName") : depth0), depth0))
+    + "\">\r\n                <input class=\"savebox__board-checkbox\" type=\"checkbox\" id=\"checkbox-"
+    + alias2(alias1((depth0 != null ? lookupProperty(depth0,"BoardName") : depth0), depth0))
+    + "\" value=\""
+    + alias2(alias1((depth0 != null ? lookupProperty(depth0,"BoardName") : depth0), depth0))
+    + "\">\r\n                <div class=\"savebox__board-cover-container\">\r\n                    <img class=\"savebox__board-cover\" src=\""
+    + alias2(alias1((depth0 != null ? lookupProperty(depth0,"BoardCoverUrl") : depth0), depth0))
+    + "\" alt=\"cover\">\r\n                </div>\r\n                <label class=\"savebox__board-label\" for=\"checkbox-"
+    + alias2(alias1((depth0 != null ? lookupProperty(depth0,"BoardName") : depth0), depth0))
+    + "\">"
+    + ((stack1 = alias1((depth0 != null ? lookupProperty(depth0,"BoardName") : depth0), depth0)) != null ? stack1 : "")
+    + "</label>\r\n"
+    + ((stack1 = lookupProperty(helpers,"if").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"Private") : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":10,"column":16},"end":{"line":12,"column":23}}})) != null ? stack1 : "")
+    + "            </div>\r\n";
+},"3":function(container,depth0,helpers,partials,data) {
+    return "                    <img class=\"savebox__board-private-icon\" src=\"./assets/icons/private.svg\" alt=\"private\">\r\n";
+},"5":function(container,depth0,helpers,partials,data) {
+    return "        <p>Здесь будут отображены доски</p>\r\n";
+},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"savebox__boards-list\">\r\n"
+    + ((stack1 = lookupProperty(helpers,"if").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"boards") : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(5, data, 0),"data":data,"loc":{"start":{"line":2,"column":4},"end":{"line":17,"column":11}}})) != null ? stack1 : "")
+    + "</div>\r\n";
+},"useData":true});
 templates['button.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
     return "disabled";
 },"3":function(container,depth0,helpers,partials,data) {
@@ -157,19 +205,101 @@ templates['pin.hbs'] = template({"compiler":[8,">= 4.3.0"],"main":function(conta
         return undefined
     };
 
-  return "<div id=\"pin__content-container-"
+  return "<div class=\"pin__content-container-"
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"PinID") : stack1), depth0))
-    + "\">\r\n	<img class=\"pin__image-"
+    + "\">\r\n	<div class=\"pin__image-container\">\r\n		<img class=\"pin__image-"
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"PinID") : stack1), depth0))
     + "\" src=\""
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"MediaUrl") : stack1), depth0))
-    + "\">\r\n	<div class=\"pin__author_container-"
+    + "\">\r\n		<div class=\"pin__image-preview-button-"
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"PinID") : stack1), depth0))
-    + "\">\r\n		<img class=\"pin__author_avatar\" src=\""
-    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"AuthorAvatar") : stack1), depth0))
-    + "\">\r\n		<p>"
+    + "\">\r\n			<img src=\"./assets/icons/magnifier.svg\" alt=\"Preview\">\r\n		</div>\r\n	</div>\r\n	<div class=\"pin__author-container-"
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"PinID") : stack1), depth0))
+    + "\">\r\n		<img class=\"pin__author-avatar\" src=\"./assets/imgs/avatar.jpg\">\r\n		<div class=\"pin__author-info\">\r\n			<p class=\"pin__author-name\">"
     + ((stack1 = alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"AuthorName") : stack1), depth0)) != null ? stack1 : "")
-    + "</p>\r\n	</div>\r\n</div>\r\n";
+    + "</p>\r\n			<p class=\"pin__author-followers-number\">"
+    + ((stack1 = alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"AuthorFollowersNumber") : stack1), depth0)) != null ? stack1 : "")
+    + " Followers</p>\r\n		</div>\r\n	</div>\r\n</div>\r\n";
+},"useData":true});
+templates['preview.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
+    return "            <img class=\"preview__side-menu-bookmark\" src=\"./assets/icons/bookmark-fill.svg\" alt=\"bookmark it\">\r\n";
+},"3":function(container,depth0,helpers,partials,data) {
+    return "            <img class=\"preview__side-menu-bookmark\" src=\"./assets/icons/bookmark-empty.svg\" alt=\"bookmark it\">\r\n";
+},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"preview__content-container preview__content-container-appearence\" tabindex=\"0\">\r\n    <div class=\"preview__upper-menu-container\">\r\n        <div class=\"preview__author-container\">\r\n            <img class=\"preview__author-avatar\" src=\""
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"preview") : depth0)) != null ? lookupProperty(stack1,"AuthorAvatarUrl") : stack1), depth0))
+    + "\">\r\n            <div class=\"preview__author-info\">\r\n                <p class=\"preview__author-name\">"
+    + ((stack1 = alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"preview") : depth0)) != null ? lookupProperty(stack1,"AuthorName") : stack1), depth0)) != null ? stack1 : "")
+    + "</p>\r\n                <p class=\"preview__author-followers-number\">"
+    + ((stack1 = alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"preview") : depth0)) != null ? lookupProperty(stack1,"AuthorFollowersNumber") : stack1), depth0)) != null ? stack1 : "")
+    + " Followers</p>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"preview__board-selector\">\r\n            <div class=\"preview__board-selector-container\">\r\n                <p class=\"preview__board-selector-container-text\">Сохранить</p>\r\n                <img class=\"preview__board-selector-container-icon\" src=\"./assets/icons/expand-list.svg\" alt=\"expand\">\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <img id=\"preview__image\" class=\"preview__image-class\" src=\""
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"preview") : depth0)) != null ? lookupProperty(stack1,"MediaUrl") : stack1), depth0))
+    + "\" alt=\"Preview\">\r\n\r\n    <div class=\"preview__side-menu-container\">\r\n        <div class=\"preview__side-menu-more-container\">\r\n            <img class=\"preview__side-menu-more\" src=\"./assets/icons/more.svg\" alt=\"more\">\r\n        </div>\r\n"
+    + ((stack1 = lookupProperty(helpers,"if").call(depth0 != null ? depth0 : (container.nullContext || {}),((stack1 = (depth0 != null ? lookupProperty(depth0,"preview") : depth0)) != null ? lookupProperty(stack1,"Bookmarked") : stack1),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data,"loc":{"start":{"line":25,"column":8},"end":{"line":29,"column":15}}})) != null ? stack1 : "")
+    + "        <img class=\"preview__side-menu-comment\" src=\"./assets/icons/comment.svg\" alt=\"comment\">\r\n        <img class=\"preview__side-menu-share\" src=\"./assets/icons/share.svg\" alt=\"share\">\r\n    </div>\r\n\r\n    <div class=\"preview__stats-container\">\r\n        <div class=\"preview__stats-views-container\">\r\n            <p class=\"preview__stats-views-number\">"
+    + ((stack1 = alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"preview") : depth0)) != null ? lookupProperty(stack1,"ViewsNumber") : stack1), depth0)) != null ? stack1 : "")
+    + "</p>\r\n            <img src=\"./assets/icons/views.svg\" alt=\"bookmark\">\r\n        </div>\r\n        <div class=\"preview__stats-bookmarks-container\">\r\n            <p class=\"preview__stats-bookmarks-number\">"
+    + ((stack1 = alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"preview") : depth0)) != null ? lookupProperty(stack1,"BookmarksNumber") : stack1), depth0)) != null ? stack1 : "")
+    + "</p>\r\n            <img src=\"./assets/icons/bookmarked.svg\" alt=\"bookmark\">\r\n        </div>\r\n    </div>\r\n</div>\r\n";
+},"useData":true});
+templates['savebox.hbs'] = template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.hooks.helperMissing, alias3="function", lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"savebox__content-container\">\r\n    <div class=\"savebox__content-main-box\">\r\n        "
+    + ((stack1 = ((helper = (helper = lookupProperty(helpers,"searchInput") || (depth0 != null ? lookupProperty(depth0,"searchInput") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"searchInput","hash":{},"data":data,"loc":{"start":{"line":3,"column":8},"end":{"line":3,"column":25}}}) : helper))) != null ? stack1 : "")
+    + "\r\n        <div class=\"savebox__boards-list-container\">\r\n            "
+    + ((stack1 = ((helper = (helper = lookupProperty(helpers,"boardsList") || (depth0 != null ? lookupProperty(depth0,"boardsList") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"boardsList","hash":{},"data":data,"loc":{"start":{"line":5,"column":12},"end":{"line":5,"column":28}}}) : helper))) != null ? stack1 : "")
+    + "\r\n        </div>\r\n        <button class=\"savebox__create-board-button\" type=\"submit\">Создать доску</button>\r\n    </div>\r\n</div>\r\n";
+},"useData":true});
+templates['details-menu.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=container.lambda, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "            <a class=\"details-menu__option-"
+    + container.escapeExpression(alias1((depth0 != null ? lookupProperty(depth0,"ID") : depth0), depth0))
+    + "\" "
+    + ((stack1 = lookupProperty(helpers,"if").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"Download") : depth0),{"name":"if","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":4,"column":56},"end":{"line":4,"column":135}}})) != null ? stack1 : "")
+    + ">"
+    + ((stack1 = alias1((depth0 != null ? lookupProperty(depth0,"Text") : depth0), depth0)) != null ? stack1 : "")
+    + "</a>\r\n";
+},"2":function(container,depth0,helpers,partials,data) {
+    var lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return " href=\""
+    + container.escapeExpression(container.lambda((depth0 != null ? lookupProperty(depth0,"FilePath") : depth0), depth0))
+    + "\" download=\"pinset-media\" ";
+},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"details-menu__content-container\">\r\n    <div class=\"details-menu__options-list-container\">\r\n"
+    + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"options") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":3,"column":8},"end":{"line":5,"column":17}}})) != null ? stack1 : "")
+    + "    </div>\r\n</div>\r\n";
 },"useData":true});
 templates['input.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
     return "input-error";
@@ -247,6 +377,18 @@ templates['input.hbs'] = template({"1":function(container,depth0,helpers,partial
     + "  </div>\r\n\r\n"
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"inputHelperText") : depth0),{"name":"if","hash":{},"fn":container.program(15, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":28,"column":2},"end":{"line":31,"column":9}}})) != null ? stack1 : "")
     + "\r\n</div>\r\n";
+},"useData":true});
+templates['search-input.hbs'] = template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"searchinput__content-container\">\r\n    <img class=\"searchinput__finder-icon\" src=\"./assets/icons/finder.svg\" alt=\"search\">\r\n    <input class=\"searchinput__search-field\" type=\"text\" placeholder=\""
+    + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? lookupProperty(depth0,"state") : depth0)) != null ? lookupProperty(stack1,"Placeholder") : stack1), depth0))
+    + "\" name=\"search-input\">\r\n    <img class=\"searchinput__clear-icon\" src=\"./assets/icons/clear-search.svg\" alt=\"clear\">\r\n</div>\r\n";
 },"useData":true});
 templates['login.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
     var stack1;
