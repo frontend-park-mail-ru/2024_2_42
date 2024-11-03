@@ -12,6 +12,7 @@
 @import url(components/search-input/search-input.css);
 @import url(components/boards-list/boards-list.css);
 @import url(components/details-menu/details-menu.css);
+@import url(components/drop-down-menu/drop-down-menu.css);
 
 @import url(./constants.css);
 

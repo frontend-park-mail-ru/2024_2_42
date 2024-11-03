@@ -4,12 +4,14 @@ import { HeaderComponent as Header } from '../../components/complex/header/heade
 import { GridComponent as Grid } from '../../components/complex/grid/grid.js'
 import { isAuthorized } from '../../modules/network.js'
 
-import { postMethod } from '../../modules/network.js'
-import { BACKEND_LOGOUT_ROUTE } from '../../constants/api.js'
 import { ROUTES } from '../../constants/routes.js'
+import { BACKEND_LOGOUT_ROUTE } from '../../constants/api.js'
+import { postMethod } from '../../modules/network.js'
 
 import { app } from '../../index.js'
 import { BaseComponent } from '../../components/base/base.js'
+
+import { DropDownMenuComponent as DropDownMenu } from '../../components/drop-down-menu/drop-down-menu.js'
 
 /**
  * Represents the Main Page Component.
@@ -42,11 +44,11 @@ export class MainPageComponent extends BaseComponent {
         const grid = new Grid(this.Parent, this.#pins);
 
         const renderedTemplate = template({
-            header: new Header(this.Parent, { isLoggedIn: await isAuthorized() }).renderTemplate(),
+            header: new Header(this.Parent, await isAuthorized()).renderTemplate(),
             grid: grid.renderTemplate(),
         });
 
-        this.Parent.innerHTML += renderedTemplate;
+        this.Parent.insertAdjacentHTML('beforeend', renderedTemplate);
 
         for (const pin of this.#pins) {
             grid.buildPinPreview(pin);
@@ -54,10 +56,55 @@ export class MainPageComponent extends BaseComponent {
 
         document.body.addEventListener('load', (event) => {
             event.preventDefault();
-			grid.buildLayout();
-		}, true);
+            grid.buildLayout();
+        }, true);
 
-        const headerLogInButton = document.querySelector('.header__login-btn')
+        // Listeners
+        this.addLogoListener();
+        this.addLoginBtnListener();
+        this.addSearchInputListener();
+        this.addProfileImgListener();
+
+        return renderedTemplate;
+    }
+
+    /**
+     * Creates a listener of the search input bar.
+     */
+    addSearchInputListener() {
+        const searchInputClearIcon = document.querySelector(`.header__search-input-content-container
+                                                            .searchinput__content-container
+                                                            .searchinput__clear-icon`);
+        searchInputClearIcon.addEventListener('click', (event) => {
+            event.preventDefault();
+            const searchInputField = document.querySelector(`.header__search-input-content-container
+                                                            .searchinput__content-container
+                                                            .searchinput__search-field`);
+            searchInputField.value = '';
+            searchInputField.focus();
+        });
+
+    }
+
+    /**
+     * Creates a listener of the logo icon.
+     */
+    addLogoListener() {
+        const headerLogInButton = document.querySelector('.header__logo-container')
+        headerLogInButton.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            root.innerHTML = '';
+            console.log(app.LastPage);
+            app.renderPage(ROUTES.main);
+        });
+    }
+
+    /**
+     * Creates a listener of login button.
+     */
+    addLoginBtnListener() {
+        const headerLogInButton = document.querySelector('.header__login-btn-container')
         if (headerLogInButton) {
             headerLogInButton.addEventListener('click', (event) => {
                 event.preventDefault();
@@ -66,20 +113,47 @@ export class MainPageComponent extends BaseComponent {
                 app.renderPage(ROUTES.login);
             });
         }
+    }
 
-        const headerSignUpButton = document.querySelector('.header__signup-btn')
-        if (headerSignUpButton) {
-            headerSignUpButton.addEventListener('click', (event) => {
+    /**
+     * Creates a listener of profile icon.
+     */
+    addProfileImgListener() {
+        const profileContainer = document.querySelector('.header__profile-container');
+        if (profileContainer) {
+            profileContainer.addEventListener('click', (event) => {
                 event.preventDefault();
-
-                root.innerHTML = '';
-                app.renderPage(ROUTES.signup);
+    
+                if (!document.querySelector('.drop-down-menu__content-container')) {
+                    const dropDownMenu = new DropDownMenu(this.Parent);
+                    const renderedTemplate = dropDownMenu.renderTemplate();
+                    profileContainer.insertAdjacentHTML('beforeend', renderedTemplate);
+    
+                    const dropDownMenuElement = document.querySelector('.drop-down-menu__content-container');
+                    const header = document.querySelector('.header__content-container');
+                    const dropDownMenuMarginTop = -10, dropDownMenuMarginRight = 10;
+                    dropDownMenuElement.style.top = header.clientHeight + dropDownMenuMarginTop + 'px';
+                    dropDownMenuElement.style.right = dropDownMenuMarginRight + 'px';
+    
+                    this.addLogoutButtonListener();
+                }
+                else {
+                    const dropDownMenu = document.querySelector('.drop-down-menu__content-container');
+                    if (dropDownMenu) {
+                        profileContainer.removeChild(dropDownMenu);
+                    }
+                }
             });
         }
+    }
 
-        const headerLogOutButton = document.querySelector('.header__logout-btn');
-        if (headerLogOutButton) {
-            headerLogOutButton.addEventListener('click', async (event) => {
+    /**
+     * Creates a listener of logout button.
+     */
+    addLogoutButtonListener() {
+        const logOutButton = document.querySelector('.drop-down-menu__logout-option');
+        if (logOutButton) {
+            logOutButton.addEventListener('click', async (event) => {
                 event.preventDefault();
 
                 const resp = await postMethod(BACKEND_LOGOUT_ROUTE, {}, true);
@@ -90,7 +164,5 @@ export class MainPageComponent extends BaseComponent {
                 }
             });
         }
-
-        return renderedTemplate;
     }
 };

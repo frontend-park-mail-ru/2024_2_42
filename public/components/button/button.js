@@ -25,13 +25,6 @@ export class ButtonComponent extends BaseComponent {
         const template = Handlebars.templates['button.hbs'];
         const renderedTemplate = template(this.State);
 
-        const parent = this.Parent;
-        if (parent) {
-            parent.innerHTML = renderedTemplate;
-            const buttonElement = parent.querySelector('button');
-            buttonElement.addEventListener('click', this.handleButtonClick.bind(this));
-        }
-
         return renderedTemplate;
     }
 

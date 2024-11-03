@@ -83,6 +83,7 @@ export class GridComponent extends BaseComponent {
 		const columnsN = this.adaptiveColumnsN;
 		const widthGutter = 30, heightGutter = 15;
 		let heights = new Array(columnsN).fill(0);
+		const headerHeight = document.querySelector('.header__content-container').clientHeight;
 
 		const columnWidth = (this.parentContainerWidth - widthGutter * (columnsN + 1)) / columnsN;
 
@@ -95,7 +96,7 @@ export class GridComponent extends BaseComponent {
 			// Next column index to insert the pinContainer
 			const minIdx = heights.indexOf(Math.min(...heights));
 
-			pinContainer.style.top = `${heights[minIdx] + heightGutter}px`;
+			pinContainer.style.top = `${heights[minIdx] + heightGutter + headerHeight}px`;
 			pinContainer.style.left = `${minIdx * columnWidth + widthGutter * (minIdx + 1)}px`;
 
 			heights[minIdx] += pinContainer.offsetHeight + heightGutter;
@@ -482,8 +483,11 @@ export class GridComponent extends BaseComponent {
 	 * @param {Array} boards - the list of boards which belongs to current authorized user.
 	 */
 	searchInputClearBtnListenerHandler(boards) {
-		const searchInputField = document.querySelector('.searchinput__search-field');
+		const searchInputField = document.querySelector(`.savebox__content-main-box
+														.searchinput__content-container
+														.searchinput__search-field`);
 		searchInputField.value = '';
+		searchInputField.focus();
 		this.searchInputListenerHandler(searchInputField, boards);
 	}
 
@@ -492,11 +496,13 @@ export class GridComponent extends BaseComponent {
 	 * @param {Array} boards - the list of boards which belongs to current authorized user.
 	 */
 	addInputClearBtnListener(boards) {
-		document.querySelector('.searchinput__clear-icon').addEventListener('click', (event) => {
+		const searchInputClearIcon = document.querySelector(`.savebox__content-main-box
+														.searchinput__content-container
+														.searchinput__clear-icon`);
+		searchInputClearIcon.addEventListener('click', (event) => {
 			event.preventDefault();
 			this.searchInputClearBtnListenerHandler(boards);
 		});
-
 	}
 
 	/**
@@ -521,7 +527,9 @@ export class GridComponent extends BaseComponent {
 		// Remove boards from current list
 		const boardsListContainer = document.querySelector('.savebox__boards-list-container');
 		const boardsList = document.querySelector('.savebox__boards-list');
-		boardsListContainer.removeChild(boardsList);
+		if (boardsListContainer.contains(boardsList)) {
+			boardsListContainer.removeChild(boardsList);
+		}
 
 		// Rerender boards list with new matched boards
 		const newBoardsList = new BoardsList(this.Parent, matchedBoards);
@@ -543,7 +551,9 @@ export class GridComponent extends BaseComponent {
 	 * @param {Array} boards - the list of boards which belongs to current authorized user.
 	 */
 	addSearchInputListener(boards) {
-		const searchInputField = document.querySelector('.searchinput__search-field');
+		const searchInputField = document.querySelector(`.savebox__content-main-box
+														.searchinput__content-container
+														.searchinput__search-field`);
 		searchInputField.addEventListener('input', (event) => {
 			event.preventDefault();
 			this.searchInputListenerHandler(searchInputField, boards);
