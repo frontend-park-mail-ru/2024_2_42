@@ -1,8 +1,9 @@
 'use strict'
 
-import { BaseComponent } from "../../components/base/base.js"
+import { BaseComponent } from "../../components/base/base.js";
 
-import { HeaderComponent as Header } from "../../components/complex/header/header.js"
+import { ButtonComponent as Button } from "../../components/button/button.js";
+import { HeaderComponent as Header } from "../../components/complex/header/header.js";
 import { SearchInputComponent as SearchInput } from "../../components/search-input/search-input.js";
 import { BoardGridComponent as BoardGrid } from "./board-grid.js";
 import { DropDownMenuComponent as DropDownMenu } from "../../components/drop-down-menu/drop-down-menu.js";
@@ -32,8 +33,27 @@ export class ProfilePageComponent extends BaseComponent {
         });
     }
 
+    /**
+     * Renders a template of profile page component.
+     * @returns rendered template of profile page component.
+     */
     async renderTemplate() {
         const template = Handlebars.templates['profile.hbs'];
+
+        if (!this.State.currentUser) {
+            this.State.chatButton = new Button(this.Parent, {
+                label: 'Написать',
+                type: 'submit',
+                className: 'profile__user-chat-button',
+            }).renderTemplate();
+    
+            this.State.subscribeButton = new Button(this.Parent, {
+                label: 'Подписаться',
+                type: 'submit',
+                className: 'profile__user-subscribe-button',
+            }).renderTemplate();
+        }
+
         const renderedTemplate = template({
             header: new Header(this.Parent, await isAuthorized()).renderTemplate(),
             searchInputBar: new SearchInput(this.Parent, { Placeholder: 'Искать в досках' }).renderTemplate(),
@@ -73,6 +93,9 @@ export class ProfilePageComponent extends BaseComponent {
         }
     }
 
+    /**
+     * Creates a handler for search bar events.
+     */
     boardsSearchBarListenerHandler() {
         const searchInputBar = document.querySelector(`.profile__boards-header-search-block
                                                     .searchinput__content-container
@@ -96,6 +119,9 @@ export class ProfilePageComponent extends BaseComponent {
         this.resizeBoardsCovers();
     }
 
+    /**
+     * Creates a listener of search bar events.
+     */
     addBoardsSearchBarListener() {
         const searchInputBar = document.querySelector(`.profile__boards-header-search-block
                                                     .searchinput__content-container
@@ -106,6 +132,9 @@ export class ProfilePageComponent extends BaseComponent {
         });
     }
 
+    /**
+     * Resizes profile boards cover to be equal in height.
+     */
     resizeBoardsCovers() {
         const boardsCovers = document.querySelectorAll('.profile__board-cover');
         for (const cover of boardsCovers) {
@@ -113,6 +142,9 @@ export class ProfilePageComponent extends BaseComponent {
         }
     }
 
+    /**
+     * Creates a listener of nickname copy button click event.
+     */
     addNickNameCopyBtnListener() {
         const nickNameCopyBtn = document.querySelector('.profile__user-nickname-copy');
         nickNameCopyBtn.addEventListener('click', (event) => {

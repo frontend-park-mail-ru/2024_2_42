@@ -9,7 +9,7 @@
 .profile__content-container {
     position: relative;
     display: flex;
-    width: 80%;
+    width: 70%;
     height: 100%;
     justify-content: space-between;
 }
@@ -51,13 +51,13 @@
     justify-content: center;
     align-items: center;
     padding: 10px;
-    background-color: #757575;
+    background-color: var(--pinset-profile-user-edit-block-color);
     border-radius: 10px;
     transition: 0.5s;
 }
 
 .profile__user-edit-block-container:hover {
-    background-color: #585858;
+    background-color: var(--pinset-profile-user-edit-block-hovered-color);
     cursor: pointer;
     transition: 0.5s;
 }
@@ -80,7 +80,7 @@
     margin: 0;
     font-size: 40px;
     font-weight: bold;
-    color: #333333;
+    color: var(--pinset-profile-user-name-text-color);
 }
 
 .profile__user-nickname-container {
@@ -93,7 +93,7 @@
 
 .profile__user-nickname-text {
     margin: 5px;
-    color: var(--pinset-user-profile-nickname-block-color);
+    color: var(--pinset-profile-nickname-block-color);
 }
 
 .profile__user-nickname-copy:hover,
@@ -121,6 +121,41 @@
     margin: 5px;
     width: 30px;
     height: 30px;
+}
+
+.profile__user-buttons-container {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+.profile__user-chat-button,
+.profile__user-subscribe-button {
+    margin: 10px;
+    border-radius: 7px;
+}
+
+.profile__user-chat-button {
+    background-color: var(--pinset-profile-chat-button-color);
+    transition: 0.5s;
+}
+
+.profile__user-chat-button:hover {
+    background-color: var(--pinset-profile-chat-button-hovered-color);
+    transition: 0.5s;
+}
+
+.profile__user-subscribe-button {
+    background-color: var(--pinset-main-color-purple);
+	background-image: linear-gradient(to bottom, transparent 0%, var(--pinset-main-color-blue) 100%);
+    transition: background-color 0.5s ease 0s;
+}
+
+.profile__user-subscribe-button:hover {
+	background-color: var(--pinset-main-color-purple-hovered);
+	background-image: linear-gradient(to bottom, transparent 0%, var(--pinset-main-color-blue-hovered) 100%);
+	transition: background-color 0.5s ease 0s;
 }
 
 .profile__user-social-networks-container {
@@ -168,7 +203,7 @@ hr {
     display: block;
     height: 1px;
     border: 0;
-    border-top: 1px solid #686868;
+    border-top: 1px solid var(--pinset-profile-bio-divider-color);
     margin: 1em 0;
     padding: 0;
 }
@@ -200,6 +235,7 @@ hr {
     width: 100%;
     display: grid;
     align-items: center;
+    margin-top: 1rem;
 }
 
 .profile__boards-header-navigation {
@@ -212,7 +248,7 @@ hr {
 .profile__boards-header-nav-to-pinset-link,
 .profile__boards-header-nav-to-profile {
     text-decoration: none;
-    color: #666666;
+    color: var(--pinset-profile-navigation-text-color);
     transition: 0.5s;
 }
 
@@ -223,7 +259,7 @@ hr {
 
 .profile__boards-header-nav-to-pinset-link:hover,
 .profile__boards-header-nav-to-profile:hover {
-    color: #3d3d3d;
+    color: var(--pinset-profile-navigation-hovered-text-color);
     transition: 0.5s;
 }
 
@@ -242,14 +278,14 @@ hr {
 }
 
 .profile__boards-header-title p {
+    margin: 0;
     font-size: 30px;
     font-weight: bold;
-    color: #333333;
+    color: var(--pinset-profile-board-title-text-color);
 }
 
 .profile__boards-header-search-block {
     width: 100%;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -258,13 +294,13 @@ hr {
 
 .profile__boards-header-search-block .searchinput__content-container {
     width: 100%;
-    height: 100%;
+    height: 90%;
     border-radius: 10px;
 }
 
 .profile__boards-header-search-block .searchinput__content-container input,
 .profile__boards-header-search-block .searchinput__content-container input::placeholder {
-    font-size: 20px;
+    font-size: 1rem;
 }
 
 .profile__boards-header-search-block img {
@@ -288,6 +324,11 @@ hr {
     gap: 2.65%;
 }
 
+.profile__boards-list-not-found-text {
+    color: var(--pinset-boards-list-not-found-text-color);
+    align-self: center;
+}
+
 .profile__board {
     position: relative;
     width: 100%;
@@ -295,7 +336,7 @@ hr {
     display: flex;
     flex-direction: column;
     border-radius: 20px;
-    border: 1px solid rgb(201, 201, 201);
+    border: 1px solid var(--pinset-profile-board-border-color);
     overflow: hidden;
     background-color: white;
     justify-self: center;
@@ -344,6 +385,7 @@ div[class^=profile__board-info-container] {
 
 .profile__board-title-container {
     width: 100%;
+    height: 30px;
     display: flex;
     align-items: center;
     margin-bottom: 10px;
@@ -391,8 +433,13 @@ div[class^=profile__board-info-container] {
     margin: 0;
 }
 
+.profile__board-modified-time {
+    display: flex;
+    align-items: center;
+}
+
 .profile__board-modified-time p {
     margin: 0;
     white-space: nowrap;
-    color: #4e4e4e;
+    color: var(--pinset-profile-board-modify-time-text-color);
 }

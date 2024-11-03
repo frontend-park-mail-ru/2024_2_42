@@ -6,9 +6,12 @@
             <div class="profile__user-avatar-container">
                 <div class="profile__user-avatar-block">
                     <img class="profile__user-avatar" src="{{profile.avatarUrl}}" alt="Avatar">
-                    <div class="profile__user-edit-block-container">
-                        <img class="profile__user-edit-icon" src="./assets/icons/edit.svg" alt="Settings">
-                    </div>
+
+                    {{#if profile.currentUser}}
+                        <div class="profile__user-edit-block-container">
+                            <img class="profile__user-edit-icon" src="./assets/icons/edit.svg" alt="Settings">
+                        </div>
+                    {{/if}}
                 </div>
             </div>
 
@@ -26,6 +29,13 @@
                 <p class="profile__user-followings-number">{{{profile.followingsNumber}}} подписок</p>
                 <p class="profile__user-followers-number">{{{profile.followersNumber}}} подписчиков</p>
             </div>
+
+            {{#unless profile.currentUser}}
+                <div class="profile__user-buttons-container">
+                    {{{profile.chatButton}}}
+                    {{{profile.subscribeButton}}}
+                </div>
+            {{/unless}}
 
             <div class="profile__user-social-networks-container">
                 {{#if profile.socialNetworks.vk}}
@@ -77,8 +87,18 @@
                             <img src="./assets/icons/add-button.svg" alt="Create">
                         </div>
                     {{else}}
-                        <p class="profile__boards-header-navigation">Pinset > @{{{profile.userNickname}}}</p>
-                        <p>Доски</p>
+                        <div class="profile__boards-header-navigation">
+                            <a class="profile__boards-header-nav-to-pinset-link" href="/feed">
+                                Pinset
+                            </a>
+                            <img class="profile__boards-header-navigation-arrow" src="./assets/icons/navigation-arrow.svg" alt="Navigate">
+                            <a class="profile__boards-header-nav-to-profile" href="/profile">
+                                @{{{profile.userNickname}}}
+                            </a>
+                        </div>
+                        <div class="profile__boards-header-title">
+                            <p>Доски пользователя</p>
+                        </div>
                     {{/if}}
                 </div>
 
