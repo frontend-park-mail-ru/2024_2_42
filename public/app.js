@@ -3,6 +3,7 @@
 import { LoginComponent as Login } from './pages/login/login.js';
 import { SignUpComponent as SignUp } from './pages/signup/signup.js';
 import { MainPageComponent } from './pages/main/main.js';
+import { ProfilePageComponent as ProfilePage } from './pages/profile/profile.js';
 
 import { ROUTES } from './constants/routes.js';
 import { BACKEND_LOGIN_ROUTE, BACKEND_SIGNUP_ROUTE, BACKEND_FEED_ROUTE, BACKEND_LOGOUT_ROUTE } from './constants/api.js';
@@ -47,6 +48,10 @@ export default class App {
 			case ROUTES.signup:
 				history.pushState({}, '', ROUTES.signup);
 				this.#renderSignup();
+				break;
+			case ROUTES.profile:
+				history.pushState({}, '', ROUTES.profile);
+				this.#renderProfile();
 				break;
 			default:
 				this.#handleUnknownRoute();
@@ -525,7 +530,7 @@ export default class App {
 
 		const template = Handlebars.templates['unknown.hbs']
 		const renderedTemplate = template()
-		this.root.innerHTML += renderedTemplate;
+		this.root.insertAdjacentHTML(renderedTemplate);
 
 		document.querySelector('.tomain__tap-button').addEventListener('click', (event) => {
 			event.preventDefault();
@@ -535,6 +540,140 @@ export default class App {
 		});
 
 		return renderedTemplate
+	}
+
+	#renderProfile() {
+		const profileState = {
+			userName: 'Иван Иванов',
+			userNickname: 'ivanvanov',
+			avatarUrl: './assets/imgs/bono_avatar.jpg',
+			followersNumber: 19,
+			followingsNumber: 60,
+			personalWebsiteLink: 'https://sales-generator.ru/blog/brend-marketing/',
+			geolocation: 'Россия, Москва',
+			bio: `Я — директор по бренд-маркетингу с опытом управления глобальными командами и многомиллионными кампаниями.
+				Ее опыт в области стратегии бренда, визуального дизайна и управления учетными записями определяет ее осознанный, но...`,
+			currentUser: true,
+			socialNetworks: {
+				vk: true,
+				telegram: true,
+				github: true,
+				pinterest: true,
+			},
+			boards: [
+				{
+					boardID: 1,
+					coverUrl: './assets/imgs/bookmarks-board-cover.jpg',
+					title: 'Закладки',
+					bookmarkedNumber: 139,
+					rewardedNumber: 128,
+					lastModifyTime: '1 нед. назад',
+					private: true,
+				},
+				{
+					boardID: 2,
+					coverUrl: './assets/imgs/michael.jpg',
+					title: 'Singers',
+					bookmarkedNumber: 139,
+					rewardedNumber: 128,
+					lastModifyTime: '1 нед. назад',
+					private: true,
+				},
+				{
+					boardID: 3,
+					coverUrl: './assets/imgs/art.jpg',
+					title: 'Work-of-art',
+					bookmarkedNumber: 139,
+					rewardedNumber: 128,
+					lastModifyTime: '1 нед. назад',
+					private: false,
+				},
+				{
+					boardID: 4,
+					coverUrl: './assets/imgs/recipe.jpg',
+					title: 'Recipes',
+					bookmarkedNumber: 139,
+					rewardedNumber: 128,
+					lastModifyTime: '1 нед. назад',
+					private: true,
+				},
+				{
+					boardID: 5,
+					coverUrl: './assets/imgs/michael.jpg',
+					title: 'Singers',
+					bookmarkedNumber: 139,
+					rewardedNumber: 128,
+					lastModifyTime: '1 нед. назад',
+					private: true,
+				},
+				{
+					boardID: 6,
+					coverUrl: './assets/imgs/avatar.jpg',
+					title: 'Singers',
+					bookmarkedNumber: 139,
+					rewardedNumber: 128,
+					lastModifyTime: '1 нед. назад',
+					private: false,
+				},
+				{
+					boardID: 7,
+					coverUrl: './assets/imgs/michael.jpg',
+					title: 'Singers',
+					bookmarkedNumber: 139,
+					rewardedNumber: 128,
+					lastModifyTime: '1 нед. назад',
+					private: true,
+				},
+				{
+					boardID: 8,
+					coverUrl: './assets/imgs/avatar.jpg',
+					title: 'Work-of-art',
+					bookmarkedNumber: 139,
+					rewardedNumber: 128,
+					lastModifyTime: '1 нед. назад',
+					private: false,
+				},
+				{
+					boardID: 9,
+					coverUrl: './assets/imgs/art.jpg',
+					title: 'Work-of-art',
+					bookmarkedNumber: 139,
+					rewardedNumber: 128,
+					lastModifyTime: '1 нед. назад',
+					private: false,
+				},
+				{
+					boardID: 10,
+					coverUrl: './assets/imgs/recipe.jpg',
+					title: 'Recipes',
+					bookmarkedNumber: 139,
+					rewardedNumber: 128,
+					lastModifyTime: '1 нед. назад',
+					private: true,
+				},
+				{
+					boardID: 11,
+					coverUrl: './assets/imgs/michael.jpg',
+					title: 'Singers',
+					bookmarkedNumber: 139,
+					rewardedNumber: 128,
+					lastModifyTime: '1 нед. назад',
+					private: true,
+				},
+				{
+					boardID: 12,
+					coverUrl: './assets/imgs/avatar.jpg',
+					title: 'Singers',
+					bookmarkedNumber: 139,
+					rewardedNumber: 128,
+					lastModifyTime: '1 нед. назад',
+					private: false,
+				},
+			]
+		};
+
+		const profile = new ProfilePage(this.root, profileState);
+		return profile.renderTemplate()
 	}
 
 	/**

@@ -130,12 +130,15 @@ export class MainPageComponent extends BaseComponent {
                     profileContainer.insertAdjacentHTML('beforeend', renderedTemplate);
     
                     const dropDownMenuElement = document.querySelector('.drop-down-menu__content-container');
-                    const header = document.querySelector('.header__content-container');
-                    const dropDownMenuMarginTop = -10, dropDownMenuMarginRight = 10;
-                    dropDownMenuElement.style.top = header.clientHeight + dropDownMenuMarginTop + 'px';
-                    dropDownMenuElement.style.right = dropDownMenuMarginRight + 'px';
-    
-                    this.addLogoutButtonListener();
+                    if (dropDownMenuElement) {
+                        const header = document.querySelector('.header__content-container');
+                        const dropDownMenuMarginTop = -10, dropDownMenuMarginRight = 10;
+                        dropDownMenuElement.style.top = header.clientHeight + dropDownMenuMarginTop + 'px';
+                        dropDownMenuElement.style.right = dropDownMenuMarginRight + 'px';
+        
+                        this.addLogoutButtonListener();
+                        this.addProfileListener();
+                    }
                 }
                 else {
                     const dropDownMenu = document.querySelector('.drop-down-menu__content-container');
@@ -162,6 +165,21 @@ export class MainPageComponent extends BaseComponent {
                     this.Parent.innerHTML = '';
                     app.renderPage(ROUTES.main);
                 }
+            });
+        }
+    }
+
+    /**
+     * Creates a listener of profile button.
+     */
+    addProfileListener() {
+        const menuProfileButton = document.querySelector('.drop-down-menu__user-option')
+        if (menuProfileButton) {
+            menuProfileButton.addEventListener('click', (event) => {
+                event.preventDefault();
+
+                root.innerHTML = '';
+                app.renderPage(ROUTES.profile);
             });
         }
     }
