@@ -9,7 +9,7 @@ import { BACKEND_LOGOUT_ROUTE } from '../../constants/api.js'
 import { postMethod } from '../../modules/network.js'
 
 import { app } from '../../index.js'
-import { BaseComponent } from '../../components/base/base.js'
+import { BaseComponent } from '../../components/base.js'
 
 import { DropDownMenuComponent as DropDownMenu } from '../../components/drop-down-menu/drop-down-menu.js'
 
@@ -41,7 +41,7 @@ export class MainPageComponent extends BaseComponent {
     async renderTemplate() {
         const template = Handlebars.templates['main.hbs'];
 
-        const grid = new Grid(this.Parent, this.#pins);
+        const grid = new Grid(this.Parent, this.#pins, true);
 
         const renderedTemplate = template({
             header: new Header(this.Parent, await isAuthorized()).renderTemplate(),
@@ -75,6 +75,10 @@ export class MainPageComponent extends BaseComponent {
         const searchInputClearIcon = document.querySelector(`.header__search-input-content-container
                                                             .searchinput__content-container
                                                             .searchinput__clear-icon`);
+        if (!searchInputClearIcon) {
+            return;
+        }
+
         searchInputClearIcon.addEventListener('click', (event) => {
             event.preventDefault();
             const searchInputField = document.querySelector(`.header__search-input-content-container
@@ -91,13 +95,14 @@ export class MainPageComponent extends BaseComponent {
      */
     addLogoListener() {
         const headerLogInButton = document.querySelector('.header__logo-container')
-        headerLogInButton.addEventListener('click', (event) => {
-            event.preventDefault();
-
-            root.innerHTML = '';
-            console.log(app.LastPage);
-            app.renderPage(ROUTES.main);
-        });
+        if (headerLogInButton) {
+            headerLogInButton.addEventListener('click', (event) => {
+                event.preventDefault();
+    
+                root.innerHTML = '';
+                app.renderPage(ROUTES.main);
+            });
+        }
     }
 
     /**

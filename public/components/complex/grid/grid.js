@@ -1,6 +1,6 @@
 'use strict';
 
-import { BaseComponent } from '../../base/base.js';
+import { BaseComponent } from '../../base.js';
 
 import { PinComponent } from '../pin/pin.js';
 
@@ -21,19 +21,25 @@ const PREVIEW_IMG_X_FACTOR = 1.5;
  */
 export class GridComponent extends BaseComponent {
 	#pins = []; // pins stored on the grid 
+	#marginTop;
 
 	/**
 	 * Creates an instance of GridComponent.
 	 * @param {HTMLElement} parent - The parent element for rendering.
 	 * @param {Array} pins - An array of objects representing pin data.
+	 * @param {Boolean} marginTop - Should grid be margin topped or not.
 	 */
-	constructor(parent, pins) {
+	constructor(parent, pins, marginTop) {
 		super(parent);
 		this.#pins = pins;
+		this.#marginTop = marginTop;
 
+		let idx = 0;
 		// Providing layout rebuild on resize events
 		window.addEventListener('resize', (event) => {
 			event.preventDefault();
+
+			console.log("RESIZE:", idx++);
 
 			let body = document.body,
 				html = document.documentElement;
@@ -51,7 +57,6 @@ export class GridComponent extends BaseComponent {
 			}
 
 			this.buildLayout();
-
 		}, true);
 	}
 
@@ -83,7 +88,14 @@ export class GridComponent extends BaseComponent {
 		const columnsN = this.adaptiveColumnsN;
 		const widthGutter = 30, heightGutter = 15;
 		let heights = new Array(columnsN).fill(0);
-		const headerHeight = document.querySelector('.header__content-container').clientHeight;
+
+		let headerHeight = 0;
+		if (this.#marginTop) {
+			const header = document.querySelector('.header__content-container');
+			if (header) {
+				headerHeight = header.clientHeight;
+			}
+		}
 
 		const columnWidth = (this.parentContainerWidth - widthGutter * (columnsN + 1)) / columnsN;
 
@@ -131,6 +143,7 @@ export class GridComponent extends BaseComponent {
 		let newColumnN = Math.floor(this.parentContainerWidth / this.parentContainerColumnsRatio);
 		if (newColumnN == 0)
 			newColumnN = 1;
+		
 		return newColumnN;
 	}
 
@@ -140,7 +153,7 @@ export class GridComponent extends BaseComponent {
 	 */
 	buildPinPreview(pin) {
 		const pinPreviewBtn = document.querySelector(`.pin__image-preview-button-${pin.PinID}`);
-		const parent = this.Parent;
+		const parent = document.getElementById('root');
 
 		const previewState = {
 			MediaUrl: pin.MediaUrl,

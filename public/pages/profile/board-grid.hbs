@@ -7,7 +7,7 @@
                 <div class="profile__board-info-container-{{this.boardID}}">
                     <div class="profile__board-title-container">
                         <p class="profile__board-title">{{{this.title}}}</p>
-                        {{#if profile.currentUser}}
+                        {{#if ../profile.currentUser}}
                             {{#if this.private}}
                                 <img src="./assets/icons/private.svg" alt="Private">
                             {{/if}}
