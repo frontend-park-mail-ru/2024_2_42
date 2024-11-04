@@ -58,4 +58,7 @@
 	--pinset-profile-user-name-text-color: #333333;
 	--pinset-profile-user-edit-block-color: #757575;
 	--pinset-profile-user-edit-block-hovered-color: #585858;
+
+	--pinset-delete-button-color: #C20000;
+	--pinset-delete-button-hovered-color: #910000;
 }

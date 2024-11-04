@@ -1,6 +1,6 @@
 'use strict'
 
-import { BaseComponent } from '../../base/base.js';
+import { BaseComponent } from '../../base.js';
 
 export class PreviewComponent extends BaseComponent {
     /**

@@ -1,6 +1,6 @@
 'use strict';
 
-import { BaseComponent } from '../../base/base.js';
+import { BaseComponent } from '../../base.js';
 
 import { SearchInputComponent as SeachInput } from '../../search-input/search-input.js';
 import { ButtonComponent as Button } from '../../button/button.js';
