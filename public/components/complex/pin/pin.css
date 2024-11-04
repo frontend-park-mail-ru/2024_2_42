@@ -4,10 +4,6 @@ div[class^=pin__content-container] {
 	flex-direction: column;
 }
 
-/* div[class^=pin__content-container] {
-    transition: all 0.1s ease-in-out;
-} */
-
 .pin__image-container {
 	position: relative;
 	width: 100%;
@@ -16,13 +12,11 @@ div[class^=pin__content-container] {
 
 img[class^=pin__image] {
 	border-radius: 20px;
-	transition: 0.5s;
 }
 
 .pin__image-container:hover img[class^=pin__image] {
 	filter: brightness(70%);
 	cursor: pointer;
-	transition: 0.5s;
 }
 
 div[class^=pin__image-preview-button] {

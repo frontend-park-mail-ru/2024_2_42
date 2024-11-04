@@ -34,12 +34,9 @@ export class GridComponent extends BaseComponent {
 		this.#pins = pins;
 		this.#marginTop = marginTop;
 
-		let idx = 0;
 		// Providing layout rebuild on resize events
 		window.addEventListener('resize', (event) => {
 			event.preventDefault();
-
-			console.log("RESIZE:", idx++);
 
 			let body = document.body,
 				html = document.documentElement;
@@ -261,6 +258,7 @@ export class GridComponent extends BaseComponent {
 
 			previewContainer.style.width = `${intWidth * PREVIEW_IMG_X_FACTOR + previewRightSide.clientWidth}px`;
 			previewContainer.style.height = `${intHeight * PREVIEW_IMG_X_FACTOR + previewTopSide.clientHeight + previewBottomSide.clientHeight}px`;
+			previewContainer.style.marginTop = '3%';
 
 			// Create dark transparent background and add event listeners
 			this.createBackgroundListeners();

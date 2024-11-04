@@ -16,6 +16,8 @@ import { postMethod } from "../../modules/network.js";
 import { BACKEND_LOGOUT_ROUTE } from "../../constants/api.js";
 import { isAuthorized } from "../../modules/network.js";
 
+import { IconButtonComponent as IconButton } from "../../components/button/icon-button.js";
+
 /**
  * Page of a user profile.
  */
@@ -76,6 +78,7 @@ export class ProfilePageComponent extends BaseComponent {
         this.addSearchInputsListeners();
         this.addBoardsSearchBarListener();
         this.addProfileImgListener();
+        this.addBoardDetailsIconListener();
         this.addBoardListener();
 
         return renderedTemplate;
@@ -125,7 +128,6 @@ export class ProfilePageComponent extends BaseComponent {
             }
         }
 
-
         const matchedBoardsComponent = new BoardGrid(this.Parent, matchedBoards, this.State.currentUser);
         const renderedMatchedBoards = matchedBoardsComponent.renderTemplate();
         const boardsContainer = document.querySelector('.profile__boards-container');
@@ -135,6 +137,8 @@ export class ProfilePageComponent extends BaseComponent {
 
         boardsContainer.insertAdjacentHTML('beforeend', renderedMatchedBoards);
         this.resizeBoardsCovers();
+        this.addBoardDetailsIconListener();
+        this.addBoardListener();
     }
 
     /**
@@ -243,13 +247,15 @@ export class ProfilePageComponent extends BaseComponent {
     }
 
     /**
-     * 
+     * Creates a listener of board click event.
      */
     addBoardListener() {
         const pinSet = [
             {
                 PinID: 1,
                 imageOnly: true,
+                AuthorName: "Mary Jane",
+                AuthorFollowersNumber: 100,
                 MediaUrl: "https://images.unsplash.com/photo-1655635949384-f737c5133dfe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
                 BoardID: 1,
             },
@@ -716,6 +722,14 @@ export class ProfilePageComponent extends BaseComponent {
                 document.querySelector('.profile__boards-header-title p').textContent = boardTitle;
                 const headerTitleContainer = document.querySelector('.profile__boards-header-title');
                 headerTitleContainer.removeChild(document.querySelector('.profile__boards-header-create-board-btn'));
+                headerTitleContainer.insertAdjacentHTML('beforeend', new IconButton(this.Parent, {
+                    className: 'icon-button__edit-img',
+                    iconPath: './assets/icons/edit.svg',
+                }).renderTemplate());
+                headerTitleContainer.insertAdjacentHTML('beforeend', new IconButton(this.Parent, {
+                    className: 'icon-button__delete-img',
+                    iconPath: './assets/icons/delete.svg',
+                }).renderTemplate());
 
                 // Update search input bar
                 headerSearchBlock.removeChild(headerSearchBlock.querySelector('.searchinput__content-container'));
@@ -741,6 +755,20 @@ export class ProfilePageComponent extends BaseComponent {
                 for (const pin of pinSet) {
                     pinGrid.buildPinPreview(pin);
                 }
+            });
+        }
+    }
+
+    /**
+     * Creates a listener of board details icon click events.
+     */
+    addBoardDetailsIconListener() {
+        const detailsIcons = document.querySelectorAll('.profile__board-cover-more-icon');
+
+        for (const icon of detailsIcons) {
+            icon.addEventListener('click', (event) => {
+                event.preventDefault();
+                event.stopImmediatePropagation();
             });
         }
     }
