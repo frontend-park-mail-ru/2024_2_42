@@ -4,6 +4,7 @@
 @import url(pages/login/login.css);
 @import url(pages/signup/signup.css);
 @import url(pages/addPin/lookPin.css);
+@import url(pages/addPin/editPin.css);
 @import url(components/complex/header/header.css);
 @import url(components/complex/grid/grid.css);
 @import url(components/complex/pin/pin.css);

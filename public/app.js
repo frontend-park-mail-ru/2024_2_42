@@ -4,6 +4,7 @@ import { LoginComponent as Login } from './pages/login/login.js';
 import { SignUpComponent as SignUp } from './pages/signup/signup.js';
 import { MainPageComponent } from './pages/main/main.js';
 import LookPin from './pages/addPin/lookPin.js';
+import EditPin from './pages/editPin/editPin.js';
 
 import { ROUTES } from './constants/routes.js';
 import {
@@ -58,6 +59,10 @@ export default class App {
         history.pushState({}, '', ROUTES.lookPin);
         this.#renderLookPin();
         break;
+      case ROUTES.editPin:
+        history.pushState({}, '', ROUTES.editPin);
+        this.#renderEditPin();
+        break;
       default:
         this.#handleUnknownRoute();
         break;
@@ -88,6 +93,19 @@ export default class App {
     };
     const addPin = new LookPin(this.root, curPin);
     addPin.renderTemplate();
+  }
+
+  #renderEditPin() {
+    const curPin = {
+      PinID: 3,
+      AuthorName: 'Mary Jane',
+      AuthorFollowersNumber: 100,
+      MediaUrl:
+        'https://images.unsplash.com/photo-1580618432485-1e08c5039909?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy',
+      BoardID: 1,
+    };
+    const editPin = new EditPin(this.root, curPin);
+    editPin.renderTemplate();
   }
 
   #renderLogin() {
