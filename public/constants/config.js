@@ -106,7 +106,7 @@ export const signupConfig = {
 		disabled: false,
 		hover: false,
 		active: false
-	}
+	},
 };
 
 export const headerConfig = {
@@ -132,3 +132,14 @@ export const headerConfig = {
 		disabled: false,
 	},
 };
+
+// text_area:
+// {
+// icon: './assets/icons/pinset-logo.svg',
+// placeHolder: 'Еуые',
+// maxLength: 250,
+// fontSize: '10px',
+// minHeight: '100px',
+// maxHeight: '200px',
+// autoExpand: true,
+// }
