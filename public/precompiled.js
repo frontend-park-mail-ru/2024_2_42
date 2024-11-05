@@ -253,6 +253,32 @@ templates['savebox.hbs'] = template({"compiler":[8,">= 4.3.0"],"main":function(c
     + ((stack1 = ((helper = (helper = lookupProperty(helpers,"boardsList") || (depth0 != null ? lookupProperty(depth0,"boardsList") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"boardsList","hash":{},"data":data,"loc":{"start":{"line":5,"column":12},"end":{"line":5,"column":28}}}) : helper))) != null ? stack1 : "")
     + "\r\n        </div>\r\n        <button class=\"savebox__create-board-button\" type=\"submit\">Создать доску</button>\r\n    </div>\r\n</div>\r\n";
 },"useData":true});
+templates['sidebar.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
+    return " style=\"width: fit-content;\" ";
+},"3":function(container,depth0,helpers,partials,data) {
+    return " style=\"width: 0;\" ";
+},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.hooks.helperMissing, alias3="function", lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"sidebar__content-container\" "
+    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"visible") : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data,"loc":{"start":{"line":1,"column":40},"end":{"line":1,"column":118}}})) != null ? stack1 : "")
+    + ">\r\n    <div class=\"sidebar__icons-block\">\r\n        "
+    + ((stack1 = ((helper = (helper = lookupProperty(helpers,"collapseIconButton") || (depth0 != null ? lookupProperty(depth0,"collapseIconButton") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"collapseIconButton","hash":{},"data":data,"loc":{"start":{"line":3,"column":8},"end":{"line":3,"column":32}}}) : helper))) != null ? stack1 : "")
+    + "\r\n        "
+    + ((stack1 = ((helper = (helper = lookupProperty(helpers,"feedIconButton") || (depth0 != null ? lookupProperty(depth0,"feedIconButton") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"feedIconButton","hash":{},"data":data,"loc":{"start":{"line":4,"column":8},"end":{"line":4,"column":28}}}) : helper))) != null ? stack1 : "")
+    + "\r\n        "
+    + ((stack1 = ((helper = (helper = lookupProperty(helpers,"messagesIconButton") || (depth0 != null ? lookupProperty(depth0,"messagesIconButton") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"messagesIconButton","hash":{},"data":data,"loc":{"start":{"line":5,"column":8},"end":{"line":5,"column":32}}}) : helper))) != null ? stack1 : "")
+    + "\r\n        "
+    + ((stack1 = ((helper = (helper = lookupProperty(helpers,"notificationsIconButton") || (depth0 != null ? lookupProperty(depth0,"notificationsIconButton") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"notificationsIconButton","hash":{},"data":data,"loc":{"start":{"line":6,"column":8},"end":{"line":6,"column":37}}}) : helper))) != null ? stack1 : "")
+    + "\r\n        "
+    + ((stack1 = ((helper = (helper = lookupProperty(helpers,"bookmarksIconButton") || (depth0 != null ? lookupProperty(depth0,"bookmarksIconButton") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"bookmarksIconButton","hash":{},"data":data,"loc":{"start":{"line":7,"column":8},"end":{"line":7,"column":33}}}) : helper))) != null ? stack1 : "")
+    + "\r\n    </div>\r\n</div>\r\n";
+},"useData":true});
 templates['details-menu.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {

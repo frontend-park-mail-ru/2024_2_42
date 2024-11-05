@@ -13,6 +13,8 @@ import { BaseComponent } from '../../components/base.js'
 
 import { DropDownMenuComponent as DropDownMenu } from '../../components/drop-down-menu/drop-down-menu.js'
 
+import { SidebarComponent as Sidebar } from '../../components/complex/sidebar/sidebar.js'
+
 /**
  * Represents the Main Page Component.
  * @class
@@ -44,11 +46,16 @@ export class MainPageComponent extends BaseComponent {
         const grid = new Grid(this.Parent, this.#pins, true);
 
         const renderedTemplate = template({
-            header: new Header(this.Parent, await isAuthorized()).renderTemplate(),
+            // header: new Header(this.Parent, await isAuthorized()).renderTemplate(),
+            header: new Header(this.Parent, true).renderTemplate(),
             grid: grid.renderTemplate(),
         });
 
         this.Parent.insertAdjacentHTML('beforeend', renderedTemplate);
+
+        grid.setNewParent(document.querySelector('.feed__layout-container'));
+
+        app.createSidebar(grid);
 
         for (const pin of this.#pins) {
             grid.buildPinPreview(pin);

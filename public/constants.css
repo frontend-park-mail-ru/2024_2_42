@@ -11,7 +11,7 @@
 
 	--buttons-hover-background-color: #8a2b39;
 
-	--header-nav-background-color: #f0f0f0;
+	--header-nav-background-color: #e0e0e0;
 
 	--buttons-disabled-color: grey;
 	--buttons-disabled-text-color: lightgrey;
@@ -41,7 +41,7 @@
 	--pinset-box-list-option-hover-color: #4C2CFF;
 	--pinset-list-entity-background-color-on-hover: #E6E6E6;
 	--pinset-box-shadowed-cards-color: #6d6d6d8a;
-	--pinset-header-background-color: #F2F2F2;
+	--pinset-header-background-color: #e7e7e7;
 	--pinset-search-input-text-color: #161616;
 
 	--pinset-boards-list-not-found-text-color: #838383;
@@ -61,4 +61,7 @@
 
 	--pinset-delete-button-color: #C20000;
 	--pinset-delete-button-hovered-color: #910000;
+
+	--pinset-sidebar-background-color: #e7e7e7;
+	--pinset-sidebar-icon-hovered-background-color: #c2c2c2;
 }

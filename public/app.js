@@ -10,6 +10,9 @@ import { BACKEND_LOGIN_ROUTE, BACKEND_SIGNUP_ROUTE, BACKEND_FEED_ROUTE, BACKEND_
 
 import { getMethod } from './modules/network.js';
 
+import { SidebarComponent as Sidebar } from './components/complex/sidebar/sidebar.js';
+import { IconButtonComponent as IconButton } from './components/button/icon-button.js';
+
 /**
  * Represents core Application class
  * @class
@@ -17,6 +20,7 @@ import { getMethod } from './modules/network.js';
 export default class App {
 	handlers = {};
 	#structure = {};
+	sidebarVisible = false;
 	config;
 	root;
 
@@ -67,6 +71,59 @@ export default class App {
 	renderPage(pageRoute, deleteEverything = false) {
 		this.clear(deleteEverything);
 		this.render(pageRoute);
+	}
+
+	/**
+	 * 
+	 */
+	createSidebar(grid) {
+		const sidebar = new Sidebar(root, this.sidebarVisible);
+		root.insertAdjacentHTML('beforeend', sidebar.renderTemplate());
+		const header = document.querySelector('.header__content-container');
+		const sidebarMenuBlock = document.querySelector('.sidebar__icons-block');
+		sidebarMenuBlock.style.top = header.clientHeight + 'px';
+
+		const expandButton = new IconButton(root, {
+			className: 'sidebar__expand-button',
+			iconPath: './assets/icons/sidebar/expand.svg',
+		});
+		this.root.insertAdjacentHTML('beforeend', expandButton.renderTemplate());
+
+		const expandButtonElement = document.querySelector('.sidebar__expand-button');
+		expandButtonElement.style.top = header.clientHeight + 'px';
+		const collapseButtonElement = document.querySelector('.sidebar__collapse-button');
+
+		const feedLayout = document.querySelector('.feed__layout-container');
+		const sidebarElement = document.querySelector('.sidebar__content-container');
+
+		window.addEventListener('resize', (event) => {
+			event.preventDefault();
+			if (this.sidebarVisible)
+				feedLayout.style.width = document.body.clientWidth - sidebarElement.clientWidth + 'px';
+			else
+				feedLayout.style.width = document.body.clientWidth + 'px';
+			grid.buildLayout();
+		}, true);
+
+		collapseButtonElement.addEventListener('click', (event) => {
+			event.preventDefault();
+			sidebarElement.style.width = 0;
+			this.sidebarVisible = false;
+			expandButtonElement.style.display = '';
+			collapseButtonElement.style.display = 'none';
+			feedLayout.style.width = document.body.clientWidth + 'px';
+			grid.buildLayout();
+		});
+
+		expandButtonElement.addEventListener('click', (event) => {
+			event.preventDefault();
+			sidebarElement.style.width = 'fit-content';
+			this.sidebarVisible = true;
+			expandButtonElement.style.display = 'none';
+			collapseButtonElement.style.display = '';
+			feedLayout.style.width = document.body.clientWidth - sidebarElement.clientWidth + 'px';
+			grid.buildLayout();
+		});
 	}
 
 	/**

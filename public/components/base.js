@@ -44,6 +44,14 @@ export class BaseComponent {
     }
 
     /**
+     * Sets the parent of the component.
+     * @param {HTMLElement} newParent - new parent element.
+     */
+    setParent(newParent) {
+        this.#parent = newParent;
+    }
+
+    /**
      * Gets the parent element of the component.
      * @returns {HTMLElement} - The parent element.
      */

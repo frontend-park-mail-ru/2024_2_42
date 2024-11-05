@@ -667,4 +667,8 @@ export class GridComponent extends BaseComponent {
 			});
 		}
 	}
+
+	setNewParent(newParent) {
+		this.setParent(newParent);
+	}
 };
