@@ -46,8 +46,7 @@ export class MainPageComponent extends BaseComponent {
         const grid = new Grid(this.Parent, this.#pins, true);
 
         const renderedTemplate = template({
-            // header: new Header(this.Parent, await isAuthorized()).renderTemplate(),
-            header: new Header(this.Parent, true).renderTemplate(),
+            header: new Header(this.Parent, await isAuthorized()).renderTemplate(),
             grid: grid.renderTemplate(),
         });
 
