@@ -1,6 +1,6 @@
 'use strict';
 
-import { BaseComponent } from '../../base/base.js';
+import { BaseComponent } from '../../base.js';
 
 import { PinComponent } from '../pin/pin.js';
 
@@ -21,15 +21,18 @@ const PREVIEW_IMG_X_FACTOR = 1.5;
  */
 export class GridComponent extends BaseComponent {
 	#pins = []; // pins stored on the grid 
+	#marginTop;
 
 	/**
 	 * Creates an instance of GridComponent.
 	 * @param {HTMLElement} parent - The parent element for rendering.
 	 * @param {Array} pins - An array of objects representing pin data.
+	 * @param {Boolean} marginTop - Should grid be margin topped or not.
 	 */
-	constructor(parent, pins) {
+	constructor(parent, pins, marginTop) {
 		super(parent);
 		this.#pins = pins;
+		this.#marginTop = marginTop;
 
 		// Providing layout rebuild on resize events
 		window.addEventListener('resize', (event) => {
@@ -51,7 +54,6 @@ export class GridComponent extends BaseComponent {
 			}
 
 			this.buildLayout();
-
 		}, true);
 	}
 
@@ -83,27 +85,38 @@ export class GridComponent extends BaseComponent {
 		const columnsN = this.adaptiveColumnsN;
 		const widthGutter = 30, heightGutter = 15;
 		let heights = new Array(columnsN).fill(0);
-		const headerHeight = document.querySelector('.header__content-container').clientHeight;
+
+		let headerHeight = 0;
+		if (this.#marginTop) {
+			const header = document.querySelector('.header__content-container');
+			if (header) {
+				headerHeight = header.clientHeight;
+			}
+		}
 
 		const columnWidth = (this.parentContainerWidth - widthGutter * (columnsN + 1)) / columnsN;
 
 		for (const pin of this.#pins) {
 			const pinContainer = document.querySelector(`.pin__content-container-${pin.PinID}`);
-			const pinImage = document.querySelector(`.pin__image-${pin.PinID}`);
-
-			pinContainer.style.width = pinImage.style.width = `${columnWidth}px`;
-
-			// Next column index to insert the pinContainer
-			const minIdx = heights.indexOf(Math.min(...heights));
-
-			pinContainer.style.top = `${heights[minIdx] + heightGutter + headerHeight}px`;
-			pinContainer.style.left = `${minIdx * columnWidth + widthGutter * (minIdx + 1)}px`;
-
-			heights[minIdx] += pinContainer.offsetHeight + heightGutter;
+			if (pinContainer) {
+				const pinImage = document.querySelector(`.pin__image-${pin.PinID}`);
+	
+				pinContainer.style.width = pinImage.style.width = `${columnWidth}px`;
+	
+				// Next column index to insert the pinContainer
+				const minIdx = heights.indexOf(Math.min(...heights));
+	
+				pinContainer.style.top = `${heights[minIdx] + heightGutter + headerHeight}px`;
+				pinContainer.style.left = `${minIdx * columnWidth + widthGutter * (minIdx + 1)}px`;
+	
+				heights[minIdx] += pinContainer.offsetHeight + heightGutter;
+			}
 		}
 
 		const layoutContainer = document.querySelector('.feed__layout-container');
-		layoutContainer.style.height = `${Math.max(...heights)}px`;
+		if (layoutContainer) {
+			layoutContainer.style.height = `${Math.max(...heights)}px`;
+		}
 	}
 
 	/**
@@ -127,6 +140,7 @@ export class GridComponent extends BaseComponent {
 		let newColumnN = Math.floor(this.parentContainerWidth / this.parentContainerColumnsRatio);
 		if (newColumnN == 0)
 			newColumnN = 1;
+		
 		return newColumnN;
 	}
 
@@ -136,7 +150,7 @@ export class GridComponent extends BaseComponent {
 	 */
 	buildPinPreview(pin) {
 		const pinPreviewBtn = document.querySelector(`.pin__image-preview-button-${pin.PinID}`);
-		const parent = this.Parent;
+		const parent = document.getElementById('root');
 
 		const previewState = {
 			MediaUrl: pin.MediaUrl,
@@ -244,6 +258,7 @@ export class GridComponent extends BaseComponent {
 
 			previewContainer.style.width = `${intWidth * PREVIEW_IMG_X_FACTOR + previewRightSide.clientWidth}px`;
 			previewContainer.style.height = `${intHeight * PREVIEW_IMG_X_FACTOR + previewTopSide.clientHeight + previewBottomSide.clientHeight}px`;
+			previewContainer.style.marginTop = '3%';
 
 			// Create dark transparent background and add event listeners
 			this.createBackgroundListeners();

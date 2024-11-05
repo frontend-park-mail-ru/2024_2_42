@@ -40,7 +40,25 @@
 	--pinset-checkbox-input-checked-color: #4C2CFF;
 	--pinset-box-list-option-hover-color: #4C2CFF;
 	--pinset-list-entity-background-color-on-hover: #E6E6E6;
-	--pinset-box-shadowed-cards-color: #0000008a;
+	--pinset-box-shadowed-cards-color: #6d6d6d8a;
 	--pinset-header-background-color: #F2F2F2;
 	--pinset-search-input-text-color: #161616;
+
+	--pinset-boards-list-not-found-text-color: #838383;
+
+	--pinset-profile-bio-divider-color: #686868;
+	--pinset-profile-nickname-block-color: #595959;
+	--pinset-profile-navigation-text-color: #666666;
+	--pinset-profile-navigation-hovered-text-color: #3d3d3d;
+	--pinset-profile-chat-button-color: #515151;
+	--pinset-profile-chat-button-hovered-color: #333333;
+	--pinset-profile-board-modify-time-text-color: #4e4e4e;
+	--pinset-profile-board-border-color: #c9c9c9;
+	--pinset-profile-board-title-text-color: #333333;
+	--pinset-profile-user-name-text-color: #333333;
+	--pinset-profile-user-edit-block-color: #757575;
+	--pinset-profile-user-edit-block-hovered-color: #585858;
+
+	--pinset-delete-button-color: #C20000;
+	--pinset-delete-button-hovered-color: #910000;
 }

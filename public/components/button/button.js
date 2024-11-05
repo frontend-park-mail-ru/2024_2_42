@@ -1,6 +1,6 @@
 'use strict';
 
-import { BaseComponent } from '../../components/base/base.js';
+import { BaseComponent } from '../base.js';
 
 export class ButtonComponent extends BaseComponent {
   #clickHandler = () => {};
