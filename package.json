@@ -1,7 +1,7 @@
 {
   "scripts": {
     "compile": "globstar -- npx handlebars public/**/*.hbs -f public/precompiled.js",
-    "start": "node server/server.js",
+    "start": "npm run compile && node server/server.js",
     "lint": "eslint ./public/**/*.js",
     "lint:fix": "eslint ./public/**/*.js --fix"
   },

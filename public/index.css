@@ -3,10 +3,11 @@
 @import url(pages/main/main.css);
 @import url(pages/login/login.css);
 @import url(pages/signup/signup.css);
-@import url(pages/unknown/unknown.css);
+@import url(pages/addPin/lookPin.css);
 @import url(components/complex/header/header.css);
 @import url(components/complex/grid/grid.css);
 @import url(components/complex/pin/pin.css);
+@import url(pages/main/addPin.css);
 @import url(components/complex/preview/preview.css);
 @import url(components/complex/savebox/savebox.css);
 @import url(components/search-input/search-input.css);
