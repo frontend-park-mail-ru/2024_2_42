@@ -78,3 +78,41 @@
     width: 30px;
     height: 30px;
 }
+
+.editpin__image{
+    width: 45%;
+}
+
+.editpin__image-container{
+    padding: 10px;
+    background-color: var(--project-primary-grey);
+    display: flex;
+    height: 100%;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 5%;
+}
+
+.editpin__image input {
+    display: none;
+}
+
+.noimage__icon{
+    height: 30%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.noimage__text{
+    text-align: center;
+    color: var(--project-primary-white);
+}
+
+
+.editpin__image-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5%;
+}

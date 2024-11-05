@@ -1,7 +1,21 @@
 <div class="pin-edit-page__content-container">
     <div class="pin-edit-page__main-container">
         <div class="pin-edit-page__cover-container">
-            <img src="./assets/imgs/michael.jpg" alt="Image">
+            <div class="editpin__image">
+                <div class="editpin__image-container">
+                {{#if noImage}}
+                    <div class="noimage__icon">
+                        <img src="./assets/icons/check-photo.svg" alt="checkphoto">
+                    </div>
+                <div class="noimage__text">
+                    выберите файл или перетащите его сюда
+                </div>
+                {{else}}
+                    <img src="/assets/imgs/michael.jpg" alt="Image">
+                {{/if}}
+        </div>
+        <input id="editpin__image-input" type="file" name="image" accept="image/*">
+    </div>
         </div>
         <div class="pin-edit-page__inputs-container">
             {{{TitleInput}}}

@@ -5,8 +5,11 @@
 @import url(pages/signup/signup.css);
 @import url(pages/addPin/lookPin.css);
 @import url(pages/editPin/editPin.css);
+<<<<<<< HEAD
 @import url(pages/unknown/unknown.css);
 @import url(pages/profile/profile.css);
+=======
+>>>>>>> c8505d7 (added image input field)
 @import url(components/complex/header/header.css);
 @import url(components/complex/grid/grid.css);
 @import url(components/complex/pin/pin.css);
