@@ -67,6 +67,10 @@ export default class App {
 				history.pushState({}, '', ROUTES.editPin);
 				this.#renderEditPin();
 				break;
+			case ROUTES.createPin:
+				history.pushState({}, '', ROUTES.createPin);
+				this.#renderCreatePin();
+				break;
 			case ROUTES.profile:
 				history.pushState({}, '', ROUTES.profile);
 				this.#renderProfile();
@@ -106,13 +110,19 @@ export default class App {
 	#renderEditPin() {
 		const curPin = {
 			PinID: 3,
-			AuthorName: 'Mary Jane',
-			AuthorFollowersNumber: 100,
+			Title: 'Текущее название',
+			Description: 'Текущее описание',
+			PinBoard: 'Имя текущей доски',
 			MediaUrl:
 				'https://images.unsplash.com/photo-1580618432485-1e08c5039909?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy',
 			BoardID: 1,
 		};
-		const editPin = new EditPin(this.root, curPin);
+		const editPin = new EditPin(this.root, curPin, true);
+		editPin.renderTemplate();
+	}
+
+	#renderCreatePin() {
+		const editPin = new EditPin(this.root, null, false);
 		editPin.renderTemplate();
 	}
 
