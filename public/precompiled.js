@@ -116,6 +116,22 @@ templates['icon-button.hbs'] = template({"compiler":[8,">= 4.3.0"],"main":functi
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"state") : depth0)) != null ? lookupProperty(stack1,"iconPath") : stack1), depth0))
     + "\">\r\n</div>\r\n";
 },"useData":true});
+templates['board-edit-window.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
+    return "            <p class=\"board-edit-window__title\">Создайте доску</p>\r\n";
+},"3":function(container,depth0,helpers,partials,data) {
+    return "            <p class=\"board-edit-window__title\">Отредактируйте доску</p>\r\n";
+},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"board-edit-window__content-container\">\r\n    <div class=\"close-windows__block-container\">\r\n        <img src=\"./assets/icons/close.svg\" alt=\"Close\">\r\n    </div>\r\n\r\n    <div class=\"board-edit-window__main-container\">\r\n"
+    + ((stack1 = lookupProperty(helpers,"if").call(depth0 != null ? depth0 : (container.nullContext || {}),((stack1 = (depth0 != null ? lookupProperty(depth0,"state") : depth0)) != null ? lookupProperty(stack1,"CreateMode") : stack1),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data,"loc":{"start":{"line":7,"column":8},"end":{"line":11,"column":15}}})) != null ? stack1 : "")
+    + "\r\n        <div class=\"board-edit-window__data-container\">\r\n            <div class=\"board-edit-window__cover-container\">\r\n\r\n            </div>\r\n\r\n            <div class=\"board-edit-window__inputs-container\">\r\n\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
+},"useData":true});
 templates['grid.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
     var stack1;
 

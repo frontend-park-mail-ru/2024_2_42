@@ -14,6 +14,7 @@
 @import url(components/boards-list/boards-list.css);
 @import url(components/details-menu/details-menu.css);
 @import url(components/drop-down-menu/drop-down-menu.css);
+@import url(components/complex/board-edit-window/board-edit-window.css);
 
 @import url(./constants.css);
 

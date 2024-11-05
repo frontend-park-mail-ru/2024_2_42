@@ -61,4 +61,7 @@
 
 	--pinset-delete-button-color: #C20000;
 	--pinset-delete-button-hovered-color: #910000;
+
+	--pinset-close-modal-window-button-background-color: #D4D4D4;
+	--pinset-modal-window-title-color: #4D4D4D;
 }

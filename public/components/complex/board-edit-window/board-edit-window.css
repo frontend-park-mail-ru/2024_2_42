@@ -1,0 +1,55 @@
+.board-edit-window__content-container {
+    width: 35%;
+    height: 55%;
+    position: fixed;
+    background-color: white;
+    border-radius: 20px;
+    padding: 40px;
+    z-index: 99999;
+}
+
+.close-windows__block-container {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--pinset-close-modal-window-button-background-color);
+}
+
+.close-windows__block-container img {
+    width: 30px;
+    height: 30px;
+}
+
+.close-windows__block-container:hover {
+    cursor: pointer;
+}
+
+.board-edit-window__main-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.board-edit-window__title {
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--pinset-modal-window-title-color);
+}
+
+.board-edit-window__data-container {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}

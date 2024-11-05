@@ -10,6 +10,8 @@ import { SaveBoxComponent as SaveBox } from '../savebox/savebox.js';
 import { BoardsListComponent as BoardsList } from '../../boards-list/boards-list.js';
 import { DetailsMenuComponent as DetailsMenu } from '../../details-menu/details-menu.js';
 
+import { BoardEditWindowComponent as BoardEditWindow } from '../board-edit-window/board-edit-window.js';
+
 const DEFAULT_FULLPAGE_WIDTH = 1920;
 const DEFAULT_COLUMNS_N_FOR_FULLPAGE = 7;
 
@@ -100,15 +102,15 @@ export class GridComponent extends BaseComponent {
 			const pinContainer = document.querySelector(`.pin__content-container-${pin.PinID}`);
 			if (pinContainer) {
 				const pinImage = document.querySelector(`.pin__image-${pin.PinID}`);
-	
+
 				pinContainer.style.width = pinImage.style.width = `${columnWidth}px`;
-	
+
 				// Next column index to insert the pinContainer
 				const minIdx = heights.indexOf(Math.min(...heights));
-	
+
 				pinContainer.style.top = `${heights[minIdx] + heightGutter + headerHeight}px`;
 				pinContainer.style.left = `${minIdx * columnWidth + widthGutter * (minIdx + 1)}px`;
-	
+
 				heights[minIdx] += pinContainer.offsetHeight + heightGutter;
 			}
 		}
@@ -140,7 +142,7 @@ export class GridComponent extends BaseComponent {
 		let newColumnN = Math.floor(this.parentContainerWidth / this.parentContainerColumnsRatio);
 		if (newColumnN == 0)
 			newColumnN = 1;
-		
+
 		return newColumnN;
 	}
 
@@ -324,10 +326,17 @@ export class GridComponent extends BaseComponent {
 			if (root.contains(transparentBackground)) {
 				root.removeChild(transparentBackground);
 			}
+			const bluredDarkBackground = document.getElementById('page__dark-blur-container');
+			if (root.contains(bluredDarkBackground)) {
+				root.removeChild(bluredDarkBackground);
+			}
 			if (root.contains(pageBluredBackground)) {
 				root.removeChild(pageBluredBackground);
 			}
-
+			const modalWindow = document.querySelector('.board-edit-window__content-container');
+			if (root.contains(modalWindow)) {
+				root.removeChild(modalWindow);
+			}
 		}
 
 		document.removeEventListener('keydown', this.removePreviewOnEscape);
@@ -419,6 +428,7 @@ export class GridComponent extends BaseComponent {
 
 			saveBoxContentContainer.style.top = saveBtnContainer.clientHeight + saveBoxMarginTop + 'px';
 
+			this.addBoardCreateBtnListener();
 			this.addSearchInputListener(boards);
 			this.addInputClearBtnListener(boards);
 			this.addSaveToBoardListener(boards);
@@ -431,6 +441,36 @@ export class GridComponent extends BaseComponent {
 				}
 			}
 		}
+	}
+
+	addBoardCreateBtnListener() {
+		const root = document.getElementById('root');
+		const boardCreateBtn = document.querySelector('.savebox__create-board-button');
+		boardCreateBtn.addEventListener('click', (event) => {
+			event.preventDefault();
+
+			const pageBluredBackground = document.createElement('div');
+			pageBluredBackground.id = 'page__dark-blur-container';
+
+			pageBluredBackground.style.height = `${document.body.scrollHeight}px`;
+			pageBluredBackground.style.zIndex = 9999;
+
+			root.appendChild(pageBluredBackground);
+
+			const boardEditModalWindow = new BoardEditWindow(this.Parent, {
+				CreateMode: true,
+			});
+			root.insertAdjacentHTML('beforeend', boardEditModalWindow.renderTemplate());
+
+			const windowCloseBtn = document.querySelector('.close-windows__block-container');
+			windowCloseBtn.addEventListener('click', (event) => {
+				event.preventDefault();
+
+				const modalWindow = document.querySelector('.board-edit-window__content-container');
+				root.removeChild(modalWindow);
+				root.removeChild(pageBluredBackground);
+			});
+		});
 	}
 
 	/**
@@ -465,12 +505,12 @@ export class GridComponent extends BaseComponent {
 			const detailsMenu = new DetailsMenu(this.Parent, options);
 			const renderedDetailsMenu = detailsMenu.renderTemplate();
 			document.querySelector('.preview__side-menu-more-container').insertAdjacentHTML('beforeend', renderedDetailsMenu);
-	
+
 			this.addTransparentLayoutForDetailsMenu();
 
 			const detailMenuContainer = document.querySelector('.details-menu__content-container');
 			const menuMoreElement = document.querySelector('.preview__side-menu-more');
-	
+
 			const detailMenuContainerMarginTop = -15;
 			detailMenuContainer.style.top = menuMoreElement.clientHeight + detailMenuContainerMarginTop + 'px';
 
