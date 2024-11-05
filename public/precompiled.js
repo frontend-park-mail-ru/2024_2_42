@@ -265,6 +265,102 @@ templates['details-menu.hbs'] = template({"1":function(container,depth0,helpers,
 templates['drop-down-menu.hbs'] = template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<div class=\"drop-down-menu__content-container\">\n    <div class=\"drop-down-menu__options-list-container\">\n        <a class=\"drop-down-menu__user-option\" >\n            <img class=\"drop-down-menu__user-option-icon\" src=\"./assets/icons/user.svg\" alt=\"Profile\">\n            <p class=\"drop-down-menu__user-option-text\">Профиль</p>\n        </a>\n        <a class=\"drop-down-menu__settings-option\" >\n            <img class=\"drop-down-menu__settings-option-icon\" src=\"./assets/icons/settings.svg\" alt=\"Settings\">\n            <p class=\"drop-down-menu__settings-option-text\">Настройки</p>\n        </a>\n        <a class=\"drop-down-menu__logout-option\" >\n            <img class=\"drop-down-menu__logout-option-icon\" src=\"./assets/icons/logout.svg\" alt=\"Logout\">\n            <p class=\"drop-down-menu__logout-option-text\">Выйти</p>\n        </a>\n    </div>\n</div>\n";
 },"useData":true});
+templates['input-text-area.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.hooks.helperMissing, alias3="function", alias4=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "            <span class=\"icon\" style=\"margin-right: "
+    + alias4(((helper = (helper = lookupProperty(helpers,"iconMargin") || (depth0 != null ? lookupProperty(depth0,"iconMargin") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"iconMargin","hash":{},"data":data,"loc":{"start":{"line":5,"column":52},"end":{"line":5,"column":66}}}) : helper)))
+    + ";\">\n                <img src=\""
+    + alias4(((helper = (helper = lookupProperty(helpers,"icon") || (depth0 != null ? lookupProperty(depth0,"icon") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"icon","hash":{},"data":data,"loc":{"start":{"line":6,"column":26},"end":{"line":6,"column":34}}}) : helper)))
+    + "\" alt=\"icon\" />\n            </span>\n";
+},"3":function(container,depth0,helpers,partials,data) {
+    var helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return " placeholder=\""
+    + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"placeHolder") || (depth0 != null ? lookupProperty(depth0,"placeHolder") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"placeHolder","hash":{},"data":data,"loc":{"start":{"line":11,"column":45},"end":{"line":11,"column":60}}}) : helper)))
+    + "\" ";
+},"5":function(container,depth0,helpers,partials,data) {
+    var helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return " maxlength=\""
+    + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"maxLength") || (depth0 != null ? lookupProperty(depth0,"maxLength") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"maxLength","hash":{},"data":data,"loc":{"start":{"line":12,"column":41},"end":{"line":12,"column":54}}}) : helper)))
+    + "\" ";
+},"7":function(container,depth0,helpers,partials,data) {
+    var helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return " style=\"font-size: "
+    + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"fontSize") || (depth0 != null ? lookupProperty(depth0,"fontSize") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"fontSize","hash":{},"data":data,"loc":{"start":{"line":13,"column":47},"end":{"line":13,"column":59}}}) : helper)))
+    + ";\" ";
+},"9":function(container,depth0,helpers,partials,data) {
+    var helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return " style=\"min-height: "
+    + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"minHeight") || (depth0 != null ? lookupProperty(depth0,"minHeight") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"minHeight","hash":{},"data":data,"loc":{"start":{"line":14,"column":49},"end":{"line":14,"column":62}}}) : helper)))
+    + ";\" ";
+},"11":function(container,depth0,helpers,partials,data) {
+    var helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return " style=\"max-height: "
+    + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"maxHeight") || (depth0 != null ? lookupProperty(depth0,"maxHeight") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"maxHeight","hash":{},"data":data,"loc":{"start":{"line":15,"column":49},"end":{"line":15,"column":62}}}) : helper)))
+    + ";\" ";
+},"13":function(container,depth0,helpers,partials,data) {
+    return " oninput=\"this.style.height = 'auto'; this.style.height = this.scrollHeight + 'px'\" ";
+},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"input-text-area\">\n    <label class=\"input-text-area-title\">"
+    + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"title") || (depth0 != null ? lookupProperty(depth0,"title") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"title","hash":{},"data":data,"loc":{"start":{"line":2,"column":41},"end":{"line":2,"column":50}}}) : helper)))
+    + "</label>\n    <div class=\"textarea-container\">\n"
+    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"icon") : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":4,"column":8},"end":{"line":8,"column":15}}})) != null ? stack1 : "")
+    + "        <textarea\n            class=\"input-area\"\n            "
+    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"placeHolder") : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":11,"column":12},"end":{"line":11,"column":69}}})) != null ? stack1 : "")
+    + "\n            "
+    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"maxLength") : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":12,"column":12},"end":{"line":12,"column":63}}})) != null ? stack1 : "")
+    + "\n            "
+    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"fontSize") : depth0),{"name":"if","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":13,"column":12},"end":{"line":13,"column":69}}})) != null ? stack1 : "")
+    + "\n            "
+    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"minHeight") : depth0),{"name":"if","hash":{},"fn":container.program(9, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":14,"column":12},"end":{"line":14,"column":72}}})) != null ? stack1 : "")
+    + "\n            "
+    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"maxHeight") : depth0),{"name":"if","hash":{},"fn":container.program(11, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":15,"column":12},"end":{"line":15,"column":72}}})) != null ? stack1 : "")
+    + "\n            "
+    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"autoExpand") : depth0),{"name":"if","hash":{},"fn":container.program(13, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":16,"column":12},"end":{"line":16,"column":121}}})) != null ? stack1 : "")
+    + "\n        ></textarea>\n    </div>\n</div>\n";
+},"useData":true});
 templates['input.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
     return "input-error";
 },"3":function(container,depth0,helpers,partials,data) {
@@ -375,7 +471,7 @@ templates['lookPin.hbs'] = template({"compiler":[8,">= 4.3.0"],"main":function(c
     + " Followers</p>\n                </div>\n	        </div>\n            <div class=\"pin__creature-time\">\n                1 месяц назад\n            </div>\n            <div class=\"pin__creature-place\">\n                Россия, Москва\n            </div>\n        </div>\n        <div class=\"lookpin__header\">\n            Готовы к будущему ? Красочный киберпанковский головной убор\n        </div>\n        <div class=\"lookpin__description\">\n            Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,\n            totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta\n            sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia\n            consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, \n            quia dolor sit amet consectetur adipisci[ng] velit, sed quia non numquam\n        </div>\n        <div clas=\"lookpin__href\">\n            <a href=\"https://www.insertcoinclothing.com/cyberpunk-2077\">Ссылка на пин</a>\n        </div>\n        <div class=\"lookpin__comments-num\">\n            11 комментариев\n        </div>\n        <div class=\"lookpin__comments\">\n            <div class=\"comment\">\n                <img class=\"comment__author-avatar\" src=\"./assets/imgs/avatar.jpg\">\n                <div class=\"comment__data\">\n                    <div class=\"comment__author-name\">\n                        Chris Isaak\n                    </div>\n                    <div class=\"comment__text\">\n                        Поздравляем с выдающимися решениями в области ИИ. В корпоративном секторе они создают волны.\n                    </div>\n                </div>\n            </div>\n            <div class=\"comment\">\n                <img class=\"comment__author-avatar\" src=\"./assets/imgs/avatar.jpg\">\n                <div class=\"comment__data\">\n                    <div class=\"comment__author-name\">\n                        Chris Isaak\n                    </div>\n                    <div class=\"comment__text\">\n                        Поздравляем с выдающимися решениями в области ИИ. В корпоративном секторе они создают волны.\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n";
 },"useData":true});
 templates['editPin.hbs'] = template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.hooks.helperMissing, alias3="function", alias4=container.lambda, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+    var stack1, helper, alias1=container.lambda, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
           return parent[propertyName];
         }
@@ -383,15 +479,13 @@ templates['editPin.hbs'] = template({"compiler":[8,">= 4.3.0"],"main":function(c
     };
 
   return "\n<div class=\"lookpin-container\">\n    <div class=\"lookpin__image\">\n        <img src=\"./assets/imgs/art.jpg\">\n    </div>\n    <div class=\"lookpin__data\">\n        <div class=\"lookpin__actions\">\n            <div class=\"lookpin__actions-account\">\n                "
-    + ((stack1 = ((helper = (helper = lookupProperty(helpers,"saveButton") || (depth0 != null ? lookupProperty(depth0,"saveButton") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"saveButton","hash":{},"data":data,"loc":{"start":{"line":9,"column":16},"end":{"line":9,"column":32}}}) : helper))) != null ? stack1 : "")
-    + "\n                "
-    + ((stack1 = ((helper = (helper = lookupProperty(helpers,"rewardButton") || (depth0 != null ? lookupProperty(depth0,"rewardButton") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"rewardButton","hash":{},"data":data,"loc":{"start":{"line":10,"column":16},"end":{"line":10,"column":34}}}) : helper))) != null ? stack1 : "")
+    + ((stack1 = ((helper = (helper = lookupProperty(helpers,"nameInput") || (depth0 != null ? lookupProperty(depth0,"nameInput") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"nameInput","hash":{},"data":data,"loc":{"start":{"line":9,"column":16},"end":{"line":9,"column":31}}}) : helper))) != null ? stack1 : "")
     + "\n            </div>\n            <div class=\"lookpin__actions-extra\">\n                <img class=\"lookpin__side-menu-bookmark\" src=\"./assets/icons/bookmark-empty.svg\" alt=\"bookmark it\">\n                <img class=\"lookpin__side-menu-comment\" src=\"./assets/icons/comment.svg\" alt=\"comment\">\n                <img class=\"lookpin__side-menu-share\" src=\"./assets/icons/share.svg\" alt=\"share\">\n            </div>\n        </div>\n        <div class=\"lookpin__info\">\n            <div class=\"pin__author-container-"
-    + container.escapeExpression(alias4(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"PinID") : stack1), depth0))
+    + container.escapeExpression(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"PinID") : stack1), depth0))
     + "\">\n		        <img class=\"pin__author-avatar\" src=\"./assets/imgs/avatar.jpg\">\n                <div class=\"pin__author-info\">\n                    <p class=\"pin__author-name\">"
-    + ((stack1 = alias4(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"AuthorName") : stack1), depth0)) != null ? stack1 : "")
+    + ((stack1 = alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"AuthorName") : stack1), depth0)) != null ? stack1 : "")
     + "</p>\n                    <p class=\"pin__author-followers-number\">"
-    + ((stack1 = alias4(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"AuthorFollowersNumber") : stack1), depth0)) != null ? stack1 : "")
+    + ((stack1 = alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"AuthorFollowersNumber") : stack1), depth0)) != null ? stack1 : "")
     + " Followers</p>\n                </div>\n	        </div>\n            <div class=\"pin__creature-time\">\n                1 месяц назад\n            </div>\n            <div class=\"pin__creature-place\">\n                Россия, Москва\n            </div>\n        </div>\n        <div class=\"lookpin__header\">\n            Готовы к будущему ? Красочный киберпанковский головной убор\n        </div>\n        <div class=\"lookpin__description\">\n            Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,\n            totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta\n            sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia\n            consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, \n            quia dolor sit amet consectetur adipisci[ng] velit, sed quia non numquam\n        </div>\n        <div clas=\"lookpin__href\">\n            <a href=\"https://www.insertcoinclothing.com/cyberpunk-2077\">Ссылка на пин</a>\n        </div>\n        <div class=\"lookpin__comments-num\">\n            11 комментариев\n        </div>\n        <div class=\"lookpin__comments\">\n            <div class=\"comment\">\n                <img class=\"comment__author-avatar\" src=\"./assets/imgs/avatar.jpg\">\n                <div class=\"comment__data\">\n                    <div class=\"comment__author-name\">\n                        Chris Isaak\n                    </div>\n                    <div class=\"comment__text\">\n                        Поздравляем с выдающимися решениями в области ИИ. В корпоративном секторе они создают волны.\n                    </div>\n                </div>\n            </div>\n            <div class=\"comment\">\n                <img class=\"comment__author-avatar\" src=\"./assets/imgs/avatar.jpg\">\n                <div class=\"comment__data\">\n                    <div class=\"comment__author-name\">\n                        Chris Isaak\n                    </div>\n                    <div class=\"comment__text\">\n                        Поздравляем с выдающимися решениями в области ИИ. В корпоративном секторе они создают волны.\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>";
 },"useData":true});
 templates['login.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {

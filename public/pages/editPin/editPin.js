@@ -1,6 +1,7 @@
 import { BaseComponent } from '../../components/base/base.js';
 import { PinComponent } from '../../components/complex/pin/pin.js';
 import { ButtonComponent } from '../../components/button/button.js';
+import { InputComponent } from '../../components/input/input.js';
 
 export default class EditPin extends BaseComponent {
   #pin;
@@ -10,22 +11,14 @@ export default class EditPin extends BaseComponent {
   }
 
   renderTemplate() {
-    const template = Handlebars.templates['lookPin.hbs'];
-    const saveButton = new ButtonComponent(this.Parent, {
-      label: 'Сохранить',
-      type: 'primary',
-      disabled: false,
-      className: 'lookpin-button',
+    const template = Handlebars.templates['editPin.hbs'];
+    const nameInput = new InputComponent(this.Parent, {
+      inputPlaceholder: 'Добавьте название',
+      typeOfInput: 'text',
     });
-    const rewardButton = new ButtonComponent(this.Parent, {
-      label: 'Наградить',
-      type: 'primary',
-      disabled: false,
-      className: 'lookpin-button',
-    });
+    const HtmlData = nameInput.renderTemplate();
     const renderedTemplate = template({
-      saveButton: saveButton.renderTemplate(),
-      rewardButton: rewardButton.renderTemplate(),
+      nameInput: HtmlData,
     });
     this.Parent.innerHTML += renderedTemplate;
   }
