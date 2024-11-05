@@ -1,6 +1,6 @@
 'use strict'
 
-import { BaseComponent } from "../base.js"
+import { BaseComponent } from "../base/base.js"
 
 /**
  * Drop down menu component which is used on profile icon hover.

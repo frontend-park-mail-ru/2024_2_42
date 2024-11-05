@@ -1,6 +1,6 @@
 'use strict'
 
-import { BaseComponent } from "../base.js"
+import { BaseComponent } from "../base/base.js"
 
 /**
  * Component that is used to display button with icon inside of it.
