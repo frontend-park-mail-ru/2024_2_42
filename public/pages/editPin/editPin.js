@@ -22,9 +22,6 @@ export default class EditPinComponent extends BaseComponent {
     this.handleImageUpload = this.handleImageUpload.bind(this);
   }
 
-  /**
-   * Renderes a template of the edit pin page.
-   */
   renderTemplate() {
     const template = Handlebars.templates['editPin.hbs'];
 
@@ -51,21 +48,14 @@ export default class EditPinComponent extends BaseComponent {
     });
 
     let renderedTemplate;
-    if (this.#editMode) {
-      renderedTemplate = template({
-        TitleInput: titleInput.renderTemplate(),
-        DescriptionInput: descriptionInput.renderTemplate(),
-        PublishButton: publishButton.renderTemplate(),
-        InEditMode: this.#editMode,
-        PinBoard: this.#pin.PinBoard,
-      });
-    } else {
-      renderedTemplate = template({
-        TitleInput: titleInput.renderTemplate(),
-        DescriptionInput: descriptionInput.renderTemplate(),
-        PublishButton: publishButton.renderTemplate(),
-      });
-    }
+    renderedTemplate = template({
+      TitleInput: titleInput.renderTemplate(),
+      DescriptionInput: descriptionInput.renderTemplate(),
+      PublishButton: publishButton.renderTemplate(),
+      InEditMode: this.#editMode,
+      PinBoard: this.#pin.PinBoard,
+      noImage: true,
+    });
 
     this.Parent.insertAdjacentHTML('beforeend', renderedTemplate);
     const imageContainer = this.Parent.querySelector(

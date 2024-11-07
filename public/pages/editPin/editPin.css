@@ -1,82 +1,27 @@
-.pin-edit-page__content-container {
+html, body {
+    height: 100%;
+}
+
+
+.editpin-container{
+    margin-left: 15rem;
+    margin-right: 15rem;
+    width: calc(100% - 30rem);
+    height: 80%;
+    background-color: var(--project-primary-white);;
+    display: flex;
+    gap: 1rem;
+}
+
+.editpin__data{
     width: 50%;
-    height: 60%;
-    position: fixed;
-    background-color: aquamarine;
-    border-radius: 20px;
-    padding: 40px;
-    z-index: 99999;
-}
-
-.pin-edit-page__cover-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.pin-edit-page__cover-container img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-    overflow: hidden
-}
-
-.pin-edit-page__main-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.pin-edit-page__inputs-container {
+    padding: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.pin-edit-page__cover-container {
-    width: 100%;
-    height: 100%;
-    background-color: antiquewhite;
-}
-
-.pin-edit-page__inputs-container {
-    width: 100%;
-    height: 100%;
-    background-color: aqua;
-}
-
-.pin-edit-page__board-selector {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 70%;
-    border: 2px solid var(--pinset-create-inputs-placeholder-text-color);
-    border-radius: 15px;
-    cursor: pointer;
-    margin: 10px;
-}
-
-.pin-edit-page__board-selector-container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.pin-edit-page__board-selector-container-text {
-    margin: 0 0 0 10px;
-    font-size: 16px;
-    color: var(--pinset-create-inputs-placeholder-text-color);
-}
-
-.pin-edit-page__board-selector-container-icon {
-    width: 30px;
-    height: 30px;
+    gap: 0.7rem;
+    background-color: var(--project-primary-white);
+    border-radius: 5%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
 .editpin__image{
@@ -84,35 +29,96 @@
 }
 
 .editpin__image-container{
-    padding: 10px;
-    background-color: var(--project-primary-grey);
-    display: flex;
     height: 100%;
-    box-sizing: border-box;
+    width: 100%;
+    border-radius: 5%;
+    display: flex;
     flex-direction: column;
     justify-content: center;
-    border-radius: 5%;
-}
-
-.editpin__image input {
-    display: none;
+    background-color: var(--project-primary-grey);
 }
 
 .noimage__icon{
-    height: 30%;
     width: 100%;
+    height: 30%;
     display: flex;
     justify-content: center;
 }
 
 .noimage__text{
-    text-align: center;
+    height: 20%;
     color: var(--project-primary-white);
+    text-align: center;
 }
 
+#editpin__image-input{
+    display: none;
+}
 
-.editpin__image-container img {
+.editpin__image img {
     width: 100%;
     height: 100%;
     border-radius: 5%;
 }
+
+.editpin__data > div {
+    width: 100%;
+    height: 10%;
+}
+
+.editpin__data .input-container{
+    width: 100%;
+    height: 100%;
+}
+
+.editpin__data .input-icons-wrapper{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.editpin__data input {
+    width: 100%;
+    height: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.editpin__pinboard {
+    background-color: var(--header-nav-background-color);
+    border: 2px solid var(--project-primary-grey);
+    border-radius: 10px;
+    display: flex;
+}
+
+.editpin__pinboard-text {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.editpin__submit {
+    display: flex;
+    justify-content: center;
+}
+
+.editpin__submit button {
+    height: 100%;
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

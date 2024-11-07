@@ -1,37 +1,43 @@
-<div class="pin-edit-page__content-container">
-    <div class="pin-edit-page__main-container">
-        <div class="pin-edit-page__cover-container">
-            <div class="editpin__image">
-                <div class="editpin__image-container">
-                {{#if noImage}}
-                    <div class="noimage__icon">
-                        <img src="./assets/icons/check-photo.svg" alt="checkphoto">
-                    </div>
-                <div class="noimage__text">
-                    выберите файл или перетащите его сюда
+
+<div class="editpin-container">
+    <div class="editpin__image">
+        <div class="editpin__image-container">
+            {{#if noImage}}
+                <div class="noimage__icon">
+                    <img src="./assets/icons/check-photo.svg" alt="checkphoto">
                 </div>
-                {{else}}
-                    <img src="/assets/imgs/michael.jpg" alt="Image">
-                {{/if}}
+            <div class="noimage__text">
+                выберите файл или перетащите его сюда
+            </div>
+            {{else}}
+                <img src="/assets/imgs/michael.jpg" alt="Image">
+            {{/if}}
         </div>
         <input id="editpin__image-input" type="file" name="image" accept="image/*">
     </div>
-        </div>
-        <div class="pin-edit-page__inputs-container">
+    <div class="editpin__data">
+        <div class="editpin__title">
             {{{TitleInput}}}
+        </div>
+        <div class="editpin__description">
             {{{DescriptionInput}}}
-            <div class="pin-edit-page__board-selector">
-                <div class="pin-edit-page__board-selector-container">
-                    {{#if InEditMode}}
-                        <p class="pin-edit-page__board-selector-container-text">{{{PinBoard}}}</p>
-                    {{else}}
-                        <p class="pin-edit-page__board-selector-container-text">Выберите доску *</p>
-                    {{/if}}
+        </div>
+        <div class="editpin__pinboard">
+            <div class="editpin__pinboard-text">Выберите доску</div>
+            {{!-- <div class="editpin__pinboard-icon">
 
-                    <img class="pin-edit-page__board-selector-container-icon" src="./assets/icons/expand-list.svg" alt="expand">
-                </div>
-            </div>
+            </div> --}}
+        </div>
+        <div class="editpin__submit">
             {{{PublishButton}}}
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
