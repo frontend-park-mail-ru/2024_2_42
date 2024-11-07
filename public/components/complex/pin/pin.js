@@ -8,19 +8,19 @@ import { BaseComponent } from '../../base.js';
  */
 export class PinComponent extends BaseComponent {
 	#state = {
-		PinID: 0,
-		AuthorAvatar: "",
-		AuthorName: "",
-		MediaUrl: "",
+		pin_id: 0,
+		author_avatar: '',
+		author_name: '',
+		media_url: '',
 	};
 
 	/**
 	 * Creates an instance of PinComponent.
 	 * @param {HTMLElement} parent - The parent element for rendering the pin.
 	 * @param {Object} [state=this.#state] - The initial state of the pin.
-	 * @param {string} state.AuthorAvatar - The author avatar.
-	 * @param {string} state.AuthorName - The author name.
-	 * @param {string} state.MediaUrl - Url link associated with the pin.
+	 * @param {string} state.author_avatar - The author avatar.
+	 * @param {string} state.author_name - The author name.
+	 * @param {string} state.media_url - Url link associated with the pin.
 	 */
 	constructor(state, parent) {
 		super(parent, state);

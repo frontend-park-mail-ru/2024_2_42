@@ -56,10 +56,19 @@ export const signupConfig = {
 	className: 'signup-form',
 	text: 'Это форма регистрации',
 	inputs: {
+		nickName: {
+			inputSize: 'input_large',
+			typeOfInput: 'text',
+			inputPlaceholder: 'Логин',
+			inputHelperText: true,
+			isDisabled: false,
+			valid: false,
+			rightIconClickable: true,
+		},
 		userName: {
 			inputSize: 'input_large',
 			typeOfInput: 'text',
-			inputPlaceholder: 'Имя пользователя',
+			inputPlaceholder: 'Имя',
 			inputHelperText: true,
 			isDisabled: false,
 			valid: false,

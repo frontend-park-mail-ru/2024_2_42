@@ -67,6 +67,7 @@ export class GridComponent extends BaseComponent {
 
 		// Render each PinComponent using its template
 		for (const pinData of this.#pins) {
+			pinData.media_url = pinData.media_url.replace('http://minio:9000', 'http://localhost:9000');
 			const newPin = new PinComponent(pinData);
 			pinsToRender.push(newPin);
 		};
@@ -97,9 +98,9 @@ export class GridComponent extends BaseComponent {
 		const columnWidth = (this.parentContainerWidth - widthGutter * (columnsN + 1)) / columnsN;
 
 		for (const pin of this.#pins) {
-			const pinContainer = document.querySelector(`.pin__content-container-${pin.PinID}`);
+			const pinContainer = document.querySelector(`.pin__content-container-${pin.pin_id}`);
 			if (pinContainer) {
-				const pinImage = document.querySelector(`.pin__image-${pin.PinID}`);
+				const pinImage = document.querySelector(`.pin__image-${pin.pin_id}`);
 	
 				pinContainer.style.width = pinImage.style.width = `${columnWidth}px`;
 	
@@ -149,14 +150,13 @@ export class GridComponent extends BaseComponent {
 	 * @param {Object} pin - pin object containing its information including ID and media url.
 	 */
 	buildPinPreview(pin) {
-		const pinPreviewBtn = document.querySelector(`.pin__image-preview-button-${pin.PinID}`);
+		const pinPreviewBtn = document.querySelector(`.pin__image-preview-button-${pin.pin_id}`);
 		const parent = document.getElementById('root');
 
 		const previewState = {
-			MediaUrl: pin.MediaUrl,
+			MediaUrl: pin.media_url,
 			AuthorAvatarUrl: './assets/imgs/avatar.jpg',
-			AuthorName: pin.AuthorName,
-			AuthorFollowersNumber: pin.AuthorFollowersNumber,
+			AuthorName: pin.author_id,
 			Boards: [
 				{
 					BoardCoverUrl: './assets/imgs/michael.jpg',
@@ -245,8 +245,8 @@ export class GridComponent extends BaseComponent {
 			this.addBookmarkBtnListener(previewState);
 			this.addSaveBtnListener(previewState.Boards);
 			this.addMoreBtnListener(previewState.DetailsOptions);
-
-			const pinImageElement = document.querySelector(`.pin__image-${pin.PinID}`);
+			
+			const pinImageElement = document.querySelector(`.pin__image-${pin.pin_id}`);
 
 			let intWidth = parseInt(pinImageElement.style.width, 10);
 			let intHeight = parseInt(pinImageElement.style.height, 10);

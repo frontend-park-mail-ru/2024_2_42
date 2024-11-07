@@ -53,7 +53,7 @@ export const getMethod = async (apiRoute, shouldLog) => {
 	}).catch(() => {
 		return undefined
 	});
-
+	
 	return response;
 };
 

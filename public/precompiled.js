@@ -183,7 +183,7 @@ templates['pin.hbs'] = template({"1":function(container,depth0,helpers,partials,
     };
 
   return "		<div class=\"pin__author-container-"
-    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"PinID") : stack1), depth0))
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"pin_id") : stack1), depth0))
     + "\">\r\n			<img class=\"pin__author-avatar\" src=\""
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"AuthorAvatar") : stack1), depth0))
     + "\">\r\n			<div class=\"pin__author-info\">\r\n				<p class=\"pin__author-name\">"
@@ -200,13 +200,13 @@ templates['pin.hbs'] = template({"1":function(container,depth0,helpers,partials,
     };
 
   return "<div class=\"pin__content-container-"
-    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"PinID") : stack1), depth0))
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"pin_id") : stack1), depth0))
     + "\">\r\n	<div class=\"pin__image-container\">\r\n		<img class=\"pin__image-"
-    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"PinID") : stack1), depth0))
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"pin_id") : stack1), depth0))
     + "\" src=\""
-    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"MediaUrl") : stack1), depth0))
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"media_url") : stack1), depth0))
     + "\">\r\n		<div class=\"pin__image-preview-button-"
-    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"PinID") : stack1), depth0))
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"pin_id") : stack1), depth0))
     + "\">\r\n			<img src=\"./assets/icons/magnifier.svg\" alt=\"Preview\">\r\n		</div>\r\n	</div>\r\n"
     + ((stack1 = lookupProperty(helpers,"unless").call(depth0 != null ? depth0 : (container.nullContext || {}),((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"imageOnly") : stack1),{"name":"unless","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":8,"column":1},"end":{"line":16,"column":12}}})) != null ? stack1 : "")
     + "</div>\r\n";

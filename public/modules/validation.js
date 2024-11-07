@@ -97,6 +97,7 @@ export const validateInput = (input, rules) => {
 /**
  * Validates user input based on the given rules.
  *
+ * @param {boolean} [riles.isNickName=false] - If ture, validates the input as an Nickname.
  * @param {boolean} [rules.isEmail=false] - If true, validates the input as an email.
  * @param {boolean} [rules.isPassword=false] - If true, validates the input as a password (8-24 characters, must contain at least one uppercase letter and one digit).
  * @param {boolean} [rules.isNickname=false] - If true, validates the input as a nickname (3-20 characters, only digits, letters, and underscores allowed).
@@ -104,6 +105,14 @@ export const validateInput = (input, rules) => {
  * @returns {{captions: string[]}} - An object indicating whether the input is valid and an error message if invalid.
  **/
 export const getCaptionSetForRule = (rules) => {
+	if (rules.isNickName) {
+		return [
+			'Nick name должен содержать:',
+			'• От 3 до 20 символов.',
+			'• Только буквы, цифры и символы \'_\'.',
+		];
+	}
+
 	if (rules.isUserName) {
 		return [
 			'Имя должно содержать:',

@@ -166,7 +166,7 @@ export class MainPageComponent extends BaseComponent {
 
                 const resp = await postMethod(BACKEND_LOGOUT_ROUTE, {}, true);
                 if (!resp.code_status) {
-                    document.cookie = "session_token" + '=; Max-Age=0'
+                    document.cookie = 'session_token' + '=; Max-Age=0'
                     this.Parent.innerHTML = '';
                     app.renderPage(ROUTES.main);
                 }
