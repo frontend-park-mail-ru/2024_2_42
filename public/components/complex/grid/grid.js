@@ -158,76 +158,11 @@ export class GridComponent extends BaseComponent {
 			AuthorAvatarUrl: pin.author_info.avatar_url,
 			AuthorName: pin.author_info.nick_name,
 			AuthorFollowersNumber: pin.author_info.followings_count,
-			Boards: [
-				{
-					BoardCoverUrl: './assets/imgs/michael.jpg',
-					BoardName: 'SingersSingersSingers',
-					Private: true,
-				},
-				{
-					BoardCoverUrl: './assets/imgs/recipe.jpg',
-					BoardName: 'Recipes',
-					Private: true,
-				},
-				{
-					BoardCoverUrl: './assets/imgs/art.jpg',
-					BoardName: 'Work-of-art',
-					Private: false,
-				},
-				{
-					BoardCoverUrl: './assets/imgs/michael.jpg',
-					BoardName: 'Singers 2Singers 2Singers 2',
-					Private: false,
-				},
-				{
-					BoardCoverUrl: './assets/imgs/recipe.jpg',
-					BoardName: 'Recipes 2',
-					Private: true,
-				},
-				{
-					BoardCoverUrl: './assets/imgs/art.jpg',
-					BoardName: 'Work-of-art 2',
-					Private: true,
-				},
-				{
-					BoardCoverUrl: './assets/imgs/michael.jpg',
-					BoardName: 'Singers 3',
-					Private: false,
-				},
-				{
-					BoardCoverUrl: './assets/imgs/recipe.jpg',
-					BoardName: 'Recipes 3',
-					Private: true,
-				},
-				{
-					BoardCoverUrl: './assets/imgs/art.jpg',
-					BoardName: 'Work-of-art 3',
-					Private: false,
-				},
-			],
-			DetailsOptions: [
-				{
-					ID: 1,
-					Text: 'Открыть',
-					Download: false,
-				},
-				{
-					ID: 2,
-					Text: 'Скачать',
-					Download: true,
-					FilePath: pin.MediaUrl,
-				},
-				{
-					ID: 3,
-					Text: 'Не интересно',
-					Download: false,
-				},
-				{
-					ID: 4,
-					Text: 'Пожаловаться',
-					Download: false,
-				},
-			],
+			Boards: pin.available_boards.map(board => ({
+				BoardCoverUrl: board.board_cover || './default/cover.jpg',
+				BoardName: board.board_name,
+				Private: !board.public
+			})),
 			Bookmarked: false,
 			BookmarksNumber: 390,
 			ViewsNumber: 10_000_000,
