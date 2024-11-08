@@ -2,7 +2,7 @@
     {{#if boards}}
         {{#each boards}}
             <div class="savebox__board-selection savebox__board-selection-{{this.BoardName}}">
-                <input class="savebox__board-checkbox" type="checkbox" id="checkbox-{{this.BoardName}}" value="{{this.BoardName}}">
+                <input class="savebox__board-checkbox" type="radio" id="checkbox-{{this.BoardName}}" value="{{this.BoardName}}">
                 <div class="savebox__board-cover-container">
                     <img class="savebox__board-cover" src="{{this.BoardCoverUrl}}" alt="cover">
                 </div>

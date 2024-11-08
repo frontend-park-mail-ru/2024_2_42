@@ -1,6 +1,6 @@
 'use strict';
 
-import { BaseComponent } from '../base.js';
+import { BaseComponent } from '../base/base.js';
 
 /**
  * Represents an Input Component.
@@ -20,7 +20,7 @@ export class InputComponent extends BaseComponent {
 	 * @param {Object} [state] - The initial state of the input component. (optional)
 	 * @param {Function} [changeHandler] - The function that will handle the input change event. (optional)
 	 */
-	constructor(parent, state = {}, changeHandler = () => {}) {
+	constructor(parent, state = {}, changeHandler = () => { }) {
 		super(parent, state);
 		this.#changeHandler = changeHandler;
 	}
@@ -32,13 +32,6 @@ export class InputComponent extends BaseComponent {
 	renderTemplate() {
 		const template = Handlebars.templates['input.hbs'];
 		const renderedTemplate = template(this.State);
-
-		const parent = this.Parent;
-		if (parent) {
-			parent.innerHTML += renderedTemplate;
-
-		}
-
 		return renderedTemplate;
 	}
 
@@ -66,5 +59,12 @@ export class InputComponent extends BaseComponent {
 	 */
 	getChangeHandler() {
 		return this.#changeHandler;
+	}
+
+	/**
+	 * Sets a value to input field.
+	 */
+	setValue(value) {
+		this.State.inputValue = value;
 	}
 }
