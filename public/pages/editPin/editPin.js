@@ -117,11 +117,12 @@ export default class EditPinComponent extends BaseComponent {
 
     const requestBody = JSON.stringify({
       author_id: 1,
+      board_id: 1,
       description: DescriptionValue,
       title: TitleValue,
       media_url: ImageUrl,
     });
-    
+
     console.log(requestBody);
 
     // await fetch('http://localhost:8080/create-pin', {
@@ -139,7 +140,7 @@ export default class EditPinComponent extends BaseComponent {
       body: requestBody,
     });
 
-    console.log(requestBody)
+    console.log(requestBody);
 
     console.log('fetch done successfully');
   }
