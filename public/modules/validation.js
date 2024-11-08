@@ -28,17 +28,38 @@ const EMAIL_PATTERN = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
  * console.log(result.isValid); // true
  *
  * @example
- * // Example 3: Validating a nickname
- * const result = validateInput('nickname_123', { isNickname: true });
+ * // Example 3: Validating a login
+ * const result = validateInput('login_123', { isNickname: true });
  * console.log(result.isValid); // true
  *
  * @example
  * // Example 4: Comparing two strings
  * const result = validateInput('password123', { compareWith: 'password123' });
  * console.log(result.isValid); // true
+ * 
+ * @example
+ * // Example 5: Validating an email
+ * const result = validateInput('example@mail.com', { isEmail: true });
+ * console.log(result.isValid); // true
  */
 export const validateInput = (input, rules) => {
 	// Nickname validation (3-20 characters, only digits, letters, and underscore)
+	if (rules.isNickName) {
+		if (input.length < 3 || input.length > 20) {
+			return {
+				isValid: false,
+				error: 'Имя должно содержать от 3 до 20 символов.',
+			};
+		}
+		if (!/^[A-Za-zА-Яа-я0-9_]+( )*[A-Za-zА-Яа-я0-9_]*$/.test(input)) {
+			return {
+				isValid: false,
+				error: 'Имя может состоять только из букв, цифр и символов \'_\'.',
+			};
+		}
+	}
+
+	// Login validation (3-20 characters, only digits, letters, and underscore)
 	if (rules.isUserName) {
 		if (input.length < 3 || input.length > 20) {
 			return {

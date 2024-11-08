@@ -7,10 +7,10 @@
 	</div>
 	{{#unless pin.imageOnly}}
 		<div class="pin__author-container-{{pin.pin_id}}">
-			<img class="pin__author-avatar" src="{{pin.AuthorAvatar}}">
+			<img class="pin__author-avatar" src="{{pin.author_info.avatar_url}}">
 			<div class="pin__author-info">
-				<p class="pin__author-name">{{{pin.AuthorName}}}</p>
-				<p class="pin__author-followers-number">{{{pin.AuthorFollowersNumber}}} Followers</p>
+				<p class="pin__author-name">{{{pin.author_info.nick_name}}}</p>
+				<p class="pin__author-followers-number">{{{pin.author_info.followings_count}}} Followers</p>
 			</div>
 		</div>
 	{{/unless}}

@@ -185,11 +185,11 @@ templates['pin.hbs'] = template({"1":function(container,depth0,helpers,partials,
   return "		<div class=\"pin__author-container-"
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"pin_id") : stack1), depth0))
     + "\">\r\n			<img class=\"pin__author-avatar\" src=\""
-    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"AuthorAvatar") : stack1), depth0))
+    + alias2(alias1(((stack1 = ((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"author_info") : stack1)) != null ? lookupProperty(stack1,"avatar_url") : stack1), depth0))
     + "\">\r\n			<div class=\"pin__author-info\">\r\n				<p class=\"pin__author-name\">"
-    + ((stack1 = alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"AuthorName") : stack1), depth0)) != null ? stack1 : "")
+    + ((stack1 = alias1(((stack1 = ((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"author_info") : stack1)) != null ? lookupProperty(stack1,"nick_name") : stack1), depth0)) != null ? stack1 : "")
     + "</p>\r\n				<p class=\"pin__author-followers-number\">"
-    + ((stack1 = alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"AuthorFollowersNumber") : stack1), depth0)) != null ? stack1 : "")
+    + ((stack1 = alias1(((stack1 = ((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"author_info") : stack1)) != null ? lookupProperty(stack1,"followings_count") : stack1), depth0)) != null ? stack1 : "")
     + " Followers</p>\r\n			</div>\r\n		</div>\r\n";
 },"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, alias2=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {

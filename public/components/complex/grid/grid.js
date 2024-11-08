@@ -155,8 +155,9 @@ export class GridComponent extends BaseComponent {
 
 		const previewState = {
 			MediaUrl: pin.media_url,
-			AuthorAvatarUrl: './assets/imgs/avatar.jpg',
-			AuthorName: pin.author_id,
+			AuthorAvatarUrl: pin.author_info.avatar_url,
+			AuthorName: pin.author_info.nick_name,
+			AuthorFollowersNumber: pin.author_info.followings_count,
 			Boards: [
 				{
 					BoardCoverUrl: './assets/imgs/michael.jpg',

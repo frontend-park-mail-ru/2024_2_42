@@ -236,12 +236,12 @@ export class SignUpComponent extends BaseComponent {
 		nickNameInput.addEventListener('input', (event) => {
 			event.preventDefault();
 	
-			const nickNameState = validateInput(nickNameInput.value, {
-				isUserName: true,
+			const inputState = validateInput(nickNameInput.value, {
+				isNickName: true,
 			});
-			if (nickNameInput.value.length > 0 && !nickNameState.isValid) {
-				this.#inputsErrors.nickName = nickNameState.error;
-				nickNameErrTextBlock.textContent = nickNameState.error;
+			if (nickNameInput.value.length > 0 && !inputState.isValid) {
+				this.#inputsErrors.nickName = inputState.error;
+				nickNameErrTextBlock.textContent = inputState.error;
 				nickNameErrBlock.appendChild(nickNameErrTextBlock);
 				nickNameErrBlock.style.display = '';
 				nickNameCaptionsBlock.style.display = 'none';
@@ -369,7 +369,7 @@ export class SignUpComponent extends BaseComponent {
 		signUpBtn.addEventListener('click', (event) => {
 			event.preventDefault();
 
-			const [_, email, password] = document.getElementsByClassName('input');
+			const [, email, password] = document.getElementsByClassName('input');
 			this.#inputsSavedValues = {
 				login: email.value,
 				password: password.value,
