@@ -1,6 +1,7 @@
 import { BaseComponent } from '../../components/base/base.js';
 import { ButtonComponent as Button } from '../../components/button/button.js';
 import { InputComponent } from '../../components/input/input.js';
+import { SaveBoxComponent } from '../../components/complex/savebox/savebox.js';
 
 /**
  * Component that is used to create and edit pins.
@@ -20,9 +21,11 @@ export default class EditPinComponent extends BaseComponent {
     this.#editMode = editMode;
     this.handleImageClick = this.handleImageClick.bind(this);
     this.handleImageUpload = this.handleImageUpload.bind(this);
+    this.uploadPinData = this.uploadPinData.bind(this);
   }
 
   renderTemplate() {
+    this.Parent.innerHTML = '';
     const template = Handlebars.templates['editPin.hbs'];
 
     const titleInput = new InputComponent(this.Parent, {
@@ -54,7 +57,9 @@ export default class EditPinComponent extends BaseComponent {
       PublishButton: publishButton.renderTemplate(),
       InEditMode: this.#editMode,
       PinBoard: this.#pin.PinBoard,
-      noImage: true,
+      Image: this.#pin.mediaUrl,
+      MediaUrl: this.#pin.mediaUrl,
+      BoardsList: boardsList.renderTemplate(),
     });
 
     this.Parent.insertAdjacentHTML('beforeend', renderedTemplate);
@@ -62,8 +67,10 @@ export default class EditPinComponent extends BaseComponent {
       '.editpin__image-container'
     );
     const imageInput = this.Parent.querySelector('#editpin__image-input');
+    const submitBtn = this.Parent.querySelector('.editpin__submit button');
     imageContainer.addEventListener('click', this.handleImageClick);
     imageInput.addEventListener('change', this.handleImageUpload);
+    submitBtn.addEventListener('click', this.uploadPinData);
   }
 
   handleImageClick(event) {
@@ -74,14 +81,55 @@ export default class EditPinComponent extends BaseComponent {
 
   async handleImageUpload(event) {
     event.preventDefault();
-    const imageInput = event.target;
+    let imageInput = event.target;
 
     if (imageInput.files && imageInput.files.length > 0) {
       const file = imageInput.files[0];
       const formData = new FormData();
-      formData.append(this.filename, file);
+      formData.append('file', file);
 
-      const responce = await fetch;
+      const response = await fetch('http://localhost:8080/image/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      console.log(data['media-urls'][0]);
+
+      this.#pin.mediaUrl = data['media-urls'][0].replace(
+        'http://minio:9000',
+        'http://localhost:9000'
+      );
+
+      console.log(this.#pin.mediaUrl);
+
+      this.renderTemplate();
     }
+  }
+
+  async uploadPinData(event) {
+    event.preventDefault();
+    const TitleValue = this.Parent.querySelector('.editpin__title input').value;
+    const DescriptionValue = this.Parent.querySelector(
+      '.editpin__description input'
+    ).value;
+    const ImageUrl = this.#pin.mediaUrl;
+    const BoardID = 1;
+
+    const requestBody = JSON.stringify({
+      author_id: 1,
+      board_id: BoardID,
+      description: DescriptionValue,
+      title: TitleValue,
+      media_url: ImageUrl,
+    });
+    console.log(requestBody);
+
+    await fetch('http://localhost:8080/create-pin', {
+      method: 'POST',
+      body: requestBody,
+    });
+    console.log('fetch done successfully');
   }
 }

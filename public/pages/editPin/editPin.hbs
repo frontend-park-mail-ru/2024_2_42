@@ -2,15 +2,15 @@
 <div class="editpin-container">
     <div class="editpin__image">
         <div class="editpin__image-container">
-            {{#if noImage}}
+            {{#if Image}}
+                <img src="{{MediaUrl}}" alt="Image">
+            {{else}}
                 <div class="noimage__icon">
                     <img src="./assets/icons/check-photo.svg" alt="checkphoto">
                 </div>
-            <div class="noimage__text">
-                выберите файл или перетащите его сюда
-            </div>
-            {{else}}
-                <img src="/assets/imgs/michael.jpg" alt="Image">
+                <div class="noimage__text">
+                    выберите файл или перетащите его сюда
+                </div>
             {{/if}}
         </div>
         <input id="editpin__image-input" type="file" name="image" accept="image/*">
@@ -22,12 +22,10 @@
         <div class="editpin__description">
             {{{DescriptionInput}}}
         </div>
-        <div class="editpin__pinboard">
+        {{!-- <div class="editpin__pinboard">
             <div class="editpin__pinboard-text">Выберите доску</div>
-            {{!-- <div class="editpin__pinboard-icon">
-
-            </div> --}}
-        </div>
+            {{{BoardsList}}}
+        </div> --}}
         <div class="editpin__submit">
             {{{PublishButton}}}
         </div>
