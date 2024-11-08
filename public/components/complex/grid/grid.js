@@ -66,17 +66,32 @@ export class GridComponent extends BaseComponent {
 		let pinsToRender = [];
 
 		// Render each PinComponent using its template
-		for (const pinData of this.#pins) {
-			pinData.media_url = pinData.media_url.replace('http://minio:9000', 'http://localhost:9000');
-			const newPin = new PinComponent(pinData);
-			pinsToRender.push(newPin);
-		};
+		if (this.#pins && this.#pins.length > 0) {
+			for (const pinData of this.#pins) {
+				pinData.media_url = pinData.media_url.replace('http://minio:9000', 'http://localhost:9000');
+				const newPin = new PinComponent(pinData);
+				pinsToRender.push(newPin);
+			}
+		} else {
+			// Вывод сообщения или пустого состояния
+			const noPinsMessage = document.createElement('div');
+			noPinsMessage.textContent = 'Нет доступных пинов.';
+			pinsToRender.push(noPinsMessage);
+		}
+		
+		
 
 		const renderedTemplate = template({
-			pins: pinsToRender.map((pin) => pin.renderTemplate())
+			pins: pinsToRender.map((pin) => {
+				if (typeof pin.renderTemplate === 'function') {
+					return pin.renderTemplate();
+				}
+				console.warn('Pin does not have renderTemplate function:', pin);
+				return null; // Или можно вернуть шаблон пустого пина, если требуется
+			}).filter(Boolean) // Убирает любые `null` из массива
 		});
+		
 
-		return renderedTemplate
 	}
 
 	/**
@@ -96,6 +111,10 @@ export class GridComponent extends BaseComponent {
 		}
 
 		const columnWidth = (this.parentContainerWidth - widthGutter * (columnsN + 1)) / columnsN;
+
+		if (!Array.isArray(this.#pins)) {
+			this.#pins = [];
+		}
 
 		for (const pin of this.#pins) {
 			const pinContainer = document.querySelector(`.pin__content-container-${pin.pin_id}`);

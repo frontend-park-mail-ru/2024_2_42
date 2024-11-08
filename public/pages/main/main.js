@@ -50,6 +50,10 @@ export class MainPageComponent extends BaseComponent {
 
         this.Parent.insertAdjacentHTML('beforeend', renderedTemplate);
 
+        if (!Array.isArray(this.#pins)) {
+            this.#pins = [];
+        }
+
         for (const pin of this.#pins) {
             grid.buildPinPreview(pin);
         }

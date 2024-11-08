@@ -59,7 +59,6 @@ export default class EditPinComponent extends BaseComponent {
       PinBoard: this.#pin.PinBoard,
       Image: this.#pin.mediaUrl,
       MediaUrl: this.#pin.mediaUrl,
-      BoardsList: boardsList.renderTemplate(),
     });
 
     this.Parent.insertAdjacentHTML('beforeend', renderedTemplate);
@@ -115,21 +114,33 @@ export default class EditPinComponent extends BaseComponent {
       '.editpin__description input'
     ).value;
     const ImageUrl = this.#pin.mediaUrl;
-    const BoardID = 1;
 
     const requestBody = JSON.stringify({
       author_id: 1,
-      board_id: BoardID,
       description: DescriptionValue,
       title: TitleValue,
       media_url: ImageUrl,
     });
+    
     console.log(requestBody);
+
+    // await fetch('http://localhost:8080/create-pin', {
+    //   method: 'POST',
+    //   body: requestBody,
+    // });
 
     await fetch('http://localhost:8080/create-pin', {
       method: 'POST',
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: requestBody,
     });
+
+    console.log(requestBody)
+
     console.log('fetch done successfully');
   }
 }
