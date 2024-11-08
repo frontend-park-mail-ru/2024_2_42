@@ -55,6 +55,7 @@ export class MainPageComponent extends BaseComponent {
         }
 
         for (const pin of this.#pins) {
+            console.log(pin)
             grid.buildPinPreview(pin);
         }
 

@@ -169,18 +169,20 @@ export class GridComponent extends BaseComponent {
 	 * @param {Object} pin - pin object containing its information including ID and media url.
 	 */
 	buildPinPreview(pin) {
+		console.log(`.pin__image-preview-button-${pin.pin_id}`);
 		const pinPreviewBtn = document.querySelector(`.pin__image-preview-button-${pin.pin_id}`);
-		const parent = document.getElementById('root');
+		console.log(typeof(pinPreviewBtn));
 
+		const parent = document.getElementById('root');
 		const previewState = {
 			MediaUrl: pin.media_url,
-			AuthorAvatarUrl: pin.author_info.avatar_url,
+			AuthorAvatarUrl: pin.author_info.avatar_url || './default/avatar.jpg',
 			AuthorName: pin.author_info.nick_name,
 			AuthorFollowersNumber: pin.author_info.followings_count,
-			Boards: pin.available_boards.map(board => ({
+			Boards: (pin.available_boards || []).map(board => ({
 				BoardCoverUrl: board.board_cover || './default/cover.jpg',
-				BoardName: board.board_name,
-				Private: !board.public
+				BoardName: board.board_name || '',
+				Private: !board.public || 'false'
 			})),
 			Bookmarked: false,
 			BookmarksNumber: 390,
@@ -189,37 +191,45 @@ export class GridComponent extends BaseComponent {
 
 		pinPreviewBtn.addEventListener('click', (event) => {
 			event.preventDefault();
-
 			// create expanded pin version
 			const preview = new Preview(parent, previewState);
 			const previewRendered = preview.renderTemplate();
-
+		
 			parent.insertAdjacentHTML('beforeend', previewRendered);
-
+		
 			// Adding buttons listeners
 			this.addBookmarkBtnListener(previewState);
 			this.addSaveBtnListener(previewState.Boards);
 			this.addMoreBtnListener(previewState.DetailsOptions);
-			
+		
 			const pinImageElement = document.querySelector(`.pin__image-${pin.pin_id}`);
-
-			let intWidth = parseInt(pinImageElement.style.width, 10);
-			let intHeight = parseInt(pinImageElement.style.height, 10);
-
-			const previewContainer = document.querySelector('.preview__content-container');
-			const previewTopSide = document.querySelector('.preview__stats-bookmarks-container');
-			const previewBottomSide = document.querySelector('.preview__author-container');
-			const previewRightSide = document.querySelector('.preview__side-menu-container');
-
-			previewContainer.style.width = `${intWidth * PREVIEW_IMG_X_FACTOR + previewRightSide.clientWidth}px`;
-			previewContainer.style.height = `${intHeight * PREVIEW_IMG_X_FACTOR + previewTopSide.clientHeight + previewBottomSide.clientHeight}px`;
-			previewContainer.style.marginTop = '3%';
-
+			if (pinImageElement) {
+				let intWidth = parseInt(pinImageElement.style.width, 10);
+				let intHeight = parseInt(pinImageElement.style.height, 10);
+		
+				const previewContainer = document.querySelector('.preview__content-container');
+				const previewTopSide = document.querySelector('.preview__stats-bookmarks-container');
+				const previewBottomSide = document.querySelector('.preview__author-container');
+				const previewRightSide = document.querySelector('.preview__side-menu-container');
+		
+				// Проверка на null перед использованием элементов
+				if (previewContainer && previewTopSide && previewBottomSide && previewRightSide) {
+					previewContainer.style.width = `${intWidth * PREVIEW_IMG_X_FACTOR + previewRightSide.clientWidth}px`;
+					previewContainer.style.height = `${intHeight * PREVIEW_IMG_X_FACTOR + previewTopSide.clientHeight + previewBottomSide.clientHeight}px`;
+					previewContainer.style.marginTop = '3%';
+				} else {
+					console.error('One or more preview container elements are missing');
+				}
+			} else {
+				console.error('Pin image element not found');
+			}
+		
 			// Create dark transparent background and add event listeners
 			this.createBackgroundListeners();
-
+		
 			this.#boardsToSaveTo = [];
 		});
+		
 	}
 
 	/**

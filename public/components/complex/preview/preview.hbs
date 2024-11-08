@@ -1,10 +1,10 @@
 <div class="preview__content-container preview__content-container-appearence" tabindex="0">
     <div class="preview__upper-menu-container">
         <div class="preview__author-container">
-            <img class="preview__author-avatar" src="{{preview.AuthorAvatarUrl}}">
+            <img class="preview__author-avatar" src="{{preview.author_info.avatar_url}}">
             <div class="preview__author-info">
-                <p class="preview__author-name">{{{preview.AuthorName}}}</p>
-                <p class="preview__author-followers-number">{{{preview.AuthorFollowersNumber}}} Followers</p>
+                <p class="preview__author-name">{{{preview.author_info.nick_name}}}</p>
+                <p class="preview__author-followers-number">{{{preview.author_info.followings_count}}} Followers</p>
             </div>
         </div>
 
@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <img id="preview__image" class="preview__image-class" src="{{preview.MediaUrl}}" alt="Preview">
+    <img id="preview__image" class="preview__image-class" src="{{preview.media_url}}" alt="Preview">
 
     <div class="preview__side-menu-container">
         <div class="preview__side-menu-more-container">
