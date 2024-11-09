@@ -2,6 +2,8 @@ import { BaseComponent } from '../../components/base/base.js';
 import { ButtonComponent as Button } from '../../components/button/button.js';
 import { InputComponent } from '../../components/input/input.js';
 import { SaveBoxComponent } from '../../components/complex/savebox/savebox.js';
+import { app } from '../../index.js';
+import { ROUTES } from '../../constants/routes.js';
 
 /**
  * Component that is used to create and edit pins.
@@ -142,5 +144,7 @@ export default class EditPinComponent extends BaseComponent {
     console.log(requestBody);
 
     console.log('fetch done successfully');
+    this.Parent.innerHTML = '';
+    app.renderPage(ROUTES.main);
   }
 }
