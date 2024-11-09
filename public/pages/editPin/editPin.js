@@ -119,7 +119,6 @@ export default class EditPinComponent extends BaseComponent {
 
     const requestBody = JSON.stringify({
       author_id: 1,
-      board_id: 1,
       description: DescriptionValue,
       title: TitleValue,
       media_url: ImageUrl,
