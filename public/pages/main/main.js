@@ -42,9 +42,10 @@ export class MainPageComponent extends BaseComponent {
     const template = Handlebars.templates['main.hbs'];
 
     const grid = new Grid(this.Parent, this.#pins, true);
+    const headerPart = new Header(this.Parent, await isAuthorized());
 
     const renderedTemplate = template({
-      header: new Header(this.Parent, await isAuthorized()).renderTemplate(),
+      header: headerPart.renderTemplate(),
       grid: grid.renderTemplate(),
     });
     console.log(renderedTemplate);
@@ -69,14 +70,16 @@ export class MainPageComponent extends BaseComponent {
       true
     );
 
-    const createBtn = document.querySelector(
-      '.header__create-btn-container button'
-    );
-    console.log('createBtn', createBtn);
-    createBtn.addEventListener('click', (event) => {
-      event.preventDefault();
-      app.render(ROUTES.editPin);
-    });
+    if (headerPart.isAuthorized()) {
+      const createBtn = document.querySelector(
+        '.header__create-btn-container button'
+      );
+      console.log('createBtn', createBtn);
+      createBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        app.render(ROUTES.editPin);
+      });
+    }
 
     // Listeners
     this.addLogoListener();
