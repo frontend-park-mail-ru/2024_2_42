@@ -122,6 +122,7 @@ export default class EditPinComponent extends BaseComponent {
       description: DescriptionValue,
       title: TitleValue,
       media_url: ImageUrl,
+      related_links: ImageUrl,
     });
 
     console.log(requestBody);
