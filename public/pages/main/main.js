@@ -69,6 +69,15 @@ export class MainPageComponent extends BaseComponent {
       true
     );
 
+    const createBtn = document.querySelector(
+      '.header__create-btn-container button'
+    );
+    console.log('createBtn', createBtn);
+    createBtn.addEventListener('click', (event) => {
+      event.preventDefault();
+      app.render(ROUTES.editPin);
+    });
+
     // Listeners
     this.addLogoListener();
     this.addLoginBtnListener();
