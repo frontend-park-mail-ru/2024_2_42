@@ -130,7 +130,7 @@ export default class EditPinComponent extends BaseComponent {
     //   body: requestBody,
     // });
 
-    await fetch('http://localhost:8080/create-pin', {
+    await fetch('http://37.139.41.77:8080/create-pin', {
       method: 'POST',
       mode: 'cors',
       credentials: 'include',
