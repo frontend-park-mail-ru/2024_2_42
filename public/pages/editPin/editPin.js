@@ -123,7 +123,6 @@ export default class EditPinComponent extends BaseComponent {
       title: TitleValue,
       media_url: ImageUrl,
       related_links: ImageUrl,
-      board_id: 1,
     });
 
     console.log(requestBody);
