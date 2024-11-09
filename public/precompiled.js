@@ -542,7 +542,7 @@ templates['login.hbs'] = template({"1":function(container,depth0,helpers,partial
         return undefined
     };
 
-  return "<div class=\"cover\">\n    <span class=\"tomain__tap-button\">Главная</span>\n    <div class=\"auth\">\n        <div class=\"logo-auth\" style=\"padding: 20px\">\n            <a class\"a__form-logo\" style=\"text-decoration: none\" href=\"\">\n                <span style=\"color: black; font-size: 5rem\">Pin</span>\n                <span style=\"color: #e60023; font-size: 5rem\">Set</span>\n            </a>\n        </div>\n        <div class=\"form-auth\">\n            <form action=\"post\" class=\""
+  return "<div class=\"cover\">\n    <span class=\"tomain__tap-button\">Главная</span>\n    <div class=\"auth\">\n        <div class=\"logo-auth\" style=\"padding: 20px\">\n            <a class\"a__form-logo\" style=\"text-decoration: none\" href=\"\">\n                <span style=\"color: #9800fe; font-size: 5rem\">Pin</span>\n                <span style=\"color: #2c2cff; font-size: 5rem\">Set</span>\n            </a>\n        </div>\n        <div class=\"form-auth\">\n            <form action=\"post\" class=\""
     + container.escapeExpression(container.lambda((depth0 != null ? lookupProperty(depth0,"className") : depth0), depth0))
     + "\">\n"
     + ((stack1 = lookupProperty(helpers,"each").call(alias1,(depth0 != null ? lookupProperty(depth0,"inputs") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":12,"column":16},"end":{"line":14,"column":25}}})) != null ? stack1 : "")
@@ -720,7 +720,7 @@ templates['signup.hbs'] = template({"1":function(container,depth0,helpers,partia
         return undefined
     };
 
-  return "<div class=\"cover\">\n    <span class=\"tomain__tap-button\">Главная</span>\n    <div class=\"auth\">\n        <div class=\"logo-auth\" style=\"padding: 20px\">\n            <a class\"a_form-logo\" style=\"text-decoration: none\" href=\"\">\n                <span style=\"color: black; font-size: 5rem\">Pin</span>\n                <span style=\"color: #e60023; font-size: 5rem\">Set</span>\n            </a>\n        </div>\n        <div class=\"form-auth\">\n            <form action=\"post\" class=\""
+  return "<div class=\"cover\">\n    <span class=\"tomain__tap-button\">Главная</span>\n    <div class=\"auth\">\n        <div class=\"logo-auth\" style=\"padding: 20px\">\n            <a class\"a_form-logo\" style=\"text-decoration: none\" href=\"\">\n                <span style=\"color: #9800fe; font-size: 5rem\">Pin</span>\n                <span style=\"color: #2c2cff; font-size: 5rem\">Set</span>\n            </a>\n        </div>\n        <div class=\"form-auth\">\n            <form action=\"post\" class=\""
     + container.escapeExpression(container.lambda((depth0 != null ? lookupProperty(depth0,"className") : depth0), depth0))
     + "\">\n"
     + ((stack1 = lookupProperty(helpers,"each").call(alias1,(depth0 != null ? lookupProperty(depth0,"inputs") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":12,"column":16},"end":{"line":14,"column":25}}})) != null ? stack1 : "")

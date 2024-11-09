@@ -83,7 +83,7 @@
 .form-auth form button {
     cursor: pointer;
     margin: 20px;
-    background-color: var(--project-primary-red);
+    background-color: var(--pinset-main-color-purple);
     color: white;
     border: none;
     padding: .75rem 1.5rem;

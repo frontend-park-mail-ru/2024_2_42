@@ -108,6 +108,7 @@ html, body {
 .editpin__submit button {
     height: 100%;
     width: 100%;
+    background-color: var(--pinset-main-color-purple);
 }
 
 
