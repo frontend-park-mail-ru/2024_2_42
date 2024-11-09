@@ -89,7 +89,7 @@ export default class EditPinComponent extends BaseComponent {
       const formData = new FormData();
       formData.append('file', file);
 
-      const response = await fetch('http://localhost:8080/image/upload', {
+      const response = await fetch('http://37.139.41.77:8080/image/upload', {
         method: 'POST',
         body: formData,
       });
