@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-import { BaseComponent } from "../../components/base.js"
+import { BaseComponent } from '../../components/base.js';
 
 /**
  * Component that is used to display boards grid on user profile page.
@@ -10,7 +10,7 @@ export class BoardGridComponent extends BaseComponent {
     #currentUser;
 
     /**
-     * 
+     *
      * @param {HTMLElement} parent - HTML element of the parent container.
      * @param {Array} boards - list of boards of currently authorized user.
      * @param {Boolean} currentUser - whether print boards of authorized user or not.
@@ -36,4 +36,4 @@ export class BoardGridComponent extends BaseComponent {
 
         return renderedTemplate;
     }
-};
+}

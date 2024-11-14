@@ -1,44 +1,44 @@
-<div class="preview__content-container preview__content-container-appearence" tabindex="0">
-    <div class="preview__upper-menu-container">
-        <div class="preview__author-container">
-            <img class="preview__author-avatar" src="{{preview.AuthorAvatarUrl}}">
-            <div class="preview__author-info">
-                <p class="preview__author-name">{{{preview.AuthorName}}}</p>
-                <p class="preview__author-followers-number">{{{preview.AuthorFollowersNumber}}} Followers</p>
+<div class='preview__content-container preview__content-container-appearence' tabindex='0'>
+    <div class='preview__upper-menu-container'>
+        <div class='preview__author-container'>
+            <img class='preview__author-avatar' src='{{preview.author}}' />
+            <div class='preview__author-info'>
+                <p class='preview__author-name'>{{{preview.AuthorName}}}</p>
+                <p class='preview__author-followers-number'>{{{preview.AuthorFollowersNumber}}} Followers</p>
             </div>
         </div>
 
-        <div class="preview__board-selector">
-            <div class="preview__board-selector-container">
-                <p class="preview__board-selector-container-text">Сохранить</p>
-                <img class="preview__board-selector-container-icon" src="./assets/icons/expand-list.svg" alt="expand">
+        <div class='preview__board-selector'>
+            <div class='preview__board-selector-container'>
+                <p class='preview__board-selector-container-text'>Сохранить</p>
+                <img class='preview__board-selector-container-icon' src='./assets/icons/expand-list.svg' alt='expand' />
             </div>
         </div>
     </div>
 
-    <img id="preview__image" class="preview__image-class" src="{{preview.MediaUrl}}" alt="Preview">
+    <img id='preview__image' class='preview__image-class' src='{{preview.MediaUrl}}' alt='Preview' />
 
-    <div class="preview__side-menu-container">
-        <div class="preview__side-menu-more-container">
-            <img class="preview__side-menu-more" src="./assets/icons/more.svg" alt="more">
+    <div class='preview__side-menu-container'>
+        <div class='preview__side-menu-more-container'>
+            <img class='preview__side-menu-more' src='./assets/icons/more.svg' alt='more' />
         </div>
         {{#if preview.Bookmarked}}
-            <img class="preview__side-menu-bookmark" src="./assets/icons/bookmark-fill.svg" alt="bookmark it">
+            <img class='preview__side-menu-bookmark' src='./assets/icons/bookmark-fill.svg' alt='bookmark it' />
         {{else}}
-            <img class="preview__side-menu-bookmark" src="./assets/icons/bookmark-empty.svg" alt="bookmark it">
+            <img class='preview__side-menu-bookmark' src='./assets/icons/bookmark-empty.svg' alt='bookmark it' />
         {{/if}}
-        <img class="preview__side-menu-comment" src="./assets/icons/comment.svg" alt="comment">
-        <img class="preview__side-menu-share" src="./assets/icons/share.svg" alt="share">
+        <img class='preview__side-menu-comment' src='./assets/icons/comment.svg' alt='comment' />
+        <img class='preview__side-menu-share' src='./assets/icons/share.svg' alt='share' />
     </div>
 
-    <div class="preview__stats-container">
-        <div class="preview__stats-views-container">
-            <p class="preview__stats-views-number">{{{preview.ViewsNumber}}}</p>
-            <img src="./assets/icons/views.svg" alt="bookmark">
+    <div class='preview__stats-container'>
+        <div class='preview__stats-views-container'>
+            <p class='preview__stats-views-number'>{{{preview.ViewsNumber}}}</p>
+            <img src='./assets/icons/views.svg' alt='bookmark' />
         </div>
-        <div class="preview__stats-bookmarks-container">
-            <p class="preview__stats-bookmarks-number">{{{preview.BookmarksNumber}}}</p>
-            <img src="./assets/icons/bookmarked.svg" alt="bookmark">
+        <div class='preview__stats-bookmarks-container'>
+            <p class='preview__stats-bookmarks-number'>{{{preview.BookmarksNumber}}}</p>
+            <img src='./assets/icons/bookmarked.svg' alt='bookmark' />
         </div>
     </div>
 </div>

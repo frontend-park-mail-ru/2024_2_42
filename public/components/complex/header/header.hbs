@@ -1,22 +1,22 @@
-<div class="header__content-container">
-	<div class="header__logo-container">
-		<img src="{{header.logoUrl}}" alt="Pinset" class="header__icon" />
-	</div>
+<div class='header__content-container'>
+    <div class='header__logo-container'>
+        <img src='{{header.logoUrl}}' alt='Pinset' class='header__icon' />
+    </div>
 
-	<div class="header__search-input-content-container">
-		{{{header.searchInput}}}
-	</div>
+    <div class='header__search-input-content-container'>
+        {{{header.searchInput}}}
+    </div>
 
-	{{#if header.isAuthorized}}
-		<div class="header__create-btn-container">
-			{{{header.createButton}}}
-		</div>
-		<div class="header__profile-container">
-			<img class="header__profile-avatar" src="{{header.profileUrl}}">
-		</div>
-	{{else}}
-		<div class="header__login-btn-container">
-			{{{header.loginButton}}}
-		</div>
-	{{/if}}
+    {{#if header.isAuthorized}}
+        <div class='header__create-btn-container'>
+            {{{header.createButton}}}
+        </div>
+        <div class='header__profile-container'>
+            <img class='header__profile-avatar' src='{{header.profileUrl}}' />
+        </div>
+    {{else}}
+        <div class='header__login-btn-container'>
+            {{{header.loginButton}}}
+        </div>
+    {{/if}}
 </div>

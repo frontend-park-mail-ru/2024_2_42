@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-import { BaseComponent } from "../base.js";
+import { BaseComponent } from '../base.js';
 
 /**
  * A component that is used to display all boards of currently authorized user.
@@ -10,9 +10,9 @@ export class BoardsListComponent extends BaseComponent {
      * An array of boards objects.
      */
     #boards;
-    
+
     /**
-     * 
+     *
      * @param {HTMLElement} parent - HTML element of the parent container.
      * @param {Array} boards - all boards of a user.
      */
@@ -33,4 +33,4 @@ export class BoardsListComponent extends BaseComponent {
 
         return renderedTemplate;
     }
-};
+}

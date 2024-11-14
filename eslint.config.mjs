@@ -1,16 +1,16 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
+import globals from 'globals';
+import pluginJs from '@eslint/js';
 
 export default [
-  {
-    languageOptions: {
-      globals: globals.browser,
+    {
+        languageOptions: {
+            globals: globals.browser,
+        },
     },
-  },
-  {
-    rules: {
-      quotes: ["error", "single"], // Замените двойные кавычки на одинарные
+    {
+        rules: {
+            quotes: ['error', 'single'], // Замените двойные кавычки на одинарные
+        },
     },
-  },
-  pluginJs.configs.recommended,
+    pluginJs.configs.recommended,
 ];

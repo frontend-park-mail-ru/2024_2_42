@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-import { BaseComponent } from '../base.js'
+import { BaseComponent } from '../base.js';
 
 /**
  * A component that is used to display search bar.
@@ -27,4 +27,4 @@ export class SearchInputComponent extends BaseComponent {
 
         return renderedTemplate;
     }
-};
+}

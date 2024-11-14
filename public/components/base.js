@@ -19,7 +19,7 @@ export class BaseComponent {
     }
 
     /**
-     * Renders the component template. 
+     * Renders the component template.
      * This should be overridden by child components.
      */
     renderTemplate() {

@@ -35,10 +35,10 @@
 
 .profile__user-avatar {
     width: 300px;
-	height: 300px;
-	border-radius: 50%;
-	object-fit: cover;
-	clip-path: circle();
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    clip-path: circle();
 }
 
 .profile__user-edit-block-container {
@@ -148,14 +148,14 @@
 
 .profile__user-subscribe-button {
     background-color: var(--pinset-main-color-purple);
-	background-image: linear-gradient(to bottom, transparent 0%, var(--pinset-main-color-blue) 100%);
+    background-image: linear-gradient(to bottom, transparent 0%, var(--pinset-main-color-blue) 100%);
     transition: background-color 0.5s ease 0s;
 }
 
 .profile__user-subscribe-button:hover {
-	background-color: var(--pinset-main-color-purple-hovered);
-	background-image: linear-gradient(to bottom, transparent 0%, var(--pinset-main-color-blue-hovered) 100%);
-	transition: background-color 0.5s ease 0s;
+    background-color: var(--pinset-main-color-purple-hovered);
+    background-image: linear-gradient(to bottom, transparent 0%, var(--pinset-main-color-blue-hovered) 100%);
+    transition: background-color 0.5s ease 0s;
 }
 
 .profile__user-social-networks-container {
@@ -245,7 +245,7 @@ hr {
     align-items: center;
 }
 
-a[class^=profile__boards-header-nav-to] {
+a[class^='profile__boards-header-nav-to'] {
     text-decoration: none;
     color: var(--pinset-profile-navigation-text-color);
     transition: 0.5s;
@@ -256,7 +256,7 @@ a[class^=profile__boards-header-nav-to] {
     height: 20px;
 }
 
-a[class^=profile__boards-header-nav-to]:hover {
+a[class^='profile__boards-header-nav-to']:hover {
     color: var(--pinset-profile-navigation-hovered-text-color);
     transition: 0.5s;
 }
@@ -408,7 +408,7 @@ a[class^=profile__boards-header-nav-to]:hover {
     transition: 0.5s;
 }
 
-div[class^=profile__board-info-container] {
+div[class^='profile__board-info-container'] {
     position: relative;
     height: 100%;
     display: flex;

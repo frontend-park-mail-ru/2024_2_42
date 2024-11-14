@@ -19,7 +19,7 @@
     padding: 0 5px 0 5px;
 }
 
-a[class^=drop-down-menu] {
+a[class^='drop-down-menu'] {
     display: flex;
     justify-content: flex-start;
     text-decoration: none;
@@ -33,11 +33,11 @@ a[class^=drop-down-menu] {
     text-align: center;
 }
 
-a[class^=drop-down-menu]:hover {
+a[class^='drop-down-menu']:hover {
     background-color: var(--pinset-list-entity-background-color-on-hover);
     cursor: pointer;
 }
 
-a[class^=drop-down-menu] img[class^=drop-down-menu] {
+a[class^='drop-down-menu'] img[class^='drop-down-menu'] {
     width: 40px;
 }

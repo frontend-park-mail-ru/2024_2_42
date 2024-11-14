@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-import { BaseComponent } from "../base.js"
+import { BaseComponent } from '../base.js';
 
 /**
  * A component that is used to display options when clicking on 'more' button.
@@ -33,4 +33,4 @@ export class DetailsMenuComponent extends BaseComponent {
 
         return renderedTemplate;
     }
-};
+}

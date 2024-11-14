@@ -1,22 +1,22 @@
-'use strict'
+'use strict';
 
-import { BaseComponent } from "../../components/base.js";
+import { BaseComponent } from '../../components/base.js';
 
-import { ButtonComponent as Button } from "../../components/button/button.js";
-import { HeaderComponent as Header } from "../../components/complex/header/header.js";
-import { SearchInputComponent as SearchInput } from "../../components/search-input/search-input.js";
-import { BoardGridComponent as BoardGrid } from "./board-grid.js";
-import { DropDownMenuComponent as DropDownMenu } from "../../components/drop-down-menu/drop-down-menu.js";
-import { GridComponent as Grid } from "../../components/complex/grid/grid.js";
+import { ButtonComponent as Button } from '../../components/button/button.js';
+import { HeaderComponent as Header } from '../../components/complex/header/header.js';
+import { SearchInputComponent as SearchInput } from '../../components/search-input/search-input.js';
+import { BoardGridComponent as BoardGrid } from './board-grid.js';
+import { DropDownMenuComponent as DropDownMenu } from '../../components/drop-down-menu/drop-down-menu.js';
+import { GridComponent as Grid } from '../../components/complex/grid/grid.js';
 
-import { app } from "../../index.js";
-import { ROUTES } from "../../constants/routes.js";
+import { app } from '../../index.js';
+import { ROUTES } from '../../constants/routes.js';
 
-import { postMethod } from "../../modules/network.js";
-import { BACKEND_LOGOUT_ROUTE } from "../../constants/api.js";
-import { isAuthorized } from "../../modules/network.js";
+import { postMethod } from '../../modules/network.js';
+import { BACKEND_LOGOUT_ROUTE } from '../../constants/api.js';
+import { isAuthorized } from '../../modules/network.js';
 
-import { IconButtonComponent as IconButton } from "../../components/button/icon-button.js";
+import { IconButtonComponent as IconButton } from '../../components/button/icon-button.js';
 
 /**
  * Page of a user profile.
@@ -32,7 +32,7 @@ export class ProfilePageComponent extends BaseComponent {
 
         window.addEventListener('resize', (event) => {
             event.preventDefault();
-            
+
             this.resizeBoardsCovers();
         });
     }
@@ -60,7 +60,9 @@ export class ProfilePageComponent extends BaseComponent {
 
         const renderedTemplate = template({
             header: new Header(this.Parent, await isAuthorized()).renderTemplate(),
-            searchInputBar: new SearchInput(this.Parent, { Placeholder: 'Искать в досках' }).renderTemplate(),
+            searchInputBar: new SearchInput(this.Parent, {
+                Placeholder: 'Искать в досках',
+            }).renderTemplate(),
             profile: this.State,
             boardGrid: new BoardGrid(this.Parent, this.State.boards, this.State.currentUser).renderTemplate(),
         });
@@ -88,7 +90,7 @@ export class ProfilePageComponent extends BaseComponent {
      * Creates a listener of the logo icon.
      */
     addLogoListener() {
-        const headerLogInButton = document.querySelector('.header__logo-container')
+        const headerLogInButton = document.querySelector('.header__logo-container');
         headerLogInButton.addEventListener('click', (event) => {
             event.preventDefault();
 
@@ -173,7 +175,7 @@ export class ProfilePageComponent extends BaseComponent {
             event.preventDefault();
 
             const nickNameText = document.querySelector('.profile__user-nickname-text').textContent;
-            navigator.clipboard.writeText(nickNameText)
+            navigator.clipboard.writeText(nickNameText);
         });
     }
 
@@ -194,15 +196,15 @@ export class ProfilePageComponent extends BaseComponent {
                     const dropDownMenuElement = document.querySelector('.drop-down-menu__content-container');
                     if (dropDownMenuElement) {
                         const header = document.querySelector('.header__content-container');
-                        const dropDownMenuMarginTop = -10, dropDownMenuMarginRight = 10;
+                        const dropDownMenuMarginTop = -10,
+                            dropDownMenuMarginRight = 10;
                         dropDownMenuElement.style.top = header.clientHeight + dropDownMenuMarginTop + 'px';
                         dropDownMenuElement.style.right = dropDownMenuMarginRight + 'px';
 
                         this.addLogoutButtonListener();
                         this.addProfileListener();
                     }
-                }
-                else {
+                } else {
                     const dropDownMenu = document.querySelector('.drop-down-menu__content-container');
                     if (dropDownMenu) {
                         profileContainer.removeChild(dropDownMenu);
@@ -223,7 +225,7 @@ export class ProfilePageComponent extends BaseComponent {
 
                 const resp = await postMethod(BACKEND_LOGOUT_ROUTE, {}, true);
                 if (!resp.code_status) {
-                    document.cookie = "session_token" + '=; Max-Age=0'
+                    document.cookie = 'session_token' + '=; Max-Age=0';
                     this.Parent.innerHTML = '';
                     app.renderPage(ROUTES.main);
                 }
@@ -235,7 +237,7 @@ export class ProfilePageComponent extends BaseComponent {
      * Creates a listener of profile button.
      */
     addProfileListener() {
-        const menuProfileButton = document.querySelector('.drop-down-menu__user-option')
+        const menuProfileButton = document.querySelector('.drop-down-menu__user-option');
         if (menuProfileButton) {
             menuProfileButton.addEventListener('click', (event) => {
                 event.preventDefault();
@@ -254,434 +256,490 @@ export class ProfilePageComponent extends BaseComponent {
             {
                 PinID: 1,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1655635949384-f737c5133dfe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1655635949384-f737c5133dfe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
                 BoardID: 1,
             },
             {
                 PinID: 2,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1596348158371-d3a25ec4dcf4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1596348158371-d3a25ec4dcf4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy',
                 BoardID: 1,
             },
             {
                 PinID: 3,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1580618432485-1e08c5039909?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1580618432485-1e08c5039909?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy',
                 BoardID: 1,
             },
             {
                 PinID: 4,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1593376893114-1aed528d80cf?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1593376893114-1aed528d80cf?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy',
                 BoardID: 1,
             },
             {
                 PinID: 5,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1680474569854-81216b34417a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1680474569854-81216b34417a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy',
                 BoardID: 1,
             },
             {
                 PinID: 6,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1668395093559-338fa935d929?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1668395093559-338fa935d929?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
                 BoardID: 1,
             },
             {
                 PinID: 7,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1530388684420-55a62e95ed82?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1530388684420-55a62e95ed82?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
                 BoardID: 1,
             },
             {
                 PinID: 8,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1587383378486-83d683d9d02d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1587383378486-83d683d9d02d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
                 BoardID: 1,
             },
             {
                 PinID: 9,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1518276780006-c85b06fa3c11?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1518276780006-c85b06fa3c11?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
                 BoardID: 1,
             },
             {
                 PinID: 10,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1578259819688-2bf7b20a351a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTN8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1578259819688-2bf7b20a351a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTN8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
                 BoardID: 1,
             },
             {
                 PinID: 11,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1614029655965-2464911905a4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTV8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1614029655965-2464911905a4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTV8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
             },
             {
                 PinID: 12,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1603745871918-d756fb3c2c5e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjB8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1603745871918-d756fb3c2c5e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjB8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
             },
             {
                 PinID: 13,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1700075489227-47f36fb2709b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjF8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1700075489227-47f36fb2709b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjF8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
             },
             {
                 PinID: 14,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1613591876822-846e82526ee7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODF8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1613591876822-846e82526ee7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODF8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
             },
             {
                 PinID: 15,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1655635949384-f737c5133dfe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1655635949384-f737c5133dfe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
                 BoardID: 1,
             },
             {
                 PinID: 16,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1596348158371-d3a25ec4dcf4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1596348158371-d3a25ec4dcf4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy',
                 BoardID: 1,
             },
             {
                 PinID: 17,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1580618432485-1e08c5039909?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1580618432485-1e08c5039909?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy',
                 BoardID: 1,
             },
             {
                 PinID: 18,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1593376893114-1aed528d80cf?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1593376893114-1aed528d80cf?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy',
                 BoardID: 1,
             },
             {
                 PinID: 19,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1680474569854-81216b34417a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1680474569854-81216b34417a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy',
                 BoardID: 1,
             },
             {
                 PinID: 20,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1668395093559-338fa935d929?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1668395093559-338fa935d929?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
                 BoardID: 1,
             },
             {
                 PinID: 21,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1530388684420-55a62e95ed82?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1530388684420-55a62e95ed82?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
                 BoardID: 1,
             },
             {
                 PinID: 22,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1587383378486-83d683d9d02d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1587383378486-83d683d9d02d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
                 BoardID: 1,
             },
             {
                 PinID: 23,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1518276780006-c85b06fa3c11?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1518276780006-c85b06fa3c11?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
                 BoardID: 1,
             },
             {
                 PinID: 24,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1578259819688-2bf7b20a351a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTN8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1578259819688-2bf7b20a351a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTN8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
                 BoardID: 1,
             },
             {
                 PinID: 25,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1614029655965-2464911905a4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTV8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1614029655965-2464911905a4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTV8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
             },
             {
                 PinID: 26,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1603745871918-d756fb3c2c5e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjB8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1603745871918-d756fb3c2c5e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjB8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
             },
             {
                 PinID: 27,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1700075489227-47f36fb2709b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjF8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1700075489227-47f36fb2709b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjF8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
             },
             {
                 PinID: 28,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1613591876822-846e82526ee7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODF8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1613591876822-846e82526ee7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODF8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
             },
             {
                 PinID: 29,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1655635949384-f737c5133dfe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1655635949384-f737c5133dfe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
                 BoardID: 1,
             },
             {
                 PinID: 30,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1596348158371-d3a25ec4dcf4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1596348158371-d3a25ec4dcf4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy',
                 BoardID: 1,
             },
             {
                 PinID: 31,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1580618432485-1e08c5039909?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1580618432485-1e08c5039909?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy',
                 BoardID: 1,
             },
             {
                 PinID: 32,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1593376893114-1aed528d80cf?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1593376893114-1aed528d80cf?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy',
                 BoardID: 1,
             },
             {
                 PinID: 33,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1680474569854-81216b34417a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1680474569854-81216b34417a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy',
                 BoardID: 1,
             },
             {
                 PinID: 34,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1668395093559-338fa935d929?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1668395093559-338fa935d929?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
                 BoardID: 1,
             },
             {
                 PinID: 35,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1530388684420-55a62e95ed82?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1530388684420-55a62e95ed82?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
                 BoardID: 1,
             },
             {
                 PinID: 36,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1587383378486-83d683d9d02d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1587383378486-83d683d9d02d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
                 BoardID: 1,
             },
             {
                 PinID: 37,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1518276780006-c85b06fa3c11?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1518276780006-c85b06fa3c11?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
                 BoardID: 1,
             },
             {
                 PinID: 38,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1578259819688-2bf7b20a351a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTN8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1578259819688-2bf7b20a351a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTN8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
                 BoardID: 1,
             },
             {
                 PinID: 39,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1614029655965-2464911905a4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTV8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1614029655965-2464911905a4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTV8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
             },
             {
                 PinID: 40,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1603745871918-d756fb3c2c5e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjB8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1603745871918-d756fb3c2c5e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjB8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
             },
             {
                 PinID: 41,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1700075489227-47f36fb2709b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjF8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1700075489227-47f36fb2709b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjF8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
             },
             {
                 PinID: 42,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1613591876822-846e82526ee7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODF8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1613591876822-846e82526ee7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODF8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
             },
             {
                 PinID: 43,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1655635949384-f737c5133dfe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1655635949384-f737c5133dfe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
                 BoardID: 1,
             },
             {
                 PinID: 44,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1596348158371-d3a25ec4dcf4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1596348158371-d3a25ec4dcf4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy',
                 BoardID: 1,
             },
             {
                 PinID: 45,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1580618432485-1e08c5039909?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1580618432485-1e08c5039909?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy',
                 BoardID: 1,
             },
             {
                 PinID: 46,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1593376893114-1aed528d80cf?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1593376893114-1aed528d80cf?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy',
                 BoardID: 1,
             },
             {
                 PinID: 47,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1680474569854-81216b34417a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1680474569854-81216b34417a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy',
                 BoardID: 1,
             },
             {
                 PinID: 48,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1668395093559-338fa935d929?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1668395093559-338fa935d929?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
                 BoardID: 1,
             },
             {
                 PinID: 49,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1530388684420-55a62e95ed82?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1530388684420-55a62e95ed82?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
                 BoardID: 1,
             },
             {
                 PinID: 50,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1587383378486-83d683d9d02d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1587383378486-83d683d9d02d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
                 BoardID: 1,
             },
             {
                 PinID: 51,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1518276780006-c85b06fa3c11?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1518276780006-c85b06fa3c11?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
                 BoardID: 1,
             },
             {
                 PinID: 52,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1578259819688-2bf7b20a351a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTN8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1578259819688-2bf7b20a351a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTN8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
                 BoardID: 1,
             },
             {
                 PinID: 53,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1614029655965-2464911905a4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTV8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1614029655965-2464911905a4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTV8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
             },
             {
                 PinID: 54,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1603745871918-d756fb3c2c5e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjB8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1603745871918-d756fb3c2c5e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjB8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
             },
             {
                 PinID: 55,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1700075489227-47f36fb2709b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjF8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1700075489227-47f36fb2709b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjF8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
             },
             {
                 PinID: 56,
                 imageOnly: true,
-                AuthorName: "Mary Jane",
+                AuthorName: 'Mary Jane',
                 AuthorFollowersNumber: 100,
-                MediaUrl: "https://images.unsplash.com/photo-1613591876822-846e82526ee7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODF8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D",
+                MediaUrl:
+                    'https://images.unsplash.com/photo-1613591876822-846e82526ee7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODF8fG5ldXJhbCUyMG5ldHdvcmtzfGVufDB8MXwwfHx8Mg%3D%3D',
             },
         ];
 
@@ -697,7 +755,7 @@ export class ProfilePageComponent extends BaseComponent {
         const navigationBar = document.querySelector('.profile__boards-header-navigation');
         const navArrow = navigationBar.querySelector('.profile__boards-header-navigation-arrow');
         const nextNavArrow = navArrow.cloneNode(true);
-    
+
         const navBarSectionText = navigationBar.querySelector('.profile__boards-header-nav-to-profile-link');
         const nextNavBarSectionText = navBarSectionText.cloneNode(true);
 
@@ -722,18 +780,26 @@ export class ProfilePageComponent extends BaseComponent {
                 document.querySelector('.profile__boards-header-title p').textContent = boardTitle;
                 const headerTitleContainer = document.querySelector('.profile__boards-header-title');
                 headerTitleContainer.removeChild(document.querySelector('.profile__boards-header-create-board-btn'));
-                headerTitleContainer.insertAdjacentHTML('beforeend', new IconButton(this.Parent, {
-                    className: 'icon-button__edit-img',
-                    iconPath: './assets/icons/edit.svg',
-                }).renderTemplate());
-                headerTitleContainer.insertAdjacentHTML('beforeend', new IconButton(this.Parent, {
-                    className: 'icon-button__delete-img',
-                    iconPath: './assets/icons/delete.svg',
-                }).renderTemplate());
+                headerTitleContainer.insertAdjacentHTML(
+                    'beforeend',
+                    new IconButton(this.Parent, {
+                        className: 'icon-button__edit-img',
+                        iconPath: './assets/icons/edit.svg',
+                    }).renderTemplate()
+                );
+                headerTitleContainer.insertAdjacentHTML(
+                    'beforeend',
+                    new IconButton(this.Parent, {
+                        className: 'icon-button__delete-img',
+                        iconPath: './assets/icons/delete.svg',
+                    }).renderTemplate()
+                );
 
                 // Update search input bar
                 headerSearchBlock.removeChild(headerSearchBlock.querySelector('.searchinput__content-container'));
-                const actualSearchBar = new SearchInput(this.Parent, { Placeholder: `Искать в доске ${boardTitle}` });
+                const actualSearchBar = new SearchInput(this.Parent, {
+                    Placeholder: `Искать в доске ${boardTitle}`,
+                });
                 const renderedSearchBar = actualSearchBar.renderTemplate();
                 headerSearchBlock.insertAdjacentHTML('afterbegin', renderedSearchBar);
 
@@ -741,16 +807,24 @@ export class ProfilePageComponent extends BaseComponent {
                 boardsContainer.removeChild(boardGrid);
                 boardsContainer.insertAdjacentHTML('beforeend', renderedPinGrid);
 
-                document.body.addEventListener('load', (event) => {
-                    event.preventDefault();
-                    pinGrid.buildLayout();
-                }, true);
+                document.body.addEventListener(
+                    'load',
+                    (event) => {
+                        event.preventDefault();
+                        pinGrid.buildLayout();
+                    },
+                    true
+                );
 
                 // Providing layout rebuild on resize events
-                window.addEventListener('resize', (event) => {
-                    event.preventDefault();
-                    pinGrid.buildLayout();
-                }, true);
+                window.addEventListener(
+                    'resize',
+                    (event) => {
+                        event.preventDefault();
+                        pinGrid.buildLayout();
+                    },
+                    true
+                );
 
                 for (const pin of pinSet) {
                     pinGrid.buildPinPreview(pin);
@@ -772,4 +846,4 @@ export class ProfilePageComponent extends BaseComponent {
             });
         }
     }
-};
+}

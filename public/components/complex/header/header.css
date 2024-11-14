@@ -1,84 +1,84 @@
 .header__content-container {
-	position: fixed;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 10px;
-	background-color: var(--project-primary-white);
-	width: 100%;
-	height: 8vh;
-	box-sizing: border-box;
-	background-color: var(--pinset-header-background-color);
-	z-index: 99999;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--project-primary-white);
+    width: 100%;
+    height: 8vh;
+    box-sizing: border-box;
+    background-color: var(--pinset-header-background-color);
+    z-index: 99999;
 }
 
 .header__logo-container img {
-	width: 55px;
+    width: 55px;
 }
 
 .header__logo-container img:hover {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .header__search-input-content-container {
-	margin: 0 20px;
-	width: 80%;
-	height: 80%;
+    margin: 0 20px;
+    width: 80%;
+    height: 80%;
 }
 
 .header__search-input-content-container .searchinput__content-container {
-	height: 100%;
-	width: 100%;
-	background-color: var(--pinset-search-input-background-color);
+    height: 100%;
+    width: 100%;
+    background-color: var(--pinset-search-input-background-color);
     border-radius: 10px;
 }
 .header__search-input-content-container .searchinput__content-container .searchinput__search-field {
-	color: var(--pinset-search-input-text-color);
+    color: var(--pinset-search-input-text-color);
 }
 
 .header__search-input-content-container .searchinput__content-container .searchinput__search-field,
 .header__search-input-content-container .searchinput__content-container .searchinput__search-field::placeholder {
-	font-size: 16px;
+    font-size: 16px;
 }
 
 .header__profile-container {
-	height: 100%;
-	display: flex;
-	align-items: center;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .header__profile-avatar {
-	position: absolute;
-	right: 15px;
-	width: 45px;
-	height: 45px;
-	border-radius: 50%;
-	object-fit: cover;
-	clip-path: circle();
-	cursor: pointer;
+    position: absolute;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    clip-path: circle();
+    cursor: pointer;
 }
 
 .header__login-btn-container,
 .header__create-btn-container {
-	height: 100%;
-	display: flex;
-	align-items: center;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .header__login-btn-container .button,
 .header__create-btn-container .button {
-	background-color: var(--pinset-main-color-purple);
-	background-image: linear-gradient(to bottom, transparent 0%, var(--pinset-main-color-blue) 100%);
-	height: fit-content;
-	font-size: 18px;
-	font-weight: 600;
-	border-radius: 7px;
-	transition: background-color 0.5s ease 0s;	
+    background-color: var(--pinset-main-color-purple);
+    background-image: linear-gradient(to bottom, transparent 0%, var(--pinset-main-color-blue) 100%);
+    height: fit-content;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 7px;
+    transition: background-color 0.5s ease 0s;
 }
 
 .header__login-btn-container .button:hover,
 .header__create-btn-container .button:hover {
-	background-color: var(--pinset-main-color-purple-hovered);
-	background-image: linear-gradient(to bottom, transparent 0%, var(--pinset-main-color-blue-hovered) 100%);
-	transition: background-color 0.5s ease 0s;
+    background-color: var(--pinset-main-color-purple-hovered);
+    background-image: linear-gradient(to bottom, transparent 0%, var(--pinset-main-color-blue-hovered) 100%);
+    transition: background-color 0.5s ease 0s;
 }
