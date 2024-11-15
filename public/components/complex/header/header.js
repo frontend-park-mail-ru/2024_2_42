@@ -16,6 +16,7 @@ import { headerConfig } from '../../../constants/config.js';
 export class HeaderComponent extends BaseComponent {
     #config;
     #isAuth;
+    #avatarUrl;
 
     /**
      * Creates an instance of HeaderComponent.
@@ -24,10 +25,11 @@ export class HeaderComponent extends BaseComponent {
      * @param {HTMLElement} parent - The parent element where the header will be rendered.
      * @param {Object} [state] - Optional initial state to override default state.
      */
-    constructor(parent, authState) {
+    constructor(parent, authState, avatarState) {
         super(parent);
         this.#config = headerConfig;
         this.#isAuth = authState;
+        this.#avatarUrl = avatarState;
     }
 
     /**
@@ -43,7 +45,7 @@ export class HeaderComponent extends BaseComponent {
         const renderedTemplate = template({
             header: {
                 logoUrl: this.#config.LogoUrl,
-                profileUrl: this.#config.ProfileUrl,
+                profileUrl: this.#avatarUrl || this.#config.ProfileUrl,
                 searchInput: new SeachInput(this.Parent, {
                     Placeholder: this.#config.Placeholder,
                 }).renderTemplate(),

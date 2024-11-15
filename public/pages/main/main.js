@@ -3,6 +3,7 @@
 import { HeaderComponent as Header } from '../../components/complex/header/header.js';
 import { GridComponent as Grid } from '../../components/complex/grid/grid.js';
 import { isAuthorized } from '../../modules/network.js';
+import { getUserAvatar } from '../../modules/network.js';
 
 import { ROUTES } from '../../constants/routes.js';
 import { BACKEND_LOGOUT_ROUTE } from '../../constants/api.js';
@@ -42,9 +43,15 @@ export class MainPageComponent extends BaseComponent {
         const template = Handlebars.templates['main.hbs'];
 
         const grid = new Grid(this.Parent, this.#pins, true);
-
+        const resp = await isAuthorized();
+        let userIsAuthorized = false
+        let avatar = '';
+        if (resp) {
+            userIsAuthorized = true;
+            avatar = await getUserAvatar();
+        }
         const renderedTemplate = template({
-            header: new Header(this.Parent, await isAuthorized()).renderTemplate(),
+            header: new Header(this.Parent, userIsAuthorized, avatar.avatar_url).renderTemplate(),
             grid: grid.renderTemplate(),
         });
 
@@ -69,7 +76,7 @@ export class MainPageComponent extends BaseComponent {
         this.addLogoListener();
         this.addLoginBtnListener();
         this.addSearchInputListener();
-        this.addProfileImgListener();
+        this.addProfileImgListener(resp.user_id);
 
         return renderedTemplate;
     }
@@ -128,7 +135,7 @@ export class MainPageComponent extends BaseComponent {
     /**
      * Creates a listener of profile icon.
      */
-    addProfileImgListener() {
+    addProfileImgListener(user_id) {
         const profileContainer = document.querySelector('.header__profile-container');
         if (profileContainer) {
             profileContainer.addEventListener('click', (event) => {
@@ -148,7 +155,7 @@ export class MainPageComponent extends BaseComponent {
                         dropDownMenuElement.style.right = dropDownMenuMarginRight + 'px';
 
                         this.addLogoutButtonListener();
-                        this.addProfileListener();
+                        this.addProfileListener(user_id);
                     }
                 } else {
                     const dropDownMenu = document.querySelector('.drop-down-menu__content-container');
@@ -182,14 +189,15 @@ export class MainPageComponent extends BaseComponent {
     /**
      * Creates a listener of profile button.
      */
-    addProfileListener() {
+    addProfileListener(user_id) {
         const menuProfileButton = document.querySelector('.drop-down-menu__user-option');
         if (menuProfileButton) {
             menuProfileButton.addEventListener('click', (event) => {
                 event.preventDefault();
-
+                
                 root.innerHTML = '';
-                app.renderPage(ROUTES.profile);
+                const userRoute = `${ROUTES.user}${user_id}`;
+                app.renderPage(userRoute);
             });
         }
     }

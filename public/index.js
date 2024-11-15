@@ -1,7 +1,7 @@
 'use strict';
 
 import App from './app.js';
-import { homeConfig, loginConfig, signupConfig, headerConfig } from './constants/config.js';
+import { homeConfig, loginConfig, signupConfig, headerConfig, userConfig } from './constants/config.js';
 
 const root = document.getElementById('root');
 
@@ -10,6 +10,7 @@ const config = {
     signupConfig,
     loginConfig,
     headerConfig,
+    userConfig,
 };
 
 export const app = new App(config, root);

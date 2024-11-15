@@ -111,6 +111,19 @@ export const signupConfig = {
     },
 };
 
+export const userConfig = {
+    profile: {
+        editProfile: {
+            text: 'edit-profile',
+            href: 'edit-profile',
+        },
+        createBoard: {
+            text: 'create-board',
+            href: 'create-board',
+        }
+    },
+};
+
 export const headerConfig = {
     // Icon and profile image URLs
     LogoUrl: './assets/icons/pinset-logo.svg', // Path to the app icon

@@ -74,7 +74,9 @@ export class GridComponent extends BaseComponent {
 
         // Render each PinComponent using its template
         for (const pinData of this.#pins) {
-            pinData.media_url = pinData.media_url.replace('http://minio:9000', 'http://localhost:9000');
+            if (pinData.media_url.startsWith('http://minio:9000')) {
+                pinData.media_url = pinData.media_url.replace('http://minio:9000', 'http://localhost:9000');
+            }            
             const newPin = new PinComponent(pinData);
             pinsToRender.push(newPin);
         }

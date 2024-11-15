@@ -1,7 +1,7 @@
 'use strict';
 
 import '../constants/api.js';
-import { BACKEND_IS_AUTHORIZED_ROUTE } from '../constants/api.js';
+import { BACKEND_IS_AUTHORIZED_ROUTE, BACKEND_GET_USER_AVATAR_ROUTE } from '../constants/api.js';
 
 /**
  * Handles response provided by fetch API. In case of error displayes corresponding message if corresponding flag is given
@@ -30,8 +30,22 @@ export const isAuthorized = async () => {
     if (resp.code_status !== undefined && resp.message !== undefined) {
         return false;
     }
+    return resp;
+};
 
-    return true;
+/**
+ * If user authorized get his avatar
+ * @returns {string} - user avatar`s url
+ */
+export const getUserAvatar = async () => {
+    const resp = await getMethod(BACKEND_GET_USER_AVATAR_ROUTE, false);
+    if (resp === undefined) {
+        return '';
+    }
+    if (resp.code_status !== undefined && resp.message !== undefined) {
+        return '';
+    }
+    return resp;
 };
 
 /**

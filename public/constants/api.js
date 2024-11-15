@@ -9,3 +9,5 @@ export const BACKEND_LOGIN_ROUTE = `${BASE}${ROUTES.login}`;
 export const BACKEND_SIGNUP_ROUTE = `${BASE}${ROUTES.signup}`;
 export const BACKEND_IS_AUTHORIZED_ROUTE = `${BASE}${ROUTES.isAuthorized}`;
 export const BACKEND_LOGOUT_ROUTE = `${BASE}${ROUTES.logOut}`;
+export const BACKEND_PROFILE_ROUTE = `${BASE}${ROUTES.user}`;
+export const BACKEND_GET_USER_AVATAR_ROUTE = `${BASE}${ROUTES.getAvatar}`;
