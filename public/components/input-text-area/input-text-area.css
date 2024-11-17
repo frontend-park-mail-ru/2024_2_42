@@ -33,5 +33,5 @@
 
 .input-area::placeholder {
     text-align: left; /* Центрирует текст placeholder */
-    color: #888; /* Цвет текста для placeholder */
+    color: var(--input-label-color); /* Цвет текста для placeholder */
 }
