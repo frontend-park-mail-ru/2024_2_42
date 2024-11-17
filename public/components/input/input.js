@@ -32,6 +32,11 @@ export class InputComponent extends BaseComponent {
 	renderTemplate() {
 		const template = Handlebars.templates['input.hbs'];
 		const renderedTemplate = template(this.State);
+		const parent = this.Parent;
+		if (parent) {
+			parent.innerHTML += renderedTemplate;
+
+		}
 		return renderedTemplate;
 	}
 
