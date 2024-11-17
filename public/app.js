@@ -3,7 +3,7 @@
 import { LoginComponent as Login } from './pages/login/login.js';
 import { SignUpComponent as SignUp } from './pages/signup/signup.js';
 import { MainPageComponent } from './pages/main/main.js';
-import { ProfilePageComponent as ProfilePage, ProfilePageComponent } from './pages/profile/profile.js';
+import { ProfilePageComponent as ProfilePage} from './pages/profile/profile.js';
 
 import { ROUTES } from './constants/routes.js';
 import { BACKEND_LOGIN_ROUTE, BACKEND_SIGNUP_ROUTE, BACKEND_FEED_ROUTE, BACKEND_PROFILE_ROUTE } from './constants/api.js';
@@ -37,6 +37,13 @@ export default class App {
      */
     render(pageRoute) {
         const userIdMatch = pageRoute.match(/^\/user\/(\d+)$/);
+        if (userIdMatch) {
+            const user_id = userIdMatch[1];
+            history.pushState({}, '', `${ROUTES.user}${user_id}`);
+            this.#renderProfile(user_id);
+            return;
+        }
+    
         switch (pageRoute) {
             case ROUTES.main:
                 history.pushState({}, '', ROUTES.main);
@@ -50,17 +57,12 @@ export default class App {
                 history.pushState({}, '', ROUTES.signup);
                 this.#renderSignup();
                 break;
-            case userIdMatch[0]: {
-                const user_id = userIdMatch[1];
-                history.pushState({}, '', `${ROUTES.user}${user_id}`);
-                this.#renderProfile(user_id);
-                break;
-            }
             default:
                 this.#handleUnknownRoute();
                 break;
         }
     }
+    
 
     /**
      * Clears all page data if it's needed and renders the page depending on what route is given.
@@ -135,7 +137,7 @@ export default class App {
         this.#structure.mainPage = mainPage;
     }
 
-    
+
     /**
      * Handles unknown route request, renders corresponding page template
      * @returns {string} - rendered page of unknown route
@@ -171,6 +173,7 @@ export default class App {
     async #renderProfile(user_id) {
         const userProfileRoute = `${BACKEND_PROFILE_ROUTE}/${user_id}`
         const profileResp = await getMethod(userProfileRoute);
+        console.log(profileResp, userProfileRoute)
         const profileState = {
             userName: profileResp.user_name,
             userNickname: profileResp.nick_name,
@@ -189,16 +192,21 @@ export default class App {
             })),
         };
         const profile = new ProfilePage(this.root, profileState);
-        return profile.renderTemplate();
+        this.#structure.profile = profile.renderTemplate();
 
-        // console.log(profileState.boards)
-        // profile.resizeBoardsCovers();
-        // profile.addSearchInputsListeners();
-        // profile.addProfileImgListener();
-        // profile.addBoardDetailsIconListener();
-        // profile.addBoardListener();
 
-        // this.#structure.profile = profile;
+        console.log('Boards:', profileState.boards);
+
+        profile.addSearchInputsListeners();
+        profile.addProfileImgListener();
+        profile.addLogoListener();
+        profile.addNickNameCopyBtnListener();
+
+        profile.addBoardsSearchBarListener();
+        profile.addBoardDetailsIconListener();
+        profile.addBoardListener(profileState);
+        profile.resizeBoardsCovers();
+        
     }
     // 
         // const profile = new ProfilePage(this.root, profileState);

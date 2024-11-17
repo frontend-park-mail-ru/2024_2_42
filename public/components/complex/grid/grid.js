@@ -307,11 +307,11 @@ export class GridComponent extends BaseComponent {
      */
     bookmarkListenerHandler(bookmarkElement, previewState) {
         if (previewState.Bookmarked) {
-            bookmarkElement.src = './assets/icons/bookmark-empty.svg';
+            bookmarkElement.src = '/assets/icons/bookmark-empty.svg';
             previewState.Bookmarked = false;
             previewState.BookmarksNumber--;
         } else {
-            bookmarkElement.src = './assets/icons/bookmark-fill.svg';
+            bookmarkElement.src = '/assets/icons/bookmark-fill.svg';
             previewState.Bookmarked = true;
             previewState.BookmarksNumber++;
         }
@@ -353,7 +353,7 @@ export class GridComponent extends BaseComponent {
             document.querySelector('.preview__board-selector').style.background = 'no-repeat right 0.8em center / 1.4em';
             const saveBtnIcon = document.querySelector('.preview__board-selector-container-icon');
             saveBtnIcon.style.transform = 'none';
-            saveBtnIcon.src = './assets/icons/expand-list.svg';
+            saveBtnIcon.src = '/assets/icons/expand-list.svg';
             document.querySelector('.preview__board-selector-container-text').style.color = 'white';
             this.#saveBtnClicked = false;
 
@@ -368,7 +368,7 @@ export class GridComponent extends BaseComponent {
         } else {
             document.querySelector('.preview__board-selector').style.background = 'white';
             const saveBtnIcon = document.querySelector('.preview__board-selector-container-icon');
-            saveBtnIcon.src = './assets/icons/expand-list-flipped.svg';
+            saveBtnIcon.src = '/assets/icons/expand-list-flipped.svg';
             saveBtnIcon.style.transform = 'ScaleY(-1)';
             document.querySelector('.preview__board-selector-container-text').style.color = 'black';
             this.#saveBtnClicked = true;
@@ -558,7 +558,7 @@ export class GridComponent extends BaseComponent {
                 document.querySelector('.preview__board-selector').style.background = 'none';
                 const saveBtnIcon = document.querySelector('.preview__board-selector-container-icon');
                 saveBtnIcon.style.transform = 'none';
-                saveBtnIcon.src = './assets/icons/expand-list.svg';
+                saveBtnIcon.src = '/assets/icons/expand-list.svg';
                 document.querySelector('.preview__board-selector-container-text').style.color = 'white';
                 this.#saveBtnClicked = false;
 

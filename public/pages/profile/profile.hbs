@@ -9,7 +9,7 @@
 
                     {{#if profile.currentUser}}
                         <div class='profile__user-edit-block-container'>
-                            <img class='profile__user-edit-icon' src='./assets/icons/edit.svg' alt='Settings' />
+                            <img class='profile__user-edit-icon' src='/assets/icons/edit.svg' alt='Settings' />
                         </div>
                     {{/if}}
                 </div>
@@ -18,14 +18,14 @@
             <div class='profile__user-name-content-container'>
                 <p class='profile__user-name-text'>{{{profile.userName}}}</p>
                 <div class='profile__user-nickname-container'>
-                    <img class='profile__user-nickname-copy' src='./assets/icons/copy.svg' alt='Copy' />
+                    <img class='profile__user-nickname-copy' src='/assets/icons/copy.svg' alt='Copy' />
                     <p class='profile__user-nickname-text'>@{{{profile.userNickname}}}</p>
-                    <img class='profile__user-nickname-share-profile' src='./assets/icons/share-profile.svg' alt='Copy' />
+                    <img class='profile__user-nickname-share-profile' src='/assets/icons/share-profile.svg' alt='Copy' />
                 </div>
             </div>
 
             <div class='profile__user-people-container'>
-                <img src='./assets/icons/people.svg' alt='People' />
+                <img src='/assets/icons/people.svg' alt='People' />
                 <p class='profile__user-followings-number'>{{{profile.followingsNumber}}} подписок</p>
                 <p class='profile__user-followers-number'>{{{profile.followersNumber}}}
                     подписчиков</p>
@@ -40,26 +40,26 @@
 
             <div class='profile__user-social-networks-container'>
                 {{#if profile.socialNetworks.vk}}
-                    <img class='profile__user-vk-icon' src='./assets/icons/social/vk.svg' alt='VK' />
+                    <img class='profile__user-vk-icon' src='/assets/icons/social/vk.svg' alt='VK' />
                 {{/if}}
                 {{#if profile.socialNetworks.telegram}}
-                    <img class='profile__user-telegram-icon' src='./assets/icons/social/telegram.svg' alt='Telegram' />
+                    <img class='profile__user-telegram-icon' src='/assets/icons/social/telegram.svg' alt='Telegram' />
                 {{/if}}
                 {{#if profile.socialNetworks.github}}
-                    <img class='profile__user-github-icon' src='./assets/icons/social/github.svg' alt='Github' />
+                    <img class='profile__user-github-icon' src='/assets/icons/social/github.svg' alt='Github' />
                 {{/if}}
                 {{#if profile.socialNetworks.pinterest}}
-                    <img class='profile__user-pinterest-icon' src='./assets/icons/social/pinterest.svg' alt='Pinterest' />
+                    <img class='profile__user-pinterest-icon' src='/assets/icons/social/pinterest.svg' alt='Pinterest' />
                 {{/if}}
             </div>
 
             <div class='profile__user-personal-website-container'>
-                <img src='./assets/icons/link.svg' alt='Link' />
+                <img src='/assets/icons/link.svg' alt='Link' />
                 <a href='{{profile.personalWebsiteLink}}'>{{{profile.personalWebsiteLink}}}</a>
             </div>
 
             <div class='profile__user-geolocation-container'>
-                <img src='./assets/icons/location.svg' alt='Location' />
+                <img src='/assets/icons/location.svg' alt='Location' />
                 <p>{{{profile.geolocation}}}</p>
             </div>
 
@@ -78,21 +78,21 @@
                             <a class='profile__boards-header-nav-to-pinset-link' href='/feed'>
                                 Pinset
                             </a>
-                            <img class='profile__boards-header-navigation-arrow' src='./assets/icons/navigation-arrow.svg' alt='Navigate' />
+                            <img class='profile__boards-header-navigation-arrow' src='/assets/icons/navigation-arrow.svg' alt='Navigate' />
                             <a class='profile__boards-header-nav-to-profile-link' href='/profile'>
                                 Мой профиль
                             </a>
                         </div>
                         <div class='profile__boards-header-title'>
                             <p>Мои доски</p>
-                            <img class='profile__boards-header-create-board-btn' src='./assets/icons/add-button.svg' alt='Create' />
+                            <img class='profile__boards-header-create-board-btn' src='/assets/icons/add-button.svg' alt='Create' />
                         </div>
                     {{else}}
                         <div class='profile__boards-header-navigation'>
                             <a class='profile__boards-header-nav-to-pinset-link' href='/feed'>
                                 Pinset
                             </a>
-                            <img class='profile__boards-header-navigation-arrow' src='./assets/icons/navigation-arrow.svg' alt='Navigate' />
+                            <img class='profile__boards-header-navigation-arrow' src='/assets/icons/navigation-arrow.svg' alt='Navigate' />
                             <a class='profile__boards-header-nav-to-profile' href='/profile'>
                                 @{{{profile.userNickname}}}
                             </a>
@@ -105,8 +105,8 @@
 
                 <div class='profile__boards-header-search-block'>
                     {{{searchInputBar}}}
-                    <img class='profile__boards-header-searh-filter-icon' src='./assets/icons/filter.svg' alt='Filters' />
-                    <img src='./assets/icons/sort.svg' alt='Sort' />
+                    <img class='profile__boards-header-searh-filter-icon' src='/assets/icons/filter.svg' alt='Filters' />
+                    <img src='/assets/icons/sort.svg' alt='Sort' />
                 </div>
             </div>
 

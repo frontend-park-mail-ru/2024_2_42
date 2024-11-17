@@ -126,8 +126,8 @@ export const userConfig = {
 
 export const headerConfig = {
     // Icon and profile image URLs
-    LogoUrl: './assets/icons/pinset-logo.svg', // Path to the app icon
-    ProfileUrl: './assets/imgs/avatar.jpg', // Path to the profile
+    LogoUrl: '/assets/icons/pinset-logo.svg', // Path to the app icon
+    ProfileUrl: '/assets/imgs/avatar.jpg', // Path to the profile
 
     // Login status
     IsLoggedIn: false, // Determines login status

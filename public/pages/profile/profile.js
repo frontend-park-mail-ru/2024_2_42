@@ -58,13 +58,14 @@ export class ProfilePageComponent extends BaseComponent {
             }).renderTemplate();
         }
 
+        console.log(this.State)
         const renderedTemplate = template({
             header: new Header(this.Parent, await isAuthorized()).renderTemplate(),
             searchInputBar: new SearchInput(this.Parent, {
                 Placeholder: 'Искать в досках',
             }).renderTemplate(),
             profile: this.State,
-            boardGrid: new BoardGrid(this.Parent, this.State.boards, this.State.currentUser).renderTemplate(),
+            boardGrid: new BoardGrid(this.Parent, this.State.boards, this.State).renderTemplate(),
         });
 
         this.Parent.insertAdjacentHTML('beforeend', renderedTemplate);
@@ -116,7 +117,7 @@ export class ProfilePageComponent extends BaseComponent {
     /**
      * Creates a handler for search bar events.
      */
-    boardsSearchBarListenerHandler() {
+    boardsSearchBarListenerHandler(profile) {
         const searchInputBar = document.querySelector(`.profile__boards-header-search-block
                                                     .searchinput__content-container
                                                     .searchinput__search-field`);
@@ -138,7 +139,7 @@ export class ProfilePageComponent extends BaseComponent {
         boardsContainer.insertAdjacentHTML('beforeend', renderedMatchedBoards);
         this.resizeBoardsCovers();
         this.addBoardDetailsIconListener();
-        this.addBoardListener(this.state.boards.pins);
+        this.addBoardListener(profile);
     }
 
     /**
@@ -249,11 +250,9 @@ export class ProfilePageComponent extends BaseComponent {
     /**
      * Creates a listener of board click event.
      */
-    addBoardListener(pinSet) {
-            
+    addBoardListener(profile) {
         const pinGridParent = document.querySelector('.profile__boards-container');
-
-        const pinGrid = new Grid(pinGridParent, pinSet, false);
+        const pinGrid = new Grid(pinGridParent, profile.boards.pinSet, false);
         const renderedPinGrid = pinGrid.renderTemplate();
 
         const boardGrid = document.querySelector('.profile__boards-list-container');
@@ -281,7 +280,7 @@ export class ProfilePageComponent extends BaseComponent {
                 nextNavBarSectionText.className = 'profile__boards-header-nav-to-board';
 
                 // CHANGE HREF HERE
-                nextNavBarSectionText.href = '/profile/board';
+                nextNavBarSectionText.href = 'user/${user_id}/board';
                 navigationBar.appendChild(nextNavBarSectionText);
 
                 // Update title
@@ -292,14 +291,14 @@ export class ProfilePageComponent extends BaseComponent {
                     'beforeend',
                     new IconButton(this.Parent, {
                         className: 'icon-button__edit-img',
-                        iconPath: './assets/icons/edit.svg',
+                        iconPath: '/assets/icons/edit.svg',
                     }).renderTemplate()
                 );
                 headerTitleContainer.insertAdjacentHTML(
                     'beforeend',
                     new IconButton(this.Parent, {
                         className: 'icon-button__delete-img',
-                        iconPath: './assets/icons/delete.svg',
+                        iconPath: '/assets/icons/delete.svg',
                     }).renderTemplate()
                 );
 

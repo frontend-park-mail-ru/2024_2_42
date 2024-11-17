@@ -8,4 +8,7 @@ export const ROUTES = {
     logOut: '/logout',
     user: '/user/',
     getAvatar: '/get_avatar',
+    lookPin: '/lookpin',
+	editPin: '/edit_pin',
+	createPin: '/create_pin',
 };
