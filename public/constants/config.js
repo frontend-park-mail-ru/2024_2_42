@@ -106,7 +106,7 @@ export const signupConfig = {
 		disabled: false,
 		hover: false,
 		active: false
-	}
+	},
 };
 
 export const headerConfig = {

@@ -7,4 +7,7 @@ export const ROUTES = {
 	signup: '/signup',
 	isAuthorized: '/is_authorized',
 	logOut: '/logout',
+	lookPin: '/lookpin',
+	editPin: '/edit_pin',
+	createPin: '/create_pin',
 };

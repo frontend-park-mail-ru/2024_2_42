@@ -9,7 +9,7 @@ import { BACKEND_LOGOUT_ROUTE } from '../../constants/api.js'
 import { postMethod } from '../../modules/network.js'
 
 import { app } from '../../index.js'
-import { BaseComponent } from '../../components/base.js'
+import { BaseComponent } from '../../components/base/base.js'
 
 import { DropDownMenuComponent as DropDownMenu } from '../../components/drop-down-menu/drop-down-menu.js'
 

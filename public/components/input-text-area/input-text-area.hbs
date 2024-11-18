@@ -1,0 +1,19 @@
+<div class="input-text-area">
+    <label class="input-text-area-title">{{title}}</label>
+    <div class="textarea-container">
+        {{#if icon}}
+            <span class="icon" style="margin-right: {{iconMargin}};">
+                <img src="{{icon}}" alt="icon" />
+            </span>
+        {{/if}}
+        <textarea
+            class="input-area"
+            {{#if placeHolder}} placeholder="{{placeHolder}}" {{/if}}
+            {{#if maxLength}} maxlength="{{maxLength}}" {{/if}}
+            {{#if fontSize}} style="font-size: {{fontSize}};" {{/if}}
+            {{#if minHeight}} style="min-height: {{minHeight}};" {{/if}}
+            {{#if maxHeight}} style="max-height: {{maxHeight}};" {{/if}}
+            {{#if autoExpand}} oninput="this.style.height = 'auto'; this.style.height = this.scrollHeight + 'px'" {{/if}}
+        ></textarea>
+    </div>
+</div>
