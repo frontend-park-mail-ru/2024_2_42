@@ -171,7 +171,7 @@ export default class App {
     
     
     async #renderProfile(user_id) {
-        const userProfileRoute = `${BACKEND_PROFILE_ROUTE}/${user_id}`
+        const userProfileRoute = `${BACKEND_PROFILE_ROUTE}${user_id}`
         const profileResp = await getMethod(userProfileRoute);
         console.log(profileResp, userProfileRoute)
         const profileState = {
