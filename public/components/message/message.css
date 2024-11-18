@@ -1,0 +1,19 @@
+.message{
+    display: flex;
+    width: 100%;
+}
+
+.message-content {
+    width: fit-content;
+    padding: 0.5rem;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px var(--project-primary-black);
+}
+
+.message.align-left{
+    justify-content: left;
+}
+
+.message.align-right{
+    justify-content: right;
+}
