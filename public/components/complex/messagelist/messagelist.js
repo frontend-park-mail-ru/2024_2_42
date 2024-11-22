@@ -12,16 +12,16 @@ export class MessageListComponent extends BaseComponent {
     const template = Handlebars.templates['messagelist.hbs'];
 
     const messageList = [];
-    console.log(messageList);
-
-    this.State.messagesInfo.forEach((message) => {
-      const component = new MessageComponent(this.Parent, {
-        Content: message.content,
-        AuthorID: message.sender_id,
-        ChatOwnerID: this.State.ChatOwnerID,
+    if (this.State.messagesInfo) {
+      this.State.messagesInfo.forEach((message) => {
+        const component = new MessageComponent(this.Parent, {
+          Content: message.content,
+          AuthorID: message.sender_id,
+          ChatOwnerID: this.State.ChatOwnerID,
+        });
+        messageList.push(component.renderTemplate());
       });
-      messageList.push(component.renderTemplate());
-    });
+    }
 
     const renderedTemplate = template({
       Messages: messageList,

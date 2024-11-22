@@ -6,6 +6,7 @@
 @import url(pages/addPin/lookPin.css);
 @import url(pages/editPin/editPin.css);
 @import url(pages/chat/chat.css);
+@import url(components/complex/searchuser/searchuser.css);
 @import url(pages/unknown/unknown.css);
 @import url(pages/profile/profile.css);
 @import url(components/complex/header/header.css);
@@ -18,6 +19,7 @@
 @import url(components/search-input/search-input.css);
 @import url(components/boards-list/boards-list.css);
 @import url(components/details-menu/details-menu.css);
+@import url(components/searchuser-item/searchuser-item.css);
 @import url(components/drop-down-menu/drop-down-menu.css);
 @import url(components/input-text-area/input-text-area.css);
 @import url(components/complex/messagelist/messagelist.css);

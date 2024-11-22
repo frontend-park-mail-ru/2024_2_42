@@ -4,8 +4,10 @@ import { MessageListComponent } from '../../components/complex/messagelist/messa
 import { DialogPreviewComponent } from '../../components/dialog-preview/dialog-preview.js';
 import { InputComponent } from '../../components/input/input.js';
 import { MessageComponent } from '../../components/message/message.js';
-import { SearchInputComponent } from '../../components/search-input/search-input.js';
-import { isAuthorized } from '../../modules/network.js';
+import { isAuthorized, postMethod } from '../../modules/network.js';
+import ImgProcess from '../../modules/imgprocess.js';
+import { SearchUserComponent } from '../../components/complex/searchuser/searchuser.js';
+import { getMethod } from '../../modules/network.js';
 
 export class ChatPageComponent extends BaseComponent {
   constructor(parent) {
@@ -13,25 +15,21 @@ export class ChatPageComponent extends BaseComponent {
     this.getChatMessages = this.getChatMessages.bind(this);
     this.SendMessageFunc = this.SendMessageFunc.bind(this);
     this.AddReseivedMessage = this.AddReseivedMessage.bind(this);
+    this.AddUserChat = this.AddUserChat.bind(this);
   }
 
   async renderTemplate() {
     const template = Handlebars.templates['chat.hbs'];
 
-    const userIDResponse = await fetch('http://localhost:8080/is_authorized', {
-      method: 'GET',
-      mode: 'cors',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    const userIDResponseData = await userIDResponse.json();
+    const userIDResponseData = await getMethod(
+      'http://localhost:8080/is_authorized'
+    );
 
     this.ChatOwnerID = userIDResponseData.user_id;
 
-    const svgIcon = await this.loadSVG('./assets/icons/navigation-arrow.svg');
+    const svgIcon = await ImgProcess.loadSVG(
+      './assets/icons/navigation-arrow.svg'
+    );
 
     const headerPart = new Header(this.Parent, false);
 
@@ -39,19 +37,8 @@ export class ChatPageComponent extends BaseComponent {
       inputPlaceholder: 'Введите сообщение...',
       inputImageRight: svgIcon,
     });
-    const searchInput = new SearchInputComponent(this.Parent, {
-      Placeholder: 'искать друзей...',
-    });
 
-    const response = await fetch('http://localhost:8080/mychats', {
-      method: 'GET',
-      mode: 'cors',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const userChats = await response.json();
+    const userChats = await getMethod('http://localhost:8080/mychats');
 
     const chatTemplates = [];
     userChats.forEach((chat) => {
@@ -66,11 +53,20 @@ export class ChatPageComponent extends BaseComponent {
     const renderedTemplate = template({
       header: headerPart.renderTemplate(),
       messageInput: messageInput.renderTemplate(),
-      searchInput: searchInput.renderTemplate(),
       dialogPreviews: chatTemplates,
+      chatOpened: this.currentChatID,
     });
 
     this.Parent.insertAdjacentHTML('beforeend', renderedTemplate);
+
+    const chatSidebarSearch = document.querySelector('.chat__sidebar-search');
+
+    const searchUserInput = new SearchUserComponent(
+      chatSidebarSearch,
+      {},
+      this
+    );
+    searchUserInput.renderTemplate();
 
     const dialogs = document.querySelectorAll('.dialog-preview');
     dialogs.forEach((dialog) => {
@@ -78,18 +74,31 @@ export class ChatPageComponent extends BaseComponent {
     });
 
     this.socket = new WebSocket('ws://localhost:8080/handshake');
-    this.socket.onopen = function () {
-      console.log('Соединение установлено');
-    };
-
-    this.socket.onclose = function (event) {
-      console.log('Соединение закрыто:', event.reason);
-    };
 
     this.socket.onmessage = this.AddReseivedMessage;
 
     const messageSubmitBtn = document.querySelector('.input__icon');
     messageSubmitBtn.addEventListener('click', this.SendMessageFunc);
+  }
+
+  async AddUserChat(event) {
+    const companionID = event.currentTarget.dataset.companionId;
+    const response = await postMethod(
+      `http://localhost:8080/create/chat/${companionID}`
+    );
+    const component = new DialogPreviewComponent(this.Parent, {
+      ChatID: response['chat_id'],
+      AvatarUrl: response.companion['avatar_url'],
+      NickName: response.companion['nick_name'],
+    });
+    const chatPreviewList = document.querySelector(
+      '.chat__sidebar-dialog-list'
+    );
+    chatPreviewList.insertAdjacentHTML(
+      'afterbegin',
+      component.renderTemplate()
+    );
+    chatPreviewList.firstChild.addEventListener('click', this.getChatMessages);
   }
 
   async AddReseivedMessage(event) {
@@ -124,6 +133,9 @@ export class ChatPageComponent extends BaseComponent {
   async getChatMessages(event) {
     event.preventDefault();
 
+    const chatDialogInput = document.querySelector('.chat__dialog-input');
+    chatDialogInput.style.display = 'block';
+
     const dialogs = document.querySelectorAll('.dialog-preview');
     dialogs.forEach((dialog) => {
       dialog.classList.remove('active');
@@ -137,15 +149,7 @@ export class ChatPageComponent extends BaseComponent {
       'http://localhost:8080/chat/' +
       this.currentChatID.toString() +
       '/messages';
-    const response = await fetch(urlPath, {
-      method: 'GET',
-      mode: 'cors',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const messages = await response.json();
+    const messages = await getMethod(urlPath);
     const messageList = new MessageListComponent(this.Parent, {
       messagesInfo: messages,
       ChatOwnerID: this.ChatOwnerID,
@@ -155,17 +159,5 @@ export class ChatPageComponent extends BaseComponent {
     let dialogMessages = document.querySelector('.chat__dialog-messages');
     dialogMessages.innerHTML = '';
     dialogMessages.insertAdjacentHTML('afterbegin', renderedMessages);
-  }
-
-  async loadSVG(url) {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) throw new Error('Network response was not ok');
-      const svgContent = await response.text();
-      return svgContent;
-    } catch (error) {
-      console.error('Ошибка загрузки SVG:', error);
-      return '';
-    }
   }
 }
