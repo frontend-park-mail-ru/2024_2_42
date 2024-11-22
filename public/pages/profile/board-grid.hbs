@@ -1,7 +1,7 @@
 <div class="profile__boards-list-container">
     {{#if boards}}
         {{#each boards}}
-            <div class="profile__board">
+            <div class="profile__board" data-board-id="{{this.boardID}}">
                 <img class="profile__board-cover" src="{{this.coverUrl}}" alt="{{this.title}}">
                 <img class="profile__board-cover-more-icon" src="/assets/icons/more.svg" alt="Details">
                 <div class="profile__board-info-container-{{this.boardID}}">

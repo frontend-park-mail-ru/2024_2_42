@@ -9,6 +9,8 @@ import { ROUTES } from './constants/routes.js';
 import { BACKEND_LOGIN_ROUTE, BACKEND_SIGNUP_ROUTE, BACKEND_FEED_ROUTE, BACKEND_PROFILE_ROUTE } from './constants/api.js';
 
 import { getMethod } from './modules/network.js';
+import { timeAgo } from './modules/time.js';
+import StateManagerInstance from './modules/state.js';
 
 /**
  * Represents core Application class
@@ -56,6 +58,10 @@ export default class App {
             case ROUTES.signup:
                 history.pushState({}, '', ROUTES.signup);
                 this.#renderSignup();
+                break;
+            case ROUTES.profile:
+                history.pushState({}, ROUTES.profile);
+                this.#renderProfile();
                 break;
             default:
                 this.#handleUnknownRoute();
@@ -137,6 +143,33 @@ export default class App {
         this.#structure.mainPage = mainPage;
     }
 
+    async #renderProfile() {
+        const userInfo = StateManagerInstance.getState();
+        const userProfileRoute = `${BACKEND_PROFILE_ROUTE}${userInfo.userID}`
+        const profileResp = await getMethod(userProfileRoute);
+        const profileState = {
+            currentUser: profileResp.current_user,
+            userName: profileResp.user_name || '',
+            userNickname: profileResp.nick_name || '',
+            avatarUrl: profileResp.avatar_url || '/assets/imgs/avatar.jpg',
+            followersNumber: profileResp.followings_count,
+            followingsNumber: profileResp.subscriptions_count,
+            bio: profileResp.description || 'Здесь будет описание...',
+            boards: (profileResp.user_boards || []).map((boards) => ({
+                boardID: boards.board_id,
+                title: boards.board_name || '',
+                coverUrl: boards.board_cover || '/assets/imgs/avatar.jpg',
+                private: !boards.public,
+                lastModifyTime: timeAgo(boards.update_time),
+                bookmarkedNumber: boards.bookmarked_number || 0,
+                rewardedNumber: boards.rewarded_number || 0,
+                pinSet: boards.pins || [],
+            })),
+        };
+        const profile = new ProfilePage(this.root, profileState);
+        profile.renderTemplate();
+        this.#structure.profile = profile;      
+    }
 
     /**
      * Handles unknown route request, renders corresponding page template
@@ -170,47 +203,6 @@ export default class App {
     }
     
     
-    async #renderProfile(user_id) {
-        const userProfileRoute = `${BACKEND_PROFILE_ROUTE}${user_id}`
-        const profileResp = await getMethod(userProfileRoute);
-        console.log(profileResp, userProfileRoute)
-        const profileState = {
-            userName: profileResp.user_name,
-            userNickname: profileResp.nick_name,
-            avatarUrl: profileResp.avatar_url,
-            followersNumber: profileResp.followings_count,
-            followingsNumber: profileResp.subscriptions_count,
-            bio: profileResp.description,
-            boards: (profileResp.user_boards || []).map((boards) => ({
-                boardID: boards.board_id,
-                coverUrl: boards.board_cover,
-                private: !boards.public,
-                lastModifyTime: boards.update_time,
-                bookmarkedNumber: boards.bookmarked_number || 0,
-                rewardedNumber: boards.rewarded_number || 0,
-                pinSet: boards.pins || [],
-            })),
-        };
-        const profile = new ProfilePage(this.root, profileState);
-        this.#structure.profile = profile.renderTemplate();
-
-
-        console.log('Boards:', profileState.boards);
-
-        profile.addSearchInputsListeners();
-        profile.addProfileImgListener();
-        profile.addLogoListener();
-        profile.addNickNameCopyBtnListener();
-
-        profile.addBoardsSearchBarListener();
-        profile.addBoardDetailsIconListener();
-        profile.addBoardListener(profileState);
-        profile.resizeBoardsCovers();
-        
-    }
-    // 
-        // const profile = new ProfilePage(this.root, profileState);
-        // return profile.renderTemplate();
 
     /**
      * Clear all page data if it's needed.

@@ -2,6 +2,8 @@
 
 import { BaseComponent } from '../../base.js';
 
+import StateManagerInstance from '../../../modules/state.js';
+
 export class PreviewComponent extends BaseComponent {
     /**
      *
@@ -63,10 +65,13 @@ export class PreviewComponent extends BaseComponent {
      */
     renderTemplate() {
         const template = Handlebars.templates['preview.hbs'];
+
+        // Render save button if user isAuthorized
         this.State.BookmarksNumber = this.abbreviateNumber(this.State.BookmarksNumber);
         this.State.ViewsNumber = this.abbreviateNumber(this.State.ViewsNumber);
         const renderedTemplate = template({
             preview: this.State,
+            userState: StateManagerInstance.getState(),
         });
 
         return renderedTemplate;

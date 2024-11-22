@@ -5,12 +5,13 @@ import { BaseComponent } from '../../components/base.js';
 import { InputComponent as Input } from '../../components/input/input.js';
 import { ButtonComponent as Button } from '../../components/button/button.js';
 
-import { postMethod } from '../../modules/network.js';
+import { postMethod, getUserAvatar } from '../../modules/network.js';
 import { ROUTES } from '../../constants/routes.js';
 
 import { app } from '../../index.js';
 
 import { validateInput, getCaptionSetForRule } from '../../modules/validation.js';
+import StateManagerInstance from '../../modules/state.js';
 
 /**
  * Represents a Login Component.
@@ -125,7 +126,11 @@ export class LoginComponent extends BaseComponent {
                 const resp = await postMethod(apiRoute, loginData, true);
                 if (resp.session_cookie) {
                     document.cookie = `session_token=${resp.session_cookie}`;
-
+                    const userInfo = await getUserAvatar();
+                    StateManagerInstance.updateState(
+                        {userID: userInfo.user_id,
+                        userAvatar: userInfo.avatar_url, 
+                        isAuthorized: true});
                     this.Parent.innerHTML = '';
                     app.renderPage(ROUTES.main);
                 }

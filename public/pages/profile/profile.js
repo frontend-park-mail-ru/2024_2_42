@@ -12,11 +12,12 @@ import { GridComponent as Grid } from '../../components/complex/grid/grid.js';
 import { app } from '../../index.js';
 import { ROUTES } from '../../constants/routes.js';
 
-import { postMethod } from '../../modules/network.js';
-import { BACKEND_LOGOUT_ROUTE } from '../../constants/api.js';
+import { getMethod, postMethod } from '../../modules/network.js';
+import { BACKEND_LOGOUT_ROUTE, BACKEND_PINS_ROUTE } from '../../constants/api.js';
 import { isAuthorized } from '../../modules/network.js';
 
 import { IconButtonComponent as IconButton } from '../../components/button/icon-button.js';
+import StateManagerInstance from '../../modules/state.js';
 
 /**
  * Page of a user profile.
@@ -58,7 +59,6 @@ export class ProfilePageComponent extends BaseComponent {
             }).renderTemplate();
         }
 
-        console.log(this.State)
         const renderedTemplate = template({
             header: new Header(this.Parent, await isAuthorized()).renderTemplate(),
             searchInputBar: new SearchInput(this.Parent, {
@@ -79,7 +79,7 @@ export class ProfilePageComponent extends BaseComponent {
         this.resizeBoardsCovers();
         this.addNickNameCopyBtnListener();
         this.addSearchInputsListeners();
-        this.addBoardsSearchBarListener();
+        this.addBoardsSearchBarListener(this.State);
         this.addProfileImgListener();
         this.addBoardDetailsIconListener();
         return renderedTemplate;
@@ -145,13 +145,13 @@ export class ProfilePageComponent extends BaseComponent {
     /**
      * Creates a listener of search bar events.
      */
-    addBoardsSearchBarListener() {
+    addBoardsSearchBarListener(profile) {
         const searchInputBar = document.querySelector(`.profile__boards-header-search-block
                                                     .searchinput__content-container
                                                     .searchinput__search-field`);
         searchInputBar.addEventListener('input', (event) => {
             event.preventDefault();
-            this.boardsSearchBarListenerHandler();
+            this.boardsSearchBarListenerHandler(profile);
         });
     }
 
@@ -224,6 +224,7 @@ export class ProfilePageComponent extends BaseComponent {
 
                 const resp = await postMethod(BACKEND_LOGOUT_ROUTE, {}, true);
                 if (!resp.code_status) {
+                    StateManagerInstance.resetState();
                     document.cookie = 'session_token' + '=; Max-Age=0';
                     this.Parent.innerHTML = '';
                     app.renderPage(ROUTES.main);
@@ -250,11 +251,7 @@ export class ProfilePageComponent extends BaseComponent {
     /**
      * Creates a listener of board click event.
      */
-    addBoardListener(profile) {
-        const pinGridParent = document.querySelector('.profile__boards-container');
-        const pinGrid = new Grid(pinGridParent, profile.boards.pinSet, false);
-        const renderedPinGrid = pinGrid.renderTemplate();
-
+    addBoardListener() {
         const boardGrid = document.querySelector('.profile__boards-list-container');
         const allBoards = document.querySelectorAll('.profile__board');
         const boardsContainer = document.querySelector('.profile__boards-container');
@@ -262,15 +259,21 @@ export class ProfilePageComponent extends BaseComponent {
         const navigationBar = document.querySelector('.profile__boards-header-navigation');
         const navArrow = navigationBar.querySelector('.profile__boards-header-navigation-arrow');
         const nextNavArrow = navArrow.cloneNode(true);
-
         const navBarSectionText = navigationBar.querySelector('.profile__boards-header-nav-to-profile-link');
         const nextNavBarSectionText = navBarSectionText.cloneNode(true);
 
         const headerSearchBlock = document.querySelector('.profile__boards-header-search-block');
 
         for (const board of allBoards) {
-            board.addEventListener('click', (event) => {
+            board.addEventListener('click', async (event) => {
                 event.preventDefault();
+
+                const boardPinsRoute = `${BACKEND_PINS_ROUTE}${board.dataset.boardId}/pins`;
+                const pinSet = await getMethod(boardPinsRoute);
+                const pinGridParent = document.querySelector('.profile__boards-container');
+                const pinGrid = new Grid(pinGridParent, pinSet, false);
+                const renderedPinGrid = pinGrid.renderTemplate();
+
 
                 const boardTitle = board.querySelector('.profile__board-title').textContent;
 
@@ -280,7 +283,7 @@ export class ProfilePageComponent extends BaseComponent {
                 nextNavBarSectionText.className = 'profile__boards-header-nav-to-board';
 
                 // CHANGE HREF HERE
-                nextNavBarSectionText.href = 'user/${user_id}/board';
+                nextNavBarSectionText.href = `/boards/${board.dataset.boardId}`;
                 navigationBar.appendChild(nextNavBarSectionText);
 
                 // Update title
@@ -332,10 +335,13 @@ export class ProfilePageComponent extends BaseComponent {
                     },
                     true
                 );
-
-                for (const pin of pinSet) {
-                    pinGrid.buildPinPreview(pin);
+                
+                if (Array.isArray(pinSet)) {
+                    for (const pin of pinSet) {
+                        pinGrid.buildPinPreview(pin);
+                    }
                 }
+
             });
         }
     }

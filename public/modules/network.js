@@ -93,3 +93,25 @@ export const postMethod = async (apiRoute, dataEntity, shouldLog) => {
     const jsonData = await handleResponse(response, shouldLog);
     return jsonData;
 };
+
+/**
+ * Executes post method request to backend API
+ * @param {string} apiRoute - url address of corresponding backend resource
+ * @param {Object} dataEntity - request body
+ * @param {boolean} shouldLog - should error message be displayed in error case or not
+ * @returns {Object} - response presented in JSON form
+ */
+export const deleteMethod = async (apiRoute, dataEntity, shouldLog) => {
+    const response = await fetch(apiRoute, {
+        method: 'DELETE',
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataEntity),
+    });
+
+    const jsonData = await handleResponse(response, shouldLog);
+    return jsonData;
+};

@@ -9,6 +9,10 @@ import { SaveBoxComponent as SaveBox } from '../savebox/savebox.js';
 
 import { BoardsListComponent as BoardsList } from '../../boards-list/boards-list.js';
 import { DetailsMenuComponent as DetailsMenu } from '../../details-menu/details-menu.js';
+import { deleteMethod, postMethod } from '../../../modules/network.js';
+
+import { BACKEND_VIEW_PIN, BACKEND_MAKE_BOOKMARK_ROUTE, BACKEND_DELETE_BOOKMARK_ROUTE } from '../../../constants/api.js';
+import StateManagerInstance from '../../../modules/state.js';
 
 const DEFAULT_FULLPAGE_WIDTH = 1920;
 const DEFAULT_COLUMNS_N_FOR_FULLPAGE = 7;
@@ -72,11 +76,9 @@ export class GridComponent extends BaseComponent {
             this.#pins = [];
         }
 
+        
         // Render each PinComponent using its template
-        for (const pinData of this.#pins) {
-            if (pinData.media_url.startsWith('http://minio:9000')) {
-                pinData.media_url = pinData.media_url.replace('http://minio:9000', 'http://localhost:9000');
-            }            
+        for (const pinData of this.#pins) {         
             const newPin = new PinComponent(pinData);
             pinsToRender.push(newPin);
         }
@@ -161,14 +163,13 @@ export class GridComponent extends BaseComponent {
     buildPinPreview(pin) {
         const pinPreviewBtn = document.querySelector(`.pin__image-preview-button-${pin.pin_id}`);
         const parent = document.getElementById('root');
-
         const previewState = {
             MediaUrl: pin.media_url,
-            AuthorAvatarUrl: pin.author_info.avatar_url,
+            AuthorAvatarUrl: pin.author_info.avatar_url || '/assets/imgs/avatar.jpg',
             AuthorName: pin.author_info.nick_name,
             AuthorFollowersNumber: pin.author_info.followings_count,
             Boards: (pin.available_boards || []).map((board) => ({
-                BoardCoverUrl: board.board_cover || './default/cover.jpg',
+                BoardCoverUrl: board.board_cover || '/default/cover.jpg',
                 BoardName: board.board_name,
                 Private: !board.public,
             })),
@@ -195,12 +196,12 @@ export class GridComponent extends BaseComponent {
                     Download: false,
                 },
             ],
-            Bookmarked: false,
-            BookmarksNumber: 390,
-            ViewsNumber: 10_000_000,
+            Bookmarked: pin.is_bookmarked,
+            BookmarksNumber: pin.bookmarks || 0,
+            ViewsNumber: pin.views,
         };
 
-        pinPreviewBtn.addEventListener('click', (event) => {
+        pinPreviewBtn.addEventListener('click', async (event) => {
             event.preventDefault();
 
             // create expanded pin version
@@ -210,9 +211,14 @@ export class GridComponent extends BaseComponent {
             parent.insertAdjacentHTML('beforeend', previewRendered);
 
             // Adding buttons listeners
-            this.addBookmarkBtnListener(previewState);
             this.addSaveBtnListener(previewState.Boards);
             this.addMoreBtnListener(previewState.DetailsOptions);
+            
+            // Render save button if user isAuthorized
+            const userState = StateManagerInstance.getState();
+            if (userState.isAuthorized) {
+                this.addBookmarkBtnListener(previewState, pin.pin_id, userState);
+            }
 
             const pinImageElement = document.querySelector(`.pin__image-${pin.pin_id}`);
 
@@ -230,6 +236,10 @@ export class GridComponent extends BaseComponent {
 
             // Create dark transparent background and add event listeners
             this.createBackgroundListeners();
+
+            // Add +1 view
+            const pinViewRoute = `${BACKEND_VIEW_PIN}${pin.pin_id}`;
+            await postMethod(pinViewRoute)
 
             this.#boardsToSaveTo = [];
         });
@@ -322,11 +332,23 @@ export class GridComponent extends BaseComponent {
      * Creates a listener for bookmark button events.
      * @param {Object} previewState - preview state object containing its state info.
      */
-    addBookmarkBtnListener(previewState) {
+    addBookmarkBtnListener(previewState, pinID, userState) {
         const bookmarkBtn = document.querySelector('.preview__side-menu-bookmark');
-        bookmarkBtn.addEventListener('click', (event) => {
+        bookmarkBtn.addEventListener('click', async (event) => {
             event.preventDefault();
             this.bookmarkListenerHandler(bookmarkBtn, previewState);
+
+            // Save pin to bookmarks
+            const bookmarkData = {
+                owner_id: userState.userID,
+                pin_id: pinID,
+            }
+
+            if (!previewState.Bookmarked) {
+                await deleteMethod(BACKEND_DELETE_BOOKMARK_ROUTE, bookmarkData);
+            } else {
+                await postMethod(BACKEND_MAKE_BOOKMARK_ROUTE, bookmarkData);
+            }
         });
     }
 
