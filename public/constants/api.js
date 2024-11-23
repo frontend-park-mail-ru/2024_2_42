@@ -15,3 +15,4 @@ export const BACKEND_PINS_ROUTE = `${BASE}${ROUTES.boardPins}`;
 export const BACKEND_VIEW_PIN = `${BASE}${ROUTES.pinView}`;
 export const BACKEND_MAKE_BOOKMARK_ROUTE = `${BASE}${ROUTES.bookmark}`
 export const BACKEND_DELETE_BOOKMARK_ROUTE = `${BASE}${ROUTES.deleteBookmark}`
+export const BACKEND_SAVE_PIN_TO_BOARD = `${BASE}${ROUTES.savePinToBoard}`

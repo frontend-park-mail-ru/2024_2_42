@@ -16,4 +16,5 @@ export const ROUTES = {
     pinView: '/pins/view/',
     bookmark: '/create-bookmark',
     deleteBookmark: '/bookmark/delete/',
+    savePinToBoard: '/boards'
 };
