@@ -116,6 +116,39 @@ templates['icon-button.hbs'] = template({"compiler":[8,">= 4.3.0"],"main":functi
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"state") : depth0)) != null ? lookupProperty(stack1,"iconPath") : stack1), depth0))
     + "' />\r\n</div>";
 },"useData":true});
+templates['csat.hbs'] = template({"1":function(container,depth0,helpers,partials,data,blockParams) {
+    var stack1, alias1=depth0 != null ? depth0 : (container.nullContext || {}), lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "            <img \r\n                src=\""
+    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(lookupProperty(helpers,"eq")||(depth0 && lookupProperty(depth0,"eq"))||container.hooks.helperMissing).call(alias1,blockParams[0][0],(depth0 != null ? lookupProperty(depth0,"rating") : depth0),{"name":"eq","hash":{},"data":data,"blockParams":blockParams,"loc":{"start":{"line":8,"column":27},"end":{"line":8,"column":44}}}),{"name":"if","hash":{},"fn":container.program(2, data, 0, blockParams),"inverse":container.program(4, data, 0, blockParams),"data":data,"blockParams":blockParams,"loc":{"start":{"line":8,"column":21},"end":{"line":8,"column":117}}})) != null ? stack1 : "")
+    + "\"\r\n                alt=\"star\" \r\n                class=\"csat__star\"\r\n                data-index=\""
+    + container.escapeExpression(container.lambda(blockParams[0][0], depth0))
+    + "\" \r\n                onclick=\"changeStarRating(event)\"\r\n            />\r\n";
+},"2":function(container,depth0,helpers,partials,data) {
+    return "/assets/icons/star_fill.svg";
+},"4":function(container,depth0,helpers,partials,data) {
+    return "/assets/icons/star_unfill.svg";
+},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data,blockParams) {
+    var stack1, alias1=container.lambda, alias2=depth0 != null ? depth0 : (container.nullContext || {}), lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"csat__content-container\">\r\n    <iframe src=\"./csat.html\" id=\"modal-window\" class=\"modal-window window__bottom-right\">\r\n    </iframe>\r\n    <p class=\"csat__question-text\">"
+    + ((stack1 = alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"csat") : depth0)) != null ? lookupProperty(stack1,"question") : stack1), depth0)) != null ? stack1 : "")
+    + "</p>\r\n    <div class=\"csat__rating-stars\">\r\n"
+    + ((stack1 = lookupProperty(helpers,"each").call(alias2,(lookupProperty(helpers,"range")||(depth0 && lookupProperty(depth0,"range"))||container.hooks.helperMissing).call(alias2,1,5,{"name":"range","hash":{},"data":data,"blockParams":blockParams,"loc":{"start":{"line":6,"column":16},"end":{"line":6,"column":27}}}),{"name":"each","hash":{},"fn":container.program(1, data, 1, blockParams),"inverse":container.noop,"data":data,"blockParams":blockParams,"loc":{"start":{"line":6,"column":8},"end":{"line":14,"column":17}}})) != null ? stack1 : "")
+    + "    </div>\r\n    <div class=\"csat__create-button-container\">\r\n        "
+    + ((stack1 = alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"csat") : depth0)) != null ? lookupProperty(stack1,"createButton") : stack1), depth0)) != null ? stack1 : "")
+    + "\r\n    </div>\r\n</div>\r\n";
+},"useData":true,"useBlockParams":true});
 templates['grid.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
     var stack1;
 
@@ -428,6 +461,8 @@ templates['main.hbs'] = template({"compiler":[8,">= 4.3.0"],"main":function(cont
     + ((stack1 = ((helper = (helper = lookupProperty(helpers,"header") || (depth0 != null ? lookupProperty(depth0,"header") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"header","hash":{},"data":data,"loc":{"start":{"line":2,"column":4},"end":{"line":2,"column":16}}}) : helper))) != null ? stack1 : "")
     + "\r\n    "
     + ((stack1 = ((helper = (helper = lookupProperty(helpers,"grid") || (depth0 != null ? lookupProperty(depth0,"grid") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"grid","hash":{},"data":data,"loc":{"start":{"line":3,"column":4},"end":{"line":3,"column":14}}}) : helper))) != null ? stack1 : "")
+    + "\r\n    "
+    + ((stack1 = ((helper = (helper = lookupProperty(helpers,"csat") || (depth0 != null ? lookupProperty(depth0,"csat") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"csat","hash":{},"data":data,"loc":{"start":{"line":4,"column":4},"end":{"line":4,"column":14}}}) : helper))) != null ? stack1 : "")
     + "\r\n</div>";
 },"useData":true});
 templates['board-grid.hbs'] = template({"1":function(container,depth0,helpers,partials,data,blockParams,depths) {

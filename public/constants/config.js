@@ -147,3 +147,11 @@ export const headerConfig = {
         disabled: false,
     },
 };
+
+export const csatConfig = {
+    CreateButton: {
+        label: 'Создать',
+        type: 'primary',
+        disabled: false,
+    },
+}

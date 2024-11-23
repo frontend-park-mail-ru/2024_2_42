@@ -1,0 +1,19 @@
+<div class="csat__content-container">
+    <iframe src="./csat.html" id="modal-window" class="modal-window window__bottom-right">
+    </iframe>
+    <p class="csat__question-text">{{{csat.question}}}</p>
+    <div class="csat__rating-stars">
+        {{#each (range 1 5) as |index|}}
+            <img 
+                src="{{#if (eq index rating)}}/assets/icons/star_fill.svg{{else}}/assets/icons/star_unfill.svg{{/if}}"
+                alt="star" 
+                class="csat__star"
+                data-index="{{index}}" 
+                onclick="changeStarRating(event)"
+            />
+        {{/each}}
+    </div>
+    <div class="csat__create-button-container">
+        {{{csat.createButton}}}
+    </div>
+</div>

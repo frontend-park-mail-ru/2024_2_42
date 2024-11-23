@@ -2,8 +2,7 @@
 
 import { HeaderComponent as Header } from '../../components/complex/header/header.js';
 import { GridComponent as Grid } from '../../components/complex/grid/grid.js';
-import { isAuthorized } from '../../modules/network.js';
-import { getUserAvatar } from '../../modules/network.js';
+import { CSATComponent as CSAT } from '../../components/complex/csat/csat.js';
 
 import { ROUTES } from '../../constants/routes.js';
 import { BACKEND_LOGOUT_ROUTE } from '../../constants/api.js';
@@ -42,24 +41,25 @@ export class MainPageComponent extends BaseComponent {
      */
     async renderTemplate() {
         const template = Handlebars.templates['main.hbs'];
-
+    
         const grid = new Grid(this.Parent, this.#pins, true);
-
-        const userState = StateManagerInstance.getState()
-
+    
+        const userState = StateManagerInstance.getState();
+    
         const renderedTemplate = template({
             header: new Header(this.Parent, userState.isAuthorized, userState.userAvatar).renderTemplate(),
             grid: grid.renderTemplate(),
+            csat: new CSAT(this.Parent).renderTemplate(),
         });
-
+    
         this.Parent.insertAdjacentHTML('beforeend', renderedTemplate);
-
+    
         this.#pins = Array.isArray(this.#pins) ? this.#pins : [];
-
+    
         for (const pin of this.#pins) {
             grid.buildPinPreview(pin);
         }
-
+    
         document.body.addEventListener(
             'load',
             (event) => {
@@ -68,16 +68,17 @@ export class MainPageComponent extends BaseComponent {
             },
             true
         );
-
+    
         // Listeners
         this.addLogoListener();
         this.addLoginBtnListener();
         this.addSearchInputListener();
         this.addProfileImgListener();
-
+        this.addCSATBtnListener();
+    
         return renderedTemplate;
-    }
-
+    }   
+    
     /**
      * Creates a listener of the search input bar.
      */
@@ -200,4 +201,27 @@ export class MainPageComponent extends BaseComponent {
             });
         }
     }
+
+    /**
+     * Creates a listener for the CSAT button.
+     */
+    addCSATBtnListener() {
+        const csatButton = document.querySelector('.csat-button');
+        const csatIframe = document.querySelector('#csat-iframe');
+    
+        if (!csatButton || !csatIframe) {
+            return;
+        }
+    
+        csatButton.addEventListener('click', () => {
+            // Переключаем видимость iframe
+            if (csatIframe.classList.contains('hidden')) {
+                csatIframe.classList.remove('hidden');
+                csatIframe.classList.add('visible');
+            } else {
+                csatIframe.classList.remove('visible');
+                csatIframe.classList.add('hidden');
+            }
+        });
+    }    
 }
