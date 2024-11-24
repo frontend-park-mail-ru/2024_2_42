@@ -1,0 +1,22 @@
+<div class="chat-container">
+    {{{header}}}
+    <div class="chat__content">
+        <div class="chat__sidebar">
+            <div class="chat__sidebar-search">
+            </div>
+            <div class="chat__sidebar-dialog-list">
+                {{#each dialogPreviews}}
+                    {{{this}}}
+                {{/each}}
+            </div>
+        </div>
+        <div class="chat__dialog">
+            <div class="chat__dialog-messages">
+                
+            </div>
+            <div class="chat__dialog-input">
+                {{{messageInput}}}
+            </div>
+        </div>
+    </div>
+</div>

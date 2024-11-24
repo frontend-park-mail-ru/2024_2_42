@@ -174,6 +174,24 @@ templates['header.hbs'] = template({"1":function(container,depth0,helpers,partia
     + ((stack1 = lookupProperty(helpers,"if").call(depth0 != null ? depth0 : (container.nullContext || {}),((stack1 = (depth0 != null ? lookupProperty(depth0,"header") : depth0)) != null ? lookupProperty(stack1,"isAuthorized") : stack1),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data,"loc":{"start":{"line":10,"column":1},"end":{"line":21,"column":8}}})) != null ? stack1 : "")
     + "</div>\n";
 },"useData":true});
+templates['messagelist.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "            "
+    + ((stack1 = container.lambda(depth0, depth0)) != null ? stack1 : "")
+    + "\n";
+},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"message-container\">\n"
+    + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"Messages") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":2,"column":6},"end":{"line":4,"column":17}}})) != null ? stack1 : "")
+    + "</div>";
+},"useData":true});
 templates['pin.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, alias2=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
@@ -183,13 +201,13 @@ templates['pin.hbs'] = template({"1":function(container,depth0,helpers,partials,
     };
 
   return "		<div class=\"pin__author-container-"
-    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"PinID") : stack1), depth0))
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"pin_id") : stack1), depth0))
     + "\">\n			<img class=\"pin__author-avatar\" src=\""
-    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"AuthorAvatar") : stack1), depth0))
+    + alias2(alias1(((stack1 = ((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"author_info") : stack1)) != null ? lookupProperty(stack1,"avatar_url") : stack1), depth0))
     + "\">\n			<div class=\"pin__author-info\">\n				<p class=\"pin__author-name\">"
-    + ((stack1 = alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"AuthorName") : stack1), depth0)) != null ? stack1 : "")
+    + ((stack1 = alias1(((stack1 = ((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"author_info") : stack1)) != null ? lookupProperty(stack1,"nick_name") : stack1), depth0)) != null ? stack1 : "")
     + "</p>\n				<p class=\"pin__author-followers-number\">"
-    + ((stack1 = alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"AuthorFollowersNumber") : stack1), depth0)) != null ? stack1 : "")
+    + ((stack1 = alias1(((stack1 = ((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"author_info") : stack1)) != null ? lookupProperty(stack1,"followings_count") : stack1), depth0)) != null ? stack1 : "")
     + " Followers</p>\n			</div>\n		</div>\n";
 },"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, alias2=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
@@ -200,13 +218,13 @@ templates['pin.hbs'] = template({"1":function(container,depth0,helpers,partials,
     };
 
   return "<div class=\"pin__content-container-"
-    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"PinID") : stack1), depth0))
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"pin_id") : stack1), depth0))
     + "\">\n	<div class=\"pin__image-container\">\n		<img class=\"pin__image-"
-    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"PinID") : stack1), depth0))
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"pin_id") : stack1), depth0))
     + "\" src=\""
-    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"MediaUrl") : stack1), depth0))
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"media_url") : stack1), depth0))
     + "\">\n		<div class=\"pin__image-preview-button-"
-    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"PinID") : stack1), depth0))
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"pin_id") : stack1), depth0))
     + "\">\n			<img src=\"./assets/icons/magnifier.svg\" alt=\"Preview\">\n		</div>\n	</div>\n"
     + ((stack1 = lookupProperty(helpers,"unless").call(depth0 != null ? depth0 : (container.nullContext || {}),((stack1 = (depth0 != null ? lookupProperty(depth0,"pin") : depth0)) != null ? lookupProperty(stack1,"imageOnly") : stack1),{"name":"unless","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":8,"column":1},"end":{"line":16,"column":12}}})) != null ? stack1 : "")
     + "</div>\n";
@@ -224,13 +242,13 @@ templates['preview.hbs'] = template({"1":function(container,depth0,helpers,parti
     };
 
   return "<div class=\"preview__content-container preview__content-container-appearence\" tabindex=\"0\">\n    <div class=\"preview__upper-menu-container\">\n        <div class=\"preview__author-container\">\n            <img class=\"preview__author-avatar\" src=\""
-    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"preview") : depth0)) != null ? lookupProperty(stack1,"AuthorAvatarUrl") : stack1), depth0))
+    + alias2(alias1(((stack1 = ((stack1 = (depth0 != null ? lookupProperty(depth0,"preview") : depth0)) != null ? lookupProperty(stack1,"author_info") : stack1)) != null ? lookupProperty(stack1,"avatar_url") : stack1), depth0))
     + "\">\n            <div class=\"preview__author-info\">\n                <p class=\"preview__author-name\">"
-    + ((stack1 = alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"preview") : depth0)) != null ? lookupProperty(stack1,"AuthorName") : stack1), depth0)) != null ? stack1 : "")
+    + ((stack1 = alias1(((stack1 = ((stack1 = (depth0 != null ? lookupProperty(depth0,"preview") : depth0)) != null ? lookupProperty(stack1,"author_info") : stack1)) != null ? lookupProperty(stack1,"nick_name") : stack1), depth0)) != null ? stack1 : "")
     + "</p>\n                <p class=\"preview__author-followers-number\">"
-    + ((stack1 = alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"preview") : depth0)) != null ? lookupProperty(stack1,"AuthorFollowersNumber") : stack1), depth0)) != null ? stack1 : "")
+    + ((stack1 = alias1(((stack1 = ((stack1 = (depth0 != null ? lookupProperty(depth0,"preview") : depth0)) != null ? lookupProperty(stack1,"author_info") : stack1)) != null ? lookupProperty(stack1,"followings_count") : stack1), depth0)) != null ? stack1 : "")
     + " Followers</p>\n            </div>\n        </div>\n\n        <div class=\"preview__board-selector\">\n            <div class=\"preview__board-selector-container\">\n                <p class=\"preview__board-selector-container-text\">Сохранить</p>\n                <img class=\"preview__board-selector-container-icon\" src=\"./assets/icons/expand-list.svg\" alt=\"expand\">\n            </div>\n        </div>\n    </div>\n\n    <img id=\"preview__image\" class=\"preview__image-class\" src=\""
-    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"preview") : depth0)) != null ? lookupProperty(stack1,"MediaUrl") : stack1), depth0))
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"preview") : depth0)) != null ? lookupProperty(stack1,"media_url") : stack1), depth0))
     + "\" alt=\"Preview\">\n\n    <div class=\"preview__side-menu-container\">\n        <div class=\"preview__side-menu-more-container\">\n            <img class=\"preview__side-menu-more\" src=\"./assets/icons/more.svg\" alt=\"more\">\n        </div>\n"
     + ((stack1 = lookupProperty(helpers,"if").call(depth0 != null ? depth0 : (container.nullContext || {}),((stack1 = (depth0 != null ? lookupProperty(depth0,"preview") : depth0)) != null ? lookupProperty(stack1,"Bookmarked") : stack1),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data,"loc":{"start":{"line":25,"column":8},"end":{"line":29,"column":15}}})) != null ? stack1 : "")
     + "        <img class=\"preview__side-menu-comment\" src=\"./assets/icons/comment.svg\" alt=\"comment\">\n        <img class=\"preview__side-menu-share\" src=\"./assets/icons/share.svg\" alt=\"share\">\n    </div>\n\n    <div class=\"preview__stats-container\">\n        <div class=\"preview__stats-views-container\">\n            <p class=\"preview__stats-views-number\">"
@@ -252,6 +270,18 @@ templates['savebox.hbs'] = template({"compiler":[8,">= 4.3.0"],"main":function(c
     + "\n        <div class=\"savebox__boards-list-container\">\n            "
     + ((stack1 = ((helper = (helper = lookupProperty(helpers,"boardsList") || (depth0 != null ? lookupProperty(depth0,"boardsList") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"boardsList","hash":{},"data":data,"loc":{"start":{"line":5,"column":12},"end":{"line":5,"column":28}}}) : helper))) != null ? stack1 : "")
     + "\n        </div>\n        <button class=\"savebox__choose-board-button\" type=\"submit\">Выбрать</button>\n        <button class=\"savebox__create-board-button\" type=\"submit\">Создать доску</button>\n    </div>\n</div>\n";
+},"useData":true});
+templates['searchuser.hbs'] = template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"search-user__container\">\n    <div class=\"search-user__input\">\n         "
+    + ((stack1 = ((helper = (helper = lookupProperty(helpers,"searchInput") || (depth0 != null ? lookupProperty(depth0,"searchInput") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"searchInput","hash":{},"data":data,"loc":{"start":{"line":3,"column":9},"end":{"line":3,"column":26}}}) : helper))) != null ? stack1 : "")
+    + "\n    </div>\n    <div class=\"search-user__list\">\n    </div>\n</div>";
 },"useData":true});
 templates['details-menu.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, lookupProperty = container.lookupProperty || function(parent, propertyName) {
@@ -290,6 +320,22 @@ templates['details-menu.hbs'] = template({"1":function(container,depth0,helpers,
   return "<div class=\"details-menu__content-container\">\n    <div class=\"details-menu__options-list-container\">\n"
     + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"options") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":3,"column":8},"end":{"line":5,"column":17}}})) != null ? stack1 : "")
     + "    </div>\n</div>\n";
+},"useData":true});
+templates['dialog-preview.hbs'] = template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.hooks.helperMissing, alias3="function", alias4=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"dialog-preview disabled\" data-chat-id=\""
+    + alias4(((helper = (helper = lookupProperty(helpers,"ChatID") || (depth0 != null ? lookupProperty(depth0,"ChatID") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"ChatID","hash":{},"data":data,"loc":{"start":{"line":1,"column":51},"end":{"line":1,"column":61}}}) : helper)))
+    + "\">\n    <div class=\"dialog-preview__image\">\n        <img src=\""
+    + alias4(((helper = (helper = lookupProperty(helpers,"AvatarUrl") || (depth0 != null ? lookupProperty(depth0,"AvatarUrl") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"AvatarUrl","hash":{},"data":data,"loc":{"start":{"line":3,"column":18},"end":{"line":3,"column":31}}}) : helper)))
+    + "\">\n    </div>\n    <div class=\"dialog-preview__content\">\n        <div class=\"content__author-name\">\n            "
+    + alias4(((helper = (helper = lookupProperty(helpers,"NickName") || (depth0 != null ? lookupProperty(depth0,"NickName") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"NickName","hash":{},"data":data,"loc":{"start":{"line":7,"column":12},"end":{"line":7,"column":24}}}) : helper)))
+    + "\n        </div>\n        <div class=\"content__message-preview\">\n            Привет !\n        </div>\n    </div>\n</div>";
 },"useData":true});
 templates['drop-down-menu.hbs'] = template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<div class=\"drop-down-menu__content-container\">\n    <div class=\"drop-down-menu__options-list-container\">\n        <a class=\"drop-down-menu__user-option\" >\n            <img class=\"drop-down-menu__user-option-icon\" src=\"./assets/icons/user.svg\" alt=\"Profile\">\n            <p class=\"drop-down-menu__user-option-text\">Профиль</p>\n        </a>\n        <a class=\"drop-down-menu__settings-option\" >\n            <img class=\"drop-down-menu__settings-option-icon\" src=\"./assets/icons/settings.svg\" alt=\"Settings\">\n            <p class=\"drop-down-menu__settings-option-text\">Настройки</p>\n        </a>\n        <a class=\"drop-down-menu__logout-option\" >\n            <img class=\"drop-down-menu__logout-option-icon\" src=\"./assets/icons/logout.svg\" alt=\"Logout\">\n            <p class=\"drop-down-menu__logout-option-text\">Выйти</p>\n        </a>\n    </div>\n</div>\n";
@@ -467,6 +513,24 @@ templates['input.hbs'] = template({"1":function(container,depth0,helpers,partial
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"inputHelperText") : depth0),{"name":"if","hash":{},"fn":container.program(15, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":27,"column":1},"end":{"line":30,"column":8}}})) != null ? stack1 : "")
     + "\n</div>\n";
 },"useData":true});
+templates['message.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
+    return "align-right";
+},"3":function(container,depth0,helpers,partials,data) {
+    return "align-left";
+},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"message "
+    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"myMessage") : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data,"loc":{"start":{"line":1,"column":20},"end":{"line":1,"column":73}}})) != null ? stack1 : "")
+    + "\">\n    <div class=\"message-content\">"
+    + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"Content") || (depth0 != null ? lookupProperty(depth0,"Content") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"Content","hash":{},"data":data,"loc":{"start":{"line":2,"column":33},"end":{"line":2,"column":44}}}) : helper)))
+    + "</div>\n</div>";
+},"useData":true});
 templates['search-input.hbs'] = template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
@@ -478,6 +542,24 @@ templates['search-input.hbs'] = template({"compiler":[8,">= 4.3.0"],"main":funct
   return "<div class=\"searchinput__content-container\">\n    <img class=\"searchinput__finder-icon\" src=\"./assets/icons/finder.svg\" alt=\"search\">\n    <input class=\"searchinput__search-field\" type=\"text\" placeholder=\""
     + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? lookupProperty(depth0,"state") : depth0)) != null ? lookupProperty(stack1,"Placeholder") : stack1), depth0))
     + "\" name=\"search-input\">\n    <img class=\"searchinput__clear-icon\" src=\"./assets/icons/clear-search.svg\" alt=\"clear\">\n</div>\n";
+},"useData":true});
+templates['searchuser-item.hbs'] = template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.hooks.helperMissing, alias3="function", alias4=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"search-user__user\">\n    <div class=\"search-user__avatar\">\n        <img src=\""
+    + alias4(((helper = (helper = lookupProperty(helpers,"AvatarUrl") || (depth0 != null ? lookupProperty(depth0,"AvatarUrl") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"AvatarUrl","hash":{},"data":data,"loc":{"start":{"line":3,"column":18},"end":{"line":3,"column":31}}}) : helper)))
+    + "\">\n    </div>\n    <div class=\"search-user__info\">\n        <div class=\"search-user__name\">\n            "
+    + alias4(((helper = (helper = lookupProperty(helpers,"UserName") || (depth0 != null ? lookupProperty(depth0,"UserName") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"UserName","hash":{},"data":data,"loc":{"start":{"line":7,"column":12},"end":{"line":7,"column":24}}}) : helper)))
+    + "\n        </div>\n        <div class=\"search-user__nick\">\n            @"
+    + alias4(((helper = (helper = lookupProperty(helpers,"NickName") || (depth0 != null ? lookupProperty(depth0,"NickName") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"NickName","hash":{},"data":data,"loc":{"start":{"line":10,"column":13},"end":{"line":10,"column":25}}}) : helper)))
+    + "\n        </div>\n    </div>\n    <div class=\"search-user__add-chat\">\n        <div class=\"add-chat-btn\" data-companion-id=\""
+    + alias4(((helper = (helper = lookupProperty(helpers,"UserID") || (depth0 != null ? lookupProperty(depth0,"UserID") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"UserID","hash":{},"data":data,"loc":{"start":{"line":14,"column":53},"end":{"line":14,"column":63}}}) : helper)))
+    + "\">\n            +\n        </div>\n    </div>\n</div>";
 },"useData":true});
 templates['lookPin.hbs'] = template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.hooks.helperMissing, alias3="function", alias4=container.lambda, lookupProperty = container.lookupProperty || function(parent, propertyName) {
@@ -496,6 +578,28 @@ templates['lookPin.hbs'] = template({"compiler":[8,">= 4.3.0"],"main":function(c
     + "</p>\n                    <p class=\"preview__author-followers-number\">"
     + ((stack1 = alias4(((stack1 = (depth0 != null ? lookupProperty(depth0,"preview") : depth0)) != null ? lookupProperty(stack1,"AuthorFollowersNumber") : stack1), depth0)) != null ? stack1 : "")
     + " Followers</p>\n                </div>\n            </div>\n            <div class=\"pin__creature-time\">\n                1 месяц назад\n            </div>\n            <div class=\"pin__creature-place\">\n                Россия, Москва\n            </div>\n        </div>\n        <div class=\"lookpin__header\">\n            Готовы к будущему ? Красочный киберпанковский головной убор\n        </div>\n        <div class=\"lookpin__description\">\n            Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,\n            totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta\n            sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia\n            consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, \n            quia dolor sit amet consectetur adipisci[ng] velit, sed quia non numquam\n        </div>\n        <div clas=\"lookpin__href\">\n            <a href=\"https://www.insertcoinclothing.com/cyberpunk-2077\">Ссылка на пин</a>\n        </div>\n        <div class=\"lookpin__comments-num\">\n            11 комментариев\n        </div>\n        <div class=\"lookpin__comments\">\n            <div class=\"comment\">\n                <img class=\"comment__author-avatar\" src=\"./assets/imgs/avatar.jpg\">\n                <div class=\"comment__data\">\n                    <div class=\"comment__author-name\">\n                        Chris Isaak\n                    </div>\n                    <div class=\"comment__text\">\n                        Поздравляем с выдающимися решениями в области ИИ. В корпоративном секторе они создают волны.\n                    </div>\n                </div>\n            </div>\n            <div class=\"comment\">\n                <img class=\"comment__author-avatar\" src=\"./assets/imgs/avatar.jpg\">\n                <div class=\"comment__data\">\n                    <div class=\"comment__author-name\">\n                        Chris Isaak\n                    </div>\n                    <div class=\"comment__text\">\n                        Поздравляем с выдающимися решениями в области ИИ. В корпоративном секторе они создают волны.\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n";
+},"useData":true});
+templates['chat.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "                    "
+    + ((stack1 = container.lambda(depth0, depth0)) != null ? stack1 : "")
+    + "\n";
+},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.hooks.helperMissing, alias3="function", lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"chat-container\">\n    "
+    + ((stack1 = ((helper = (helper = lookupProperty(helpers,"header") || (depth0 != null ? lookupProperty(depth0,"header") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"header","hash":{},"data":data,"loc":{"start":{"line":2,"column":4},"end":{"line":2,"column":16}}}) : helper))) != null ? stack1 : "")
+    + "\n    <div class=\"chat__content\">\n        <div class=\"chat__sidebar\">\n            <div class=\"chat__sidebar-search\">\n            </div>\n            <div class=\"chat__sidebar-dialog-list\">\n"
+    + ((stack1 = lookupProperty(helpers,"each").call(alias1,(depth0 != null ? lookupProperty(depth0,"dialogPreviews") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":8,"column":16},"end":{"line":10,"column":25}}})) != null ? stack1 : "")
+    + "            </div>\n        </div>\n        <div class=\"chat__dialog\">\n            <div class=\"chat__dialog-messages\">\n                \n            </div>\n            <div class=\"chat__dialog-input\">\n                "
+    + ((stack1 = ((helper = (helper = lookupProperty(helpers,"messageInput") || (depth0 != null ? lookupProperty(depth0,"messageInput") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"messageInput","hash":{},"data":data,"loc":{"start":{"line":18,"column":16},"end":{"line":18,"column":34}}}) : helper))) != null ? stack1 : "")
+    + "\n            </div>\n        </div>\n    </div>\n</div>";
 },"useData":true});
 templates['editPin.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
     var helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
@@ -524,8 +628,6 @@ templates['editPin.hbs'] = template({"1":function(container,depth0,helpers,parti
     + ((stack1 = ((helper = (helper = lookupProperty(helpers,"TitleInput") || (depth0 != null ? lookupProperty(depth0,"TitleInput") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"TitleInput","hash":{},"data":data,"loc":{"start":{"line":20,"column":12},"end":{"line":20,"column":28}}}) : helper))) != null ? stack1 : "")
     + "\n        </div>\n        <div class=\"editpin__description\">\n            "
     + ((stack1 = ((helper = (helper = lookupProperty(helpers,"DescriptionInput") || (depth0 != null ? lookupProperty(depth0,"DescriptionInput") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"DescriptionInput","hash":{},"data":data,"loc":{"start":{"line":23,"column":12},"end":{"line":23,"column":34}}}) : helper))) != null ? stack1 : "")
-    + "\n        </div>\n        <div class=\"editpin__pinboard\">\n            <div class=\"editpin__pinboard-text\">Выберите доску</div>\n            "
-    + ((stack1 = ((helper = (helper = lookupProperty(helpers,"BoardsList") || (depth0 != null ? lookupProperty(depth0,"BoardsList") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"BoardsList","hash":{},"data":data,"loc":{"start":{"line":27,"column":12},"end":{"line":27,"column":28}}}) : helper))) != null ? stack1 : "")
     + "\n        </div>\n        <div class=\"editpin__submit\">\n            "
     + ((stack1 = ((helper = (helper = lookupProperty(helpers,"PublishButton") || (depth0 != null ? lookupProperty(depth0,"PublishButton") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"PublishButton","hash":{},"data":data,"loc":{"start":{"line":30,"column":12},"end":{"line":30,"column":31}}}) : helper))) != null ? stack1 : "")
     + "\n        </div>\n    </div>\n</div>\n\n\n\n\n\n\n\n\n";
@@ -544,7 +646,7 @@ templates['login.hbs'] = template({"1":function(container,depth0,helpers,partial
         return undefined
     };
 
-  return "<div class=\"cover\">\n    <span class=\"tomain__tap-button\">Главная</span>\n    <div class=\"auth\">\n        <div class=\"logo-auth\" style=\"padding: 20px\">\n            <a class\"a__form-logo\" style=\"text-decoration: none\" href=\"\">\n                <span style=\"color: black; font-size: 5rem\">Pin</span>\n                <span style=\"color: #e60023; font-size: 5rem\">Set</span>\n            </a>\n        </div>\n        <div class=\"form-auth\">\n            <form action=\"post\" class=\""
+  return "<div class=\"cover\">\n    <span class=\"tomain__tap-button\">Главная</span>\n    <div class=\"auth\">\n        <div class=\"logo-auth\" style=\"padding: 20px\">\n            <a class\"a__form-logo\" style=\"text-decoration: none\" href=\"\">\n                <span style=\"color: #9800fe; font-size: 5rem\">Pin</span>\n                <span style=\"color: #2c2cff; font-size: 5rem\">Set</span>\n            </a>\n        </div>\n        <div class=\"form-auth\">\n            <form action=\"post\" class=\""
     + container.escapeExpression(container.lambda((depth0 != null ? lookupProperty(depth0,"className") : depth0), depth0))
     + "\">\n"
     + ((stack1 = lookupProperty(helpers,"each").call(alias1,(depth0 != null ? lookupProperty(depth0,"inputs") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":12,"column":16},"end":{"line":14,"column":25}}})) != null ? stack1 : "")
@@ -722,7 +824,7 @@ templates['signup.hbs'] = template({"1":function(container,depth0,helpers,partia
         return undefined
     };
 
-  return "<div class=\"cover\">\n    <span class=\"tomain__tap-button\">Главная</span>\n    <div class=\"auth\">\n        <div class=\"logo-auth\" style=\"padding: 20px\">\n            <a class\"a_form-logo\" style=\"text-decoration: none\" href=\"\">\n                <span style=\"color: black; font-size: 5rem\">Pin</span>\n                <span style=\"color: #e60023; font-size: 5rem\">Set</span>\n            </a>\n        </div>\n        <div class=\"form-auth\">\n            <form action=\"post\" class=\""
+  return "<div class=\"cover\">\n    <span class=\"tomain__tap-button\">Главная</span>\n    <div class=\"auth\">\n        <div class=\"logo-auth\" style=\"padding: 20px\">\n            <a class\"a_form-logo\" style=\"text-decoration: none\" href=\"\">\n                <span style=\"color: #9800fe; font-size: 5rem\">Pin</span>\n                <span style=\"color: #2c2cff; font-size: 5rem\">Set</span>\n            </a>\n        </div>\n        <div class=\"form-auth\">\n            <form action=\"post\" class=\""
     + container.escapeExpression(container.lambda((depth0 != null ? lookupProperty(depth0,"className") : depth0), depth0))
     + "\">\n"
     + ((stack1 = lookupProperty(helpers,"each").call(alias1,(depth0 != null ? lookupProperty(depth0,"inputs") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":12,"column":16},"end":{"line":14,"column":25}}})) != null ? stack1 : "")

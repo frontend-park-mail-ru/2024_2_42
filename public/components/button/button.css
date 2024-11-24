@@ -19,7 +19,7 @@
 }
 
 .button.link {
-	color: var(--project-primary-red);
+	color: var(--pinset-main-color-purple);
 	padding: 0px 10px;
 	background-color: transparent;
 	text-decoration: underline;

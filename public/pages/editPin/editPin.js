@@ -2,6 +2,8 @@ import { BaseComponent } from '../../components/base/base.js';
 import { ButtonComponent as Button } from '../../components/button/button.js';
 import { InputComponent } from '../../components/input/input.js';
 import { SaveBoxComponent } from '../../components/complex/savebox/savebox.js';
+import { app } from '../../index.js';
+import { ROUTES } from '../../constants/routes.js';
 
 /**
  * Component that is used to create and edit pins.
@@ -59,7 +61,6 @@ export default class EditPinComponent extends BaseComponent {
       PinBoard: this.#pin.PinBoard,
       Image: this.#pin.mediaUrl,
       MediaUrl: this.#pin.mediaUrl,
-      BoardsList: boardsList.renderTemplate(),
     });
 
     this.Parent.insertAdjacentHTML('beforeend', renderedTemplate);
@@ -115,21 +116,29 @@ export default class EditPinComponent extends BaseComponent {
       '.editpin__description input'
     ).value;
     const ImageUrl = this.#pin.mediaUrl;
-    const BoardID = 1;
 
     const requestBody = JSON.stringify({
       author_id: 1,
-      board_id: BoardID,
+      board_id: 1,
       description: DescriptionValue,
       title: TitleValue,
       media_url: ImageUrl,
     });
-    console.log(requestBody);
 
     await fetch('http://localhost:8080/create-pin', {
       method: 'POST',
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: requestBody,
     });
+
+    console.log(requestBody);
+
     console.log('fetch done successfully');
+    this.Parent.innerHTML = '';
+    app.renderPage(ROUTES.main);
   }
 }

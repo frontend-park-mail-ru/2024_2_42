@@ -41,6 +41,9 @@ export class SignUpComponent extends BaseComponent {
 		this.#buttonData = buttonData;
 		this.#buttonFooterData = buttonFooterData;
 
+		this.#inputsData.nickName.captions = getCaptionSetForRule({
+			isNickName: true,
+		});
 		this.#inputsData.userName.captions = getCaptionSetForRule({
 			isUserName: true,
 		});
@@ -76,8 +79,14 @@ export class SignUpComponent extends BaseComponent {
 			input.parent = this.htmlElement;
 		});
 
-		const [userNameCaptionsBlock, emailCaptionsBlock, passwordCaptionsBlock] =
+		const [nickNameCaptionsBlock, userNameCaptionsBlock, emailCaptionsBlock, passwordCaptionsBlock] =
 			document.getElementsByClassName('input__helper-text-list');
+
+		for (const captionText of this.#inputsData.nickName.captions) {
+			const nextCaption = document.createElement('input__helper-text');
+			nextCaption.textContent = captionText;
+			nickNameCaptionsBlock.appendChild(nextCaption);
+		}
 
 		for (const captionText of this.#inputsData.userName.captions) {
 			const nextCaption = document.createElement('input__helper-text');
@@ -123,12 +132,14 @@ export class SignUpComponent extends BaseComponent {
 		submitBtn.addEventListener('click', async (event) => {
 			event.preventDefault();
 
-			const [userNameInput, emailInput, passwordInput] = document.getElementsByClassName('input');
+			const [nickNameInput, userNameInput, emailInput, passwordInput] = document.getElementsByClassName('input');
+			const nickNameState = validateInput(nickNameInput.value, {isNickName: true})
 			const userNameState = validateInput(userNameInput.value, { isUserName: true })
 			const emailState = validateInput(emailInput.value, { isEmail: true });
 			const passwordState = validateInput(passwordInput.value, { isPassword: true });
-			if (userNameState.isValid && emailState.isValid && passwordState.isValid) {
+			if (nickNameState.isValid && userNameState.isValid && emailState.isValid && passwordState.isValid) {
 				const signUpData = {
+					nick_name: userNameInput.value,
 					user_name: userNameInput.value,
 					email: emailInput.value,
 					password: passwordInput.value,
@@ -147,11 +158,18 @@ export class SignUpComponent extends BaseComponent {
 	 * Adds focus/blur handlers for data inputs
 	 */
 	addInputFocusHandler() {
-		const [userNameInput, loginInput, passwordInput] =
+		const [nickNameInput, userNameInput, loginInput, passwordInput] =
 			document.getElementsByClassName('input');
-		const [userNameCaptionsBlock, emailCaptionsBlock, passwordCaptionsBlock] =
+		const [nickNameCaptionBlock, userNameCaptionsBlock, emailCaptionsBlock, passwordCaptionsBlock] =
 			document.getElementsByClassName('input__helper-text-list');
 
+		nickNameInput.addEventListener('focus', (event) => {
+			event.preventDefault();
+
+			if (this.#inputsErrors.nickName == undefined) {
+				nickNameCaptionBlock.style.display = '';
+			}
+		});
 		userNameInput.addEventListener('focus', (event) => {
 			event.preventDefault();
 
@@ -174,6 +192,10 @@ export class SignUpComponent extends BaseComponent {
 			}
 		});
 
+		nickNameInput.addEventListener('blur', (event) => {
+			event.preventDefault();
+			nickNameCaptionBlock.style.display = 'none';
+		});
 		userNameInput.addEventListener('blur', (event) => {
 			event.preventDefault();
 			userNameCaptionsBlock.style.display = 'none';
@@ -192,22 +214,46 @@ export class SignUpComponent extends BaseComponent {
 	 * Adds input handler to track its value changes
 	 */
 	addInputOnChangeHandler() {
-		const [userNameInput, loginInput, passwordInput, passwordRepeatInput] =
+		const [nickNameInput, userNameInput, loginInput, passwordInput, passwordRepeatInput] =
 			document.getElementsByClassName('input');
-		const [userNameCaptionsBlock, emailCaptionsBlock, passwordCaptionsBlock] =
+		const [nickNameCaptionsBlock, userNameCaptionsBlock, emailCaptionsBlock, passwordCaptionsBlock] =
 			document.getElementsByClassName('input__helper-text-list');
 		const [
+			nickNameErrBlock,
 			userNameErrBlock,
 			emailErrBlock,
 			passwordErrBlock,
 			passwordRepeatErrBlock,
 		] = document.getElementsByClassName('input__error-text-list');
 
+		const nickNameErrTextBlock = document.createElement('input__error-text');
 		const userNameErrTextBlock = document.createElement('input__error-text');
 		const emailErrTextBlock = document.createElement('input__error-text');
 		const passwordErrTextBlock = document.createElement('input__error-text');
 		const passwordRepeatErrTextBlock =
-			document.createElement('input__error-text');
+		document.createElement('input__error-text');
+
+		nickNameInput.addEventListener('input', (event) => {
+			event.preventDefault();
+	
+			const inputState = validateInput(nickNameInput.value, {
+				isNickName: true,
+			});
+			if (nickNameInput.value.length > 0 && !inputState.isValid) {
+				this.#inputsErrors.nickName = inputState.error;
+				nickNameErrTextBlock.textContent = inputState.error;
+				nickNameErrBlock.appendChild(nickNameErrTextBlock);
+				nickNameErrBlock.style.display = '';
+				nickNameCaptionsBlock.style.display = 'none';
+			} else {
+				this.#inputsErrors.nickName = undefined;
+				if (nickNameErrBlock.contains(nickNameErrTextBlock)) {
+					nickNameErrBlock.removeChild(nickNameErrTextBlock);
+				}
+				nickNameErrBlock.style.display = 'none';
+				nickNameCaptionsBlock.style.display = '';
+			}
+		});
 
 		userNameInput.addEventListener('input', (event) => {
 			event.preventDefault();
@@ -323,9 +369,9 @@ export class SignUpComponent extends BaseComponent {
 		signUpBtn.addEventListener('click', (event) => {
 			event.preventDefault();
 
-			const [_, login, password] = document.getElementsByClassName('input');
+			const [, email, password] = document.getElementsByClassName('input');
 			this.#inputsSavedValues = {
-				login: login.value,
+				login: email.value,
 				password: password.value,
 			};
 

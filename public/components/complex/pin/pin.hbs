@@ -1,16 +1,16 @@
-<div class="pin__content-container-{{pin.PinID}}">
+<div class="pin__content-container-{{pin.pin_id}}">
 	<div class="pin__image-container">
-		<img class="pin__image-{{pin.PinID}}" src="{{pin.MediaUrl}}">
-		<div class="pin__image-preview-button-{{pin.PinID}}">
+		<img class="pin__image-{{pin.pin_id}}" src="{{pin.media_url}}">
+		<div class="pin__image-preview-button-{{pin.pin_id}}">
 			<img src="./assets/icons/magnifier.svg" alt="Preview">
 		</div>
 	</div>
 	{{#unless pin.imageOnly}}
-		<div class="pin__author-container-{{pin.PinID}}">
-			<img class="pin__author-avatar" src="{{pin.AuthorAvatar}}">
+		<div class="pin__author-container-{{pin.pin_id}}">
+			<img class="pin__author-avatar" src="{{pin.author_info.avatar_url}}">
 			<div class="pin__author-info">
-				<p class="pin__author-name">{{{pin.AuthorName}}}</p>
-				<p class="pin__author-followers-number">{{{pin.AuthorFollowersNumber}}} Followers</p>
+				<p class="pin__author-name">{{{pin.author_info.nick_name}}}</p>
+				<p class="pin__author-followers-number">{{{pin.author_info.followings_count}}} Followers</p>
 			</div>
 		</div>
 	{{/unless}}
