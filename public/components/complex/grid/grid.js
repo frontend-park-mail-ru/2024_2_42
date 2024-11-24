@@ -626,10 +626,10 @@ export class GridComponent extends BaseComponent {
      */
     async saveToBoardListenerHandler(event, BoardID, PinID) {
         if (event.currentTarget.checked) {
-            await postMethod(`${BACKEND_SAVE_PIN_TO_BOARD}/${BoardID}/addPin/${PinID}`)
+            await postMethod(`${BACKEND_SAVE_PIN_TO_BOARD}/${BoardID}/addpin/${PinID}`)
             this.#boardsToSaveTo.push(event.currentTarget.value);
         } else {
-            await deleteMethod(`${BACKEND_SAVE_PIN_TO_BOARD}/${BoardID}/addPin/${PinID}`)
+            await deleteMethod(`${BACKEND_SAVE_PIN_TO_BOARD}/${BoardID}/deletepin/${PinID}`)
             const index = this.#boardsToSaveTo.indexOf(event.currentTarget.value);
             if (index > -1) {
                 this.#boardsToSaveTo.splice(index, 1);

@@ -79,6 +79,7 @@ export class ProfilePageComponent extends BaseComponent {
         this.resizeBoardsCovers();
         this.addNickNameCopyBtnListener();
         this.addSearchInputsListeners();
+        this.addBoardListener(this.State);
         this.addBoardsSearchBarListener(this.State);
         this.addProfileImgListener();
         this.addBoardDetailsIconListener();

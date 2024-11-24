@@ -137,13 +137,14 @@ export class SignUpComponent extends BaseComponent {
 
                 const resp = await postMethod(apiRoute, signUpData, true);
                 if (resp.session_cookie) {
-                    const userInfo = getUserAvatar();
+                    const userInfo = await getUserAvatar();
                     StateManagerInstance.updateState(
                         {userID: userInfo.user_id,
                         userAvatar: userInfo.avatar_url, 
                         isAuthorized: true});
                     document.cookie = `session_token=${resp.session_cookie}`;
                     this.Parent.innerHTML = '';
+                    console.log(userInfo);
                     app.renderPage(ROUTES.main);
                 }
             }
