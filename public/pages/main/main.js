@@ -48,7 +48,6 @@ export class MainPageComponent extends BaseComponent {
       header: headerPart.renderTemplate(),
       grid: grid.renderTemplate(),
     });
-    console.log(renderedTemplate);
 
     this.Parent.insertAdjacentHTML('beforeend', renderedTemplate);
 
@@ -57,7 +56,6 @@ export class MainPageComponent extends BaseComponent {
     }
 
     for (const pin of this.#pins) {
-      console.log(pin);
       grid.buildPinPreview(pin);
     }
 
@@ -74,7 +72,6 @@ export class MainPageComponent extends BaseComponent {
       const createBtn = document.querySelector(
         '.header__create-btn-container button'
       );
-      console.log('createBtn', createBtn);
       createBtn.addEventListener('click', (event) => {
         event.preventDefault();
         app.render(ROUTES.editPin);

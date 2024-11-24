@@ -125,13 +125,6 @@ export default class EditPinComponent extends BaseComponent {
       media_url: ImageUrl,
     });
 
-    console.log(requestBody);
-
-    // await fetch('http://localhost:8080/create-pin', {
-    //   method: 'POST',
-    //   body: requestBody,
-    // });
-
     await fetch('http://localhost:8080/create-pin', {
       method: 'POST',
       mode: 'cors',
