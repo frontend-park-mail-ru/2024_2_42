@@ -15,6 +15,7 @@ import {
 	BACKEND_SIGNUP_ROUTE,
 	BACKEND_FEED_ROUTE,
 	BACKEND_LOGOUT_ROUTE,
+    BACKEND_PROFILE_ROUTE,
 } from './constants/api.js';
 
 import { getMethod } from './modules/network.js';
