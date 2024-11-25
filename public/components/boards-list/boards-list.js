@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 import { BaseComponent } from "../base/base.js";
 
@@ -10,9 +10,9 @@ export class BoardsListComponent extends BaseComponent {
      * An array of boards objects.
      */
     #boards;
-    
+
     /**
-     * 
+     *
      * @param {HTMLElement} parent - HTML element of the parent container.
      * @param {Array} boards - all boards of a user.
      */
@@ -33,4 +33,4 @@ export class BoardsListComponent extends BaseComponent {
 
         return renderedTemplate;
     }
-};
+}

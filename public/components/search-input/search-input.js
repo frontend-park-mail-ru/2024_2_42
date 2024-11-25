@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 import { BaseComponent } from '../base/base.js'
 
@@ -27,4 +27,4 @@ export class SearchInputComponent extends BaseComponent {
 
         return renderedTemplate;
     }
-};
+}

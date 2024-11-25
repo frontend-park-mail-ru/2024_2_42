@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 import { BaseComponent } from "../base/base.js"
 
@@ -33,4 +33,4 @@ export class DetailsMenuComponent extends BaseComponent {
 
         return renderedTemplate;
     }
-};
+}

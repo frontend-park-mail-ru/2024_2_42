@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 import { BaseComponent } from "../base/base.js"
 
@@ -22,9 +22,9 @@ export class IconButtonComponent extends BaseComponent {
     renderTemplate() {
         const template = Handlebars.templates['icon-button.hbs'];
         const renderedTemplate = template({
-            state: this.State
+            state: this.State,
         });
 
         return renderedTemplate;
     }
-};
+}

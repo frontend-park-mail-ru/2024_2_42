@@ -45,6 +45,6 @@ body {
     align-items: center;
 }
 
-input[type=checkbox] {
+input[type='checkbox'] {
     transform: scale(1.3);
 }

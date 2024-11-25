@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 import { BaseComponent } from "../../components/base/base.js"
 
@@ -10,7 +10,7 @@ export class BoardGridComponent extends BaseComponent {
     #currentUser;
 
     /**
-     * 
+     *
      * @param {HTMLElement} parent - HTML element of the parent container.
      * @param {Array} boards - list of boards of currently authorized user.
      * @param {Boolean} currentUser - whether print boards of authorized user or not.
@@ -36,4 +36,4 @@ export class BoardGridComponent extends BaseComponent {
 
         return renderedTemplate;
     }
-};
+}

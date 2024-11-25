@@ -1,7 +1,7 @@
 'use strict';
 
 import '../constants/api.js';
-import { BACKEND_IS_AUTHORIZED_ROUTE } from '../constants/api.js';
+import { BACKEND_IS_AUTHORIZED_ROUTE, BACKEND_GET_USER_AVATAR_ROUTE } from '../constants/api.js';
 
 /**
  * Handles response provided by fetch API. In case of error displayes corresponding message if corresponding flag is given
@@ -10,12 +10,12 @@ import { BACKEND_IS_AUTHORIZED_ROUTE } from '../constants/api.js';
  * @returns {Object} - response presented in JSON form
  */
 const handleResponse = async (response, shouldLog) => {
-	const jsonResponse = await response.json()
-	if (!response.ok && shouldLog) {
-		// error displaying code will be here
-	}
+    const jsonResponse = await response.json();
+    if (!response.ok && shouldLog) {
+        // error displaying code will be here
+    }
 
-	return jsonResponse;
+    return jsonResponse;
 };
 
 /**
@@ -23,16 +23,30 @@ const handleResponse = async (response, shouldLog) => {
  * @returns {boolean} - result of user  authorization check
  */
 export const isAuthorized = async () => {
-	const resp = await getMethod(BACKEND_IS_AUTHORIZED_ROUTE, false)
-	if (resp === undefined) {
-		return false
-	}
-	if (resp.code_status !== undefined && resp.message !== undefined) {
-		return false;
-	}
+    const resp = await getMethod(BACKEND_IS_AUTHORIZED_ROUTE, false);
+    if (resp === undefined) {
+        return false;
+    }
+    if (resp.code_status !== undefined && resp.message !== undefined) {
+        return false;
+    }
+    return resp;
+};
 
-	return true;
-}
+/**
+ * If user authorized get his avatar
+ * @returns {string} - user avatar`s url
+ */
+export const getUserAvatar = async () => {
+    const resp = await getMethod(BACKEND_GET_USER_AVATAR_ROUTE, false);
+    if (resp === undefined) {
+        return '';
+    }
+    if (resp.code_status !== undefined && resp.message !== undefined) {
+        return '';
+    }
+    return resp;
+};
 
 /**
  * Executes get method request to backend API
@@ -41,20 +55,21 @@ export const isAuthorized = async () => {
  * @returns {Object} - response presented in JSON form
  */
 export const getMethod = async (apiRoute, shouldLog) => {
-	const response = await fetch(apiRoute, {
-		method: 'GET',
-		mode: 'cors',
-		credentials: 'include',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	}).then((response, shouldLog) => {
-		return handleResponse(response, shouldLog);
-	}).catch(() => {
-		return undefined
-	});
-
-	return response;
+    const response = await fetch(apiRoute, {
+        method: 'GET',
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then((response, shouldLog) => {
+            return handleResponse(response, shouldLog);
+        })
+        .catch(() => {
+            return undefined;
+        });
+    return response;
 };
 
 /**
@@ -65,16 +80,38 @@ export const getMethod = async (apiRoute, shouldLog) => {
  * @returns {Object} - response presented in JSON form
  */
 export const postMethod = async (apiRoute, dataEntity, shouldLog) => {
-	const response = await fetch(apiRoute, {
-		method: 'POST',
-		mode: 'cors',
-		credentials: 'include',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify(dataEntity),
-	})
+    const response = await fetch(apiRoute, {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataEntity),
+    });
 
-	const jsonData = await handleResponse(response, shouldLog);
-	return jsonData;
+    const jsonData = await handleResponse(response, shouldLog);
+    return jsonData;
+};
+
+/**
+ * Executes post method request to backend API
+ * @param {string} apiRoute - url address of corresponding backend resource
+ * @param {Object} dataEntity - request body
+ * @param {boolean} shouldLog - should error message be displayed in error case or not
+ * @returns {Object} - response presented in JSON form
+ */
+export const deleteMethod = async (apiRoute, dataEntity, shouldLog) => {
+    const response = await fetch(apiRoute, {
+        method: 'DELETE',
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataEntity),
+    });
+
+    const jsonData = await handleResponse(response, shouldLog);
+    return jsonData;
 };

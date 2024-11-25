@@ -19,7 +19,7 @@
     padding: 0 5px 0 5px;
 }
 
-a[class^=details-menu__option] {
+a[class^='details-menu__option'] {
     text-decoration: none;
     outline: none;
     width: 100%;
@@ -31,7 +31,7 @@ a[class^=details-menu__option] {
     text-align: center;
 }
 
-a[class^=details-menu__option]:hover {
+a[class^='details-menu__option']:hover {
     background-color: var(--pinset-box-list-option-hover-color);
     color: white;
     cursor: pointer;

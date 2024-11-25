@@ -17,17 +17,17 @@ templates['boards-list.hbs'] = template({"1":function(container,depth0,helpers,p
         return undefined
     };
 
-  return "            <div class=\"savebox__board-selection savebox__board-selection-"
+  return "            <div class='savebox__board-selection savebox__board-selection-"
     + alias2(alias1((depth0 != null ? lookupProperty(depth0,"BoardName") : depth0), depth0))
     + "\">\n                <input class=\"savebox__board-checkbox\" type=\"radio\" id=\"checkbox-"
     + alias2(alias1((depth0 != null ? lookupProperty(depth0,"BoardName") : depth0), depth0))
-    + "\" value=\""
+    + "' value='"
     + alias2(alias1((depth0 != null ? lookupProperty(depth0,"BoardName") : depth0), depth0))
     + "\">\n                <div class=\"savebox__board-cover-container\">\n                    <img class=\"savebox__board-cover\" src=\""
     + alias2(alias1((depth0 != null ? lookupProperty(depth0,"BoardCoverUrl") : depth0), depth0))
     + "\" alt=\"cover\">\n                </div>\n                <label class=\"savebox__board-label\" for=\"checkbox-"
     + alias2(alias1((depth0 != null ? lookupProperty(depth0,"BoardName") : depth0), depth0))
-    + "\">"
+    + "'>"
     + ((stack1 = alias1((depth0 != null ? lookupProperty(depth0,"BoardName") : depth0), depth0)) != null ? stack1 : "")
     + "</label>\n"
     + ((stack1 = lookupProperty(helpers,"if").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"Private") : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":10,"column":16},"end":{"line":12,"column":23}}})) != null ? stack1 : "")
@@ -108,11 +108,11 @@ templates['icon-button.hbs'] = template({"compiler":[8,">= 4.3.0"],"main":functi
         return undefined
     };
 
-  return "<div class=\"icon-button__content-container "
+  return "<div class='icon-button__content-container "
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"state") : depth0)) != null ? lookupProperty(stack1,"className") : stack1), depth0))
     + "\">\n    <img class=\""
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"state") : depth0)) != null ? lookupProperty(stack1,"className") : stack1), depth0))
-    + "\" src=\""
+    + "' src='"
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"state") : depth0)) != null ? lookupProperty(stack1,"iconPath") : stack1), depth0))
     + "\">\n</div>\n";
 },"useData":true});
@@ -694,7 +694,7 @@ templates['profile.hbs'] = template({"1":function(container,depth0,helpers,parti
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,((stack1 = ((stack1 = (depth0 != null ? lookupProperty(depth0,"profile") : depth0)) != null ? lookupProperty(stack1,"socialNetworks") : stack1)) != null ? lookupProperty(stack1,"pinterest") : stack1),{"name":"if","hash":{},"fn":container.program(11, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":50,"column":16},"end":{"line":52,"column":23}}})) != null ? stack1 : "")
     + "            </div>\n\n            <div class=\"profile__user-personal-website-container\">\n                <img src=\"./assets/icons/link.svg\" alt=\"Link\">\n                <a href=\""
     + alias5(alias4(((stack1 = (depth0 != null ? lookupProperty(depth0,"profile") : depth0)) != null ? lookupProperty(stack1,"personalWebsiteLink") : stack1), depth0))
-    + "\">"
+    + "'>"
     + ((stack1 = alias4(((stack1 = (depth0 != null ? lookupProperty(depth0,"profile") : depth0)) != null ? lookupProperty(stack1,"personalWebsiteLink") : stack1), depth0)) != null ? stack1 : "")
     + "</a>\n            </div>\n\n            <div class=\"profile__user-geolocation-container\">\n                <img src=\"./assets/icons/location.svg\" alt=\"Location\">\n                <p>"
     + ((stack1 = alias4(((stack1 = (depth0 != null ? lookupProperty(depth0,"profile") : depth0)) != null ? lookupProperty(stack1,"geolocation") : stack1), depth0)) != null ? stack1 : "")

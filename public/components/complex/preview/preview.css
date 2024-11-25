@@ -9,7 +9,7 @@
 
 .preview__content-container-appearence {
     animation-name: preview_appear;
-    animation-duration: .5s;
+    animation-duration: 0.5s;
 }
 
 @keyframes preview_appear {

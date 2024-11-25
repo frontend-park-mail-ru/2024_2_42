@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 import { BaseComponent } from "../base/base.js"
 
@@ -23,4 +23,4 @@ export class DropDownMenuComponent extends BaseComponent {
         const renderedTemplate = template();
         return renderedTemplate;
     }
-} ;
+}
