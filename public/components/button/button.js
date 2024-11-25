@@ -1,6 +1,6 @@
 'use strict';
 
-import { BaseComponent } from '../base.js';
+import { BaseComponent } from '../base/base.js';
 
 export class ButtonComponent extends BaseComponent {
     #clickHandler = () => {};
@@ -25,8 +25,8 @@ export class ButtonComponent extends BaseComponent {
         const template = Handlebars.templates['button.hbs'];
         const renderedTemplate = template(this.State);
 
-        return renderedTemplate;
-    }
+    return renderedTemplate;
+  }
 
     /**
      * Handles the button click event.

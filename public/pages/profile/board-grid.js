@@ -1,6 +1,6 @@
 'use strict';
 
-import { BaseComponent } from '../../components/base.js';
+import { BaseComponent } from "../../components/base/base.js"
 
 /**
  * Component that is used to display boards grid on user profile page.

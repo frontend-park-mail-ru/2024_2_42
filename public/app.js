@@ -3,7 +3,12 @@
 import { LoginComponent as Login } from './pages/login/login.js';
 import { SignUpComponent as SignUp } from './pages/signup/signup.js';
 import { MainPageComponent } from './pages/main/main.js';
-import { ProfilePageComponent as ProfilePage} from './pages/profile/profile.js';
+
+import LookPin from './pages/addPin/lookPin.js';
+import EditPin from './pages/editPin/editPin.js';
+
+import { ProfilePageComponent as ProfilePage } from './pages/profile/profile.js';
+
 
 import { ROUTES } from './constants/routes.js';
 import { BACKEND_LOGIN_ROUTE, BACKEND_SIGNUP_ROUTE, BACKEND_FEED_ROUTE, BACKEND_PROFILE_ROUTE } from './constants/api.js';
@@ -33,42 +38,45 @@ export default class App {
         this.root = root;
     }
 
-    /**
-     * Renders the component depending on what route is given.
-     * @param {string} pageRoute - the route of the page.
-     */
-    render(pageRoute) {
-        const userIdMatch = pageRoute.match(/^\/user\/(\d+)$/);
-        if (userIdMatch) {
-            const user_id = userIdMatch[1];
-            history.pushState({}, '', `${ROUTES.user}${user_id}`);
-            this.#renderProfile(user_id);
-            return;
-        }
-    
-        switch (pageRoute) {
-            case ROUTES.main:
-                history.pushState({}, '', ROUTES.main);
-                this.#renderFeed();
-                break;
-            case ROUTES.login:
-                history.pushState({}, '', ROUTES.login);
-                this.#renderLogin();
-                break;
-            case ROUTES.signup:
-                history.pushState({}, '', ROUTES.signup);
-                this.#renderSignup();
-                break;
-            case ROUTES.profile:
-                history.pushState({}, ROUTES.profile);
-                this.#renderProfile();
-                break;
-            default:
-                this.#handleUnknownRoute();
-                break;
-        }
-    }
-    
+	/**
+	 * Renders the component depending on what route is given.
+	 * @param {string} pageRoute - the route of the page.
+	 */
+	render(pageRoute) {
+		switch (pageRoute) {
+			case ROUTES.main:
+				history.pushState({}, '', ROUTES.main);
+				this.#renderFeed();
+				break;
+			case ROUTES.login:
+				history.pushState({}, '', ROUTES.login);
+				this.#renderLogin();
+				break;
+			case ROUTES.signup:
+				history.pushState({}, '', ROUTES.signup);
+				this.#renderSignup();
+				break;
+			case ROUTES.lookPin:
+				history.pushState({}, '', ROUTES.lookPin);
+				this.#renderLookPin();
+				break;
+			case ROUTES.editPin:
+				history.pushState({}, '', ROUTES.editPin);
+				this.#renderEditPin();
+				break;
+			case ROUTES.createPin:
+				history.pushState({}, '', ROUTES.createPin);
+				this.#renderCreatePin();
+				break;
+			case ROUTES.profile:
+				history.pushState({}, '', ROUTES.profile);
+				this.#renderProfile();
+				break;
+			default:
+				this.#handleUnknownRoute();
+				break;
+		}
+	}
 
     /**
      * Clears all page data if it's needed and renders the page depending on what route is given.
@@ -80,13 +88,50 @@ export default class App {
         this.render(pageRoute);
     }
 
-    /**
-     * Renders login component and saves inputs values if they are typed in.
-     */
-    #renderLogin() {
-        const config = this.config.loginConfig;
-        const login = new Login(this.root, config.inputs, config.button, config.button_form_footer);
-        login.renderTemplate();
+	/**
+	 * Renders login component and saves inputs values if they are typed in.
+	 */
+	#renderLookPin() {
+		const curPin = {
+			PinID: 3,
+			AuthorName: 'Mary Jane',
+			AuthorFollowersNumber: 100,
+			MediaUrl:
+				'https://images.unsplash.com/photo-1580618432485-1e08c5039909?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy',
+			BoardID: 1,
+		};
+		const addPin = new LookPin(this.root, curPin);
+		addPin.renderTemplate();
+	}
+
+	#renderEditPin() {
+		const curPin = {
+			PinID: 3,
+			Title: 'Текущее название',
+			Description: 'Текущее описание',
+			PinBoard: 'Имя текущей доски',
+			MediaUrl:
+				'https://images.unsplash.com/photo-1580618432485-1e08c5039909?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bmV1cmFsJTIwbmV0d29ya3N8ZW58MHwxfDB8fHwy',
+			BoardID: 1,
+		};
+		const editPin = new EditPin(this.root, curPin, true);
+		editPin.renderTemplate();
+	}
+
+	#renderCreatePin() {
+		const editPin = new EditPin(this.root, null, false);
+		editPin.renderTemplate();
+	}
+
+	#renderLogin() {
+		const config = this.config.loginConfig;
+		const login = new Login(
+			this.root,
+			config.inputs,
+			config.button,
+			config.button_form_footer
+		);
+		login.renderTemplate();
 
         login.addSubmitBtnHandler(BACKEND_LOGIN_ROUTE);
         login.addInputFocusHandler();
@@ -106,13 +151,18 @@ export default class App {
         }
     }
 
-    /**
-     * Renders sign up component and saves inputs values if they are typed in.
-     */
-    #renderSignup() {
-        const config = this.config.signupConfig;
-        const signUp = new SignUp(this.root, config.inputs, config.button, config.button_form_footer);
-        signUp.renderTemplate();
+	/**
+	 * Renders sign up component and saves inputs values if they are typed in.
+	 */
+	#renderSignup() {
+		const config = this.config.signupConfig;
+		const signUp = new SignUp(
+			this.root,
+			config.inputs,
+			config.button,
+			config.button_form_footer
+		);
+		signUp.renderTemplate();
 
         signUp.addSubmitBtnHandler(BACKEND_SIGNUP_ROUTE);
         signUp.addInputFocusHandler();

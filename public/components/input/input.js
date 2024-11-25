@@ -1,6 +1,6 @@
 'use strict';
 
-import { BaseComponent } from '../base.js';
+import { BaseComponent } from '../base/base.js';
 
 /**
  * Represents an Input Component.
@@ -59,11 +59,18 @@ export class InputComponent extends BaseComponent {
         this.#changeHandler = changeHandler;
     }
 
-    /**
-     * Gets the current change event handler for the input.
-     * @returns {Function} - The current change event handler.
-     */
-    getChangeHandler() {
-        return this.#changeHandler;
-    }
+	/**
+	 * Gets the current change event handler for the input.
+	 * @returns {Function} - The current change event handler.
+	 */
+	getChangeHandler() {
+		return this.#changeHandler;
+	}
+
+	/**
+	 * Sets a value to input field.
+	 */
+	setValue(value) {
+		this.State.inputValue = value;
+	}
 }

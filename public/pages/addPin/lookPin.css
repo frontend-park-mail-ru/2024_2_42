@@ -1,0 +1,123 @@
+html, body {
+    height: 100%;
+}
+
+
+.lookpin-container{
+    margin-left: 15rem;
+    margin-right: 15rem;
+    width: calc(100% - 30rem);
+    height: 80%;
+    background-color: var(--project-primary-white);;
+    display: flex;
+    gap: 1rem;
+}
+
+.lookpin__data{
+    width: 50%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: var(--project-primary-white);
+    border-radius: 5%;
+    box-shadow: 0px 0px 10px var(--project-primary-grey);
+}
+
+.lookpin__image{
+    width: 45%;
+}
+
+.lookpin__image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5%;
+}
+
+.lookpin__actions {
+    display: flex;
+}
+
+.lookpin__info{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--pin-feed-author-followers-number-color);
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.lookpin__header {
+    font-size: 20px;
+    font-weight: 600;
+    max-height: 2.5em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;  
+    text-overflow: ellipsis; 
+}
+
+.lookpin__description{
+    max-height: 5em;
+    font-size: 16px;
+    line-height: 1.2;
+    overflow-y: auto;
+    padding-right: 0.2rem;
+}
+
+
+.lookpin__actions-account {
+    display: flex;
+    gap: 10px;
+}
+
+.lookpin__actions-extra {
+    display: flex;
+    justify-content: right;
+}
+
+.lookpin__actions-extra img {
+    width: 20%;
+    filter: invert(1);
+}
+
+.lookpin-button{
+    background-color: var(--project-primary-white);
+    color: var(--project-primary-grey);
+    border: 1px solid  var(--project-primary-grey);
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.lookpin__comments{
+    height: 4em;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow-y: auto;
+}
+
+.comment {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.comment__author-name {
+    font-weight: 600;
+}
+
+.comment__author-avatar {
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	object-fit: cover;
+	clip-path: circle();
+	cursor: pointer;
+}
+
+.comment__data {
+    flex:1;
+}
