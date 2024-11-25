@@ -1,0 +1,37 @@
+.input-text-area {
+    display: flex;
+    flex-direction: column;
+}
+
+.textarea-container {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    margin-right: 10px; /* Отступ между иконкой и полем */
+}
+
+.icon img {
+    width: 20px; /* Размер иконки */
+    height: 20px;
+}
+
+.input-area {
+    flex-grow: 1; /* Заполняет оставшееся пространство */
+    min-height: 50px;
+    resize: none;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+.input-area::placeholder {
+    text-align: left; /* Центрирует текст placeholder */
+    color: var(--input-label-color); /* Цвет текста для placeholder */
+}

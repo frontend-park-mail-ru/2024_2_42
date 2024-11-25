@@ -4,7 +4,8 @@
     --project-primary-black: black;
     --project-primary-grey: grey;
 
-    --input-label-color: #8f8f8f;
+	--input-label-color: #8f8f8f;
+	--input-border-color: #ccc;
 
     --input-caption-color: #505050;
     --input-caption-font-size: 12px;
@@ -59,6 +60,8 @@
     --pinset-profile-user-edit-block-color: #757575;
     --pinset-profile-user-edit-block-hovered-color: #585858;
 
-    --pinset-delete-button-color: #c20000;
-    --pinset-delete-button-hovered-color: #910000;
+	--pinset-delete-button-color: #C20000;
+	--pinset-delete-button-hovered-color: #910000;
+
+	--pinset-create-inputs-placeholder-text-color: #7A7A7A;
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-import { BaseComponent } from '../base.js';
+import { BaseComponent } from '../base/base.js'
 
 /**
  * A component that is used to display options when clicking on 'more' button.
